@@ -1,0 +1,70 @@
+{
+  "level": "EF",
+  "title": "Kreisbewegung, Gravitation und physikalische Weltbilder",
+  "overview": [
+    "Gleichförmige Kreisbewegungen mit Periodendauer, Frequenz und Winkelgeschwindigkeit beschreiben",
+    "Zentripetalbeschleunigung und Zentripetalkraft herleiten und anwenden",
+    "Gravitation auf Himmelskörper übertragen",
+    "Keplersche Gesetzmäßigkeiten zur Beschreibung von Bahnen nutzen",
+    "Historische Weltbilder und den Übergang zu relativistischen Vorstellungen reflektieren"
+  ],
+  "terms": [
+    [
+      "Periodendauer T",
+      "Zeit für einen vollständigen Umlauf."
+    ],
+    [
+      "Frequenz f",
+      "Anzahl der Umläufe pro Sekunde."
+    ],
+    [
+      "Winkelgeschwindigkeit ω",
+      "Winkeländerung pro Zeit."
+    ],
+    [
+      "Zentripetalkraft",
+      "Resultierende, zum Kreismittelpunkt gerichtete Kraft."
+    ],
+    [
+      "Gravitationsfeld",
+      "Raumbereich, in dem Massen Gravitationskräfte erfahren."
+    ],
+    [
+      "Weltbild",
+      "Übergeordnetes Modell zur Beschreibung von Natur und Kosmos."
+    ]
+  ],
+  "relations": [
+    [
+      "Bahngeschwindigkeit",
+      "Bei gleichförmiger Kreisbewegung bleibt der Betrag von v konstant, die Richtung ändert sich ständig.",
+      "v = 2πr/T"
+    ],
+    [
+      "Winkelgeschwindigkeit",
+      "Frequenz und Periodendauer bestimmen ω.",
+      "ω = 2π/T = 2πf"
+    ],
+    [
+      "Zentripetalbeschleunigung",
+      "Sie zeigt zum Mittelpunkt.",
+      "a_z = v²/r = ω²r"
+    ],
+    [
+      "Gravitation",
+      "Zwei Massen ziehen sich mit einer Kraft an, die mit 1/r² abnimmt.",
+      "F_G = G·m₁m₂/r²"
+    ],
+    [
+      "Zeitdilatation",
+      "Spezielle Relativität zeigt Grenzen des klassischen Zeitbegriffs.",
+      "qualitativ: bewegte Uhren gehen relativ langsamer"
+    ]
+  ],
+  "check": [
+    "Warum ist auch bei konstantem Geschwindigkeitsbetrag eine Kreisbewegung beschleunigt?",
+    "Welche Kraft kann in einem konkreten Beispiel die Zentripetalkraft liefern?",
+    "Was änderte sich beim Übergang vom geozentrischen zum heliozentrischen Weltbild?"
+  ],
+  "lessons": []
+}

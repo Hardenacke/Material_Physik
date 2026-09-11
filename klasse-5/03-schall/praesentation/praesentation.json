@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 5",
+  "title": "Schall",
+  "overview": [
+    "Schall als Folge von Schwingungen erkennen",
+    "Tonhöhe und Lautstärke an Schwingungen beschreiben",
+    "Schallausbreitung mit einem Teilchenmodell erklären",
+    "Reflexion und Absorption von Schall unterscheiden",
+    "Ultraschall, Infraschall und Lärmschutz einordnen"
+  ],
+  "terms": [
+    [
+      "Schwingung",
+      "Periodische Hin- und Herbewegung um eine Ruhelage."
+    ],
+    [
+      "Frequenz",
+      "Anzahl der Schwingungen pro Sekunde; bestimmt vor allem die Tonhöhe."
+    ],
+    [
+      "Amplitude",
+      "Größe der Auslenkung; beeinflusst die wahrgenommene Lautstärke."
+    ],
+    [
+      "Schallquelle",
+      "Schwingender Körper, der Schall erzeugt."
+    ],
+    [
+      "Schallempfänger",
+      "System, das Schall registriert, z. B. Ohr oder Mikrofon."
+    ],
+    [
+      "Schallpegel",
+      "Maß zur Beschreibung von Lautstärken; Angabe meist in dB."
+    ]
+  ],
+  "relations": [
+    [
+      "Tonhöhe",
+      "Schnellere Schwingung bedeutet höhere Frequenz und meist höheren Ton.",
+      "f ↑ → Tonhöhe ↑"
+    ],
+    [
+      "Lautstärke",
+      "Größere Schwingungsamplitude führt in der Regel zu größerer Lautstärke.",
+      "A ↑ → Lautstärke ↑"
+    ],
+    [
+      "Sender–Medium–Empfänger",
+      "Schall benötigt in der klassischen Beschreibung ein Medium zur Ausbreitung.",
+      "Quelle → Medium → Empfänger"
+    ],
+    [
+      "Reflexion / Absorption",
+      "Harte Flächen reflektieren Schall oft stark; weiche, poröse Materialien absorbieren häufig mehr.",
+      "Echo ↔ Schalldämmung"
+    ]
+  ],
+  "check": [
+    "Warum kann sich Schall nicht im Vakuum ausbreiten?",
+    "Welche Schwingungseigenschaft verändert die Tonhöhe?",
+    "Wie lässt sich die Lärmbelastung in einem Raum verringern?"
+  ],
+  "lessons": []
+}

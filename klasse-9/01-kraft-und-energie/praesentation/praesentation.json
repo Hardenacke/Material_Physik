@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 9",
+  "title": "Kraft und Energie",
+  "overview": [
+    "Kräfte als Wechselwirkungen und Vektoren beschreiben",
+    "Kraft und Gegenkraft sowie Kräftegleichgewicht unterscheiden",
+    "Gewichtskraft und Reibung analysieren",
+    "Energieformen und Energieumwandlungen bilanzieren",
+    "Arbeit, Energie und Leistung in einfachen Situationen berechnen"
+  ],
+  "terms": [
+    [
+      "Kraft F",
+      "Vektorielle Größe, die Bewegungszustände ändern oder Körper verformen kann."
+    ],
+    [
+      "Masse m",
+      "Maß für die Trägheit eines Körpers."
+    ],
+    [
+      "Gewichtskraft F_G",
+      "Gravitationskraft auf einen Körper nahe der Erdoberfläche."
+    ],
+    [
+      "Energie",
+      "Fähigkeit eines Systems, Veränderungen hervorzurufen; in geschlossenen Systemen erhalten."
+    ],
+    [
+      "Arbeit W",
+      "Mechanische Energieübertragung durch eine Kraft entlang eines Weges."
+    ],
+    [
+      "Leistung P",
+      "Umgesetzte Energie bzw. verrichtete Arbeit pro Zeit."
+    ]
+  ],
+  "relations": [
+    [
+      "Gewichtskraft",
+      "Nahe der Erdoberfläche ist die Gewichtskraft proportional zur Masse.",
+      "F_G = m · g"
+    ],
+    [
+      "Lageenergie",
+      "Höhenänderung verändert die gravitative Lageenergie.",
+      "E_pot = m · g · h"
+    ],
+    [
+      "Energieerhaltung",
+      "Energie kann umgewandelt und übertragen, aber nicht erzeugt oder vernichtet werden.",
+      "E_gesamt = konstant (geschlossenes System)"
+    ],
+    [
+      "Leistung",
+      "Gleiche Arbeit in kürzerer Zeit bedeutet größere Leistung.",
+      "P = W / Δt bzw. P = ΔE / Δt"
+    ]
+  ],
+  "check": [
+    "Warum sind Kraft und Gegenkraft kein Kräftegleichgewicht an einem Körper?",
+    "Welche Energieumwandlungen treten bei einer fallenden Kugel auf?",
+    "Was bedeutet eine Leistung von 100 W?"
+  ],
+  "lessons": []
+}

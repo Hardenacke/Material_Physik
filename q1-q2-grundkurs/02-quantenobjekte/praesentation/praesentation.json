@@ -1,0 +1,65 @@
+{
+  "level": "Q1/Q2 Grundkurs",
+  "title": "Quantenobjekte",
+  "overview": [
+    "Photonen und Elektronen als Quantenobjekte beschreiben",
+    "Teilchen- und Wellenaspekte experimentbezogen zuordnen",
+    "Energie und Impuls von Photonen berechnen",
+    "Materiewellen mithilfe der de-Broglie-Beziehung beschreiben",
+    "Wahrscheinlichkeitsaussagen als Kernelement der Quantenphysik deuten"
+  ],
+  "terms": [
+    [
+      "Photon",
+      "Quant des elektromagnetischen Feldes mit Energie E = h·f."
+    ],
+    [
+      "Quantenobjekt",
+      "Objekt, dessen Verhalten nicht vollständig mit klassischen Teilchen- oder Wellenmodellen erfasst wird."
+    ],
+    [
+      "Wahrscheinlichkeitsverteilung",
+      "Beschreibt, mit welcher Wahrscheinlichkeit Messergebnisse auftreten."
+    ],
+    [
+      "Interferenz",
+      "Überlagerungsphänomen, das auch bei einzelnen Quantenobjekten statistisch sichtbar wird."
+    ],
+    [
+      "de-Broglie-Wellenlänge",
+      "Wellenlänge, die einem Teilchen mit Impuls p zugeordnet wird."
+    ],
+    [
+      "Plancksches Wirkungsquantum h",
+      "Fundamentale Naturkonstante der Quantenphysik."
+    ]
+  ],
+  "relations": [
+    [
+      "Photonenenergie",
+      "Höhere Frequenz bedeutet größere Photonenenergie.",
+      "E_γ = h·f = h·c/λ"
+    ],
+    [
+      "Photonenimpuls",
+      "Photonen besitzen trotz Ruhemasse 0 einen Impuls.",
+      "p_γ = h/λ"
+    ],
+    [
+      "Materiewelle",
+      "Teilchen mit größerem Impuls besitzen kleinere de-Broglie-Wellenlänge.",
+      "λ = h/p"
+    ],
+    [
+      "Komplementarität",
+      "Experiment und Messanordnung bestimmen, welcher Aspekt eines Quantenobjekts sichtbar wird.",
+      "Wellen- und Teilchenbeschreibung ergänzen sich"
+    ]
+  ],
+  "check": [
+    "Warum ist „Photon = kleines klassisches Teilchen“ zu einfach?",
+    "Wie verändert sich die Photonenenergie bei halbierter Wellenlänge?",
+    "Was zeigt Elektronenbeugung über Elektronen?"
+  ],
+  "lessons": []
+}

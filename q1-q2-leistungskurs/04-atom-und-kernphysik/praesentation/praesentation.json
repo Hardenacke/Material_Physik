@@ -1,0 +1,70 @@
+{
+  "level": "Q1/Q2 Leistungskurs",
+  "title": "Atom- und Kernphysik",
+  "overview": [
+    "Historische und moderne Atommodelle anhand von Experimenten vergleichen",
+    "Linienspektren und quantisierte Energieniveaus quantitativ beschreiben",
+    "Aufbau und Bindung von Atomkernen analysieren",
+    "Radioaktive Zerfälle mit Exponentialgesetzen modellieren",
+    "Kernspaltung, Kernfusion und Massendefekt energetisch bilanzieren"
+  ],
+  "terms": [
+    [
+      "Energieniveau",
+      "Diskreter stationärer Energiezustand."
+    ],
+    [
+      "Massendefekt",
+      "Differenz zwischen Summe freier Nukleonenmassen und Kernmasse."
+    ],
+    [
+      "Bindungsenergie",
+      "Energie, die zum vollständigen Zerlegen eines Kerns in freie Nukleonen nötig ist."
+    ],
+    [
+      "Zerfallskonstante λ",
+      "Wahrscheinlichkeit pro Zeit für den Zerfall eines instabilen Kerns."
+    ],
+    [
+      "Halbwertszeit",
+      "Zeit, nach der die Hälfte einer großen Ausgangsmenge noch nicht zerfallen ist."
+    ],
+    [
+      "Kernreaktion",
+      "Umwandlung von Atomkernen unter Erhaltung zentraler Größen."
+    ]
+  ],
+  "relations": [
+    [
+      "Photonenübergang",
+      "Energie eines emittierten oder absorbierten Photons.",
+      "ΔE = h·f"
+    ],
+    [
+      "Radioaktiver Zerfall",
+      "Exponentialgesetz.",
+      "N(t) = N₀·e^(−λt)"
+    ],
+    [
+      "Halbwertszeit",
+      "Zusammenhang mit λ.",
+      "T₁/₂ = ln(2)/λ"
+    ],
+    [
+      "Masse-Energie",
+      "Massendefekt entspricht Bindungsenergie.",
+      "E_B = Δm·c²"
+    ],
+    [
+      "Kernenergie",
+      "Fission und Fusion setzen Energie frei, wenn Produkte stärker gebunden sind.",
+      "E = Δm·c²"
+    ]
+  ],
+  "check": [
+    "Wie zeigen Linienspektren die Quantisierung atomarer Energien?",
+    "Was bedeutet der Massendefekt physikalisch?",
+    "Warum ist Kernfusion leichter Kerne und Kernspaltung sehr schwerer Kerne energetisch möglich?"
+  ],
+  "lessons": []
+}

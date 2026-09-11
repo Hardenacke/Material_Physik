@@ -1,0 +1,134 @@
+[
+  {
+    "level": "Klasse 5",
+    "title": "Temperatur und Wärme",
+    "folder": "klasse-5/01-temperatur-und-waerme",
+    "presentation": "klasse-5/01-temperatur-und-waerme/praesentation/01-temperatur-und-waerme_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 5",
+    "title": "Elektrischer Strom und Magnetismus",
+    "folder": "klasse-5/02-elektrischer-strom-und-magnetismus",
+    "presentation": "klasse-5/02-elektrischer-strom-und-magnetismus/praesentation/02-elektrischer-strom-und-magnetismus_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 5",
+    "title": "Schall",
+    "folder": "klasse-5/03-schall",
+    "presentation": "klasse-5/03-schall/praesentation/03-schall_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 5",
+    "title": "Licht",
+    "folder": "klasse-5/04-licht",
+    "presentation": "klasse-5/04-licht/praesentation/04-licht_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 8",
+    "title": "Optische Instrumente",
+    "folder": "klasse-8/01-optische-instrumente",
+    "presentation": "klasse-8/01-optische-instrumente/praesentation/01-optische-instrumente_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 8",
+    "title": "Sterne und Weltall",
+    "folder": "klasse-8/02-sterne-und-weltall",
+    "presentation": "klasse-8/02-sterne-und-weltall/praesentation/02-sterne-und-weltall_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 8",
+    "title": "Bewegung",
+    "folder": "klasse-8/03-bewegung",
+    "presentation": "klasse-8/03-bewegung/praesentation/03-bewegung_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 9",
+    "title": "Kraft und Energie",
+    "folder": "klasse-9/01-kraft-und-energie",
+    "presentation": "klasse-9/01-kraft-und-energie/praesentation/01-kraft-und-energie_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 9",
+    "title": "Elektrizität",
+    "folder": "klasse-9/02-elektrizitaet",
+    "presentation": "klasse-9/02-elektrizitaet/praesentation/02-elektrizitaet_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 10",
+    "title": "Druck und Auftrieb",
+    "folder": "klasse-10/01-druck-und-auftrieb",
+    "presentation": "klasse-10/01-druck-und-auftrieb/praesentation/01-druck-und-auftrieb_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 10",
+    "title": "Ionisierende Strahlung und Kernenergie",
+    "folder": "klasse-10/02-ionisierende-strahlung-und-kernenergie",
+    "presentation": "klasse-10/02-ionisierende-strahlung-und-kernenergie/praesentation/02-ionisierende-strahlung-und-kernenergie_wiederholung.pptx"
+  },
+  {
+    "level": "Klasse 10",
+    "title": "Energieversorgung",
+    "folder": "klasse-10/03-energieversorgung",
+    "presentation": "klasse-10/03-energieversorgung/praesentation/03-energieversorgung_wiederholung.pptx"
+  },
+  {
+    "level": "EF",
+    "title": "Grundlagen der Mechanik",
+    "folder": "ef/01-grundlagen-der-mechanik",
+    "presentation": "ef/01-grundlagen-der-mechanik/praesentation/01-grundlagen-der-mechanik_wiederholung.pptx"
+  },
+  {
+    "level": "EF",
+    "title": "Kreisbewegung, Gravitation und physikalische Weltbilder",
+    "folder": "ef/02-kreisbewegung-gravitation-und-physikalische-weltbilder",
+    "presentation": "ef/02-kreisbewegung-gravitation-und-physikalische-weltbilder/praesentation/02-kreisbewegung-gravitation-und-physikalische-weltbilder_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Grundkurs",
+    "title": "Klassische Wellen und geladene Teilchen in Feldern",
+    "folder": "q1-q2-grundkurs/01-klassische-wellen-und-geladene-teilchen-in-feldern",
+    "presentation": "q1-q2-grundkurs/01-klassische-wellen-und-geladene-teilchen-in-feldern/praesentation/01-klassische-wellen-und-geladene-teilchen-in-feldern_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Grundkurs",
+    "title": "Quantenobjekte",
+    "folder": "q1-q2-grundkurs/02-quantenobjekte",
+    "presentation": "q1-q2-grundkurs/02-quantenobjekte/praesentation/02-quantenobjekte_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Grundkurs",
+    "title": "Elektrodynamik und Energieübertragung",
+    "folder": "q1-q2-grundkurs/03-elektrodynamik-und-energieuebertragung",
+    "presentation": "q1-q2-grundkurs/03-elektrodynamik-und-energieuebertragung/praesentation/03-elektrodynamik-und-energieuebertragung_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Grundkurs",
+    "title": "Strahlung und Materie",
+    "folder": "q1-q2-grundkurs/04-strahlung-und-materie",
+    "presentation": "q1-q2-grundkurs/04-strahlung-und-materie/praesentation/04-strahlung-und-materie_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Leistungskurs",
+    "title": "Ladungen, Felder und Induktion",
+    "folder": "q1-q2-leistungskurs/01-ladungen-felder-und-induktion",
+    "presentation": "q1-q2-leistungskurs/01-ladungen-felder-und-induktion/praesentation/01-ladungen-felder-und-induktion_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Leistungskurs",
+    "title": "Schwingende Systeme und Wellen",
+    "folder": "q1-q2-leistungskurs/02-schwingende-systeme-und-wellen",
+    "presentation": "q1-q2-leistungskurs/02-schwingende-systeme-und-wellen/praesentation/02-schwingende-systeme-und-wellen_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Leistungskurs",
+    "title": "Quantenphysik",
+    "folder": "q1-q2-leistungskurs/03-quantenphysik",
+    "presentation": "q1-q2-leistungskurs/03-quantenphysik/praesentation/03-quantenphysik_wiederholung.pptx"
+  },
+  {
+    "level": "Q1/Q2 Leistungskurs",
+    "title": "Atom- und Kernphysik",
+    "folder": "q1-q2-leistungskurs/04-atom-und-kernphysik",
+    "presentation": "q1-q2-leistungskurs/04-atom-und-kernphysik/praesentation/04-atom-und-kernphysik_wiederholung.pptx"
+  }
+]

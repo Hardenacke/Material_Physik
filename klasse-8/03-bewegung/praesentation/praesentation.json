@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 8",
+  "title": "Bewegung",
+  "overview": [
+    "Bewegungen mithilfe von Ort, Zeit und Geschwindigkeit beschreiben",
+    "Mittlere und momentane Geschwindigkeit unterscheiden",
+    "Strecke-Zeit-Diagramme lesen und erstellen",
+    "Messwerte tabellarisch und grafisch auswerten",
+    "Gleichförmige Bewegungen mathematisch modellieren"
+  ],
+  "terms": [
+    [
+      "Ort s",
+      "Position eines Körpers relativ zu einem festgelegten Bezugspunkt."
+    ],
+    [
+      "Zeit t",
+      "Zeitpunkt oder Zeitintervall einer Beobachtung."
+    ],
+    [
+      "Geschwindigkeit v",
+      "Änderung des Ortes pro Zeit."
+    ],
+    [
+      "Mittlere Geschwindigkeit",
+      "Gesamtstrecke geteilt durch Gesamtzeit."
+    ],
+    [
+      "Momentangeschwindigkeit",
+      "Geschwindigkeit zu einem bestimmten Zeitpunkt."
+    ],
+    [
+      "s-t-Diagramm",
+      "Darstellung des Ortes bzw. der Strecke in Abhängigkeit von der Zeit."
+    ]
+  ],
+  "relations": [
+    [
+      "Geschwindigkeit",
+      "Bei gleichförmiger Bewegung ist v konstant.",
+      "v = Δs / Δt"
+    ],
+    [
+      "Ortsfunktion",
+      "Bei konstanter Geschwindigkeit wächst der Ort linear mit der Zeit.",
+      "s(t) = s₀ + v · t"
+    ],
+    [
+      "Steigung im s-t-Diagramm",
+      "Je steiler die Gerade, desto größer die Geschwindigkeit.",
+      "Steigung = v"
+    ],
+    [
+      "Einheiten",
+      "Geschwindigkeiten müssen für Rechnungen in zusammenpassenden Einheiten vorliegen.",
+      "1 m/s = 3,6 km/h"
+    ]
+  ],
+  "check": [
+    "Was bedeutet eine waagerechte Linie im s-t-Diagramm?",
+    "Wie erkennt man die schnellere von zwei gleichförmigen Bewegungen im Diagramm?",
+    "Wie rechnest du 72 km/h in m/s um?"
+  ],
+  "lessons": []
+}

@@ -1,0 +1,12 @@
+{
+  "name": "physik-nrw-materialstruktur",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:pptx": "node tools/build-presentations.js",
+    "watch:pptx": "node tools/watch-presentations.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "level": "Q1/Q2 Grundkurs",
+  "title": "Klassische Wellen und geladene Teilchen in Feldern",
+  "overview": [
+    "Harmonische Schwingungen und mechanische Wellen quantitativ beschreiben",
+    "Reflexion, Brechung, Beugung, Interferenz und Polarisation einordnen",
+    "Elektrische und magnetische Felder als Modelle für Wechselwirkungen verwenden",
+    "Kräfte auf geladene Teilchen in homogenen Feldern analysieren",
+    "Bahnformen geladener Teilchen begründen"
+  ],
+  "terms": [
+    [
+      "Amplitude A",
+      "Maximale Auslenkung einer Schwingung."
+    ],
+    [
+      "Frequenz f",
+      "Schwingungen pro Sekunde."
+    ],
+    [
+      "Wellenlänge λ",
+      "Räumliche Periodenlänge einer Welle."
+    ],
+    [
+      "Elektrische Feldstärke E",
+      "Kraft pro positiver Probeladung."
+    ],
+    [
+      "Magnetische Flussdichte B",
+      "Größe zur Beschreibung magnetischer Feldwirkungen."
+    ],
+    [
+      "Lorentzkraft",
+      "Magnetische Kraft auf bewegte Ladungen."
+    ]
+  ],
+  "relations": [
+    [
+      "Schwingung",
+      "Für eine harmonische Schwingung ist die Rückstellwirkung proportional zur Auslenkung.",
+      "x(t) = A·sin(ωt+φ)"
+    ],
+    [
+      "Welle",
+      "Ausbreitungsgeschwindigkeit, Frequenz und Wellenlänge sind verknüpft.",
+      "v_W = λ · f"
+    ],
+    [
+      "Elektrisches Feld",
+      "Auf eine Ladung wirkt im homogenen elektrischen Feld eine konstante Kraft.",
+      "F_el = q · E"
+    ],
+    [
+      "Magnetisches Feld",
+      "Bei senkrechter Bewegung gilt für den Betrag der Lorentzkraft:",
+      "F_L = |q| · v · B"
+    ],
+    [
+      "Kreisbahn im B-Feld",
+      "Lorentzkraft kann als Zentripetalkraft wirken.",
+      "r = m·v/(|q|·B)"
+    ]
+  ],
+  "check": [
+    "Welche Größen bestimmen eine harmonische Schwingung vollständig?",
+    "Warum ändert ein homogenes Magnetfeld bei senkrechtem Eintritt nur die Bewegungsrichtung?",
+    "Welche Wellenphänomene lassen sich mit dem Huygensschen Prinzip erklären?"
+  ],
+  "lessons": []
+}

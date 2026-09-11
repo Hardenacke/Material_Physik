@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 10",
+  "title": "Energieversorgung",
+  "overview": [
+    "Elektromagnetische Induktion als Grundlage der Spannungserzeugung erklären",
+    "Generator, Elektromotor und Transformator funktional beschreiben",
+    "Energieübertragung im Stromnetz begründen",
+    "Wirkungsgrad und Energieentwertung einordnen",
+    "Konventionelle und regenerative Energiequellen kriteriengeleitet vergleichen"
+  ],
+  "terms": [
+    [
+      "Induktion",
+      "Entstehung einer elektrischen Spannung durch Änderung des magnetischen Flusses."
+    ],
+    [
+      "Generator",
+      "Wandelt mechanische Energie mithilfe der Induktion in elektrische Energie um."
+    ],
+    [
+      "Transformator",
+      "Ändert Wechselspannungen mithilfe zweier gekoppelter Spulen."
+    ],
+    [
+      "Wirkungsgrad η",
+      "Anteil der zugeführten Energie oder Leistung, der nutzbar umgesetzt wird."
+    ],
+    [
+      "Wechselspannung",
+      "Spannung, deren Richtung und Betrag sich periodisch ändern."
+    ],
+    [
+      "Energieentwertung",
+      "Energie bleibt erhalten, wird aber teilweise in weniger gut nutzbare Formen überführt."
+    ]
+  ],
+  "relations": [
+    [
+      "Induktion",
+      "Eine stärkere oder schnellere Änderung des Magnetfelds bzw. Flusses führt meist zu größerer Induktionsspannung.",
+      "Änderung des magnetischen Flusses → U_ind"
+    ],
+    [
+      "Transformator",
+      "Für den idealen Transformator entspricht das Spannungsverhältnis dem Windungsverhältnis.",
+      "U₁/U₂ = N₁/N₂"
+    ],
+    [
+      "Wirkungsgrad",
+      "Der Wirkungsgrad ist höchstens 1 bzw. 100 %.",
+      "η = E_nutz/E_zu = P_nutz/P_zu"
+    ],
+    [
+      "Hochspannung",
+      "Für gleiche Leistung reduziert eine höhere Spannung die nötige Stromstärke und damit Leitungsverluste.",
+      "P = U · I"
+    ]
+  ],
+  "check": [
+    "Was muss sich ändern, damit eine Spannung induziert wird?",
+    "Warum wird elektrische Energie über große Entfernungen mit hoher Spannung übertragen?",
+    "Was bedeutet ein Wirkungsgrad von 85 %?"
+  ],
+  "lessons": []
+}

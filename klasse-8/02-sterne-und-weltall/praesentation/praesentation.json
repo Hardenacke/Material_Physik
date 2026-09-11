@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 8",
+  "title": "Sterne und Weltall",
+  "overview": [
+    "Aufbau des Sonnensystems und wichtige Himmelsobjekte beschreiben",
+    "Mondphasen, Finsternisse und Jahreszeiten modellhaft erklären",
+    "Entfernungen mit dem Lichtjahr vergleichen",
+    "Grundzüge der Sternentwicklung darstellen",
+    "Informationsgewinnung durch Spektren und Parallaxen erklären"
+  ],
+  "terms": [
+    [
+      "Lichtjahr",
+      "Strecke, die Licht in einem Jahr zurücklegt; eine Entfernungseinheit."
+    ],
+    [
+      "Planet",
+      "Himmelskörper, der einen Stern umkreist und selbst kein sichtbares Licht erzeugt."
+    ],
+    [
+      "Stern",
+      "Selbstleuchtender Himmelskörper, dessen Energie überwiegend aus Kernfusion stammt."
+    ],
+    [
+      "Mondphase",
+      "Erscheinungsform des beleuchteten Mondes von der Erde aus."
+    ],
+    [
+      "Parallaxe",
+      "Scheinbare Positionsverschiebung eines nahen Objekts bei verändertem Beobachtungsort."
+    ],
+    [
+      "Spektrum",
+      "Verteilung von Licht nach Wellenlänge; liefert Informationen über Sterne."
+    ]
+  ],
+  "relations": [
+    [
+      "Jahreszeiten",
+      "Sie entstehen vor allem durch die Neigung der Erdachse und den Umlauf der Erde um die Sonne.",
+      "Achsneigung + Umlauf"
+    ],
+    [
+      "Mondphasen",
+      "Wir sehen unterschiedlich große Anteile der von der Sonne beleuchteten Mondhälfte.",
+      "Sonne – Erde – Mond"
+    ],
+    [
+      "Gravitation",
+      "Sie bestimmt die Bewegungen vieler Himmelskörper und hält Systeme gebunden.",
+      "anziehende Wechselwirkung"
+    ],
+    [
+      "Sternentwicklung",
+      "Masse beeinflusst Lebensdauer und Entwicklungsweg eines Sterns entscheidend.",
+      "Gaswolke → Stern → Endstadium"
+    ]
+  ],
+  "check": [
+    "Warum ist ein Lichtjahr keine Zeiteinheit?",
+    "Warum gibt es nicht bei jedem Vollmond eine Mondfinsternis?",
+    "Welche Informationen lassen sich aus einem Sternspektrum gewinnen?"
+  ],
+  "lessons": []
+}

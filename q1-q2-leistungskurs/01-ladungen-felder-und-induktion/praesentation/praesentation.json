@@ -1,0 +1,70 @@
+{
+  "level": "Q1/Q2 Leistungskurs",
+  "title": "Ladungen, Felder und Induktion",
+  "overview": [
+    "Elektrische Felder, Potentiale und Kondensatoren quantitativ analysieren",
+    "Magnetische Felder und Lorentzkräfte auf bewegte Ladungen anwenden",
+    "Bahnbewegungen in Längs-, Quer- und gekreuzten Feldern modellieren",
+    "Magnetischen Fluss und elektromagnetische Induktion differenziert beschreiben",
+    "Feldenergie und technische Anwendungen bilanzieren"
+  ],
+  "terms": [
+    [
+      "Coulomb-Kraft",
+      "Elektrostatische Wechselwirkung zwischen Punktladungen."
+    ],
+    [
+      "Potential φ",
+      "Potentielle elektrische Energie pro Ladung."
+    ],
+    [
+      "Kapazität C",
+      "Ladung pro Spannung eines Kondensators."
+    ],
+    [
+      "Lorentzkraft",
+      "Kraft auf bewegte Ladung im magnetischen Feld."
+    ],
+    [
+      "Magnetischer Fluss Φ",
+      "Flächenbezogene Durchsetzung eines Magnetfeldes."
+    ],
+    [
+      "Induktion",
+      "Elektrische Spannung infolge einer Änderung des magnetischen Flusses."
+    ]
+  ],
+  "relations": [
+    [
+      "Coulomb-Gesetz",
+      "Betrag der Kraft zwischen zwei Punktladungen.",
+      "F = (1/(4πɛ₀)) · |q₁q₂|/r²"
+    ],
+    [
+      "Elektrisches Feld",
+      "Feldstärke und Kraft auf eine Probeladung.",
+      "E = F/q"
+    ],
+    [
+      "Kondensator",
+      "Kapazität und gespeicherte Energie.",
+      "C = Q/U;  E_C = ½ C U²"
+    ],
+    [
+      "Lorentzkraft",
+      "Bei senkrechter Bewegung im homogenen B-Feld:",
+      "F_L = |q|vB"
+    ],
+    [
+      "Induktion",
+      "Zeitliche Flussänderung erzeugt Spannung.",
+      "U_ind = −N·dΦ/dt"
+    ]
+  ],
+  "check": [
+    "Wie hängen Potentialdifferenz und Spannung zusammen?",
+    "Wann beschreibt die Lorentzkraft eine Kreisbahn?",
+    "Welche Rolle spielt Energieerhaltung bei der Lenzschen Regel?"
+  ],
+  "lessons": []
+}

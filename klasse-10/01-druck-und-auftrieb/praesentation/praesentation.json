@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 10",
+  "title": "Druck und Auftrieb",
+  "overview": [
+    "Druck als Kraftwirkung auf eine Fläche erklären",
+    "Dichte als Stoffeigenschaft verwenden",
+    "Schweredruck in Flüssigkeiten beschreiben",
+    "Auftrieb über Druckunterschiede und das archimedische Prinzip erklären",
+    "Schwimmen, Sinken und Schweben vorhersagen"
+  ],
+  "terms": [
+    [
+      "Druck p",
+      "Kraft pro Fläche."
+    ],
+    [
+      "Dichte ρ",
+      "Masse pro Volumen eines Stoffes."
+    ],
+    [
+      "Schweredruck",
+      "Druck, der durch das Gewicht einer Flüssigkeitssäule entsteht."
+    ],
+    [
+      "Auftriebskraft",
+      "Resultierende Kraft auf einen Körper aufgrund unterschiedlicher Drücke."
+    ],
+    [
+      "Verdrängtes Volumen",
+      "Volumen des Mediums, das ein eingetauchter Körper verdrängt."
+    ],
+    [
+      "Luftdruck",
+      "Druck der Atmosphäre infolge der Gewichtskraft der Luft."
+    ]
+  ],
+  "relations": [
+    [
+      "Druck",
+      "Gleiche Kraft auf kleinerer Fläche erzeugt größeren Druck.",
+      "p = F / A"
+    ],
+    [
+      "Dichte",
+      "Dichte verknüpft Masse und Volumen.",
+      "ρ = m / V"
+    ],
+    [
+      "Schweredruck",
+      "In einer Flüssigkeit steigt der Druck näherungsweise linear mit der Tiefe.",
+      "p_h = ρ · g · h"
+    ],
+    [
+      "Archimedisches Prinzip",
+      "Die Auftriebskraft entspricht der Gewichtskraft des verdrängten Mediums.",
+      "F_A = ρ_Medium · V_verdrängt · g"
+    ]
+  ],
+  "check": [
+    "Warum sinkt ein spitzer Absatz stärker in weichen Boden ein als ein breiter?",
+    "Wovon hängt der Schweredruck in einer Flüssigkeit ab?",
+    "Wann schwebt ein Körper in einer Flüssigkeit?"
+  ],
+  "lessons": []
+}

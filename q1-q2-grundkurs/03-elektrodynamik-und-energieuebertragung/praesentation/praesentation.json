@@ -1,0 +1,70 @@
+{
+  "level": "Q1/Q2 Grundkurs",
+  "title": "Elektrodynamik und Energieübertragung",
+  "overview": [
+    "Magnetischen Fluss als zentrale Größe der Induktion verwenden",
+    "Faradaysches Induktionsgesetz auf zeitliche Änderungen anwenden",
+    "Lenzsche Regel als Energieerhaltungsprinzip deuten",
+    "Generator und Transformator quantitativ beschreiben",
+    "Energieübertragung, -speicherung und -rückgewinnung in technischen Systemen analysieren"
+  ],
+  "terms": [
+    [
+      "Magnetischer Fluss Φ",
+      "Maß dafür, wie stark ein Magnetfeld eine Fläche durchsetzt."
+    ],
+    [
+      "Induktionsspannung U_ind",
+      "Spannung infolge einer zeitlichen Änderung des magnetischen Flusses."
+    ],
+    [
+      "Lenzsche Regel",
+      "Richtung der Induktionswirkung wirkt der verursachenden Änderung entgegen."
+    ],
+    [
+      "Generator",
+      "Wandelt mechanische in elektrische Energie um."
+    ],
+    [
+      "Transformator",
+      "Überträgt elektrische Energie zwischen Wechselstromkreisen auf unterschiedlichem Spannungsniveau."
+    ],
+    [
+      "Induktivität L",
+      "Kenngröße einer Spule für ihre magnetische Energiespeicherung."
+    ]
+  ],
+  "relations": [
+    [
+      "Magnetischer Fluss",
+      "Bei homogenem Feld und ebener Fläche gilt:",
+      "Φ = B · A · cos(α)"
+    ],
+    [
+      "Faradaysches Gesetz",
+      "Die Induktionsspannung ist proportional zur zeitlichen Änderung des Flusses.",
+      "U_ind = −N · dΦ/dt"
+    ],
+    [
+      "Transformator",
+      "Im idealen Fall entsprechen Spannungs- und Windungsverhältnis einander.",
+      "U₁/U₂ = N₁/N₂"
+    ],
+    [
+      "Spule",
+      "Änderungen des Stroms erzeugen Selbstinduktionsspannungen.",
+      "U_L = −L · dI/dt"
+    ],
+    [
+      "Magnetische Energie",
+      "Eine Spule kann Energie in ihrem Magnetfeld speichern.",
+      "E_L = ½ L I²"
+    ]
+  ],
+  "check": [
+    "Welche drei Größen können bei Φ = B·A·cos(α) verändert werden?",
+    "Was sagt das Minuszeichen im Induktionsgesetz physikalisch aus?",
+    "Warum reduziert Hochspannung Übertragungsverluste bei gleicher Leistung?"
+  ],
+  "lessons": []
+}

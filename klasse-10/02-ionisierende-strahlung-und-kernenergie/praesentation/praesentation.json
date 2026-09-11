@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 10",
+  "title": "Ionisierende Strahlung und Kernenergie",
+  "overview": [
+    "Aufbau von Atomen, Kernen und Isotopen beschreiben",
+    "Alpha-, Beta-, Gamma- und Röntgenstrahlung unterscheiden",
+    "Radioaktiven Zerfall und Halbwertszeit deuten",
+    "Nachweis, Wirkung und Schutz vor ionisierender Strahlung erklären",
+    "Kernspaltung und Kernfusion vergleichen und bewerten"
+  ],
+  "terms": [
+    [
+      "Isotop",
+      "Atome eines Elements mit gleicher Protonenzahl, aber unterschiedlicher Neutronenzahl."
+    ],
+    [
+      "Aktivität",
+      "Anzahl der Kernzerfälle pro Sekunde; Einheit Becquerel (Bq)."
+    ],
+    [
+      "Halbwertszeit",
+      "Zeit, nach der im Mittel die Hälfte der instabilen Kerne zerfallen ist."
+    ],
+    [
+      "Ionisation",
+      "Entfernung oder Aufnahme von Elektronen, sodass geladene Teilchen entstehen."
+    ],
+    [
+      "Kernspaltung",
+      "Teilung eines schweren Atomkerns unter Freisetzung von Energie und Neutronen."
+    ],
+    [
+      "Kernfusion",
+      "Verschmelzung leichter Kerne zu schwereren Kernen unter Energieabgabe."
+    ]
+  ],
+  "relations": [
+    [
+      "Zerfall",
+      "Radioaktiver Zerfall ist für einzelne Kerne zufällig, für große Mengen statistisch beschreibbar.",
+      "N(t) nimmt exponentiell ab"
+    ],
+    [
+      "Halbwertszeit",
+      "Nach jeder Halbwertszeit halbiert sich die Zahl der noch nicht zerfallenen Kerne.",
+      "N = N₀ · (1/2)^(t/T₁/₂)"
+    ],
+    [
+      "Schutzprinzipien",
+      "Abstand vergrößern, Aufenthaltszeit verkürzen, geeignete Abschirmung verwenden.",
+      "Abstand – Zeit – Abschirmung"
+    ],
+    [
+      "Kettenreaktion",
+      "Neutronen aus Spaltungen können weitere Spaltungen auslösen.",
+      "kontrolliert im Reaktor / unkontrolliert problematisch"
+    ]
+  ],
+  "check": [
+    "Was unterscheidet Alpha-, Beta- und Gammastrahlung grundsätzlich?",
+    "Warum kann man den Zerfallszeitpunkt eines einzelnen Kerns nicht vorhersagen?",
+    "Welche drei Grundprinzipien schützen vor ionisierender Strahlung?"
+  ],
+  "lessons": []
+}

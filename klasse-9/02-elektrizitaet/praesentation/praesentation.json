@@ -1,0 +1,70 @@
+{
+  "level": "Klasse 9",
+  "title": "Elektrizität",
+  "overview": [
+    "Spannung, Stromstärke und Widerstand unterscheiden und messen",
+    "Elektrische Stromkreise mit Modellen erklären",
+    "Ohmsches Verhalten untersuchen",
+    "Reihen- und Parallelschaltungen quantitativ beschreiben",
+    "Elektrische Energie, Leistung und Sicherheit im Haushalt einordnen"
+  ],
+  "terms": [
+    [
+      "Spannung U",
+      "Maß für den Energieunterschied pro Ladung zwischen zwei Punkten."
+    ],
+    [
+      "Stromstärke I",
+      "Ladungsmenge pro Zeit, die einen Leiterquerschnitt passiert."
+    ],
+    [
+      "Widerstand R",
+      "Maß dafür, wie stark ein Bauteil den Stromfluss hemmt."
+    ],
+    [
+      "Elektrisches Feld",
+      "Raumbereich, in dem Kräfte auf elektrische Ladungen wirken."
+    ],
+    [
+      "Reihenschaltung",
+      "Bauteile hintereinander; gleicher Strom durch alle Bauteile."
+    ],
+    [
+      "Parallelschaltung",
+      "Bauteile in Zweigen; gleiche Spannung an den Zweigen."
+    ]
+  ],
+  "relations": [
+    [
+      "Ohmsches Gesetz",
+      "Für ohmsche Widerstände ist U proportional zu I.",
+      "U = R · I"
+    ],
+    [
+      "Elektrische Leistung",
+      "Leistung eines elektrischen Geräts ergibt sich aus Spannung und Stromstärke.",
+      "P = U · I"
+    ],
+    [
+      "Elektrische Energie",
+      "Bei konstanter Leistung wächst die umgesetzte Energie linear mit der Zeit.",
+      "E = P · t = U · I · t"
+    ],
+    [
+      "Reihenschaltung",
+      "Widerstände addieren sich.",
+      "R_ges = R₁ + R₂ + …"
+    ],
+    [
+      "Parallelschaltung",
+      "Die Kehrwerte der Widerstände addieren sich.",
+      "1/R_ges = 1/R₁ + 1/R₂ + …"
+    ]
+  ],
+  "check": [
+    "Was misst ein Voltmeter und wie wird es angeschlossen?",
+    "Wann gilt U = R·I als Ohmsches Gesetz?",
+    "Warum sind Haushaltsgeräte parallel geschaltet?"
+  ],
+  "lessons": []
+}

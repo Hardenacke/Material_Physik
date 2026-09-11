@@ -1,0 +1,70 @@
+{
+  "level": "Q1/Q2 Leistungskurs",
+  "title": "Schwingende Systeme und Wellen",
+  "overview": [
+    "Mechanische und elektromagnetische Schwingungen mathematisch modellieren",
+    "Differentialgleichungen als Modellwerkzeug für Schwingungen nutzen",
+    "Wellenphänomene mit Superposition und Huygens-Prinzip erklären",
+    "Interferenz an Spalten, Gittern und Interferometern quantitativ auswerten",
+    "Elektromagnetische Wellen aus schwingenden elektrischen und magnetischen Feldern deuten"
+  ],
+  "terms": [
+    [
+      "Harmonische Schwingung",
+      "Periodischer Vorgang mit sinusförmiger Zeitabhängigkeit."
+    ],
+    [
+      "Eigenfrequenz",
+      "Charakteristische Frequenz eines schwingungsfähigen Systems."
+    ],
+    [
+      "Dämpfung",
+      "Abnahme der Amplitude durch Energieabgabe."
+    ],
+    [
+      "Resonanz",
+      "Große Antwort eines Systems bei Anregung nahe der Eigenfrequenz."
+    ],
+    [
+      "Superposition",
+      "Lineare Überlagerung von Schwingungen bzw. Wellen."
+    ],
+    [
+      "Interferenz",
+      "Räumlich oder zeitlich stabile Verstärkung und Auslöschung durch Überlagerung."
+    ]
+  ],
+  "relations": [
+    [
+      "Harmonischer Oszillator",
+      "Kennzeichnende Differentialgleichung.",
+      "x¨ + ω₀²x = 0"
+    ],
+    [
+      "Federpendel",
+      "Eigenkreisfrequenz idealer Feder-Masse-Systeme.",
+      "ω₀ = √(D/m)"
+    ],
+    [
+      "Fadenpendel",
+      "Für kleine Auslenkungen näherungsweise:",
+      "T = 2π√(l/g)"
+    ],
+    [
+      "LC-Schwingkreis",
+      "Ideale Periodendauer.",
+      "T = 2π√(L·C)"
+    ],
+    [
+      "Welle",
+      "Grundbeziehung.",
+      "v = λ·f"
+    ]
+  ],
+  "check": [
+    "Wann ist eine Schwingung näherungsweise harmonisch?",
+    "Was unterscheidet Eigenfrequenz und Anregungsfrequenz?",
+    "Welche Phasendifferenz führt bei zwei gleich starken Wellen zur Auslöschung?"
+  ],
+  "lessons": []
+}

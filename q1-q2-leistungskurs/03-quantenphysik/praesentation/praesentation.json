@@ -1,0 +1,70 @@
+{
+  "level": "Q1/Q2 Leistungskurs",
+  "title": "Quantenphysik",
+  "overview": [
+    "Photonen und Elektronen als Quantenobjekte experimentell charakterisieren",
+    "Photoeffekt, Beugung und Interferenz quantitativ auswerten",
+    "Quantenobjekte mithilfe von Wahrscheinlichkeitsamplituden bzw. Wahrscheinlichkeitsaussagen deuten",
+    "de-Broglie-Beziehung und Impuls-Energie-Zusammenhänge anwenden",
+    "Grenzen klassischer Modelle systematisch reflektieren"
+  ],
+  "terms": [
+    [
+      "Photon",
+      "Energie- und Impulsquant elektromagnetischer Strahlung."
+    ],
+    [
+      "Wellenfunktion",
+      "Mathematisches Objekt, aus dem Wahrscheinlichkeitsaussagen gewonnen werden."
+    ],
+    [
+      "Wahrscheinlichkeitsdichte",
+      "Gibt die relative Wahrscheinlichkeit für Messergebnisse an."
+    ],
+    [
+      "Komplementarität",
+      "Verschiedene experimentelle Anordnungen zeigen unterschiedliche Aspekte eines Quantenobjekts."
+    ],
+    [
+      "de-Broglie-Welle",
+      "Materiewelle mit λ = h/p."
+    ],
+    [
+      "Unbestimmtheit",
+      "Bestimmte Paare physikalischer Größen sind nicht gleichzeitig beliebig scharf festgelegt."
+    ]
+  ],
+  "relations": [
+    [
+      "Photonenenergie",
+      "Energie eines Photons.",
+      "E = h·f = h·c/λ"
+    ],
+    [
+      "Photonenimpuls",
+      "Impuls eines Photons.",
+      "p = h/λ = E/c"
+    ],
+    [
+      "Materiewelle",
+      "Wellenlänge bewegter Materie.",
+      "λ = h/p"
+    ],
+    [
+      "Photoeffekt",
+      "Maximale kinetische Elektronenenergie folgt aus Energiebilanz.",
+      "E_kin,max = h·f − W_A"
+    ],
+    [
+      "Unbestimmtheit",
+      "Grundlegende Grenze gleichzeitiger Präzision.",
+      "Δx·Δp ≳ ħ/2"
+    ]
+  ],
+  "check": [
+    "Welche Beobachtung des Photoeffekts widerspricht der klassischen Wellentheorie?",
+    "Wie verändert sich die de-Broglie-Wellenlänge bei größerem Impuls?",
+    "Warum beschreibt die Quantenphysik Messergebnisse häufig probabilistisch?"
+  ],
+  "lessons": []
+}

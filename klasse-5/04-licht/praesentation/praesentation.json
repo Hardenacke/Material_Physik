@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 5",
+  "title": "Licht",
+  "overview": [
+    "Lichtquellen und Lichtempfänger unterscheiden",
+    "Geradlinige Lichtausbreitung mit dem Strahlenmodell beschreiben",
+    "Sehen mit dem Sender-Empfänger-Modell erklären",
+    "Schatten und Abbildungen an der Lochkamera konstruieren",
+    "Reflexion, Streuung, Transmission und Absorption unterscheiden"
+  ],
+  "terms": [
+    [
+      "Lichtquelle",
+      "Körper oder Gerät, das selbst Licht aussendet."
+    ],
+    [
+      "Lichtempfänger",
+      "System, das Licht registriert, z. B. Auge oder Sensor."
+    ],
+    [
+      "Lichtstrahl",
+      "Idealisierte Linie zur Darstellung der Ausbreitungsrichtung von Licht."
+    ],
+    [
+      "Reflexion",
+      "Licht wird an einer Oberfläche zurückgeworfen."
+    ],
+    [
+      "Absorption",
+      "Lichtenergie wird von Materie aufgenommen."
+    ],
+    [
+      "Transmission",
+      "Licht durchdringt einen Stoff ganz oder teilweise."
+    ]
+  ],
+  "relations": [
+    [
+      "Geradlinige Ausbreitung",
+      "In einem homogenen Medium wird Licht im Strahlenmodell geradlinig beschrieben.",
+      "Strahlenmodell"
+    ],
+    [
+      "Sehen",
+      "Ein Gegenstand wird gesehen, wenn Licht von ihm in das Auge gelangt.",
+      "Lichtquelle → Gegenstand → Auge"
+    ],
+    [
+      "Schatten",
+      "Ein lichtundurchlässiger Körper verhindert, dass Licht in bestimmte Bereiche gelangt.",
+      "Kern- und Halbschatten je nach Quelle"
+    ],
+    [
+      "Lochkamera",
+      "Jeder Objektpunkt sendet Licht in viele Richtungen; durch die Öffnung gelangt nur ein kleiner Strahlenanteil.",
+      "reelles, auf dem Kopf stehendes Bild"
+    ]
+  ],
+  "check": [
+    "Warum kann man einen nicht selbstleuchtenden Gegenstand sehen?",
+    "Wie entsteht ein Schatten?",
+    "Was unterscheidet Reflexion von Streuung?"
+  ],
+  "lessons": []
+}

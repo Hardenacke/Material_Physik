@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 5",
+  "title": "Temperatur und Wärme",
+  "overview": [
+    "Temperatur messen und die Celsiusskala sicher verwenden",
+    "Wärme und Temperatur voneinander unterscheiden",
+    "Wärmetransport durch Leitung, Mitführung und Strahlung erklären",
+    "Wärmeausdehnung und Aggregatzustandsänderungen mit dem Teilchenmodell deuten",
+    "Die Anomalie des Wassers an Alltags- und Naturbeispielen einordnen"
+  ],
+  "terms": [
+    [
+      "Temperatur",
+      "Maß dafür, wie warm oder kalt ein Körper ist."
+    ],
+    [
+      "Wärme",
+      "Energieübertragung aufgrund eines Temperaturunterschieds."
+    ],
+    [
+      "Thermische Energie",
+      "Energie, die mit der ungeordneten Bewegung der Teilchen zusammenhängt."
+    ],
+    [
+      "Wärmeleitung",
+      "Energieübertragung innerhalb eines Stoffes ohne Stofftransport."
+    ],
+    [
+      "Wärmemitführung",
+      "Energieübertragung durch bewegte Flüssigkeiten oder Gase."
+    ],
+    [
+      "Wärmestrahlung",
+      "Energieübertragung durch elektromagnetische Strahlung."
+    ]
+  ],
+  "relations": [
+    [
+      "Temperaturausgleich",
+      "Wärme fließt spontan vom wärmeren zum kälteren Körper, bis ein Gleichgewicht erreicht ist.",
+      "T_warm > T_kalt → Energieübertragung"
+    ],
+    [
+      "Teilchenmodell",
+      "Beim Erwärmen bewegen sich Teilchen im Mittel stärker; Abstände können sich vergrößern.",
+      "Modellvorstellung"
+    ],
+    [
+      "Aggregatzustände",
+      "Schmelzen, Erstarren, Verdampfen und Kondensieren sind mit Energieübertragungen verbunden.",
+      "fest ⇄ flüssig ⇄ gasförmig"
+    ],
+    [
+      "Wasseranomalie",
+      "Wasser besitzt bei etwa 4 °C die größte Dichte.",
+      "ρ_Wasser maximal bei ca. 4 °C"
+    ]
+  ],
+  "check": [
+    "Warum sind Wärme und Temperatur nicht dasselbe?",
+    "Welche Wärmetransportart spielt bei einer Thermoskanne jeweils eine Rolle?",
+    "Wie erklärt das Teilchenmodell die Ausdehnung vieler Stoffe beim Erwärmen?"
+  ],
+  "lessons": []
+}

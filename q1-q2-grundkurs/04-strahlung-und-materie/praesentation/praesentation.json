@@ -1,0 +1,65 @@
+{
+  "level": "Q1/Q2 Grundkurs",
+  "title": "Strahlung und Materie",
+  "overview": [
+    "Diskrete Energieniveaus in Atomen experimentell begründen",
+    "Linienspektren und den Franck-Hertz-Versuch deuten",
+    "Entstehung und Eigenschaften ionisierender Strahlung beschreiben",
+    "Wechselwirkungen von Strahlung mit Materie erklären",
+    "Nutzen und Risiken ionisierender Strahlung in Medizin und Alltag bewerten"
+  ],
+  "terms": [
+    [
+      "Energieniveau",
+      "Diskreter erlaubter Energiezustand eines quantenmechanischen Systems."
+    ],
+    [
+      "Linienspektrum",
+      "Spektrum aus einzelnen charakteristischen Wellenlängen."
+    ],
+    [
+      "Franck-Hertz-Versuch",
+      "Experimenteller Hinweis auf diskrete Anregungsenergien von Atomen."
+    ],
+    [
+      "Ionisierende Strahlung",
+      "Strahlung mit ausreichender Energie zur Ionisation von Atomen oder Molekülen."
+    ],
+    [
+      "Aktivität A",
+      "Zerfälle pro Sekunde; Einheit Bq."
+    ],
+    [
+      "Dosis",
+      "Größe zur Beschreibung der Energieabgabe bzw. biologischen Wirkung von Strahlung."
+    ]
+  ],
+  "relations": [
+    [
+      "Photonenübergang",
+      "Beim Übergang zwischen Energieniveaus wird ein Photon emittiert oder absorbiert.",
+      "ΔE = h·f"
+    ],
+    [
+      "Zerfall",
+      "Bei großen Kernzahlen folgt die Abnahme näherungsweise einem Exponentialgesetz.",
+      "N(t) = N₀·e^(−λt)"
+    ],
+    [
+      "Halbwertszeit",
+      "Halbwertszeit und Zerfallskonstante sind verknüpft.",
+      "T₁/₂ = ln(2)/λ"
+    ],
+    [
+      "Schutz",
+      "Dosis lässt sich durch Abstand, kurze Expositionszeit und Abschirmung reduzieren.",
+      "Abstand – Zeit – Abschirmung"
+    ]
+  ],
+  "check": [
+    "Warum zeigen Gase charakteristische Linienspektren?",
+    "Was weist der Franck-Hertz-Versuch nach?",
+    "Welche Faktoren bestimmen die Gefährdung durch ionisierende Strahlung?"
+  ],
+  "lessons": []
+}

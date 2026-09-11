@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 5",
+  "title": "Elektrischer Strom und Magnetismus",
+  "overview": [
+    "Einfache Stromkreise planen, aufbauen und mit Schaltzeichen darstellen",
+    "Leiter und Nichtleiter experimentell unterscheiden",
+    "Reihen- und Parallelschaltungen vergleichen",
+    "Wirkungen des elektrischen Stroms und wichtige Sicherheitsregeln erklären",
+    "Magnetische Kräfte, Pole und Magnetfelder mit Modellen beschreiben"
+  ],
+  "terms": [
+    [
+      "Stromkreis",
+      "Geschlossener Weg aus Spannungsquelle, Leitungen und Verbrauchern."
+    ],
+    [
+      "Leiter",
+      "Stoff, in dem sich elektrische Ladungsträger gut bewegen können."
+    ],
+    [
+      "Nichtleiter",
+      "Stoff mit sehr geringer elektrischer Leitfähigkeit."
+    ],
+    [
+      "Reihenschaltung",
+      "Bauteile liegen hintereinander in einem gemeinsamen Stromweg."
+    ],
+    [
+      "Parallelschaltung",
+      "Bauteile liegen in verschiedenen Zweigen zwischen denselben Knoten."
+    ],
+    [
+      "Magnetfeld",
+      "Raumbereich, in dem magnetische Kräfte wirken können."
+    ]
+  ],
+  "relations": [
+    [
+      "Geschlossener Stromkreis",
+      "Nur bei geschlossenem Stromweg kann ein Verbraucher dauerhaft betrieben werden.",
+      "Quelle → Leiter → Verbraucher → Quelle"
+    ],
+    [
+      "Stromwirkungen",
+      "Elektrischer Strom kann Wärme, Licht und magnetische Wirkungen hervorrufen.",
+      "elektrisch → Wärme / Licht / Magnetismus"
+    ],
+    [
+      "Magnetpole",
+      "Gleichnamige Pole stoßen sich ab, ungleichnamige ziehen sich an.",
+      "N–N / S–S: abstoßend; N–S: anziehend"
+    ],
+    [
+      "Feldlinienmodell",
+      "Feldlinien zeigen Richtung und räumliche Struktur eines Magnetfeldes.",
+      "Modell, keine realen Fäden"
+    ]
+  ],
+  "check": [
+    "Woran erkennst du einen geschlossenen Stromkreis?",
+    "Nenne je einen Vorteil von Reihen- und Parallelschaltungen.",
+    "Wie kann man ein Magnetfeld sichtbar bzw. untersuchbar machen?"
+  ],
+  "lessons": []
+}

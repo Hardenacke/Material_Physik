@@ -1,0 +1,65 @@
+{
+  "level": "Klasse 8",
+  "title": "Optische Instrumente",
+  "overview": [
+    "Reflexionsgesetz auf Spiegelbilder anwenden",
+    "Brechung und Totalreflexion qualitativ erklären",
+    "Bildentstehung an Sammellinsen konstruieren",
+    "Auge, Lupe, Kamera, Fernrohr und Mikroskop modellhaft beschreiben",
+    "Spektralzerlegung und Farbmischung einordnen"
+  ],
+  "terms": [
+    [
+      "Einfallswinkel",
+      "Winkel zwischen einfallendem Strahl und Lot."
+    ],
+    [
+      "Brechung",
+      "Richtungsänderung von Licht beim Übergang zwischen optisch verschiedenen Medien."
+    ],
+    [
+      "Totalreflexion",
+      "Vollständige Reflexion beim Übergang vom optisch dichteren ins dünnere Medium ab einem Grenzwinkel."
+    ],
+    [
+      "Brennpunkt",
+      "Punkt, in dem achsenparallele Strahlen hinter einer Sammellinse idealisiert zusammentreffen."
+    ],
+    [
+      "Spektrum",
+      "Aufspaltung von Licht nach Wellenlängen bzw. Farben."
+    ],
+    [
+      "RGB / CMYK",
+      "Modelle additiver bzw. subtraktiver Farbmischung."
+    ]
+  ],
+  "relations": [
+    [
+      "Reflexionsgesetz",
+      "Einfallswinkel und Reflexionswinkel sind gleich groß.",
+      "α = α′"
+    ],
+    [
+      "Brechung",
+      "Beim Übergang in ein optisch dichteres Medium wird zum Lot hin gebrochen; umgekehrt vom Lot weg.",
+      "qualitativer Zusammenhang"
+    ],
+    [
+      "Sammellinse",
+      "Parallelstrahlen werden im Brennpunkt gebündelt.",
+      "Brennweite f"
+    ],
+    [
+      "Totalreflexion",
+      "Grundprinzip von Lichtleitern und Glasfasern.",
+      "n₁ > n₂ und α > α_G"
+    ]
+  ],
+  "check": [
+    "Wo werden Einfalls- und Reflexionswinkel gemessen?",
+    "Warum kann Licht in einer Glasfaser geführt werden?",
+    "Welche Strahlen nutzt du für eine Bildkonstruktion an der Sammellinse?"
+  ],
+  "lessons": []
+}

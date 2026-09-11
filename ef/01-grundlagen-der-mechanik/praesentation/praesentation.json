@@ -1,0 +1,70 @@
+{
+  "level": "EF",
+  "title": "Grundlagen der Mechanik",
+  "overview": [
+    "Bewegungen experimentell erfassen und mit Funktionen modellieren",
+    "Gleichförmige und gleichmäßig beschleunigte Bewegungen unterscheiden",
+    "Kräfte vektoriell analysieren und Newtonsche Gesetze anwenden",
+    "Arbeit, Energie und Leistung bilanzieren",
+    "Impuls und Impulserhaltung auf Stoßprozesse anwenden"
+  ],
+  "terms": [
+    [
+      "Geschwindigkeit v",
+      "Zeitliche Änderung des Ortes."
+    ],
+    [
+      "Beschleunigung a",
+      "Zeitliche Änderung der Geschwindigkeit."
+    ],
+    [
+      "Kraft F",
+      "Ursache für Beschleunigungsänderungen im Newtonschen Modell."
+    ],
+    [
+      "Arbeit W",
+      "Energieübertragung durch eine Kraft entlang eines Weges."
+    ],
+    [
+      "Impuls p",
+      "Produkt aus Masse und Geschwindigkeit; vektorielle Erhaltungsgröße."
+    ],
+    [
+      "System",
+      "Festgelegter Ausschnitt der Welt, für den Bilanzen aufgestellt werden."
+    ]
+  ],
+  "relations": [
+    [
+      "Gleichförmige Bewegung",
+      "Bei konstanter Geschwindigkeit ist s(t) linear.",
+      "s = s₀ + v · t"
+    ],
+    [
+      "Gleichmäßig beschleunigte Bewegung",
+      "Bei konstanter Beschleunigung ist v(t) linear und s(t) quadratisch.",
+      "v = v₀ + a·t;  s = s₀ + v₀t + ½at²"
+    ],
+    [
+      "Newton II",
+      "Die resultierende Kraft bestimmt die Beschleunigung.",
+      "ΣF = m · a"
+    ],
+    [
+      "Energie",
+      "Mechanische Energieformen können ineinander umgewandelt werden.",
+      "E_kin = ½mv²;  E_pot = mgh"
+    ],
+    [
+      "Impuls",
+      "In einem abgeschlossenen System bleibt der Gesamtimpuls erhalten.",
+      "p = m·v;  Σp_vor = Σp_nach"
+    ]
+  ],
+  "check": [
+    "Wie erkennt man konstante Beschleunigung in v-t- und s-t-Diagrammen?",
+    "Wann darfst du ΣF = m·a direkt anwenden?",
+    "Welche Systemgrenze ist bei einer Impulsbilanz sinnvoll?"
+  ],
+  "lessons": []
+}
