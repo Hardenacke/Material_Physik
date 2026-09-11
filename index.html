@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Physiksammlung mit Lernpfaden nach Jahrgang und Themengebiet.">
+  <title>Physiksammlung</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Physik · Materialsammlung</p>
+      <h1>Physiksammlung</h1>
+      <p class="intro">Lernpfade geordnet nach Jahrgang und Themengebiet.</p>
+      <label class="search-wrap" for="search">
+        <span class="sr-only">Lernpfade durchsuchen</span>
+        <input id="search" type="search" placeholder="Lernpfad oder Themengebiet suchen …" autocomplete="off">
+      </label>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div id="summary" class="summary" aria-live="polite"></div>
+    <div id="catalog" class="catalog" aria-live="polite">
+      <p class="loading">Verzeichnis wird geladen …</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Die Übersicht wird automatisch aus der Ordnerstruktur erzeugt.</p>
+  </footer>
+</body>
+</html>
