@@ -22,12 +22,13 @@ _site wird gebaut
 GitHub Pages wird veröffentlicht
 ```
 
-Die Website zeigt die Struktur:
+Die Website zeigt die Struktur in zwei Schritten:
 
 ```text
-Jahrgang
-└── Themengebiet
-    └── Lernpfade
+1. Klasse oder Kurs auswählen
+2. Themenfeld auswählen
+   ├── Lernpfade
+   └── Dateien
 ```
 
 ## Neue Lernpfade
@@ -56,6 +57,8 @@ Beispiel `meta.json`:
 ```
 
 Auch die bisherige Struktur mit einzelnen HTML-Dateien direkt unter `lernpfade/` wird automatisch erkannt. Der Generator liest dann den HTML-`<title>` aus. Optional kann zu `lernpfad-auftrieb.html` eine Datei `lernpfad-auftrieb.meta.json` angelegt werden.
+
+Weitere sichtbare Materialien werden automatisch im Bereich **Dateien** des jeweiligen Themenfelds angezeigt, z. B. PowerPoint-Präsentationen, Markdown-Dateien, PDFs, Bilder, Simulationen und Office-Dateien. Interne JSON-Dateien wie `praesentation.json`, `meta.json`, `thema.json` oder `jahrgang.json` werden nicht angezeigt.
 
 ## Lokal testen
 

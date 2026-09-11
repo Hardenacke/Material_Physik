@@ -25,6 +25,20 @@ const LOWERCASE_WORDS = new Set([
   "am", "an", "auf", "aus", "bei", "für", "mit", "nach", "von", "zu", "zur", "zum"
 ]);
 
+const RESOURCE_EXTENSIONS = new Set([
+  ".html", ".htm", ".md", ".pdf", ".pptx", ".docx", ".xlsx", ".csv",
+  ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".mp4", ".webm", ".mp3", ".wav"
+]);
+
+const CATEGORY_BY_FOLDER = {
+  arbeitsblaetter: "Arbeitsblatt",
+  bilder: "Bild",
+  lernmaterial: "Lernmaterial",
+  lernpfade: "Lernpfad-Datei",
+  praesentation: "Präsentation",
+  simulationen: "Simulation"
+};
+
 function readJson(filePath) {
   if (!fs.existsSync(filePath)) return null;
   try {
@@ -70,6 +84,19 @@ function decodeEntities(text) {
 
 function stripTags(text) {
   return decodeEntities(text.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
+}
+
+function readMarkdownInfo(filePath) {
+  try {
+    const markdown = fs.readFileSync(filePath, "utf8").slice(0, 200000);
+    const titleMatch = markdown.match(/^#\s+(.+)$/m);
+    return {
+      title: titleMatch ? titleMatch[1].trim() : "",
+      description: ""
+    };
+  } catch {
+    return { title: "", description: "" };
+  }
 }
 
 function readHtmlInfo(filePath) {
@@ -146,6 +173,86 @@ function scanLearningPaths(topicPath) {
   return results.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, "de"));
 }
 
+function isInternalResource(filePath) {
+  const name = path.basename(filePath);
+  const ext = path.extname(name).toLowerCase();
+
+  if (name.startsWith(".") || name.startsWith("_")) return true;
+  if (ext === ".json") return true;
+  if (!RESOURCE_EXTENSIONS.has(ext)) return true;
+
+  return false;
+}
+
+function isLearningPathHtml(filePath, topicPath) {
+  const relative = path.relative(topicPath, filePath).split(path.sep);
+  const ext = path.extname(filePath).toLowerCase();
+  return relative[0] === "lernpfade" && (ext === ".html" || ext === ".htm");
+}
+
+function resourceCategory(filePath, topicPath) {
+  const firstFolder = path.relative(topicPath, filePath).split(path.sep)[0];
+  return CATEGORY_BY_FOLDER[firstFolder] || "Datei";
+}
+
+function resourceTitle(filePath, topicPath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const relative = path.relative(topicPath, filePath).split(path.sep);
+  const stem = path.basename(filePath, ext);
+
+  if (relative[0] === "praesentation" && ext === ".pptx" && /_wiederholung$/i.test(stem)) {
+    return "Wiederholungspräsentation";
+  }
+
+  if (ext === ".md") {
+    const markdownInfo = readMarkdownInfo(filePath);
+    if (markdownInfo.title) return markdownInfo.title;
+  }
+
+  if (ext === ".html" || ext === ".htm") {
+    const htmlInfo = readHtmlInfo(filePath);
+    if (htmlInfo.title) return htmlInfo.title;
+  }
+
+  return humanize(stem);
+}
+
+function scanFiles(topicPath) {
+  const results = [];
+
+  function walk(currentPath) {
+    for (const entry of fs.readdirSync(currentPath, { withFileTypes: true })) {
+      if (entry.name.startsWith(".") || entry.name.startsWith("_")) continue;
+
+      const entryPath = path.join(currentPath, entry.name);
+      if (entry.isDirectory()) {
+        walk(entryPath);
+        continue;
+      }
+
+      if (!entry.isFile()) continue;
+      if (isInternalResource(entryPath)) continue;
+      if (isLearningPathHtml(entryPath, topicPath)) continue;
+
+      const ext = path.extname(entryPath).toLowerCase();
+      results.push({
+        id: repoRelative(entryPath),
+        title: resourceTitle(entryPath, topicPath),
+        category: resourceCategory(entryPath, topicPath),
+        type: ext ? ext.slice(1).toUpperCase() : "Datei",
+        url: repoRelative(entryPath)
+      });
+    }
+  }
+
+  walk(topicPath);
+
+  return results.sort((a, b) =>
+    a.category.localeCompare(b.category, "de") ||
+    a.title.localeCompare(b.title, "de")
+  );
+}
+
 function isClassFolder(name) {
   return /^klasse-\d+$/i.test(name) || name === "ef" || /^q\d.*-(grundkurs|leistungskurs)$/i.test(name);
 }
@@ -163,7 +270,8 @@ function scanTopics(classPath) {
         title: meta.title || humanize(entry.name),
         description: meta.description || "",
         order: toNumber(meta.order, toNumber((entry.name.match(/^(\d+)/) || [])[1], 9999)),
-        learningPaths: scanLearningPaths(topicPath)
+        learningPaths: scanLearningPaths(topicPath),
+        files: scanFiles(topicPath)
       };
     })
     .filter(Boolean)
@@ -203,5 +311,10 @@ const learningPathCount = catalog.classes.reduce(
   0
 );
 
-console.log(`Katalog erzeugt: ${catalog.classes.length} Bereiche, ${learningPathCount} Lernpfad(e).`);
+const fileCount = catalog.classes.reduce(
+  (sum, schoolClass) => sum + schoolClass.topics.reduce((topicSum, topic) => topicSum + topic.files.length, 0),
+  0
+);
+
+console.log(`Katalog erzeugt: ${catalog.classes.length} Bereiche, ${learningPathCount} Lernpfad(e), ${fileCount} Datei(en).`);
 console.log(`Ausgabe: ${repoRelative(OUTPUT)}`);
