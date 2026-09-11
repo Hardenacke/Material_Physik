@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "scripts": {
     "build:pptx": "node tools/build-presentations.js",
-    "watch:pptx": "node tools/watch-presentations.js"
+    "watch:pptx": "node tools/watch-presentations.js",
+    "build:catalog": "node tools/build-catalog.js",
+    "build:site": "node tools/build-catalog.js && node tools/prepare-site.js"
   },
   "dependencies": {
     "pptxgenjs": "^3.12.0"
