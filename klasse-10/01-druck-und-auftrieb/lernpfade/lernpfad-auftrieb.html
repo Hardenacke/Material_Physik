@@ -1,0 +1,2020 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lernpfad Auftrieb - Klasse 10</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --ink: #1f2937;
+      --muted: #5f6f82;
+      --line: #c9d6e2;
+      --blue: #2366a8;
+      --cyan: #0f7c90;
+      --green: #34784f;
+      --amber: #a86611;
+      --red: #a64242;
+      --violet: #5b5aa7;
+      --pale-blue: #eaf3fb;
+      --pale-cyan: #e7f6f7;
+      --pale-green: #ebf6ef;
+      --pale-amber: #fff3dc;
+      --pale-red: #fbeaea;
+      --shadow: 0 18px 44px rgba(31, 41, 55, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, #edf5fb 0, #f6f8fb 340px),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: #12314d;
+      color: #fff;
+      border-bottom: 4px solid #31a7b8;
+    }
+
+    .topbar-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: #a9d6e4;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3rem, 3rem);
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 12px 0 0;
+      color: #dbeaf3;
+      font-size: 1.05rem;
+    }
+
+    .force-visual {
+      min-height: 210px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      padding: 16px;
+    }
+
+    .force-visual svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .layout {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 40px;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel,
+    .station,
+    .summary,
+    .solution-box,
+    .feedback,
+    .callout,
+    .table-wrap,
+    .mini-lab {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .panel {
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 12px;
+      overflow: hidden;
+      background: #dce6ef;
+      border-radius: 999px;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
+      transition: width 180ms ease;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .station-link {
+      width: 100%;
+      min-height: 40px;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) 20px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      color: var(--ink);
+      background: #f8fbfd;
+      border: 1px solid #d9e3ec;
+      border-radius: var(--radius);
+      text-align: left;
+    }
+
+    .station-link[aria-current="true"] {
+      border-color: var(--blue);
+      background: var(--pale-blue);
+      color: #123f6e;
+      font-weight: 800;
+    }
+
+    .station-number {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #e5edf4;
+      color: #31506f;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .station-link[aria-current="true"] .station-number {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .done-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #9fb0bf;
+      display: inline-grid;
+      place-items: center;
+      color: transparent;
+      font-size: 0.7rem;
+      font-weight: 900;
+    }
+
+    .station-link.is-complete .done-mark {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .summary {
+      padding: 20px;
+    }
+
+    .summary h2 {
+      font-size: 1.35rem;
+      color: #183a5b;
+      margin-bottom: 10px;
+    }
+
+    .summary ul {
+      margin: 10px 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .summary li + li {
+      margin-top: 5px;
+    }
+
+    .station {
+      display: none;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .station.is-active {
+      display: block;
+    }
+
+    .station-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .station-title {
+      display: grid;
+      gap: 6px;
+    }
+
+    .station-title h2 {
+      color: #173b5b;
+      font-size: 1.58rem;
+    }
+
+    .time {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .complete-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8fbfd;
+      white-space: nowrap;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .complete-toggle input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+    }
+
+    .flow-grid,
+    .two-col,
+    .calculator-grid,
+    .choice-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .two-col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .calculator-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: end;
+    }
+
+    .choice-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .callout {
+      padding: 14px 16px;
+      border-left: 6px solid var(--blue);
+      background: #f9fcff;
+    }
+
+    .callout.green {
+      border-left-color: var(--green);
+      background: var(--pale-green);
+    }
+
+    .callout.amber {
+      border-left-color: var(--amber);
+      background: var(--pale-amber);
+    }
+
+    .callout.cyan {
+      border-left-color: var(--cyan);
+      background: var(--pale-cyan);
+    }
+
+    .callout h3,
+    .mini-lab h3 {
+      margin-bottom: 8px;
+      font-size: 1.03rem;
+      color: #163856;
+    }
+
+    .callout p,
+    .mini-lab p {
+      margin: 0;
+    }
+
+    .callout p + p {
+      margin-top: 8px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+
+    th,
+    td {
+      padding: 9px 8px;
+      border-bottom: 1px solid #dfe8f0;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    th {
+      background: #edf4fa;
+      color: #284862;
+      font-size: 0.86rem;
+    }
+
+    td input,
+    td select {
+      width: 100%;
+      min-width: 110px;
+    }
+
+    label.field {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 1px solid #b8c8d6;
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus-visible {
+      outline: 3px solid rgba(35, 102, 168, 0.22);
+      outline-offset: 2px;
+    }
+
+    .btn {
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid #b8c8d6;
+      border-radius: var(--radius);
+      background: #fff;
+      color: #163856;
+      font-weight: 800;
+    }
+
+    .btn.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .btn.green {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn.warn {
+      border-color: #c98a30;
+      background: #fff7e8;
+      color: #6b3d06;
+    }
+
+    .btn:disabled {
+      opacity: 0.58;
+      cursor: default;
+    }
+
+    .feedback {
+      min-height: 42px;
+      padding: 10px 12px;
+      color: var(--muted);
+      background: #f8fbfd;
+    }
+
+    .feedback.good {
+      color: #23593a;
+      background: var(--pale-green);
+      border-color: #b6d8c2;
+    }
+
+    .feedback.needs-work {
+      color: #7a321f;
+      background: var(--pale-red);
+      border-color: #e0b5ad;
+    }
+
+    .formula {
+      display: inline-block;
+      margin: 6px 0;
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: #eef5fb;
+      color: #153d61;
+      font-weight: 800;
+    }
+
+    .formula-block {
+      display: grid;
+      gap: 6px;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: var(--radius);
+      background: #eef5fb;
+      border: 1px solid #c8dbea;
+      color: #153d61;
+      font-weight: 800;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 160px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .quiz-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .quiz-item {
+      display: grid;
+      gap: 8px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e1e9f1;
+    }
+
+    .quiz-item:last-child {
+      border-bottom: 0;
+    }
+
+    .answer-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .mini-lab {
+      padding: 16px;
+      background: #fbfdff;
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) 90px;
+      gap: 10px;
+      align-items: center;
+      margin: 12px 0;
+    }
+
+    input[type="range"] {
+      accent-color: var(--cyan);
+    }
+
+    .tank-wrap {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .tank {
+      position: relative;
+      width: 180px;
+      height: 210px;
+      border: 3px solid #527c99;
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      background: #eef6fb;
+    }
+
+    .water {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 72%;
+      background: linear-gradient(180deg, #7bc5da, #2c83ac);
+    }
+
+    .waterline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 72%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .body-block {
+      position: absolute;
+      left: 65px;
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #f2ba55, #c06f2b);
+      border: 2px solid #874712;
+      transition: bottom 180ms ease;
+    }
+
+    .tank-label {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.78);
+      color: #25445d;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .result-badge {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--pale-blue);
+      color: #123f6e;
+      font-weight: 900;
+    }
+
+    .app-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .tab-btn[aria-selected="true"] {
+      border-color: var(--cyan);
+      background: var(--pale-cyan);
+      color: #0d5360;
+    }
+
+    .app-panel {
+      display: none;
+    }
+
+    .app-panel.is-visible {
+      display: block;
+    }
+
+    details.solution-box {
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    details.solution-box > summary {
+      padding: 12px 14px;
+      cursor: pointer;
+      font-weight: 900;
+      color: #163856;
+      background: #edf4fa;
+    }
+
+    details.solution-box > div {
+      padding: 14px 16px;
+    }
+
+    .station-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .print-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 10px 0 0;
+    }
+
+    @media (max-width: 900px) {
+      .topbar-inner,
+      .layout,
+      .intro-grid,
+      .two-col,
+      .calculator-grid,
+      .choice-grid,
+      .tank-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .station-header,
+      .station-actions,
+      .answer-row,
+      .check-row,
+      .slider-row {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+
+      .station-header {
+        display: grid;
+      }
+
+      .complete-toggle {
+        justify-content: center;
+      }
+
+      .station {
+        padding: 18px;
+      }
+
+      .tank {
+        width: 100%;
+        max-width: 220px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .topbar,
+      .sidebar,
+      .station-actions,
+      .toolbar,
+      .btn {
+        display: none !important;
+      }
+
+      .layout,
+      .intro-grid,
+      .two-col,
+      .calculator-grid,
+      .choice-grid {
+        display: block;
+        width: 100%;
+        margin: 0;
+      }
+
+      .station {
+        display: block !important;
+        box-shadow: none;
+        page-break-inside: avoid;
+        margin-bottom: 16px;
+      }
+
+      .summary,
+      .panel,
+      .station {
+        border-color: #999;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div>
+          <p class="eyebrow">Klasse 10 · Physik · Druck und Auftrieb</p>
+          <h1>Lernpfad: Auftrieb</h1>
+          <p class="subtitle">Untersuche, warum Körper im Wasser scheinbar leichter werden, wie Druckunterschiede eine Kraft nach oben erzeugen und wie das archimedische Prinzip Schwimmen, Sinken und Schweben erklärt.</p>
+        </div>
+        <div class="force-visual" aria-label="Skizze zu Auftrieb und Gewichtskraft">
+          <svg viewBox="0 0 360 220" role="img">
+            <title>Kräfte auf einen Körper im Wasser</title>
+            <defs>
+              <linearGradient id="waterGradient" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#77c7db"/>
+                <stop offset="100%" stop-color="#2a80a8"/>
+              </linearGradient>
+            </defs>
+            <rect x="32" y="40" width="250" height="150" rx="8" fill="url(#waterGradient)" opacity="0.95"/>
+            <line x1="32" y1="40" x2="282" y2="40" stroke="#dff7ff" stroke-width="3"/>
+            <rect x="130" y="94" width="76" height="54" rx="6" fill="#f3b557" stroke="#8b4b16" stroke-width="3"/>
+            <line x1="168" y1="92" x2="168" y2="44" stroke="#effbff" stroke-width="6" stroke-linecap="round"/>
+            <polygon points="168,42 155,65 181,65" fill="#effbff"/>
+            <text x="190" y="64" fill="#ffffff" font-size="22" font-weight="700">F_A</text>
+            <line x1="168" y1="150" x2="168" y2="196" stroke="#7a321f" stroke-width="6" stroke-linecap="round"/>
+            <polygon points="168,200 155,177 181,177" fill="#7a321f"/>
+            <text x="190" y="189" fill="#ffffff" font-size="22" font-weight="700">F_G</text>
+            <text x="44" y="32" fill="#dff7ff" font-size="16" font-weight="700">Druck nimmt mit Tiefe zu</text>
+            <circle cx="306" cy="70" r="8" fill="#eaf3fb"/>
+            <circle cx="306" cy="110" r="12" fill="#eaf3fb"/>
+            <circle cx="306" cy="155" r="17" fill="#eaf3fb"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="panel" aria-label="Fortschritt">
+          <div class="progress-label">
+            <span>Fortschritt</span>
+            <span id="progressText">0 von 8</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="nav-list" id="stationNav"></div>
+          <div class="toolbar">
+            <button class="btn" type="button" id="showAllBtn">Alle Stationen</button>
+            <button class="btn warn" type="button" id="resetBtn">Zurücksetzen</button>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <div class="intro-grid">
+          <section class="summary">
+            <h2>Das kannst du am Ende</h2>
+            <ul>
+              <li>die Auftriebskraft als Kraft nach oben beschreiben</li>
+              <li>Auftrieb durch Druckunterschiede erklären</li>
+              <li>F_A = ρ_Medium · V_verdrängt · g anwenden</li>
+              <li>Messwerte aus einem Auftriebsexperiment auswerten</li>
+              <li>Schwimmen, Sinken und Schweben vorhersagen</li>
+            </ul>
+          </section>
+          <section class="summary">
+            <h2>Material</h2>
+            <p>Gefäß mit Wasser, Federkraftmesser, Körper zum Eintauchen, Faden, Messzylinder oder Überlaufgefäß, Waage, Lineal und Taschenrechner.</p>
+            <p class="formula">g ≈ 9,81 N/kg · ρ_Wasser ≈ 1000 kg/m³</p>
+          </section>
+        </div>
+
+        <section class="station is-active" data-station="1" id="station-1">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 10 Minuten</span>
+              <h2>Station 1: Einstieg - was schwimmt, was sinkt?</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="1"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="callout cyan">
+              <h3>Auftrag</h3>
+              <ol>
+                <li>Trage mindestens fünf Gegenstände ein.</li>
+                <li>Vermute zuerst: schwimmt, sinkt oder schwebt?</li>
+                <li>Prüfe deine Vermutung im Wasser.</li>
+                <li>Formuliere eine erste Regel.</li>
+              </ol>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Gegenstand</th>
+                    <th>Vermutung</th>
+                    <th>Beobachtung</th>
+                    <th>Treffer?</th>
+                  </tr>
+                </thead>
+                <tbody id="floatTable">
+                  <tr>
+                    <td><input type="text" data-save="s1-object-1"></td>
+                    <td>
+                      <select data-save="s1-guess-1" data-guess="1">
+                        <option value="">auswählen</option>
+                        <option>schwimmt</option>
+                        <option>sinkt</option>
+                        <option>schwebt</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select data-save="s1-observe-1" data-observe="1">
+                        <option value="">auswählen</option>
+                        <option>schwimmt</option>
+                        <option>sinkt</option>
+                        <option>schwebt</option>
+                      </select>
+                    </td>
+                    <td data-hit="1">-</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" data-save="s1-object-2"></td>
+                    <td><select data-save="s1-guess-2" data-guess="2"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td><select data-save="s1-observe-2" data-observe="2"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td data-hit="2">-</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" data-save="s1-object-3"></td>
+                    <td><select data-save="s1-guess-3" data-guess="3"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td><select data-save="s1-observe-3" data-observe="3"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td data-hit="3">-</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" data-save="s1-object-4"></td>
+                    <td><select data-save="s1-guess-4" data-guess="4"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td><select data-save="s1-observe-4" data-observe="4"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td data-hit="4">-</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" data-save="s1-object-5"></td>
+                    <td><select data-save="s1-guess-5" data-guess="5"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td><select data-save="s1-observe-5" data-observe="5"><option value="">auswählen</option><option>schwimmt</option><option>sinkt</option><option>schwebt</option></select></td>
+                    <td data-hit="5">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <label class="field">Erste Regel
+              <textarea data-save="s1-rule" placeholder="Formuliere deine Vermutung in einem Satz."></textarea>
+            </label>
+
+            <div class="check-row">
+              <label class="field">Checkpoint: Warum ist "Schwere Gegenstände sinken immer" falsch?
+                <input type="text" id="s1Check" data-save="s1-check">
+              </label>
+              <button class="btn primary" type="button" data-check-text="s1Check" data-feedback="s1Feedback" data-keywords="masse,volumen,dichte,auftrieb,verdrängt">Prüfen</button>
+            </div>
+            <div class="feedback" id="s1Feedback">Noch keine Antwort geprüft.</div>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>Die Aussage ist falsch, weil nicht nur die Masse entscheidet. Wichtig ist, wie groß die Gewichtskraft im Vergleich zur möglichen Auftriebskraft ist. Ein Schiff verdrängt sehr viel Wasser und erhält dadurch eine große Auftriebskraft.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="2" id="station-2">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 15 Minuten</span>
+              <h2>Station 2: Kräfte im Wasser</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="2"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="callout">
+              <h3>Merksatz</h3>
+              <p>Ein Körper sinkt, wenn F_G &gt; F_A. Ein Körper steigt, wenn F_A &gt; F_G. Ein Körper schwebt, wenn F_A = F_G. Ein schwimmender Körper ruht an der Oberfläche, wenn F_A = F_G gilt und nur ein Teil seines Volumens eingetaucht ist.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fall</th>
+                    <th>Passende Beziehung</th>
+                    <th>Rückmeldung</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ein Stein sinkt.</td>
+                    <td>
+                      <select data-relation="fggt">
+                        <option value="">auswählen</option>
+                        <option value="fggt">F_G &gt; F_A</option>
+                        <option value="fagt">F_A &gt; F_G</option>
+                        <option value="equal">F_A = F_G</option>
+                      </select>
+                    </td>
+                    <td data-relation-feedback>noch offen</td>
+                  </tr>
+                  <tr>
+                    <td>Ein Holzstück schwimmt an der Oberfläche.</td>
+                    <td>
+                      <select data-relation="equal">
+                        <option value="">auswählen</option>
+                        <option value="fggt">F_G &gt; F_A</option>
+                        <option value="fagt">F_A &gt; F_G</option>
+                        <option value="equal">F_A = F_G</option>
+                      </select>
+                    </td>
+                    <td data-relation-feedback>noch offen</td>
+                  </tr>
+                  <tr>
+                    <td>Ein Körper schwebt vollständig im Wasser.</td>
+                    <td>
+                      <select data-relation="equal">
+                        <option value="">auswählen</option>
+                        <option value="fggt">F_G &gt; F_A</option>
+                        <option value="fagt">F_A &gt; F_G</option>
+                        <option value="equal">F_A = F_G</option>
+                      </select>
+                    </td>
+                    <td data-relation-feedback>noch offen</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="two-col">
+              <label class="field">Kräftebild-Beschreibung
+                <textarea data-save="s2-diagram" placeholder="Beschreibe, wie deine Pfeile aussehen."></textarea>
+              </label>
+              <label class="field">Checkpoint: Unterschied zwischen schweben und schwimmen
+                <textarea id="s2Check" data-save="s2-check"></textarea>
+              </label>
+            </div>
+            <div class="answer-row">
+              <div class="feedback" id="s2Feedback">Noch keine Antwort geprüft.</div>
+              <button class="btn primary" type="button" data-check-text="s2Check" data-feedback="s2Feedback" data-keywords="oberfläche,vollständig,eingetaucht,gleich">Prüfen</button>
+            </div>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>Beim Schweben ist der Körper vollständig im Medium und F_G = F_A. Beim Schwimmen ruht der Körper an der Oberfläche; nur ein Teil seines Volumens ist eingetaucht, aber auch hier gilt im Ruhezustand F_G = F_A.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="3" id="station-3">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 20 Minuten</span>
+              <h2>Station 3: Woher kommt die Auftriebskraft?</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="3"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="callout cyan">
+              <h3>Druck in Flüssigkeiten</h3>
+              <p>In Flüssigkeiten nimmt der Druck mit der Tiefe zu.</p>
+              <p class="formula">p_h = ρ_Flüssigkeit · g · h</p>
+              <p>Bei einem eingetauchten Körper ist der Druck an der Unterseite größer als an der Oberseite. Die seitlichen Druckkräfte gleichen sich aus.</p>
+            </div>
+
+            <div class="two-col">
+              <div class="mini-lab">
+                <h3>Druckvergleich</h3>
+                <div class="slider-row">
+                  <label for="depthTop">Tiefe oben</label>
+                  <input id="depthTop" type="range" min="5" max="80" value="25">
+                  <output id="depthTopOut">25 cm</output>
+                </div>
+                <div class="slider-row">
+                  <label for="bodyHeight">Körperhöhe</label>
+                  <input id="bodyHeight" type="range" min="10" max="70" value="35">
+                  <output id="bodyHeightOut">35 cm</output>
+                </div>
+                <p>Unterseite: <strong id="depthBottomOut">60 cm</strong></p>
+                <p>Druck unten ist ungefähr <strong id="pressureRatioOut">2,4-mal</strong> so groß wie oben.</p>
+              </div>
+              <div class="callout amber">
+                <h3>Für Schnelle</h3>
+                <p>Mit p = ρ · g · h und F = p · A gilt für einen Quader:</p>
+                <div class="formula-block">
+                  <span>F_A = F_unten - F_oben</span>
+                  <span>F_A = ρ_Flüssigkeit · g · A · d</span>
+                  <span>F_A = ρ_Flüssigkeit · V_verdrängt · g</span>
+                </div>
+              </div>
+            </div>
+
+            <label class="field">Auftrag: Begründe, warum insgesamt eine Kraft nach oben übrig bleibt.
+              <textarea data-save="s3-explanation"></textarea>
+            </label>
+
+            <div class="check-row">
+              <label class="field">Checkpoint: Der Druck an der Unterseite ist ...
+                <input type="text" id="s3Check" data-save="s3-check">
+              </label>
+              <button class="btn primary" type="button" data-check-exact="s3Check" data-feedback="s3Feedback" data-answer="größer,groesser">Prüfen</button>
+            </div>
+            <div class="feedback" id="s3Feedback">Noch keine Antwort geprüft.</div>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>Auftrieb entsteht, weil der Druck an der Unterseite eines eingetauchten Körpers größer ist als an der Oberseite.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="4" id="station-4">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 30 Minuten</span>
+              <h2>Station 4: Experiment - Auftrieb messen</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="4"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="callout green">
+              <h3>Fragestellung</h3>
+              <p>Wie groß ist die Auftriebskraft auf einen eingetauchten Körper?</p>
+              <p class="formula">F_A = F_G,Luft - F_G,Wasser</p>
+              <p class="formula">F_A,theo = ρ_Wasser · V_verdrängt · g</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Körper</th>
+                    <th>F_G,Luft in N</th>
+                    <th>F_G,Wasser in N</th>
+                    <th>V in cm³</th>
+                    <th>F_A gemessen</th>
+                    <th>F_A,theo</th>
+                    <th>Abweichung</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-measure-row>
+                    <td>1</td>
+                    <td><input type="number" step="0.01" min="0" data-save="s4-air-1" data-air></td>
+                    <td><input type="number" step="0.01" min="0" data-save="s4-water-1" data-waterforce></td>
+                    <td><input type="number" step="1" min="0" data-save="s4-volume-1" data-volume></td>
+                    <td data-fa-measured>-</td>
+                    <td data-fa-theory>-</td>
+                    <td data-fa-dev>-</td>
+                  </tr>
+                  <tr data-measure-row>
+                    <td>2</td>
+                    <td><input type="number" step="0.01" min="0" data-save="s4-air-2" data-air></td>
+                    <td><input type="number" step="0.01" min="0" data-save="s4-water-2" data-waterforce></td>
+                    <td><input type="number" step="1" min="0" data-save="s4-volume-2" data-volume></td>
+                    <td data-fa-measured>-</td>
+                    <td data-fa-theory>-</td>
+                    <td data-fa-dev>-</td>
+                  </tr>
+                  <tr data-measure-row>
+                    <td>3</td>
+                    <td><input type="number" step="0.01" min="0" data-save="s4-air-3" data-air></td>
+                    <td><input type="number" step="0.01" min="0" data-save="s4-water-3" data-waterforce></td>
+                    <td><input type="number" step="1" min="0" data-save="s4-volume-3" data-volume></td>
+                    <td data-fa-measured>-</td>
+                    <td data-fa-theory>-</td>
+                    <td data-fa-dev>-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="two-col">
+              <div class="callout amber">
+                <h3>Einheiten</h3>
+                <p>1 cm³ = 0,000001 m³ = 10^-6 m³. Für die Rechnung mit ρ in kg/m³ muss V in m³ eingesetzt werden.</p>
+              </div>
+              <label class="field">Auswertung: Gründe für Abweichungen
+                <textarea data-save="s4-errors" placeholder="z. B. Ablesefehler, Luftblasen, Körper berührt die Wand..."></textarea>
+              </label>
+            </div>
+
+            <div class="check-row">
+              <label class="field">Checkpoint: Warum wird die Anzeige kleiner?
+                <input type="text" id="s4Check" data-save="s4-check">
+              </label>
+              <button class="btn primary" type="button" data-check-text="s4Check" data-feedback="s4Feedback" data-keywords="auftrieb,kraft,oben,gewichtskraft,zugkraft">Prüfen</button>
+            </div>
+            <div class="feedback" id="s4Feedback">Noch keine Antwort geprüft.</div>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>Die Gewichtskraft des Körpers bleibt gleich. Der Federkraftmesser zeigt im Wasser nur eine kleinere Zugkraft an, weil zusätzlich die Auftriebskraft nach oben wirkt.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="5" id="station-5">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 20 Minuten</span>
+              <h2>Station 5: Archimedisches Prinzip anwenden</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="5"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="callout">
+              <h3>Merksatz</h3>
+              <p>Die Auftriebskraft ist genauso groß wie die Gewichtskraft des verdrängten Mediums.</p>
+              <p class="formula">F_A = ρ_Medium · V_verdrängt · g</p>
+            </div>
+
+            <div class="calculator-grid">
+              <label class="field">Dichte des Mediums in kg/m³
+                <input type="number" id="buoyDensity" value="1000" min="0" step="1">
+              </label>
+              <label class="field">Verdrängtes Volumen in cm³
+                <input type="number" id="buoyVolume" value="80" min="0" step="1">
+              </label>
+              <label class="field">Ortsfaktor g in N/kg
+                <input type="number" id="buoyG" value="9.81" min="0" step="0.01">
+              </label>
+            </div>
+            <div class="answer-row">
+              <div class="feedback good" id="buoyResult">F_A ≈ 0,78 N</div>
+              <button class="btn primary" type="button" id="calcBuoyBtn">Berechnen</button>
+            </div>
+
+            <div class="quiz-list">
+              <div class="quiz-item">
+                <strong>1. Ein Körper verdrängt 50 cm³ Wasser. Berechne F_A.</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="0.49" data-tolerance="0.04" data-save="s5-a1" aria-label="Antwort Aufgabe 1">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>2. Ein Körper verdrängt 250 cm³ Wasser. Berechne F_A.</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="2.45" data-tolerance="0.08" data-save="s5-a2" aria-label="Antwort Aufgabe 2">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>3. Ein Körper verdrängt 1,5 Liter Wasser. Berechne F_A.</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="14.7" data-tolerance="0.3" data-save="s5-a3" aria-label="Antwort Aufgabe 3">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>4. 200 cm³ Salzwasser mit ρ = 1030 kg/m³. Berechne F_A.</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="2.02" data-tolerance="0.08" data-save="s5-a4" aria-label="Antwort Aufgabe 4">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn green" type="button" data-check-numeric>Aufgaben prüfen</button>
+
+            <label class="field">Checkpoint: Warum ist der Auftrieb in Salzwasser größer?
+              <textarea id="s5Check" data-save="s5-check"></textarea>
+            </label>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>50 cm³: F_A ≈ 0,49 N. 250 cm³: F_A ≈ 2,45 N. 1,5 L: F_A ≈ 14,7 N. 200 cm³ Salzwasser: F_A ≈ 2,02 N.</p>
+              <p>Salzwasser hat eine größere Dichte als Süßwasser. Bei gleichem verdrängtem Volumen ist die Gewichtskraft des verdrängten Wassers größer.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="6" id="station-6">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 25 Minuten</span>
+              <h2>Station 6: Schwimmen, Sinken, Schweben mit Dichte erklären</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="6"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="callout">
+              <h3>Dichtevergleich</h3>
+              <p class="formula">ρ = m / V</p>
+              <p>ρ_Körper &gt; ρ_Medium: Der Körper sinkt. ρ_Körper = ρ_Medium: Der Körper schwebt. ρ_Körper &lt; ρ_Medium: Der Körper steigt nach oben und schwimmt schließlich.</p>
+            </div>
+
+            <div class="mini-lab">
+              <h3>Dichte-Simulator</h3>
+              <div class="tank-wrap">
+                <div class="tank" aria-hidden="true">
+                  <div class="water"></div>
+                  <div class="waterline"></div>
+                  <div class="body-block" id="simBlock"></div>
+                  <div class="tank-label">Wasser</div>
+                </div>
+                <div>
+                  <div class="slider-row">
+                    <label for="bodyDensity">ρ_Körper</label>
+                    <input id="bodyDensity" type="range" min="0.2" max="1.8" value="0.72" step="0.01">
+                    <output id="bodyDensityOut">0,72 g/cm³</output>
+                  </div>
+                  <div class="slider-row">
+                    <label for="mediumDensity">ρ_Medium</label>
+                    <input id="mediumDensity" type="range" min="0.7" max="1.3" value="1" step="0.01">
+                    <output id="mediumDensityOut">1,00 g/cm³</output>
+                  </div>
+                  <p><span class="result-badge" id="densityState">schwimmt</span></p>
+                  <p id="densityExplain">Der Körper hat eine kleinere Dichte als das Medium und schwimmt. Etwa 72 % seines Volumens liegen unter Wasser.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="calculator-grid">
+              <label class="field">Masse in g
+                <input type="number" id="massInput" value="180" min="0" step="1">
+              </label>
+              <label class="field">Volumen in cm³
+                <input type="number" id="volumeInput" value="250" min="0" step="1">
+              </label>
+              <label class="field">Mediumdichte in g/cm³
+                <input type="number" id="mediumInput" value="1.00" min="0" step="0.01">
+              </label>
+            </div>
+            <div class="answer-row">
+              <div class="feedback good" id="densityCalcResult">ρ_Körper = 0,72 g/cm³ - schwimmt</div>
+              <button class="btn primary" type="button" id="calcDensityBtn">Berechnen</button>
+            </div>
+
+            <div class="quiz-list">
+              <div class="quiz-item">
+                <strong>1. Holz mit ρ = 0,60 g/cm³: Welcher Anteil ist ungefähr unter Wasser?</strong>
+                <div class="answer-row">
+                  <input type="number" step="1" data-numeric-answer="60" data-tolerance="3" data-save="s6-a1" aria-label="Antwort Aufgabe 1 in Prozent">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>2. m = 320 g, V = 40 cm³. Welche Dichte?</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.1" data-numeric-answer="8" data-tolerance="0.2" data-save="s6-a2" aria-label="Antwort Aufgabe 2">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn green" type="button" data-check-numeric>Rechenaufgaben prüfen</button>
+
+            <label class="field">Checkpoint: Warum kann ein Schiff aus Stahl schwimmen?
+              <textarea id="s6Check" data-save="s6-check"></textarea>
+            </label>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>Holz mit ρ = 0,60 g/cm³ ist ungefähr zu 60 % unter Wasser. Der Metallkörper hat ρ = 8 g/cm³ und sinkt. Ein Körper mit ρ = 1 g/cm³ schwebt ungefähr in Wasser.</p>
+              <p>Ein Schiff aus Stahl schwimmt, weil die mittlere Dichte des gesamten Schiffes mit Hohlräumen und eingeschlossener Luft kleiner sein kann als die Dichte von Wasser.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="7" id="station-7">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 20 Minuten</span>
+              <h2>Station 7: Anwendung - U-Boot und Aräometer</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="7"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="app-tabs" role="tablist" aria-label="Anwendungen">
+              <button class="btn tab-btn" type="button" role="tab" aria-selected="true" data-tab="uboat">U-Boot</button>
+              <button class="btn tab-btn" type="button" role="tab" aria-selected="false" data-tab="hydrometer">Aräometer</button>
+              <button class="btn tab-btn" type="button" role="tab" aria-selected="false" data-tab="balloon">Heißluftballon</button>
+              <button class="btn tab-btn" type="button" role="tab" aria-selected="false" data-tab="vest">Rettungsweste</button>
+            </div>
+
+            <div class="callout app-panel is-visible" data-panel="uboat">
+              <h3>U-Boot</h3>
+              <p>Ein U-Boot verändert seine mittlere Dichte. Wasser in den Ballasttanks erhöht die Masse bei fast gleichem Volumen; das U-Boot sinkt. Wird Wasser herausgepresst, sinkt die mittlere Dichte und das U-Boot steigt.</p>
+            </div>
+            <div class="callout app-panel" data-panel="hydrometer">
+              <h3>Aräometer</h3>
+              <p>Ein Aräometer schwimmt in Flüssigkeiten. In dichterer Flüssigkeit muss es weniger Volumen verdrängen, um seine Gewichtskraft auszugleichen, und taucht weniger tief ein.</p>
+            </div>
+            <div class="callout app-panel" data-panel="balloon">
+              <h3>Heißluftballon</h3>
+              <p>Ein Heißluftballon verdrängt Luft. Wird die Luft im Ballon erwärmt, wird die mittlere Dichte des Ballons kleiner als die Dichte der Umgebungsluft; der Ballon steigt.</p>
+            </div>
+            <div class="callout app-panel" data-panel="vest">
+              <h3>Rettungsweste</h3>
+              <p>Eine Rettungsweste vergrößert das verdrängte Volumen und senkt die mittlere Dichte der Person mit Weste. Dadurch kann die Auftriebskraft die Gewichtskraft ausgleichen.</p>
+            </div>
+
+            <label class="field">Eigene Erklärung mit den Begriffen Gewichtskraft, Auftriebskraft, verdrängtes Medium, Dichte und F_A = F_G
+              <textarea id="s7Text" data-save="s7-text"></textarea>
+            </label>
+            <div class="answer-row">
+              <div class="feedback" id="s7Feedback">Noch keine Antwort geprüft.</div>
+              <button class="btn primary" type="button" data-check-text="s7Text" data-feedback="s7Feedback" data-keywords="gewichtskraft,auftriebskraft,dichte,verdrängt,gleich">Prüfen</button>
+            </div>
+
+            <div class="check-row">
+              <label class="field">Checkpoint: Welche Größe verändert ein U-Boot hauptsächlich?
+                <input type="text" id="s7Check" data-save="s7-check">
+              </label>
+              <button class="btn primary" type="button" data-check-text="s7Check" data-feedback="s7CheckFeedback" data-keywords="dichte,mittlere,ballast,masse">Prüfen</button>
+            </div>
+            <div class="feedback" id="s7CheckFeedback">Noch keine Antwort geprüft.</div>
+          </div>
+
+          <details class="solution-box">
+            <summary>Selbstkontrolle</summary>
+            <div>
+              <p>Ein U-Boot verändert vor allem seine mittlere Dichte und damit seine Gewichtskraft bei fast gleichem Außenvolumen. Durch Wasser in den Ballasttanks wird es schwerer und sinkt; durch Luft in den Tanks wird es leichter und steigt.</p>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn primary" type="button" data-next>Weiter</button>
+          </div>
+        </section>
+
+        <section class="station" data-station="8" id="station-8">
+          <div class="station-header">
+            <div class="station-title">
+              <span class="time">Arbeitszeit: ca. 15 Minuten</span>
+              <h2>Station 8: Abschlusscheck</h2>
+            </div>
+            <label class="complete-toggle"><input type="checkbox" data-complete="8"> erledigt</label>
+          </div>
+
+          <div class="flow-grid">
+            <div class="quiz-list">
+              <div class="quiz-item">
+                <strong>1. In Luft 3,2 N, im Wasser 2,4 N. Wie groß ist F_A?</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="0.8" data-tolerance="0.03" data-save="s8-a1" aria-label="Antwort Aufgabe 1">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>2. Ein Körper verdrängt 120 cm³ Wasser. Berechne F_A.</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="1.18" data-tolerance="0.06" data-save="s8-a2" aria-label="Antwort Aufgabe 2">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>3. m = 90 g, V = 75 cm³. Welche Dichte?</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="1.2" data-tolerance="0.04" data-save="s8-a3" aria-label="Antwort Aufgabe 3">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>4. Erkläre in zwei Sätzen, warum Auftrieb durch Druckunterschiede entsteht.</strong>
+                <textarea id="s8Text" data-save="s8-text"></textarea>
+                <div class="answer-row">
+                  <div class="feedback" id="s8TextFeedback">Noch keine Antwort geprüft.</div>
+                  <button class="btn primary" type="button" data-check-text="s8Text" data-feedback="s8TextFeedback" data-keywords="druck,tiefe,unterseite,oberseite,oben">Prüfen</button>
+                </div>
+              </div>
+              <div class="quiz-item">
+                <strong>5. Ein Holzklotz schwimmt und ist zu 40 % eingetaucht. Welche Dichte hat das Holz ungefähr?</strong>
+                <div class="answer-row">
+                  <input type="number" step="0.01" data-numeric-answer="0.4" data-tolerance="0.04" data-save="s8-a5" aria-label="Antwort Aufgabe 5">
+                  <span class="feedback" data-numeric-feedback>offen</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn green" type="button" data-check-numeric>Rechenaufgaben prüfen</button>
+
+            <div class="callout amber">
+              <h3>Lernprodukt</h3>
+              <ul>
+                <li>Kräftebild zu Station 2</li>
+                <li>Messwerttabelle und Auswertung zu Station 4</li>
+                <li>Lösungen zum Abschlusscheck</li>
+                <li>eigener Merksatz zum archimedischen Prinzip</li>
+              </ul>
+            </div>
+
+            <label class="field">Eigener Merksatz
+              <textarea data-save="s8-key"></textarea>
+            </label>
+          </div>
+
+          <details class="solution-box">
+            <summary>Lösungen zum Abschlusscheck</summary>
+            <div>
+              <ol>
+                <li>F_A = 3,2 N - 2,4 N = 0,8 N.</li>
+                <li>120 cm³ = 0,000120 m³. F_A ≈ 1,18 N.</li>
+                <li>ρ = 90 g / 75 cm³ = 1,2 g/cm³. Der Körper sinkt in Wasser.</li>
+                <li>In einer Flüssigkeit nimmt der Druck mit der Tiefe zu. Deshalb ist die Kraft auf die Unterseite größer als auf die Oberseite; insgesamt bleibt eine Kraft nach oben.</li>
+                <li>Die Dichte beträgt etwa 0,40 g/cm³ bzw. 400 kg/m³.</li>
+              </ol>
+            </div>
+          </details>
+          <div class="station-actions">
+            <button class="btn" type="button" data-prev>Zurück</button>
+            <button class="btn" type="button" disabled>Ende</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var totalStations = 8;
+      var storagePrefix = "lernweg-auftrieb-";
+      var stations = Array.from(document.querySelectorAll(".station"));
+      var nav = document.getElementById("stationNav");
+      var progressText = document.getElementById("progressText");
+      var progressFill = document.getElementById("progressFill");
+      var showAll = false;
+
+      var stationTitles = stations.map(function (station) {
+        return station.querySelector("h2").textContent.replace(/^Station\s+\d+:\s*/, "");
+      });
+
+      function key(name) {
+        return storagePrefix + name;
+      }
+
+      function getSaved(name) {
+        try {
+          return localStorage.getItem(key(name));
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function setSaved(name, value) {
+        try {
+          localStorage.setItem(key(name), value);
+        } catch (error) {
+          // Lokaler Speicher ist optional; die Seite bleibt trotzdem nutzbar.
+        }
+      }
+
+      function removeSaved(name) {
+        try {
+          localStorage.removeItem(key(name));
+        } catch (error) {
+          // siehe setSaved
+        }
+      }
+
+      function buildNav() {
+        nav.innerHTML = "";
+        stations.forEach(function (station, index) {
+          var number = index + 1;
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "station-link";
+          button.dataset.goto = String(number);
+          button.innerHTML = '<span class="station-number">' + number + '</span><span>' + stationTitles[index] + '</span><span class="done-mark">✓</span>';
+          button.addEventListener("click", function () {
+            showAll = false;
+            document.getElementById("showAllBtn").textContent = "Alle Stationen";
+            setActive(number);
+          });
+          nav.appendChild(button);
+        });
+      }
+
+      function setActive(number) {
+        stations.forEach(function (station) {
+          var isActive = station.dataset.station === String(number);
+          station.classList.toggle("is-active", showAll || isActive);
+        });
+        document.querySelectorAll(".station-link").forEach(function (button) {
+          button.setAttribute("aria-current", button.dataset.goto === String(number) && !showAll ? "true" : "false");
+        });
+        setSaved("active-station", String(number));
+        if (!showAll) {
+          document.getElementById("station-" + number).scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function updateProgress() {
+        var completed = 0;
+        for (var i = 1; i <= totalStations; i += 1) {
+          var done = getSaved("complete-" + i) === "true";
+          var checkbox = document.querySelector('[data-complete="' + i + '"]');
+          var navButton = document.querySelector('[data-goto="' + i + '"]');
+          if (checkbox) {
+            checkbox.checked = done;
+          }
+          if (navButton) {
+            navButton.classList.toggle("is-complete", done);
+          }
+          if (done) {
+            completed += 1;
+          }
+        }
+        progressText.textContent = completed + " von " + totalStations;
+        progressFill.style.width = (completed / totalStations * 100) + "%";
+      }
+
+      function restoreInputs() {
+        document.querySelectorAll("[data-save]").forEach(function (field) {
+          var saved = getSaved(field.dataset.save);
+          if (saved !== null) {
+            field.value = saved;
+          }
+          field.addEventListener("input", function () {
+            setSaved(field.dataset.save, field.value);
+            updateFloatHits();
+            updateMeasurements();
+          });
+          field.addEventListener("change", function () {
+            setSaved(field.dataset.save, field.value);
+            updateFloatHits();
+            updateMeasurements();
+          });
+        });
+      }
+
+      function updateFloatHits() {
+        for (var i = 1; i <= 5; i += 1) {
+          var guess = document.querySelector('[data-guess="' + i + '"]');
+          var observe = document.querySelector('[data-observe="' + i + '"]');
+          var hit = document.querySelector('[data-hit="' + i + '"]');
+          if (!guess || !observe || !hit) continue;
+          if (!guess.value || !observe.value) {
+            hit.textContent = "-";
+            hit.style.color = "";
+          } else if (guess.value === observe.value) {
+            hit.textContent = "ja";
+            hit.style.color = "var(--green)";
+          } else {
+            hit.textContent = "nein";
+            hit.style.color = "var(--red)";
+          }
+        }
+      }
+
+      function numberFromField(field) {
+        if (!field || field.value === "") return null;
+        var value = Number(String(field.value).replace(",", "."));
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function formatNumber(value, digits) {
+        return value.toLocaleString("de-DE", {
+          minimumFractionDigits: digits,
+          maximumFractionDigits: digits
+        });
+      }
+
+      function updateMeasurements() {
+        document.querySelectorAll("[data-measure-row]").forEach(function (row) {
+          var air = numberFromField(row.querySelector("[data-air]"));
+          var water = numberFromField(row.querySelector("[data-waterforce]"));
+          var volumeCm3 = numberFromField(row.querySelector("[data-volume]"));
+          var measuredCell = row.querySelector("[data-fa-measured]");
+          var theoryCell = row.querySelector("[data-fa-theory]");
+          var devCell = row.querySelector("[data-fa-dev]");
+          var measured = air !== null && water !== null ? air - water : null;
+          var theory = volumeCm3 !== null ? 1000 * (volumeCm3 / 1000000) * 9.81 : null;
+          measuredCell.textContent = measured !== null ? formatNumber(measured, 2) + " N" : "-";
+          theoryCell.textContent = theory !== null ? formatNumber(theory, 2) + " N" : "-";
+          if (measured !== null && theory !== null && theory !== 0) {
+            var deviation = Math.abs(measured - theory) / theory * 100;
+            devCell.textContent = formatNumber(deviation, 0) + " %";
+            devCell.style.color = deviation <= 20 ? "var(--green)" : "var(--amber)";
+          } else {
+            devCell.textContent = "-";
+            devCell.style.color = "";
+          }
+        });
+      }
+
+      function normalizeText(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replace(/ä/g, "ae")
+          .replace(/ö/g, "oe")
+          .replace(/ü/g, "ue")
+          .replace(/ß/g, "ss");
+      }
+
+      function checkText(inputId, feedbackId, keywords) {
+        var field = document.getElementById(inputId);
+        var feedback = document.getElementById(feedbackId);
+        var text = normalizeText(field.value);
+        var hits = keywords.filter(function (word) {
+          return text.indexOf(normalizeText(word)) >= 0;
+        }).length;
+        feedback.classList.remove("good", "needs-work");
+        if (!text.trim()) {
+          feedback.textContent = "Trage zuerst deine Antwort ein.";
+          feedback.classList.add("needs-work");
+        } else if (hits >= Math.min(3, keywords.length)) {
+          feedback.textContent = "Das passt gut. Deine Antwort enthält die entscheidenden Begriffe.";
+          feedback.classList.add("good");
+        } else {
+          feedback.textContent = "Noch nicht ganz. Prüfe, ob du Kraft, Dichte, verdrängtes Volumen oder Druckunterschiede passend erklärst.";
+          feedback.classList.add("needs-work");
+        }
+      }
+
+      function checkExact(inputId, feedbackId, answers) {
+        var field = document.getElementById(inputId);
+        var feedback = document.getElementById(feedbackId);
+        var text = normalizeText(field.value).trim();
+        var allowed = answers.map(normalizeText);
+        feedback.classList.remove("good", "needs-work");
+        if (allowed.indexOf(text) >= 0) {
+          feedback.textContent = "Richtig.";
+          feedback.classList.add("good");
+        } else {
+          feedback.textContent = "Prüfe den Schweredruck: tiefer bedeutet größerer Druck.";
+          feedback.classList.add("needs-work");
+        }
+      }
+
+      function setupChecks() {
+        document.querySelectorAll("[data-check-text]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            checkText(button.dataset.checkText, button.dataset.feedback, button.dataset.keywords.split(","));
+          });
+        });
+        document.querySelectorAll("[data-check-exact]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            checkExact(button.dataset.checkExact, button.dataset.feedback, button.dataset.answer.split(","));
+          });
+        });
+        document.querySelectorAll("[data-check-numeric]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var station = button.closest(".station");
+            station.querySelectorAll("[data-numeric-answer]").forEach(checkNumericField);
+          });
+        });
+        document.querySelectorAll("[data-numeric-answer]").forEach(function (field) {
+          field.addEventListener("input", function () {
+            var feedback = field.parentElement.querySelector("[data-numeric-feedback]");
+            feedback.textContent = "offen";
+            feedback.classList.remove("good", "needs-work");
+          });
+        });
+      }
+
+      function checkNumericField(field) {
+        var expected = Number(field.dataset.numericAnswer);
+        var tolerance = Number(field.dataset.tolerance || "0.05");
+        var value = numberFromField(field);
+        var feedback = field.parentElement.querySelector("[data-numeric-feedback]");
+        feedback.classList.remove("good", "needs-work");
+        if (value === null) {
+          feedback.textContent = "fehlt";
+          feedback.classList.add("needs-work");
+        } else if (Math.abs(value - expected) <= tolerance) {
+          feedback.textContent = "richtig";
+          feedback.classList.add("good");
+        } else {
+          feedback.textContent = "prüfen";
+          feedback.classList.add("needs-work");
+        }
+      }
+
+      function setupRelations() {
+        document.querySelectorAll("[data-relation]").forEach(function (select, index) {
+          var saveName = "s2-relation-" + index;
+          var saved = getSaved(saveName);
+          if (saved !== null) {
+            select.value = saved;
+          }
+          function evaluate() {
+            setSaved(saveName, select.value);
+            var feedback = select.closest("tr").querySelector("[data-relation-feedback]");
+            if (!select.value) {
+              feedback.textContent = "noch offen";
+              feedback.style.color = "";
+            } else if (select.value === select.dataset.relation) {
+              feedback.textContent = "richtig";
+              feedback.style.color = "var(--green)";
+            } else {
+              feedback.textContent = "prüfen";
+              feedback.style.color = "var(--red)";
+            }
+          }
+          select.addEventListener("change", evaluate);
+          evaluate();
+        });
+      }
+
+      function setupBuoyCalculator() {
+        var density = document.getElementById("buoyDensity");
+        var volume = document.getElementById("buoyVolume");
+        var g = document.getElementById("buoyG");
+        var result = document.getElementById("buoyResult");
+        function calculate() {
+          var rho = numberFromField(density) || 0;
+          var volCm3 = numberFromField(volume) || 0;
+          var grav = numberFromField(g) || 0;
+          var force = rho * (volCm3 / 1000000) * grav;
+          result.textContent = "F_A ≈ " + formatNumber(force, 2) + " N";
+        }
+        ["input", "change"].forEach(function (eventName) {
+          density.addEventListener(eventName, calculate);
+          volume.addEventListener(eventName, calculate);
+          g.addEventListener(eventName, calculate);
+        });
+        document.getElementById("calcBuoyBtn").addEventListener("click", calculate);
+        calculate();
+      }
+
+      function setupDensityTools() {
+        var bodyDensity = document.getElementById("bodyDensity");
+        var mediumDensity = document.getElementById("mediumDensity");
+        var bodyOut = document.getElementById("bodyDensityOut");
+        var mediumOut = document.getElementById("mediumDensityOut");
+        var simBlock = document.getElementById("simBlock");
+        var state = document.getElementById("densityState");
+        var explain = document.getElementById("densityExplain");
+
+        function updateSim() {
+          var body = Number(bodyDensity.value);
+          var medium = Number(mediumDensity.value);
+          bodyOut.textContent = formatNumber(body, 2) + " g/cm³";
+          mediumOut.textContent = formatNumber(medium, 2) + " g/cm³";
+          if (Math.abs(body - medium) < 0.03) {
+            state.textContent = "schwebt";
+            simBlock.style.bottom = "78px";
+            explain.textContent = "Die Dichten sind nahezu gleich. Gewichtskraft und Auftriebskraft sind im Gleichgewicht.";
+          } else if (body < medium) {
+            var fraction = Math.max(0.15, Math.min(0.95, body / medium));
+            var bottom = 151 - 50 * fraction;
+            state.textContent = "schwimmt";
+            simBlock.style.bottom = bottom + "px";
+            explain.textContent = "Der Körper hat eine kleinere Dichte als das Medium. Etwa " + formatNumber(fraction * 100, 0) + " % seines Volumens liegen unter Wasser.";
+          } else {
+            state.textContent = "sinkt";
+            simBlock.style.bottom = "8px";
+            explain.textContent = "Der Körper hat eine größere Dichte als das Medium. Die Gewichtskraft überwiegt.";
+          }
+        }
+
+        var mass = document.getElementById("massInput");
+        var volume = document.getElementById("volumeInput");
+        var medium = document.getElementById("mediumInput");
+        var calcResult = document.getElementById("densityCalcResult");
+
+        function calcDensity() {
+          var m = numberFromField(mass) || 0;
+          var v = numberFromField(volume) || 0;
+          var med = numberFromField(medium) || 1;
+          if (v <= 0) {
+            calcResult.textContent = "Volumen muss größer als 0 sein.";
+            calcResult.classList.remove("good");
+            calcResult.classList.add("needs-work");
+            return;
+          }
+          var rho = m / v;
+          var verdict = Math.abs(rho - med) < 0.03 ? "schwebt ungefähr" : rho < med ? "schwimmt" : "sinkt";
+          calcResult.textContent = "ρ_Körper = " + formatNumber(rho, 2) + " g/cm³ - " + verdict;
+          calcResult.classList.remove("needs-work");
+          calcResult.classList.add("good");
+        }
+
+        [bodyDensity, mediumDensity].forEach(function (input) {
+          input.addEventListener("input", updateSim);
+        });
+        [mass, volume, medium].forEach(function (input) {
+          input.addEventListener("input", calcDensity);
+        });
+        document.getElementById("calcDensityBtn").addEventListener("click", calcDensity);
+        updateSim();
+        calcDensity();
+      }
+
+      function setupPressureTool() {
+        var top = document.getElementById("depthTop");
+        var height = document.getElementById("bodyHeight");
+        var topOut = document.getElementById("depthTopOut");
+        var heightOut = document.getElementById("bodyHeightOut");
+        var bottomOut = document.getElementById("depthBottomOut");
+        var ratioOut = document.getElementById("pressureRatioOut");
+        function update() {
+          var t = Number(top.value);
+          var h = Number(height.value);
+          var bottom = t + h;
+          topOut.textContent = t + " cm";
+          heightOut.textContent = h + " cm";
+          bottomOut.textContent = bottom + " cm";
+          ratioOut.textContent = formatNumber(bottom / Math.max(t, 1), 1) + "-mal";
+        }
+        top.addEventListener("input", update);
+        height.addEventListener("input", update);
+        update();
+      }
+
+      function setupTabs() {
+        document.querySelectorAll("[data-tab]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var target = button.dataset.tab;
+            document.querySelectorAll("[data-tab]").forEach(function (tab) {
+              tab.setAttribute("aria-selected", tab === button ? "true" : "false");
+            });
+            document.querySelectorAll("[data-panel]").forEach(function (panel) {
+              panel.classList.toggle("is-visible", panel.dataset.panel === target);
+            });
+          });
+        });
+      }
+
+      function setupNavigation() {
+        document.querySelectorAll("[data-next]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var current = Number(button.closest(".station").dataset.station);
+            setActive(Math.min(totalStations, current + 1));
+          });
+        });
+        document.querySelectorAll("[data-prev]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var current = Number(button.closest(".station").dataset.station);
+            setActive(Math.max(1, current - 1));
+          });
+        });
+        document.querySelectorAll("[data-complete]").forEach(function (checkbox) {
+          checkbox.addEventListener("change", function () {
+            setSaved("complete-" + checkbox.dataset.complete, checkbox.checked ? "true" : "false");
+            updateProgress();
+          });
+        });
+        document.getElementById("showAllBtn").addEventListener("click", function (event) {
+          showAll = !showAll;
+          event.currentTarget.textContent = showAll ? "Einzeln anzeigen" : "Alle Stationen";
+          var active = Number(getSaved("active-station") || "1");
+          stations.forEach(function (station) {
+            station.classList.toggle("is-active", showAll || station.dataset.station === String(active));
+          });
+          document.querySelectorAll(".station-link").forEach(function (button) {
+            button.setAttribute("aria-current", "false");
+          });
+        });
+        document.getElementById("resetBtn").addEventListener("click", function () {
+          if (!confirm("Fortschritt und Eingaben für diesen Lernpfad löschen?")) return;
+          try {
+            Object.keys(localStorage).forEach(function (name) {
+              if (name.indexOf(storagePrefix) === 0) {
+                localStorage.removeItem(name);
+              }
+            });
+          } catch (error) {
+            // Die Seite funktioniert auch ohne verfügbaren lokalen Speicher.
+          }
+          document.querySelectorAll("[data-save]").forEach(function (field) {
+            field.value = "";
+          });
+          document.querySelectorAll("[data-relation]").forEach(function (field) {
+            field.value = "";
+            field.dispatchEvent(new Event("change"));
+          });
+          document.querySelectorAll("[data-numeric-feedback]").forEach(function (feedback) {
+            feedback.textContent = "offen";
+            feedback.classList.remove("good", "needs-work");
+          });
+          document.querySelectorAll("[data-complete]").forEach(function (checkbox) {
+            checkbox.checked = false;
+          });
+          updateFloatHits();
+          updateMeasurements();
+          updateProgress();
+          setActive(1);
+        });
+      }
+
+      buildNav();
+      restoreInputs();
+      setupNavigation();
+      setupChecks();
+      setupRelations();
+      setupBuoyCalculator();
+      setupDensityTools();
+      setupPressureTool();
+      setupTabs();
+      updateFloatHits();
+      updateMeasurements();
+      updateProgress();
+      setActive(Number(getSaved("active-station") || "1"));
+    })();
+  </script>
+</body>
+</html>
