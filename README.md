@@ -1,5 +1,6 @@
 # Physik – lokale Git-/GitHub-Struktur mit fortlaufenden Wiederholungspräsentationen
 
+Test der lokalen GitHub-Verknüpfung
 Diese Struktur ist dafür gedacht, **lokal im Git-Repository** gepflegt und anschließend mit GitHub synchronisiert zu werden.
 Für jedes Themenfeld liegt unter `praesentation/` eine fertige PowerPoint-Datei und eine editierbare Datei `praesentation.json`.
 
