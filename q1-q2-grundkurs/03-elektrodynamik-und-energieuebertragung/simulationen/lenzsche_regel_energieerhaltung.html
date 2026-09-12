@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Q1-Simulation zur Lenzschen Regel: Energieerhaltung erklärt, warum die induzierte Wirkung der Ursache entgegenwirkt.">
+  <title>Lenzsche Regel und Energieerhaltung</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --panel: #fffdf8;
+      --ink: #27342c;
+      --muted: #667065;
+      --line: #ddd2c0;
+      --primary: #b9672c;
+      --primary-dark: #76401d;
+      --accent: #2f7d63;
+      --accent-2: #496fa8;
+      --warn: #c1493e;
+      --ok: #1f7b4d;
+      --shadow: 0 18px 42px rgba(75, 53, 34, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(125deg, rgba(185, 103, 44, .17), transparent 34%),
+        linear-gradient(245deg, rgba(47, 125, 99, .15), transparent 38%),
+        var(--bg);
+    }
+
+    a { color: var(--primary-dark); font-weight: 780; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+
+    .hero {
+      padding: 24px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(111, 59, 25, .97), rgba(185, 103, 44, .94)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 2px, transparent 2px 24px);
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .76rem;
+      font-weight: 850;
+      opacity: .88;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(1.7rem, 4vw, 3rem); letter-spacing: 0; }
+    .hero p { max-width: 900px; margin-bottom: 0; line-height: 1.52; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(310px, .75fr);
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, .96);
+      box-shadow: var(--shadow);
+    }
+
+    .mission {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      background: #edf8f2;
+      line-height: 1.42;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #d5c7b4;
+      border-radius: 8px;
+      background: #1c211d;
+      touch-action: none;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .readout div {
+      min-height: 78px;
+      padding: 10px;
+      border: 1px solid #dcc7af;
+      border-radius: 8px;
+      background: #fff6e9;
+      text-align: center;
+      color: #62442e;
+    }
+
+    .readout b {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+    }
+
+    .controls {
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-weight: 760;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 38px;
+      accent-color: var(--primary);
+    }
+
+    .value {
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 650;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .row.three { grid-template-columns: repeat(3, 1fr); }
+    .row.single { grid-template-columns: 1fr; }
+
+    button {
+      appearance: none;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font: inherit;
+      font-weight: 800;
+      color: #fff;
+      background: var(--primary);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, box-shadow .2s ease, border-color .2s ease;
+      touch-action: manipulation;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:active { transform: translateY(1px) scale(.99); }
+    button.secondary { color: var(--ink); background: #f4eadc; border-color: #e1c8a8; }
+    button.secondary:hover { background: #edddc1; }
+    button.selected {
+      color: #fff;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 4px rgba(73, 111, 168, .18);
+      animation: pop .28s ease;
+    }
+    button.danger.selected { background: var(--warn); box-shadow: 0 0 0 4px rgba(193, 73, 62, .18); }
+
+    .status {
+      min-height: 68px;
+      padding: 12px;
+      border: 1px solid #d7cbb9;
+      border-radius: 8px;
+      background: #faf5ec;
+      color: #51483e;
+      line-height: 1.42;
+    }
+
+    .status.ok { color: #0f6038; background: #e8f6ef; border-color: #bddfca; }
+    .status.bad { color: #842d24; background: #fde8e5; border-color: #efc3bb; }
+    .status.warn { color: #744b08; background: #fff3d0; border-color: #ecc56d; }
+
+    .equation {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #c9ddcf;
+      background: #f1faf3;
+      color: #1d4d36;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    details {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffdf7;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(.96); }
+      70% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 16px, 1180px); padding-top: 10px; }
+      .readout { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .hero, .card { padding: 13px; }
+      .readout, .row, .row.three { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="kicker">Q1 · Elektrodynamik · Lenzsche Regel</div>
+      <h1>Lenzsche Regel und Energieerhaltung</h1>
+      <p>Ein Magnet wird durch eine leitende Spule bewegt. Die Bilanz zeigt: Die mechanische Arbeit, die gegen die induzierte Kraft verrichtet wird, erscheint als elektrische Energie und Wärme.</p>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="mission">
+          <strong>Leitfrage</strong>
+          Warum wirkt die induzierte Kraft der Ursache entgegen? Vergleiche den physikalischen Fall mit einem hypothetischen Mitwirkungs-Fall und beobachte die Energiebilanz.
+        </div>
+        <canvas id="stage" width="960" height="540" aria-label="Simulation zur Lenzschen Regel mit Energiefluss"></canvas>
+        <div class="readout">
+          <div>mechanische Leistung<b id="mechanicalPower">0 W</b></div>
+          <div>elektrische Leistung<b id="electricPower">0 W</b></div>
+          <div>Wärme im Widerstand<b id="heatEnergy">0 J</b></div>
+          <div>Energie-Bilanz<b id="balance">0 J</b></div>
+        </div>
+      </section>
+
+      <aside class="card controls">
+        <h2>Experiment</h2>
+        <div class="row">
+          <button id="toggle">Start</button>
+          <button id="reset" class="secondary">Zurücksetzen</button>
+        </div>
+        <div class="row">
+          <button class="secondary selected" data-mode="lenz">Lenz-Regel</button>
+          <button class="secondary danger" data-mode="assist">Mitwirkung?</button>
+        </div>
+        <label>
+          Geschwindigkeit <span class="value" id="speedLabel"></span>
+          <input id="speed" type="range" min="0.4" max="4.0" value="1.7" step="0.1">
+        </label>
+        <label>
+          Spulenwiderstand <span class="value" id="resistanceLabel"></span>
+          <input id="resistance" type="range" min="0.8" max="9" value="3.2" step="0.1">
+        </label>
+        <label>
+          Magnetfeldstärke <span class="value" id="fieldLabel"></span>
+          <input id="field" type="range" min="0.4" max="2.2" value="1.1" step="0.1">
+        </label>
+        <label>
+          Windungszahl <span class="value" id="turnsLabel"></span>
+          <input id="turns" type="range" min="60" max="280" value="150" step="10">
+        </label>
+
+        <div class="equation" id="equation">U_ind = -N · dΦ/dt, P_mech = P_el = I² · R</div>
+        <div class="status" id="feedback">Starte die Bewegung. Im Lenz-Fall muss die Hand Arbeit verrichten; diese Energie wird im Stromkreis umgesetzt.</div>
+
+        <h3>Deutung</h3>
+        <div class="row single" id="choices">
+          <button class="secondary" data-choice="energy">Sonst würde Energie ohne Quelle entstehen</button>
+          <button class="secondary" data-choice="field">Magnetfelder haben immer Reibung</button>
+          <button class="secondary" data-choice="voltage">Die Spannung will immer null werden</button>
+        </div>
+
+        <details>
+          <summary>Physikalischer Kern</summary>
+          <p>Wenn der Magnet den magnetischen Fluss durch die Spule ändert, entsteht eine Induktionsspannung. Der dadurch fließende Strom erzeugt ein Magnetfeld, dessen Wirkung die Flussänderung hemmt. Nur so stammt die elektrische Energie aus der mechanischen Arbeit.</p>
+        </details>
+      </aside>
+    </div>
+    <p><a href="../../../index.html">Zurück zur Materialübersicht</a></p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("stage");
+    const ctx = canvas.getContext("2d");
+    const els = {
+      toggle: document.getElementById("toggle"),
+      reset: document.getElementById("reset"),
+      speed: document.getElementById("speed"),
+      resistance: document.getElementById("resistance"),
+      field: document.getElementById("field"),
+      turns: document.getElementById("turns"),
+      speedLabel: document.getElementById("speedLabel"),
+      resistanceLabel: document.getElementById("resistanceLabel"),
+      fieldLabel: document.getElementById("fieldLabel"),
+      turnsLabel: document.getElementById("turnsLabel"),
+      mechanicalPower: document.getElementById("mechanicalPower"),
+      electricPower: document.getElementById("electricPower"),
+      heatEnergy: document.getElementById("heatEnergy"),
+      balance: document.getElementById("balance"),
+      equation: document.getElementById("equation"),
+      feedback: document.getElementById("feedback")
+    };
+
+    const modeButtons = Array.from(document.querySelectorAll("[data-mode]"));
+    const choiceButtons = Array.from(document.querySelectorAll("[data-choice]"));
+    let running = false;
+    let mode = "lenz";
+    let direction = 1;
+    let x = 170;
+    let lastFlux = 0;
+    let tick = 0;
+    let heat = 0;
+    let mechanicalWork = 0;
+    let impossibleGain = 0;
+    let quizMessage = "";
+    let quizState = "";
+    const history = [];
+
+    function parameters() {
+      return {
+        speed: Number(els.speed.value),
+        resistance: Number(els.resistance.value),
+        field: Number(els.field.value),
+        turns: Number(els.turns.value)
+      };
+    }
+
+    function fluxAt(position, p) {
+      const coilX = 570;
+      const sigma = 88;
+      const coupling = Math.exp(-Math.pow((position - coilX) / sigma, 2));
+      return p.field * coupling;
+    }
+
+    function fluxGradient(position, p) {
+      const coilX = 570;
+      const sigma = 88;
+      const flux = fluxAt(position, p);
+      return flux * (-2 * (position - coilX) / (sigma * sigma));
+    }
+
+    function updatePhysics() {
+      const p = parameters();
+      const dt = 1 / 60;
+      const velocity = direction * p.speed * 82;
+
+      if (running) {
+        x += velocity * dt;
+        if (x > 830 || x < 135) {
+          direction *= -1;
+          x = Math.max(135, Math.min(830, x));
+        }
+      }
+
+      const flux = fluxAt(x, p);
+      const dFluxDt = running ? fluxGradient(x, p) * velocity : (flux - lastFlux) / dt;
+      const inducedVoltage = -p.turns * dFluxDt * 0.018;
+      const current = inducedVoltage / p.resistance;
+      const electricPower = current * current * p.resistance;
+      const forceMagnitude = electricPower / Math.max(8, Math.abs(velocity));
+      const lenzForce = running ? -Math.sign(velocity) * forceMagnitude : 0;
+      const shownForce = mode === "lenz" ? lenzForce : -lenzForce;
+      const mechanicalPower = mode === "lenz" ? electricPower : -electricPower;
+
+      if (running) {
+        heat += electricPower * dt;
+        mechanicalWork += mechanicalPower * dt;
+        if (mode === "assist") impossibleGain += electricPower * dt;
+      }
+
+      lastFlux = flux;
+      history.push({ voltage: inducedVoltage, current, electricPower, mechanicalPower, force: shownForce });
+      if (history.length > 165) history.shift();
+
+      return { p, flux, dFluxDt, inducedVoltage, current, electricPower, mechanicalPower, shownForce, velocity };
+    }
+
+    function drawArrow(x1, y1, x2, y2, color, label) {
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 5;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - 14 * Math.cos(angle - .55), y2 - 14 * Math.sin(angle - .55));
+      ctx.lineTo(x2 - 14 * Math.cos(angle + .55), y2 - 14 * Math.sin(angle + .55));
+      ctx.closePath();
+      ctx.fill();
+      ctx.font = "800 15px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText(label, (x1 + x2) / 2, y1 - 12);
+      ctx.restore();
+    }
+
+    function drawBackground() {
+      const bg = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      bg.addColorStop(0, "#1d211c");
+      bg.addColorStop(.62, "#263127");
+      bg.addColorStop(1, "#382b22");
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = "rgba(255,255,255,.13)";
+      ctx.lineWidth = 1;
+      for (let y = 80; y < 492; y += 42) {
+        ctx.beginPath();
+        ctx.moveTo(64, y);
+        ctx.lineTo(898, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawCoil(data) {
+      const coilX = 570;
+      ctx.save();
+      ctx.strokeStyle = "#d48a42";
+      ctx.lineWidth = 6;
+      for (let i = 0; i < 10; i += 1) {
+        ctx.beginPath();
+        ctx.ellipse(coilX + i * 13 - 62, 250, 21, 102, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.strokeStyle = "#f1c487";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(coilX - 96, 126, 192, 248);
+
+      const glow = Math.min(.55, Math.abs(data.current) * .75);
+      ctx.globalAlpha = glow;
+      ctx.fillStyle = data.current >= 0 ? "#6ed39a" : "#79a9e8";
+      ctx.fillRect(coilX - 88, 132, 176, 236);
+      ctx.restore();
+
+      ctx.fillStyle = "#fff8e6";
+      ctx.font = "800 15px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText("Spule mit Widerstand", coilX, 402);
+    }
+
+    function drawMagnet(data) {
+      ctx.save();
+      ctx.translate(x, 250);
+      const movingRight = direction > 0;
+      ctx.fillStyle = movingRight ? "#c1493e" : "#496fa8";
+      ctx.fillRect(-62, -36, 62, 72);
+      ctx.fillStyle = movingRight ? "#496fa8" : "#c1493e";
+      ctx.fillRect(0, -36, 62, 72);
+      ctx.strokeStyle = "#fff7df";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(-62, -36, 124, 72);
+      ctx.fillStyle = "#fff";
+      ctx.font = "900 18px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText(movingRight ? "N" : "S", -31, 6);
+      ctx.fillText(movingRight ? "S" : "N", 31, 6);
+      ctx.restore();
+
+      if (running) {
+        const vEnd = x + Math.sign(data.velocity) * 104;
+        const forceDirection = mode === "lenz" ? -Math.sign(data.velocity) : Math.sign(data.velocity);
+        const fEnd = x + forceDirection * Math.min(104, 42 + Math.abs(data.shownForce) * 18);
+        drawArrow(x, 156, vEnd, 156, "#f3d07b", "Bewegung");
+        drawArrow(x, 112, fEnd, 112, mode === "lenz" ? "#7fd39a" : "#ef756b", mode === "lenz" ? "Induktionskraft" : "Mitwirkung");
+      }
+    }
+
+    function drawFieldLines(data) {
+      ctx.save();
+      ctx.strokeStyle = mode === "lenz" ? "rgba(127, 211, 154, .28)" : "rgba(239, 117, 107, .32)";
+      ctx.lineWidth = 2;
+      for (let i = 0; i < 9; i += 1) {
+        const y = 152 + i * 25 + Math.sin((tick + i * 11) / 25) * 3;
+        ctx.beginPath();
+        ctx.moveTo(x + 58 * direction, y);
+        ctx.bezierCurveTo(395, y - 55, 610, y + 55, 790, y);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawEnergyBars(data) {
+      const x0 = 92;
+      const y0 = 484;
+      const w = 185;
+      const maxEnergy = Math.max(2, heat, Math.abs(mechanicalWork), impossibleGain) * 1.15;
+      const bars = [
+        { label: "Arbeit hinein", value: Math.max(0, mechanicalWork), color: "#f3d07b" },
+        { label: "Wärme", value: heat, color: "#d48a42" },
+        { label: "Widerspruch", value: impossibleGain, color: "#ef756b" }
+      ];
+
+      bars.forEach((bar, index) => {
+        const x = x0 + index * 250;
+        const height = Math.min(112, bar.value / maxEnergy * 112);
+        ctx.fillStyle = "rgba(255,255,255,.16)";
+        ctx.fillRect(x, y0 - 112, w, 112);
+        ctx.fillStyle = bar.color;
+        ctx.fillRect(x, y0 - height, w, height);
+        ctx.fillStyle = "#fff9e8";
+        ctx.font = "800 13px system-ui";
+        ctx.textAlign = "center";
+        ctx.fillText(bar.label, x + w / 2, y0 + 20);
+        ctx.fillText(`${bar.value.toFixed(1).replace(".", ",")} J`, x + w / 2, y0 - height - 8);
+      });
+
+      ctx.fillStyle = "#fff9e8";
+      ctx.font = "800 14px system-ui";
+      ctx.textAlign = "left";
+      ctx.fillText("Energiekonto", x0, y0 - 132);
+    }
+
+    function drawGraph() {
+      const x0 = 742;
+      const y0 = 382;
+      const w = 150;
+      const h = 86;
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,.36)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x0, y0 - h, w, h);
+      ctx.beginPath();
+      ctx.moveTo(x0, y0 - h / 2);
+      ctx.lineTo(x0 + w, y0 - h / 2);
+      ctx.stroke();
+      ctx.beginPath();
+      history.forEach((point, index) => {
+        const xPos = x0 + index / 164 * w;
+        const yPos = y0 - h / 2 - Math.max(-1, Math.min(1, point.voltage / 5)) * h * .42;
+        if (index === 0) ctx.moveTo(xPos, yPos);
+        else ctx.lineTo(xPos, yPos);
+      });
+      ctx.strokeStyle = "#9fd5ff";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      ctx.fillStyle = "#fff9e8";
+      ctx.font = "12px system-ui";
+      ctx.fillText("U_ind", x0 + 8, y0 - h + 16);
+      ctx.restore();
+    }
+
+    function drawScene(data) {
+      drawBackground();
+      drawFieldLines(data);
+      drawCoil(data);
+      drawMagnet(data);
+      drawEnergyBars(data);
+      drawGraph();
+
+      ctx.fillStyle = "#fff9e8";
+      ctx.font = "800 16px system-ui";
+      ctx.textAlign = "left";
+      ctx.fillText(mode === "lenz" ? "Physikalisch: Die Kraft wirkt gegen die Flussänderung." : "Gedankenexperiment: Mitwirkung verletzt die Energiebilanz.", 78, 72);
+    }
+
+    function updateLabels(data) {
+      const p = data.p;
+      const balance = mechanicalWork - heat;
+      els.speedLabel.textContent = `${p.speed.toFixed(1).replace(".", ",")} Einheiten/s`;
+      els.resistanceLabel.textContent = `${p.resistance.toFixed(1).replace(".", ",")} Ω`;
+      els.fieldLabel.textContent = `${p.field.toFixed(1).replace(".", ",")} T`;
+      els.turnsLabel.textContent = `${p.turns} Windungen`;
+      els.mechanicalPower.textContent = `${data.mechanicalPower.toFixed(2).replace(".", ",")} W`;
+      els.electricPower.textContent = `${data.electricPower.toFixed(2).replace(".", ",")} W`;
+      els.heatEnergy.textContent = `${heat.toFixed(1).replace(".", ",")} J`;
+      els.balance.textContent = mode === "lenz"
+        ? `${balance.toFixed(2).replace(".", ",")} J`
+        : `+${impossibleGain.toFixed(1).replace(".", ",")} J?`;
+
+      if (mode === "lenz") {
+        els.equation.textContent = "U_ind = -N · dΦ/dt, F_ind wirkt gegen v, P_mech = I² · R";
+        if (!quizMessage) {
+          els.feedback.className = "status ok";
+          els.feedback.textContent = "Die Hand leistet Arbeit gegen die induzierte Kraft. Genau diese Energie wird als elektrische Energie im Widerstand in Wärme umgewandelt.";
+        }
+      } else {
+        els.equation.textContent = "Ohne Minuszeichen: Bewegung würde unterstützt und der Widerstand trotzdem warm";
+        if (!quizMessage) {
+          els.feedback.className = "status bad";
+          els.feedback.textContent = "Das wäre ein Energieproblem: Magnet und Stromkreis gewinnen Energie, obwohl keine passende Energiequelle dafür auftaucht.";
+        }
+      }
+      if (quizMessage) {
+        els.feedback.className = "status " + quizState;
+        els.feedback.textContent = quizMessage;
+      }
+    }
+
+    function frame() {
+      const data = updatePhysics();
+      drawScene(data);
+      updateLabels(data);
+      tick += 1;
+      requestAnimationFrame(frame);
+    }
+
+    function reset() {
+      running = false;
+      els.toggle.textContent = "Start";
+      direction = 1;
+      x = 170;
+      heat = 0;
+      mechanicalWork = 0;
+      impossibleGain = 0;
+      history.length = 0;
+      quizMessage = "";
+      quizState = "";
+      choiceButtons.forEach((item) => item.classList.remove("selected"));
+      lastFlux = fluxAt(x, parameters());
+    }
+
+    els.toggle.addEventListener("click", () => {
+      running = !running;
+      els.toggle.textContent = running ? "Pause" : "Start";
+    });
+    els.reset.addEventListener("click", reset);
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        mode = button.dataset.mode;
+        quizMessage = "";
+        quizState = "";
+        choiceButtons.forEach((item) => item.classList.remove("selected"));
+        modeButtons.forEach((item) => item.classList.toggle("selected", item === button));
+      });
+    });
+    choiceButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const correct = button.dataset.choice === "energy";
+        choiceButtons.forEach((item) => item.classList.toggle("selected", item === button));
+        quizState = correct ? "ok" : "bad";
+        quizMessage = correct
+          ? "Genau. Die Gegenwirkung sorgt dafür, dass elektrische Energie aus verrichteter mechanischer Arbeit stammt."
+          : "Das trifft den Kern nicht. Entscheidend ist die Energieerhaltung: Die Induktion darf keine zusätzliche Energie ohne Quelle erzeugen.";
+      });
+    });
+
+    lastFlux = fluxAt(x, parameters());
+    frame();
+  </script>
+</body>
+</html>
