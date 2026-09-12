@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="Q1-Simulation zur Lenzschen Regel: Energieerhaltung erklärt, warum die induzierte Wirkung der Ursache entgegenwirkt.">
+  <meta name="description" content="Oberstufen-Simulation zur Lenzschen Regel: Flussänderung, Induktionsspannung, Strom, Gegenkraft und Energieerhaltung quantitativ auswerten.">
   <title>Lenzsche Regel und Energieerhaltung</title>
   <style>
     :root {
@@ -109,7 +109,7 @@
     }
 
     .readout div {
-      min-height: 78px;
+      min-height: 82px;
       padding: 10px;
       border: 1px solid #dcc7af;
       border-radius: 8px;
@@ -206,6 +206,7 @@
       color: #1d4d36;
       font-weight: 800;
       line-height: 1.45;
+      font-size: .96rem;
     }
 
     details {
@@ -246,21 +247,25 @@
     <header class="hero">
       <div class="kicker">Q1 · Elektrodynamik · Lenzsche Regel</div>
       <h1>Lenzsche Regel und Energieerhaltung</h1>
-      <p>Ein Magnet wird durch eine leitende Spule bewegt. Die Bilanz zeigt: Die mechanische Arbeit, die gegen die induzierte Kraft verrichtet wird, erscheint als elektrische Energie und Wärme.</p>
+      <p>Ein Magnet wird mit konstanter Geschwindigkeit durch eine leitende Spule bewegt. Die Messwerte zeigen quantitativ, warum das Minuszeichen in U_ind = -N · dΦ/dt eine Folge der Energieerhaltung ist.</p>
     </header>
 
     <div class="grid">
       <section class="card">
         <div class="mission">
           <strong>Leitfrage</strong>
-          Warum wirkt die induzierte Kraft der Ursache entgegen? Vergleiche den physikalischen Fall mit einem hypothetischen Mitwirkungs-Fall und beobachte die Energiebilanz.
+          Begründe mit Messwerten, warum die induzierte Wirkung der Flussänderung entgegenwirken muss. Vergleiche dazu das physikalische Modell mit einem Gedankenmodell, in dem das Minuszeichen fehlt.
         </div>
         <canvas id="stage" width="960" height="540" aria-label="Simulation zur Lenzschen Regel mit Energiefluss"></canvas>
         <div class="readout">
-          <div>mechanische Leistung<b id="mechanicalPower">0 W</b></div>
-          <div>elektrische Leistung<b id="electricPower">0 W</b></div>
-          <div>Wärme im Widerstand<b id="heatEnergy">0 J</b></div>
-          <div>Energie-Bilanz<b id="balance">0 J</b></div>
+          <div>dΦ/dt<b id="fluxRate">0 Wb/s</b></div>
+          <div>U_ind<b id="inducedVoltage">0 V</b></div>
+          <div>I = U/R<b id="current">0 A</b></div>
+          <div>F_ext entlang v<b id="externalForce">0 N</b></div>
+          <div>P_ext<b id="mechanicalPower">0 W</b></div>
+          <div>P_el = I²R<b id="electricPower">0 W</b></div>
+          <div>Q_R<b id="heatEnergy">0 J</b></div>
+          <div>W_ext - Q_R<b id="balance">0 J</b></div>
         </div>
       </section>
 
@@ -271,39 +276,48 @@
           <button id="reset" class="secondary">Zurücksetzen</button>
         </div>
         <div class="row">
-          <button class="secondary selected" data-mode="lenz">Lenz-Regel</button>
-          <button class="secondary danger" data-mode="assist">Mitwirkung?</button>
+          <button class="secondary selected" data-mode="lenz">Minuszeichen: Lenz</button>
+          <button class="secondary danger" data-mode="assist">Ohne Minuszeichen?</button>
         </div>
         <label>
-          Geschwindigkeit <span class="value" id="speedLabel"></span>
-          <input id="speed" type="range" min="0.4" max="4.0" value="1.7" step="0.1">
+          Geschwindigkeit v <span class="value" id="speedLabel"></span>
+          <input id="speed" type="range" min="0.08" max="0.80" value="0.32" step="0.02">
         </label>
         <label>
-          Spulenwiderstand <span class="value" id="resistanceLabel"></span>
-          <input id="resistance" type="range" min="0.8" max="9" value="3.2" step="0.1">
+          Gesamtwiderstand R <span class="value" id="resistanceLabel"></span>
+          <input id="resistance" type="range" min="2" max="50" value="12" step="1">
         </label>
         <label>
-          Magnetfeldstärke <span class="value" id="fieldLabel"></span>
-          <input id="field" type="range" min="0.4" max="2.2" value="1.1" step="0.1">
+          Magnetfeldstärke B <span class="value" id="fieldLabel"></span>
+          <input id="field" type="range" min="0.10" max="0.90" value="0.45" step="0.05">
         </label>
         <label>
-          Windungszahl <span class="value" id="turnsLabel"></span>
-          <input id="turns" type="range" min="60" max="280" value="150" step="10">
+          Windungszahl N <span class="value" id="turnsLabel"></span>
+          <input id="turns" type="range" min="100" max="900" value="420" step="20">
+        </label>
+        <label>
+          Spulenfläche A <span class="value" id="areaLabel"></span>
+          <input id="area" type="range" min="20" max="180" value="65" step="5">
         </label>
 
-        <div class="equation" id="equation">U_ind = -N · dΦ/dt, P_mech = P_el = I² · R</div>
-        <div class="status" id="feedback">Starte die Bewegung. Im Lenz-Fall muss die Hand Arbeit verrichten; diese Energie wird im Stromkreis umgesetzt.</div>
+        <div class="equation" id="equation">Φ = B · A · Kopplung(x), U_ind = -N · dΦ/dt, I = U_ind/R, P_el = I² · R</div>
+        <div class="status" id="feedback">Starte die Bewegung. Im Lenz-Fall ist P_ext positiv: Die äußere Hand liefert genau die Energie, die im Widerstand als Wärme erscheint.</div>
 
-        <h3>Deutung</h3>
+        <h3>Auswertung</h3>
         <div class="row single" id="choices">
-          <button class="secondary" data-choice="energy">Sonst würde Energie ohne Quelle entstehen</button>
-          <button class="secondary" data-choice="field">Magnetfelder haben immer Reibung</button>
-          <button class="secondary" data-choice="voltage">Die Spannung will immer null werden</button>
+          <button class="secondary" data-choice="power">Das Vorzeichen sichert P_ext = I²R ≥ 0</button>
+          <button class="secondary" data-choice="voltage">U_ind ist deshalb immer negativ</button>
+          <button class="secondary" data-choice="flux">Die Spule verringert den Fluss immer</button>
         </div>
 
         <details>
+          <summary>Arbeitsauftrag für Q1</summary>
+          <p>Vergleiche jeweils zwei Einstellungen: Verdopple N, halbiere R oder erhöhe v. Prüfe, welche Größen proportional reagieren und ob die Bilanz W_ext - Q_R im Lenz-Modell nahe null bleibt.</p>
+        </details>
+
+        <details>
           <summary>Physikalischer Kern</summary>
-          <p>Wenn der Magnet den magnetischen Fluss durch die Spule ändert, entsteht eine Induktionsspannung. Der dadurch fließende Strom erzeugt ein Magnetfeld, dessen Wirkung die Flussänderung hemmt. Nur so stammt die elektrische Energie aus der mechanischen Arbeit.</p>
+          <p>Die Richtung des induzierten Stroms ist so, dass sein Magnetfeld die Änderung des magnetischen Flusses hemmt. Würde es die Änderung unterstützen, würden Stromwärme und Bewegungsenergie ohne passende Energiequelle entstehen.</p>
         </details>
       </aside>
     </div>
@@ -320,10 +334,16 @@
       resistance: document.getElementById("resistance"),
       field: document.getElementById("field"),
       turns: document.getElementById("turns"),
+      area: document.getElementById("area"),
       speedLabel: document.getElementById("speedLabel"),
       resistanceLabel: document.getElementById("resistanceLabel"),
       fieldLabel: document.getElementById("fieldLabel"),
       turnsLabel: document.getElementById("turnsLabel"),
+      areaLabel: document.getElementById("areaLabel"),
+      fluxRate: document.getElementById("fluxRate"),
+      inducedVoltage: document.getElementById("inducedVoltage"),
+      current: document.getElementById("current"),
+      externalForce: document.getElementById("externalForce"),
       mechanicalPower: document.getElementById("mechanicalPower"),
       electricPower: document.getElementById("electricPower"),
       heatEnergy: document.getElementById("heatEnergy"),
@@ -338,13 +358,14 @@
     let mode = "lenz";
     let direction = 1;
     let x = 170;
-    let lastFlux = 0;
     let tick = 0;
     let heat = 0;
     let mechanicalWork = 0;
-    let impossibleGain = 0;
     let quizMessage = "";
     let quizState = "";
+    const metersPerPixel = 0.004;
+    const coilX = 570;
+    const sigmaMeters = 0.28;
     const history = [];
 
     function parameters() {
@@ -352,31 +373,33 @@
         speed: Number(els.speed.value),
         resistance: Number(els.resistance.value),
         field: Number(els.field.value),
-        turns: Number(els.turns.value)
+        turns: Number(els.turns.value),
+        area: Number(els.area.value) / 10000,
+        areaCm2: Number(els.area.value)
       };
     }
 
     function fluxAt(position, p) {
-      const coilX = 570;
-      const sigma = 88;
-      const coupling = Math.exp(-Math.pow((position - coilX) / sigma, 2));
-      return p.field * coupling;
+      const positionMeters = (position - coilX) * metersPerPixel;
+      const coupling = Math.exp(-Math.pow(positionMeters / sigmaMeters, 2));
+      return p.field * p.area * coupling;
     }
 
     function fluxGradient(position, p) {
-      const coilX = 570;
-      const sigma = 88;
       const flux = fluxAt(position, p);
-      return flux * (-2 * (position - coilX) / (sigma * sigma));
+      const positionMeters = (position - coilX) * metersPerPixel;
+      const gradientPerMeter = flux * (-2 * positionMeters / (sigmaMeters * sigmaMeters));
+      return gradientPerMeter;
     }
 
     function updatePhysics() {
       const p = parameters();
       const dt = 1 / 60;
-      const velocity = direction * p.speed * 82;
+      const velocityMeters = direction * p.speed;
+      const velocityPixels = velocityMeters / metersPerPixel;
 
       if (running) {
-        x += velocity * dt;
+        x += velocityPixels * dt;
         if (x > 830 || x < 135) {
           direction *= -1;
           x = Math.max(135, Math.min(830, x));
@@ -384,26 +407,25 @@
       }
 
       const flux = fluxAt(x, p);
-      const dFluxDt = running ? fluxGradient(x, p) * velocity : (flux - lastFlux) / dt;
-      const inducedVoltage = -p.turns * dFluxDt * 0.018;
+      const dFluxDt = running ? fluxGradient(x, p) * velocityMeters : 0;
+      const inducedVoltage = -p.turns * dFluxDt;
       const current = inducedVoltage / p.resistance;
       const electricPower = current * current * p.resistance;
-      const forceMagnitude = electricPower / Math.max(8, Math.abs(velocity));
-      const lenzForce = running ? -Math.sign(velocity) * forceMagnitude : 0;
+      const forceMagnitude = electricPower / Math.max(0.02, Math.abs(velocityMeters));
+      const lenzForce = running ? -Math.sign(velocityMeters) * forceMagnitude : 0;
       const shownForce = mode === "lenz" ? lenzForce : -lenzForce;
       const mechanicalPower = mode === "lenz" ? electricPower : -electricPower;
+      const externalForce = running ? mechanicalPower / Math.max(0.02, Math.abs(velocityMeters)) : 0;
 
       if (running) {
         heat += electricPower * dt;
         mechanicalWork += mechanicalPower * dt;
-        if (mode === "assist") impossibleGain += electricPower * dt;
       }
 
-      lastFlux = flux;
-      history.push({ voltage: inducedVoltage, current, electricPower, mechanicalPower, force: shownForce });
+      history.push({ flux, dFluxDt, voltage: inducedVoltage, current, electricPower, mechanicalPower, force: shownForce });
       if (history.length > 165) history.shift();
 
-      return { p, flux, dFluxDt, inducedVoltage, current, electricPower, mechanicalPower, shownForce, velocity };
+      return { p, flux, dFluxDt, inducedVoltage, current, electricPower, mechanicalPower, externalForce, shownForce, velocityMeters, velocityPixels };
     }
 
     function drawArrow(x1, y1, x2, y2, color, label) {
@@ -492,8 +514,8 @@
       ctx.restore();
 
       if (running) {
-        const vEnd = x + Math.sign(data.velocity) * 104;
-        const forceDirection = mode === "lenz" ? -Math.sign(data.velocity) : Math.sign(data.velocity);
+        const vEnd = x + Math.sign(data.velocityMeters) * 104;
+        const forceDirection = mode === "lenz" ? -Math.sign(data.velocityMeters) : Math.sign(data.velocityMeters);
         const fEnd = x + forceDirection * Math.min(104, 42 + Math.abs(data.shownForce) * 18);
         drawArrow(x, 156, vEnd, 156, "#f3d07b", "Bewegung");
         drawArrow(x, 112, fEnd, 112, mode === "lenz" ? "#7fd39a" : "#ef756b", mode === "lenz" ? "Induktionskraft" : "Mitwirkung");
@@ -515,41 +537,48 @@
     }
 
     function drawEnergyBars(data) {
-      const x0 = 92;
-      const y0 = 484;
-      const w = 185;
-      const maxEnergy = Math.max(2, heat, Math.abs(mechanicalWork), impossibleGain) * 1.15;
+      const x0 = 80;
+      const baseline = 420;
+      const w = 150;
+      const balanceError = mechanicalWork - heat;
+      const maxEnergy = Math.max(0.2, heat, Math.abs(mechanicalWork), Math.abs(balanceError)) * 1.2;
       const bars = [
-        { label: "Arbeit hinein", value: Math.max(0, mechanicalWork), color: "#f3d07b" },
-        { label: "Wärme", value: heat, color: "#d48a42" },
-        { label: "Widerspruch", value: impossibleGain, color: "#ef756b" }
+        { label: "W_ext", value: mechanicalWork, color: mechanicalWork >= 0 ? "#f3d07b" : "#ef756b" },
+        { label: "Q_R", value: heat, color: "#d48a42" },
+        { label: "W_ext - Q_R", value: balanceError, color: Math.abs(balanceError) < .15 ? "#7fd39a" : "#ef756b" }
       ];
 
       bars.forEach((bar, index) => {
-        const x = x0 + index * 250;
-        const height = Math.min(112, bar.value / maxEnergy * 112);
+        const x = x0 + index * 190;
+        const height = Math.min(76, Math.abs(bar.value) / maxEnergy * 76);
         ctx.fillStyle = "rgba(255,255,255,.16)";
-        ctx.fillRect(x, y0 - 112, w, 112);
+        ctx.fillRect(x, baseline - 76, w, 152);
+        ctx.strokeStyle = "rgba(255,255,255,.34)";
+        ctx.beginPath();
+        ctx.moveTo(x, baseline);
+        ctx.lineTo(x + w, baseline);
+        ctx.stroke();
         ctx.fillStyle = bar.color;
-        ctx.fillRect(x, y0 - height, w, height);
+        if (bar.value >= 0) ctx.fillRect(x, baseline - height, w, height);
+        else ctx.fillRect(x, baseline, w, height);
         ctx.fillStyle = "#fff9e8";
         ctx.font = "800 13px system-ui";
         ctx.textAlign = "center";
-        ctx.fillText(bar.label, x + w / 2, y0 + 20);
-        ctx.fillText(`${bar.value.toFixed(1).replace(".", ",")} J`, x + w / 2, y0 - height - 8);
+        ctx.fillText(bar.label, x + w / 2, baseline + 102);
+        ctx.fillText(`${bar.value.toFixed(2).replace(".", ",")} J`, x + w / 2, bar.value >= 0 ? baseline - height - 8 : baseline + height + 18);
       });
 
       ctx.fillStyle = "#fff9e8";
       ctx.font = "800 14px system-ui";
       ctx.textAlign = "left";
-      ctx.fillText("Energiekonto", x0, y0 - 132);
+      ctx.fillText("Energiebilanz für konstante Geschwindigkeit", x0, baseline - 96);
     }
 
     function drawGraph() {
-      const x0 = 742;
-      const y0 = 382;
-      const w = 150;
-      const h = 86;
+      const x0 = 712;
+      const y0 = 390;
+      const w = 180;
+      const h = 112;
       ctx.save();
       ctx.strokeStyle = "rgba(255,255,255,.36)";
       ctx.lineWidth = 2;
@@ -558,10 +587,22 @@
       ctx.moveTo(x0, y0 - h / 2);
       ctx.lineTo(x0 + w, y0 - h / 2);
       ctx.stroke();
+
       ctx.beginPath();
       history.forEach((point, index) => {
         const xPos = x0 + index / 164 * w;
-        const yPos = y0 - h / 2 - Math.max(-1, Math.min(1, point.voltage / 5)) * h * .42;
+        const yPos = y0 - 8 - Math.min(1, point.flux / .008) * (h - 18);
+        if (index === 0) ctx.moveTo(xPos, yPos);
+        else ctx.lineTo(xPos, yPos);
+      });
+      ctx.strokeStyle = "#f3d07b";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.beginPath();
+      history.forEach((point, index) => {
+        const xPos = x0 + index / 164 * w;
+        const yPos = y0 - h / 2 - Math.max(-1, Math.min(1, point.voltage / 2.2)) * h * .38;
         if (index === 0) ctx.moveTo(xPos, yPos);
         else ctx.lineTo(xPos, yPos);
       });
@@ -570,7 +611,7 @@
       ctx.stroke();
       ctx.fillStyle = "#fff9e8";
       ctx.font = "12px system-ui";
-      ctx.fillText("U_ind", x0 + 8, y0 - h + 16);
+      ctx.fillText("gelb: Φ, blau: U_ind", x0 + 8, y0 - h + 16);
       ctx.restore();
     }
 
@@ -585,34 +626,37 @@
       ctx.fillStyle = "#fff9e8";
       ctx.font = "800 16px system-ui";
       ctx.textAlign = "left";
-      ctx.fillText(mode === "lenz" ? "Physikalisch: Die Kraft wirkt gegen die Flussänderung." : "Gedankenexperiment: Mitwirkung verletzt die Energiebilanz.", 78, 72);
+      ctx.fillText(mode === "lenz" ? "Physikalisch: Gegenkraft und P_ext > 0 liefern die Wärmeenergie." : "Gedankenmodell: Kraft unterstützt Bewegung und erzeugt dennoch Wärme.", 78, 72);
     }
 
     function updateLabels(data) {
       const p = data.p;
       const balance = mechanicalWork - heat;
-      els.speedLabel.textContent = `${p.speed.toFixed(1).replace(".", ",")} Einheiten/s`;
-      els.resistanceLabel.textContent = `${p.resistance.toFixed(1).replace(".", ",")} Ω`;
-      els.fieldLabel.textContent = `${p.field.toFixed(1).replace(".", ",")} T`;
+      els.speedLabel.textContent = `${p.speed.toFixed(2).replace(".", ",")} m/s`;
+      els.resistanceLabel.textContent = `${p.resistance.toFixed(0)} Ω`;
+      els.fieldLabel.textContent = `${p.field.toFixed(2).replace(".", ",")} T`;
       els.turnsLabel.textContent = `${p.turns} Windungen`;
+      els.areaLabel.textContent = `${p.areaCm2} cm²`;
+      els.fluxRate.textContent = `${data.dFluxDt.toExponential(2).replace(".", ",")} Wb/s`;
+      els.inducedVoltage.textContent = `${data.inducedVoltage.toFixed(2).replace(".", ",")} V`;
+      els.current.textContent = `${data.current.toFixed(3).replace(".", ",")} A`;
+      els.externalForce.textContent = `${data.externalForce.toFixed(2).replace(".", ",")} N`;
       els.mechanicalPower.textContent = `${data.mechanicalPower.toFixed(2).replace(".", ",")} W`;
       els.electricPower.textContent = `${data.electricPower.toFixed(2).replace(".", ",")} W`;
-      els.heatEnergy.textContent = `${heat.toFixed(1).replace(".", ",")} J`;
-      els.balance.textContent = mode === "lenz"
-        ? `${balance.toFixed(2).replace(".", ",")} J`
-        : `+${impossibleGain.toFixed(1).replace(".", ",")} J?`;
+      els.heatEnergy.textContent = `${heat.toFixed(2).replace(".", ",")} J`;
+      els.balance.textContent = `${balance.toFixed(2).replace(".", ",")} J`;
 
       if (mode === "lenz") {
-        els.equation.textContent = "U_ind = -N · dΦ/dt, F_ind wirkt gegen v, P_mech = I² · R";
+        els.equation.textContent = "Lenz-Modell: U_ind = -N · dΦ/dt, I = U/R, P_ext = F_ext · v = I² · R";
         if (!quizMessage) {
           els.feedback.className = "status ok";
-          els.feedback.textContent = "Die Hand leistet Arbeit gegen die induzierte Kraft. Genau diese Energie wird als elektrische Energie im Widerstand in Wärme umgewandelt.";
+          els.feedback.textContent = "Bei konstanter Geschwindigkeit ist die äußere Kraft der Induktionskraft entgegengesetzt. W_ext wächst praktisch genauso wie Q_R.";
         }
       } else {
-        els.equation.textContent = "Ohne Minuszeichen: Bewegung würde unterstützt und der Widerstand trotzdem warm";
+        els.equation.textContent = "Gedankenmodell ohne Minuszeichen: P_ext < 0, aber P_el = I² · R bleibt positiv";
         if (!quizMessage) {
           els.feedback.className = "status bad";
-          els.feedback.textContent = "Das wäre ein Energieproblem: Magnet und Stromkreis gewinnen Energie, obwohl keine passende Energiequelle dafür auftaucht.";
+          els.feedback.textContent = "Das Modell fordert Wärme im Widerstand, obwohl die äußere Hand Energie aus der Bewegung herausnimmt. Die negative Bilanz markiert den Widerspruch.";
         }
       }
       if (quizMessage) {
@@ -636,12 +680,10 @@
       x = 170;
       heat = 0;
       mechanicalWork = 0;
-      impossibleGain = 0;
       history.length = 0;
       quizMessage = "";
       quizState = "";
       choiceButtons.forEach((item) => item.classList.remove("selected"));
-      lastFlux = fluxAt(x, parameters());
     }
 
     els.toggle.addEventListener("click", () => {
@@ -652,24 +694,21 @@
     modeButtons.forEach((button) => {
       button.addEventListener("click", () => {
         mode = button.dataset.mode;
-        quizMessage = "";
-        quizState = "";
-        choiceButtons.forEach((item) => item.classList.remove("selected"));
+        reset();
         modeButtons.forEach((item) => item.classList.toggle("selected", item === button));
       });
     });
     choiceButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        const correct = button.dataset.choice === "energy";
+        const correct = button.dataset.choice === "power";
         choiceButtons.forEach((item) => item.classList.toggle("selected", item === button));
         quizState = correct ? "ok" : "bad";
         quizMessage = correct
-          ? "Genau. Die Gegenwirkung sorgt dafür, dass elektrische Energie aus verrichteter mechanischer Arbeit stammt."
-          : "Das trifft den Kern nicht. Entscheidend ist die Energieerhaltung: Die Induktion darf keine zusätzliche Energie ohne Quelle erzeugen.";
+          ? "Genau. Das Minuszeichen sorgt für eine Gegenkraft. Bei konstanter Geschwindigkeit muss dann äußere Arbeit verrichtet werden, und diese Arbeit deckt I²R."
+          : "Das trifft den Kern nicht. U_ind kann positiv oder negativ sein; entscheidend ist die Energieerhaltung über P_ext und P_el.";
       });
     });
 
-    lastFlux = fluxAt(x, parameters());
     frame();
   </script>
 </body>
