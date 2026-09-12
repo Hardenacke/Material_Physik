@@ -29,6 +29,21 @@ function createButton(className, text, onClick) {
   return button;
 }
 
+function applyTheme(element, theme) {
+  if (!theme) return element;
+  if (theme.accent) {
+    element.style.setProperty("--topic-accent", theme.accent);
+    element.style.setProperty("--card-accent", theme.accent);
+  }
+  if (theme.accentDark) {
+    element.style.setProperty("--topic-accent-dark", theme.accentDark);
+  }
+  if (theme.accentSoft) {
+    element.style.setProperty("--topic-accent-soft", theme.accentSoft);
+  }
+  return element;
+}
+
 function totalsForClass(schoolClass) {
   return schoolClass.topics.reduce(
     (total, topic) => ({
@@ -214,6 +229,7 @@ function renderTopicPicker(schoolClass, topics, selectedTopic) {
 
   for (const topic of topics) {
     const button = createButton("topic-button", "", () => navigate(schoolClass.id, topic.id));
+    applyTheme(button, topic.theme);
     if (selectedTopic && selectedTopic.id === topic.id) {
       button.classList.add("is-selected");
       button.setAttribute("aria-current", "true");
@@ -251,6 +267,7 @@ function renderLearningPaths(topic, query) {
   for (const item of learningPaths) {
     const link = document.createElement("a");
     link.className = "path-card";
+    applyTheme(link, topic.theme);
     link.href = encodeURI(item.url);
     link.appendChild(createText("span", "path-title", item.title));
     if (item.description) {
@@ -280,6 +297,7 @@ function renderFiles(topic, query) {
   for (const item of files) {
     const link = document.createElement("a");
     link.className = "file-link";
+    applyTheme(link, topic.theme);
     link.href = encodeURI(item.url);
     link.appendChild(createText("span", "file-title", item.title));
 
@@ -302,6 +320,7 @@ function renderTopicDetail(topic, query) {
   const detail = document.createElement("section");
   detail.className = "topic-detail";
   detail.id = "themenmaterial";
+  applyTheme(detail, topic.theme);
 
   const header = document.createElement("div");
   header.className = "topic-detail-header";
@@ -410,6 +429,16 @@ window.addEventListener("hashchange", () => {
 
 searchInput.addEventListener("input", () => {
   render();
+});
+
+document.addEventListener("pointerdown", (event) => {
+  const target = event.target.closest(".class-card, .topic-button, .path-card, .file-link, .crumb-button");
+  if (!target) return;
+
+  target.classList.remove("is-pressing");
+  target.offsetWidth;
+  target.classList.add("is-pressing");
+  window.setTimeout(() => target.classList.remove("is-pressing"), 180);
 });
 
 start();

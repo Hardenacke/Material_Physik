@@ -39,6 +39,12 @@ const CATEGORY_BY_FOLDER = {
   simulationen: "Simulation"
 };
 
+const DEFAULT_THEME = {
+  accent: "#1e8a83",
+  accentDark: "#23454a",
+  accentSoft: "#e4f4ef"
+};
+
 function readJson(filePath) {
   if (!fs.existsSync(filePath)) return null;
   try {
@@ -52,6 +58,19 @@ function readJson(filePath) {
 function toNumber(value, fallback) {
   const number = Number(value);
   return Number.isFinite(number) ? number : fallback;
+}
+
+function colorOrFallback(value, fallback) {
+  return /^#[0-9a-fA-F]{6}$/.test(String(value || "")) ? value : fallback;
+}
+
+function readTheme(meta) {
+  const theme = meta.theme || {};
+  return {
+    accent: colorOrFallback(theme.accent, DEFAULT_THEME.accent),
+    accentDark: colorOrFallback(theme.accentDark, DEFAULT_THEME.accentDark),
+    accentSoft: colorOrFallback(theme.accentSoft, DEFAULT_THEME.accentSoft)
+  };
 }
 
 function humanize(value) {
@@ -270,6 +289,7 @@ function scanTopics(classPath) {
         title: meta.title || humanize(entry.name),
         description: meta.description || "",
         order: toNumber(meta.order, toNumber((entry.name.match(/^(\d+)/) || [])[1], 9999)),
+        theme: readTheme(meta),
         learningPaths: scanLearningPaths(topicPath),
         files: scanFiles(topicPath)
       };
