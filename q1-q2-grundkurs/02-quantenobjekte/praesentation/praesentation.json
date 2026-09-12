@@ -61,5 +61,99 @@
     "Wie verändert sich die Photonenenergie bei halbierter Wellenlänge?",
     "Was zeigt Elektronenbeugung über Elektronen?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Quantenobjekte (GK)",
+    "foci": [
+      "Teilchenaspekte von Photonen: Energiequantelung, Photoeffekt",
+      "Wellenaspekt von Elektronen: de-Broglie-Wellenlänge, Elektroneninterferenz am Doppelspalt",
+      "Photon und Elektron als Quantenobjekte: Wellen-/Teilchenmodell, Kopenhagener Deutung"
+    ],
+    "pages": "S. 38–39",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Photonenenergie Eγ",
+      "definition": "Energie eines Photons ist proportional zur Frequenz.",
+      "unit": "J bzw. eV"
+    },
+    {
+      "name": "Planck-Konstante h",
+      "definition": "Proportionalitätskonstante der Quantenphysik.",
+      "unit": "J·s"
+    },
+    {
+      "name": "de-Broglie-Wellenlänge λ",
+      "definition": "Wellenlänge eines Teilchens mit Impuls p.",
+      "unit": "m"
+    },
+    {
+      "name": "Wahrscheinlichkeit",
+      "definition": "Quantenphysik sagt Verteilungen von Messergebnissen voraus, nicht den einzelnen Treffer.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Welche Farbe hat die höhere Frequenz: rotes oder blaues Licht?",
+    "Kann ein einzelnes Elektron als einzelner Punkt auf einem Schirm nachgewiesen werden?",
+    "Wie heißt ein Lichtquant?",
+    "Wie hängt die Photonenenergie Eγ von der Frequenz f ab?",
+    "Was zeigt ein Interferenzmuster aus vielen Elektronentreffern?"
+  ],
+  "basis": [
+    {
+      "q": "f = 5,0·10¹⁴ Hz. Berechne Eγ mit h = 6,63·10⁻³⁴ J·s.",
+      "hint": ""
+    },
+    {
+      "q": "p = 6,63·10⁻²⁴ kg·m/s. Berechne λ = h/p.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Photon hat λ = 500 nm. Berechne näherungsweise seinen Impuls p = h/λ.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Auf einem Smartphone-Display senden blaue und rote Pixel Licht aus. Begründe mit E = h·f, welche Photonen energiereicher sind.",
+      "hint": ""
+    },
+    {
+      "q": "Warum ist ein Interferenzmuster aus vielen Einzeltreffern kein Beleg dafür, dass jedes Elektron auf einer klassischen Wellenbahn fliegt?",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "photoeffect",
+    "title": "Photoeffekt: E_kin,max gegen Frequenz",
+    "questions": [
+      "Was bedeutet der Schnittpunkt mit der f-Achse?",
+      "Welche Naturkonstante steckt in der Steigung?"
+    ]
+  },
+  "answers": [
+    "Warm-up: blau; ja; Photon; Eγ=h·f; die Treffer bilden eine statistische Interferenzverteilung und zeigen Welleneigenschaften des Quantensystems.",
+    "Basis 1: ≈ 3,32·10⁻¹⁹ J.",
+    "Basis 2: 1,0·10⁻¹⁰ m.",
+    "Basis 3: ≈ 1,33·10⁻²⁷ kg·m/s.",
+    "Anwendung: Blaue Photonen besitzen die höhere Frequenz und deshalb nach E=h·f die größere Energie.",
+    "Konzeptfrage: Die einzelnen Nachweise sind lokalisierte Treffer; erst ihre statistische Verteilung zeigt Interferenz. Ein klassischer Bahnbegriff beschreibt das Quantensystem daher nicht vollständig."
+  ],
+  "exit_ticket": "Formuliere einen Satz, in dem „Zufall“ und „determinierte Verteilung“ gleichzeitig korrekt vorkommen.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

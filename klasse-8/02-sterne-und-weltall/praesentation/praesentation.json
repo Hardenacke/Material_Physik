@@ -61,5 +61,98 @@
     "Warum gibt es nicht bei jedem Vollmond eine Mondfinsternis?",
     "Welche Informationen lassen sich aus einem Sternspektrum gewinnen?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 6: Sterne und Weltall",
+    "foci": [
+      "Sonnensystem: Mondphasen, Mond- und Sonnenfinsternisse, Jahreszeiten, Planeten",
+      "Universum: Himmelsobjekte, Sternentwicklung"
+    ],
+    "pages": "S. 34–35",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Lichtjahr",
+      "definition": "Strecke, die Licht im Vakuum in einem Jahr zurücklegt.",
+      "unit": "ly"
+    },
+    {
+      "name": "Mondphase",
+      "definition": "Von der Erde sichtbarer beleuchteter Anteil der Mondhälfte.",
+      "unit": "–"
+    },
+    {
+      "name": "Gravitation",
+      "definition": "Anziehende Wechselwirkung zwischen Körpern mit Masse.",
+      "unit": "N als Kraft"
+    },
+    {
+      "name": "Sternentwicklung",
+      "definition": "Entwicklung eines Sterns abhängig vor allem von seiner Masse.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Warum leuchtet der Mond?",
+    "Entstehen Mondphasen durch den Erdschatten?",
+    "Was beschreibt ein Lichtjahr?",
+    "Warum gibt es auf der Erde Jahreszeiten?",
+    "Was unterscheidet einen Stern grundlegend von einem Planeten?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Lichtsignal bewegt sich mit c ≈ 300 000 km/s. Welche Strecke legt es in 2,0 s zurück?",
+      "hint": ""
+    },
+    {
+      "q": "Ordne: Sonne, Erde, Mond – welcher Körper ist Stern, Planet bzw. Mond?",
+      "hint": ""
+    },
+    {
+      "q": "Warum sieht man bei Vollmond die erdzugewandte Mondhälfte fast vollständig beleuchtet?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Erkläre mit Sonne–Erde–Mond-Anordnung den Unterschied zwischen Sonnen- und Mondfinsternis.",
+      "hint": ""
+    },
+    {
+      "q": "Warum kann ein Spektrum Informationen über die chemische Zusammensetzung eines Sterns liefern, obwohl wir keine Probe entnehmen können?",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "orbit",
+    "title": "Sonne, Erde und Mond – Modell",
+    "questions": [
+      "Welche Anordnung führt zu einer Sonnenfinsternis?",
+      "Warum tritt nicht bei jedem Neumond eine Sonnenfinsternis auf?"
+    ]
+  },
+  "answers": [
+    "Warm-up: reflektiertes Sonnenlicht; nein; Entfernung; Neigung der Erdachse; Sterne erzeugen selbst Strahlungsenergie.",
+    "Basis 1: 600 000 km.",
+    "Basis 2: Sonne Stern, Erde Planet, Mond natürlicher Satellit.",
+    "Basis 3: Die beleuchtete Mondhälfte zeigt dann weitgehend zur Erde.",
+    "Transfer 1: Sonnenfinsternis: Mond zwischen Sonne/Erde; Mondfinsternis: Erde zwischen Sonne/Mond.",
+    "Transfer 2: Elemente besitzen charakteristische Spektrallinien."
+  ],
+  "exit_ticket": "Erkläre in einem Satz, warum „Lichtjahr“ keine Zeiteinheit ist.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

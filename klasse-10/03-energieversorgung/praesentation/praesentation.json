@@ -61,5 +61,98 @@
     "Warum wird elektrische Energie über große Entfernungen mit hoher Spannung übertragen?",
     "Was bedeutet ein Wirkungsgrad von 85 %?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 11: Energieversorgung",
+    "foci": [
+      "Induktion und Elektromagnetismus: Elektromotor, Generator, Wechselspannung, Transformator",
+      "Bereitstellung und Nutzung: Kraftwerke, regenerative Anlagen, Energieübertragung, Energieentwertung, Wirkungsgrad, Nachhaltigkeit"
+    ],
+    "pages": "S. 43–45",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Induktion",
+      "definition": "Spannungsentstehung durch Änderung des magnetischen Flusses.",
+      "unit": "–"
+    },
+    {
+      "name": "Wechselspannung U",
+      "definition": "Spannung, deren Richtung und Betrag sich periodisch ändern.",
+      "unit": "V"
+    },
+    {
+      "name": "Leistung P",
+      "definition": "Energieübertragung pro Zeit.",
+      "unit": "W"
+    },
+    {
+      "name": "Wirkungsgrad η",
+      "definition": "Anteil der zugeführten Energie/Leistung, der nutzbar wird.",
+      "unit": "1 bzw. %"
+    }
+  ],
+  "warmup": [
+    "Welche Energieumwandlung findet im Generator statt?",
+    "Welche grundlegende Erscheinung nutzt ein Generator?",
+    "Warum benötigt ein Transformator Wechselspannung?",
+    "Wie ist der Wirkungsgrad definiert?",
+    "Warum wird elektrische Energie über weite Strecken mit hoher Spannung übertragen?"
+  ],
+  "basis": [
+    {
+      "q": "Ein idealer Trafo hat N₁ = 1000, N₂ = 100 und U₁ = 230 V. Berechne U₂.",
+      "hint": "U₁/U₂ = N₁/N₂"
+    },
+    {
+      "q": "Ein Energiewandler erhält 500 J und gibt 400 J nutzbar ab. Berechne η.",
+      "hint": ""
+    },
+    {
+      "q": "1,0 kW werden bei 100 V übertragen. Wie groß ist der Strom? Vergleiche mit 10 V.",
+      "hint": "P = U·I"
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Begründe mit P_Verlust = I²R, warum Hochspannung Leitungsverluste verringert.",
+      "hint": ""
+    },
+    {
+      "q": "Vergleiche Windkraft und Gaskraftwerk anhand von mindestens drei Kriterien (Verfügbarkeit, Emissionen, Speicher/Regelbarkeit, Flächenbedarf …).",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "energy_chain",
+    "title": "Vom Kraftwerk bis zum Haushalt",
+    "questions": [
+      "An welchen Stationen wird die Spannung verändert?",
+      "Welche Energieumwandlung findet im Generator statt?"
+    ]
+  },
+  "answers": [
+    "Warm-up: mechanisch → elektrisch; elektromagnetische Induktion; nur zeitlich veränderlicher Fluss koppelt dauerhaft; η = E_nutz/E_zu; kleinerer Strom reduziert Leitungsverluste.",
+    "Basis 1: 23 V.",
+    "Basis 2: η = 0,80 = 80 %.",
+    "Basis 3: 10 A bei 100 V; 100 A bei 10 V.",
+    "Transfer 1: bei gleicher Leistung senkt hohe U den Strom I; Verluste fallen quadratisch mit I.",
+    "Transfer 2: Bewertung muss mehrere Kriterien transparent gewichten."
+  ],
+  "exit_ticket": "Beschreibe die Kette Generator → Transformator → Leitung → Transformator → Haushalt mit je einer Funktion.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft – Kriterien bereits erfüllt",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

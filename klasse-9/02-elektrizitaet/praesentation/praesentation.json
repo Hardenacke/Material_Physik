@@ -66,5 +66,128 @@
     "Wann gilt U = R·I als Ohmsches Gesetz?",
     "Warum sind Haushaltsgeräte parallel geschaltet?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 9: Elektrizität",
+    "foci": [
+      "Elektrostatik: elektrische Ladungen und Felder, Spannung",
+      "Stromkreise: Elektronen-Atomrumpf-Modell, Strom, Widerstand, Reihen-/Parallelschaltung, Sicherheitsvorrichtungen",
+      "Elektrische Energie und Leistung"
+    ],
+    "pages": "S. 39–41",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Spannung U",
+      "definition": "Energieunterschied pro Ladung zwischen zwei Punkten.",
+      "unit": "V"
+    },
+    {
+      "name": "Stromstärke I",
+      "definition": "Ladungsmenge pro Zeit durch einen Leiterquerschnitt.",
+      "unit": "A"
+    },
+    {
+      "name": "Widerstand R",
+      "definition": "Quotient aus Spannung und Stromstärke; Hemmung des Stromflusses.",
+      "unit": "Ω"
+    },
+    {
+      "name": "Leistung P",
+      "definition": "Elektrische Energie pro Zeit.",
+      "unit": "W"
+    }
+  ],
+  "warmup": [
+    "Welche Größe misst man parallel zu einem Bauteil?",
+    "Welche Größe misst man in Reihe im Stromkreis?",
+    "Wie lautet die Definition R = …?",
+    "Was bleibt in einer Reihenschaltung an allen Bauteilen gleich?",
+    "Nenne eine Sicherheitsvorrichtung der Hausinstallation."
+  ],
+  "basis": [
+    {
+      "q": "An einem Widerstand liegen 12 V an; R = 6 Ω. Berechne I.",
+      "hint": "I = U/R"
+    },
+    {
+      "q": "Ein Gerät wird mit 230 V betrieben und nimmt 2 A auf. Berechne P.",
+      "hint": "P = U·I"
+    },
+    {
+      "q": "Ein 2-kW-Heizgerät läuft 30 min. Wie viel elektrische Energie nutzt es in kWh?",
+      "hint": "E = P·t; 30 min = 0,5 h"
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Zwei Widerstände 10 Ω und 20 Ω liegen in Reihe. Bestimme R_ges und die Stromstärke bei 12 V.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Gerät benötigt 1,0 kWh. Bei 0,35 €/kWh: Welche Kosten entstehen? Beurteile anschließend, warum die Leistungsangabe allein die Kosten nicht festlegt.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "line",
+    "title": "U-I-Kennlinie eines ohmschen Widerstands",
+    "xLabel": "I / A",
+    "yLabel": "U / V",
+    "series": [
+      {
+        "name": "Messwerte",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0.5,
+            2.5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1.5,
+            7.5
+          ],
+          [
+            2,
+            10
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Ist der Widerstand ohmsch?",
+      "Bestimme R aus der Steigung U/I."
+    ]
+  },
+  "answers": [
+    "Warm-up: Spannung; Stromstärke; U/I; Stromstärke; z. B. Sicherung/FI/Schutzleiter.",
+    "Basis 1: 2 A.",
+    "Basis 2: 460 W.",
+    "Basis 3: 1,0 kWh.",
+    "Transfer 1: R_ges = 30 Ω; I = 0,4 A.",
+    "Transfer 2: 0,35 €; Kosten hängen von Leistung und Nutzungsdauer ab."
+  ],
+  "exit_ticket": "Erkläre in einem Satz den Unterschied zwischen Widerstandsdefinition und Ohmschem Gesetz.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft – Kriterien bereits erfüllt",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

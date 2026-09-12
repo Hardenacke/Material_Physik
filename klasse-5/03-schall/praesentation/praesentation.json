@@ -61,5 +61,98 @@
     "Welche Schwingungseigenschaft verändert die Tonhöhe?",
     "Wie lässt sich die Lärmbelastung in einem Raum verringern?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 3: Schall",
+    "foci": [
+      "Schwingungen und Schallwellen: Tonhöhe, Lautstärke, Ausbreitung, Absorption, Reflexion",
+      "Schallquellen und -empfänger: Sender-Empfänger-Modell, Ultra-/Infraschall, Lärm und Lärmschutz"
+    ],
+    "pages": "S. 27–28",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Frequenz f",
+      "definition": "Anzahl der Schwingungen pro Sekunde; bestimmt vor allem die Tonhöhe.",
+      "unit": "Hz"
+    },
+    {
+      "name": "Amplitude A",
+      "definition": "Maximale Auslenkung einer Schwingung; größere Amplitude bedeutet meist lauteren Schall.",
+      "unit": "–"
+    },
+    {
+      "name": "Schallpegel",
+      "definition": "Messgröße zur Beschreibung der Stärke von Schall.",
+      "unit": "dB"
+    },
+    {
+      "name": "Schallreflexion",
+      "definition": "Schall wird an einer Fläche zurückgeworfen; mögliches Ergebnis: Echo.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Was muss ein Körper tun, damit er Schall erzeugt?",
+    "Welche Größe entscheidet hauptsächlich über die Tonhöhe?",
+    "Wie verändert sich die Lautstärke bei größerer Amplitude?",
+    "Warum kann sich Schall im Vakuum nicht ausbreiten?",
+    "Was ist der Unterschied zwischen Reflexion und Absorption von Schall?"
+  ],
+  "basis": [
+    {
+      "q": "Eine Stimmgabel schwingt 200-mal in 1 s. Wie groß ist ihre Frequenz?",
+      "hint": "f = Anzahl / Zeit"
+    },
+    {
+      "q": "Zwei Töne haben 250 Hz und 500 Hz. Welcher klingt höher?",
+      "hint": ""
+    },
+    {
+      "q": "Ein Schallschutzvorhang absorbiert einen großen Teil des Schalls. Was bedeutet „absorbieren“ hier?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Ein Tier erzeugt Ultraschall. Erkläre mit dem Sender-Empfänger-Modell, wie es damit ein Hindernis orten kann.",
+      "hint": ""
+    },
+    {
+      "q": "Bei einem Konzert werden 95 dB gemessen. Nenne zwei sinnvolle Maßnahmen zum Schutz des Gehörs und begründe sie.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "waves",
+    "title": "Zwei Schwingungen im Vergleich",
+    "questions": [
+      "Welche Kurve hat die höhere Frequenz?",
+      "Welche Änderung würde vor allem die Lautstärke erhöhen?"
+    ]
+  },
+  "answers": [
+    "Warm-up: schwingen; Frequenz; sie nimmt zu; es fehlen Teilchen als Transportmedium; zurückwerfen vs. aufnehmen.",
+    "Basis 1: 200 Hz.",
+    "Basis 2: 500 Hz.",
+    "Basis 3: Schallenergie wird aufgenommen und nicht vollständig zurückgeworfen.",
+    "Transfer 1: ausgesandter Ultraschall wird reflektiert und als Echo empfangen; Laufzeit/Richtung liefern Information.",
+    "Transfer 2: Abstand vergrößern, Aufenthaltszeit verkürzen, Gehörschutz nutzen."
+  ],
+  "exit_ticket": "Formuliere die Kette Schallquelle → … → Schallempfänger vollständig.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft – Kriterien bereits erfüllt",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

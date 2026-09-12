@@ -61,5 +61,128 @@
     "Warum kann man den Zerfallszeitpunkt eines einzelnen Kerns nicht vorhersagen?",
     "Welche drei Grundprinzipien schützen vor ionisierender Strahlung?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 10: Ionisierende Strahlung und Kernenergie",
+    "foci": [
+      "Atomaufbau und ionisierende Strahlung: α, β, γ, radioaktiver Zerfall, Halbwertszeit, Röntgenstrahlung",
+      "Wechselwirkung mit Materie: Nachweis, Absorption, biologische Wirkung, Medizin, Schutz",
+      "Kernenergie: Kernspaltung, Kernfusion, Kernkraftwerke, Endlagerung"
+    ],
+    "pages": "S. 41–43",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Aktivität A",
+      "definition": "Anzahl der Kernzerfälle pro Sekunde.",
+      "unit": "Bq"
+    },
+    {
+      "name": "Halbwertszeit T₁/₂",
+      "definition": "Zeit, nach der im Mittel die Hälfte der Ausgangskerne noch nicht zerfallen ist.",
+      "unit": "s, d, a …"
+    },
+    {
+      "name": "Ionisation",
+      "definition": "Bildung geladener Teilchen durch Entfernen oder Anlagern von Elektronen.",
+      "unit": "–"
+    },
+    {
+      "name": "Äquivalentdosis H",
+      "definition": "Bewertet die biologische Wirkung ionisierender Strahlung.",
+      "unit": "Sv"
+    }
+  ],
+  "warmup": [
+    "Wo befinden sich Protonen und Neutronen im Atom?",
+    "Welche elektrische Ladung hat ein Proton: positiv, negativ oder neutral?",
+    "Was unterscheidet Isotope eines Elements?",
+    "Was bedeutet 1 Bq?",
+    "Was sagt die Halbwertszeit aus?"
+  ],
+  "basis": [
+    {
+      "q": "Eine Probe besitzt 800 Bq. Nach einer Halbwertszeit sind noch wie viele Bq zu erwarten?",
+      "hint": ""
+    },
+    {
+      "q": "Nach zwei Halbwertszeiten: Welcher Anteil der Ausgangsaktivität bleibt übrig?",
+      "hint": ""
+    },
+    {
+      "q": "Ordne typische Abschirmung zu: α – Papier; β – Aluminium; γ – ?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Eine Probe startet mit 800 Bq und hat T₁/₂ = 6 h. Welche Aktivität besitzt sie nach 12 h?",
+      "hint": ""
+    },
+    {
+      "q": "Röntgenstrahlung kann diagnostisch nützlich und biologisch schädlich sein. Formuliere zwei Kriterien für eine Nutzen-Risiko-Abwägung.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "decay",
+    "title": "Radioaktiver Zerfall",
+    "xLabel": "Anzahl Halbwertszeiten",
+    "yLabel": "Aktivität / Bq",
+    "series": [
+      {
+        "name": "A",
+        "points": [
+          [
+            0,
+            800
+          ],
+          [
+            1,
+            400
+          ],
+          [
+            2,
+            200
+          ],
+          [
+            3,
+            100
+          ],
+          [
+            4,
+            50
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Lies die Aktivität nach drei Halbwertszeiten ab.",
+      "Warum ist der Zerfall eines einzelnen Kerns trotzdem nicht vorhersagbar?"
+    ]
+  },
+  "answers": [
+    "Warm-up: im Atomkern; positiv; Isotope besitzen gleiche Protonenzahl, aber unterschiedliche Neutronenzahl; 1 Bq = 1 Zerfall pro Sekunde; nach einer Halbwertszeit ist bei großer Ausgangsmenge im Mittel die Hälfte noch nicht zerfallen.",
+    "Basis 1: 400 Bq.",
+    "Basis 2: 1/4 = 25 %.",
+    "Basis 3: z. B. Blei/dichte Materialien.",
+    "Transfer 1: 200 Bq.",
+    "Transfer 2: z. B. medizinischer Nutzen/Alternativen sowie Dosis, Häufigkeit und Schutzmaßnahmen."
+  ],
+  "exit_ticket": "Erkläre den Unterschied zwischen „zufälligem Einzelzerfall“ und „vorhersagbarer Zerfallskurve großer Mengen“.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

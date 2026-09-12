@@ -66,5 +66,99 @@
     "Welche Kraft kann in einem konkreten Beispiel die Zentripetalkraft liefern?",
     "Was änderte sich beim Übergang vom geozentrischen zum heliozentrischen Weltbild?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Kreisbewegung, Gravitation und physikalische Weltbilder (EF)",
+    "foci": [
+      "Kreisbewegung: gleichförmige Kreisbewegung, Zentripetalkraft",
+      "Gravitation: Schwerkraft, Newtonsches Gravitationsgesetz, Keplersche Gesetze, Gravitationsfeld",
+      "Wandel physikalischer Weltbilder: geo-/heliozentrisch; Grundprinzipien SRT; Zeitdilatation"
+    ],
+    "pages": "S. 28–30",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Periodendauer T",
+      "definition": "Zeit für einen vollständigen Umlauf.",
+      "unit": "s"
+    },
+    {
+      "name": "Winkelgeschwindigkeit ω",
+      "definition": "Drehwinkel pro Zeit.",
+      "unit": "rad/s"
+    },
+    {
+      "name": "Zentripetalbeschleunigung a_z",
+      "definition": "Zum Mittelpunkt gerichtete Beschleunigung bei Kreisbewegung.",
+      "unit": "m/s²"
+    },
+    {
+      "name": "Gravitationskraft F_G",
+      "definition": "Anziehung zweier Massen nach Newton.",
+      "unit": "N"
+    }
+  ],
+  "warmup": [
+    "Beim Karussell: Zeigt die momentane Geschwindigkeit zum Mittelpunkt oder entlang der Kreisbahn?",
+    "Bleibt bei gleichförmiger Kreisbewegung die Richtung der Geschwindigkeit gleich?",
+    "Welche Größe gibt die Zeit für eine vollständige Runde an?",
+    "Wie hängen Frequenz f und Umlaufdauer T zusammen?",
+    "Warum gibt es trotz konstantem Tempo eine Beschleunigung?"
+  ],
+  "basis": [
+    {
+      "q": "r = 1,0 m, T = 2,0 s. Berechne die Bahngeschwindigkeit v.",
+      "hint": "v = 2πr/T"
+    },
+    {
+      "q": "Nutze das Ergebnis und berechne a_z = v²/r.",
+      "hint": ""
+    },
+    {
+      "q": "m = 0,50 kg. Berechne die nötige Zentripetalkraft.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Nach Kepler gilt T² ∝ r³. Ein Orbitradius wird vervierfacht. Um welchen Faktor wächst T?",
+      "hint": ""
+    },
+    {
+      "q": "Eine Uhr bewegt sich relativ zu einer Beobachterin sehr schnell. Welche Uhr zeigt nach der SRT weniger verstrichene Eigenzeit? Formuliere ohne Scheinkräfte oder „Uhrfehler“.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "circle",
+    "title": "Gleichförmige Kreisbewegung",
+    "questions": [
+      "Zeige gedanklich v und F_z an einem Punkt.",
+      "Was passiert mit F_z bei gleicher v, wenn r verdoppelt wird?"
+    ]
+  },
+  "answers": [
+    "Warm-up: tangential entlang der Bahn; nein, die Richtung ändert sich fortwährend; Umlaufdauer T; f=1/T; weil sich der Geschwindigkeitsvektor ändert und die Beschleunigung zum Mittelpunkt zeigt.",
+    "Basis 1: v = π ≈ 3,14 m/s.",
+    "Basis 2: a_z ≈ 9,87 m/s².",
+    "Basis 3: F_z ≈ 4,94 N.",
+    "Transfer 1: Faktor 8.",
+    "Transfer 2: Die mitbewegte Uhr hat zwischen denselben Vergleichsereignissen weniger Eigenzeit."
+  ],
+  "exit_ticket": "Warum ist bei gleichförmiger Kreisbewegung trotz konstantem Betrag von v die Beschleunigung nicht null?",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

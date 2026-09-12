@@ -66,5 +66,98 @@
     "Was sagt das Minuszeichen im Induktionsgesetz physikalisch aus?",
     "Warum reduziert Hochspannung Übertragungsverluste bei gleicher Leistung?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Elektrodynamik und Energieübertragung (GK)",
+    "foci": [
+      "Elektrodynamik: magnetischer Fluss, Induktion, Induktionsgesetz, Wechselspannung, Auf-/Entladen des Kondensators",
+      "Energieübertragung: Generator, Transformator, elektromagnetische Schwingung"
+    ],
+    "pages": "S. 40–41",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Magnetischer Fluss Φ",
+      "definition": "Maß für die Durchsetzung einer Fläche mit magnetischem Feld.",
+      "unit": "Wb"
+    },
+    {
+      "name": "Induktionsspannung U_ind",
+      "definition": "Spannung durch zeitliche Änderung des magnetischen Flusses.",
+      "unit": "V"
+    },
+    {
+      "name": "Kapazität C",
+      "definition": "Ladung pro Spannung eines Kondensators.",
+      "unit": "F"
+    },
+    {
+      "name": "Lenzsche Regel",
+      "definition": "Induktionswirkung ist so gerichtet, dass sie der verursachenden Flussänderung entgegenwirkt.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Bewegst du einen Magneten in eine Spule hinein: Kann am Messgerät eine Spannung auftreten?",
+    "Bleibt diese Induktionsspannung bestehen, wenn Magnet und Spule relativ zueinander ruhen und das Magnetfeld konstant ist?",
+    "Welche Einheit hat der magnetische Fluss Φ?",
+    "Welche Änderungen können den magnetischen Fluss durch eine Leiterschleife verändern?",
+    "Was bedeutet das Minuszeichen im Induktionsgesetz?"
+  ],
+  "basis": [
+    {
+      "q": "B = 0,20 T durchsetzt A = 0,010 m² senkrecht. Berechne Φ.",
+      "hint": ""
+    },
+    {
+      "q": "N = 100; Φ ändert sich in 0,10 s von 0 auf 0,002 Wb. Bestimme |U_ind|.",
+      "hint": ""
+    },
+    {
+      "q": "Idealtrafo: N₁:N₂ = 1000:100, U₁ = 230 V. Berechne U₂.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Ein Fahrraddynamo wandelt Bewegungsenergie in elektrische Energie um. Erkläre, welche zeitliche Änderung die Induktionsspannung in der Spule verursacht.",
+      "hint": ""
+    },
+    {
+      "q": "Begründe die Richtung des Induktionsstroms mit der Lenzschen Regel und der Energieerhaltung: Warum muss die induzierte Wirkung der verursachenden Flussänderung entgegenwirken?",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "induction",
+    "title": "Induktionsspannung beim Ein- und Ausfahren",
+    "questions": [
+      "Warum ist U_ind in der Mitte null?",
+      "Warum besitzen Ein- und Ausfahrpuls entgegengesetzte Vorzeichen?"
+    ]
+  },
+  "answers": [
+    "Warm-up: ja; nein, bei konstantem Fluss ist U_ind=0; Weber (Wb); Änderungen von B, wirksamer Fläche oder Orientierung; das Minuszeichen beschreibt die Lenzsche Gegenwirkung auf die Flussänderung.",
+    "Basis 1: 0,002 Wb.",
+    "Basis 2: 2,0 V.",
+    "Basis 3: 23 V.",
+    "Anwendung: Durch die Drehbewegung ändert sich der magnetische Fluss durch die Spule fortlaufend; dΦ/dt ist ungleich null und dadurch wird eine Spannung induziert.",
+    "Konzeptfrage: Die induzierte Wirkung hemmt die verursachende Flussänderung. Würde sie die Änderung verstärken, könnte ohne zusätzliche Arbeit immer mehr Energie entstehen; das widerspräche der Energieerhaltung."
+  ],
+  "exit_ticket": "Nenne die zwei Spezialfälle des Induktionsgesetzes: zeitlich veränderliches B bzw. zeitlich veränderliche wirksame Fläche.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

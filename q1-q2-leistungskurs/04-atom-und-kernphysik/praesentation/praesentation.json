@@ -66,5 +66,129 @@
     "Was bedeutet der Massendefekt physikalisch?",
     "Warum ist Kernfusion leichter Kerne und Kernspaltung sehr schwerer Kerne energetisch möglich?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Atom- und Kernphysik (LK)",
+    "foci": [
+      "Atomaufbau: Atommodelle, 1D-Potentialtopf, Energieniveauschema, Röntgenstrahlung",
+      "Ionisierende Strahlung: Arten, Nachweis, Eigenschaften, Absorption",
+      "Radioaktiver Zerfall: Kernaufbau, Zerfallsreihen, Zerfallsgesetz, Halbwertszeit, Altersbestimmung",
+      "Kernspaltung/-fusion: Bindungsenergien, Massendefekt, Kettenreaktion"
+    ],
+    "pages": "S. 52–54",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Energieniveau",
+      "definition": "Diskreter stationärer Zustand eines gebundenen Quantensystems.",
+      "unit": "eV bzw. J"
+    },
+    {
+      "name": "Zerfallskonstante λ",
+      "definition": "Zerfallswahrscheinlichkeit pro Zeitintervall im Exponentialmodell.",
+      "unit": "1/s"
+    },
+    {
+      "name": "Massendefekt Δm",
+      "definition": "Differenz zwischen Summe freier Nukleonenmassen und Kernmasse.",
+      "unit": "kg bzw. u"
+    },
+    {
+      "name": "Bindungsenergie E_B",
+      "definition": "Energie zum Zerlegen eines Kerns in freie Nukleonen.",
+      "unit": "J bzw. MeV"
+    }
+  ],
+  "warmup": [
+    "Aus welchen zwei Nukleonarten besteht ein Atomkern?",
+    "Nach einer Halbwertszeit: Welcher Anteil einer großen Ausgangsmenge instabiler Kerne ist im Mittel noch nicht zerfallen?",
+    "Was zeigt ein Linienspektrum über mögliche Energieniveaus eines Atoms?",
+    "Wie hängen Zerfallskonstante λ und Halbwertszeit T₁/₂ zusammen?",
+    "Warum kann ein Massendefekt als frei werdende oder aufzubringende Energie erscheinen?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Übergang besitzt ΔE=10,2 eV. Bestimme näherungsweise λ mit hc≈1240 eV·nm.",
+      "hint": ""
+    },
+    {
+      "q": "1600 Kerne: Wie viele bleiben nach drei Halbwertszeiten im Mittel?",
+      "hint": ""
+    },
+    {
+      "q": "Massendefekt Δm=0,010 u. Berechne E≈Δm·931,5 MeV/u.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Ein archäologischer Holzfund besitzt nur noch 25 % der Aktivität einer lebenden Probe. Für ¹⁴C gilt T₁/₂≈5730 a. Schätze das Alter des Fundes.",
+      "hint": ""
+    },
+    {
+      "q": "Erkläre qualitativ mit der Bindungsenergie pro Nukleon, warum sowohl Spaltung sehr schwerer als auch Fusion sehr leichter Kerne Energie freisetzen kann.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "decay",
+    "title": "Exponentialer radioaktiver Zerfall",
+    "xLabel": "t / T₁/₂",
+    "yLabel": "N/N₀",
+    "series": [
+      {
+        "name": "N/N₀",
+        "points": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0.5
+          ],
+          [
+            2,
+            0.25
+          ],
+          [
+            3,
+            0.125
+          ],
+          [
+            4,
+            0.0625
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Welcher Anteil bleibt nach 3 T₁/₂?",
+      "Warum ist die Kurve nicht linear?"
+    ]
+  },
+  "answers": [
+    "Warm-up: Protonen und Neutronen; die Hälfte; nur bestimmte Energiedifferenzen und damit diskrete Energieniveaus sind möglich; T₁/₂=ln(2)/λ; über E=Δm·c² entspricht eine Massendifferenz einer Energiedifferenz.",
+    "Basis 1: λ≈122 nm.",
+    "Basis 2: 200 Kerne.",
+    "Basis 3: ≈9,32 MeV.",
+    "Anwendung: 25 %=1/4 → zwei Halbwertszeiten → ca. 11 460 Jahre.",
+    "Transfer 2: Produkte liegen näher am Maximum der Bindungsenergie pro Nukleon; die Bindungsenergiedifferenz wird frei."
+  ],
+  "exit_ticket": "Formuliere den Zusammenhang zwischen Massendefekt, Bindungsenergie und Stabilität eines Kerns.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

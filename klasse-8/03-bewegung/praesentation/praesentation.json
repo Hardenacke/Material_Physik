@@ -61,5 +61,145 @@
     "Wie erkennt man die schnellere von zwei gleichförmigen Bewegungen im Diagramm?",
     "Wie rechnest du 72 km/h in m/s um?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 7: Bewegung, Kraft und Energie – Schwerpunkt Bewegung",
+    "foci": [
+      "Bewegungen: Geschwindigkeit und Beschleunigung",
+      "Mittlere und momentane Geschwindigkeit unterscheiden",
+      "Geschwindigkeiten bei gleichförmigen Bewegungen berechnen"
+    ],
+    "pages": "S. 36–37",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Strecke s",
+      "definition": "Zurückgelegter Weg.",
+      "unit": "m"
+    },
+    {
+      "name": "Zeit t",
+      "definition": "Dauer eines Vorgangs.",
+      "unit": "s"
+    },
+    {
+      "name": "Geschwindigkeit v",
+      "definition": "Zurückgelegte Strecke pro Zeit.",
+      "unit": "m/s"
+    },
+    {
+      "name": "Beschleunigung a",
+      "definition": "Änderung der Geschwindigkeit pro Zeit.",
+      "unit": "m/s²"
+    }
+  ],
+  "warmup": [
+    "Wann nennt man eine Bewegung gleichförmig?",
+    "Welche SI-Einheit hat die Geschwindigkeit?",
+    "Was bedeutet v = 5 m/s anschaulich?",
+    "Was zeigt die Steigung in einem s-t-Diagramm?",
+    "Kann ein Körper beschleunigt sein, obwohl seine Geschwindigkeit gerade 0 m/s beträgt?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Fahrrad fährt 100 m in 20 s. Berechne die mittlere Geschwindigkeit.",
+      "hint": "v = s/t"
+    },
+    {
+      "q": "Ein Zug fährt gleichförmig mit 15 m/s. Welche Strecke legt er in 40 s zurück?",
+      "hint": "s = v·t"
+    },
+    {
+      "q": "Ein Auto erhöht seine Geschwindigkeit in 5 s von 0 auf 20 m/s. Bestimme die mittlere Beschleunigung.",
+      "hint": "a = Δv/Δt"
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Im s-t-Diagramm liegen die Punkte (0 s|0 m) und (60 s|300 m) auf einer Geraden. Bestimme die Geschwindigkeit aus der Steigung.",
+      "hint": ""
+    },
+    {
+      "q": "Zwei Busse haben auf einer Fahrt dieselbe mittlere Geschwindigkeit. Muss ihr Bewegungsverlauf gleich sein? Begründe und nenne zwei unterschiedliche mögliche Verläufe.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "line_multi",
+    "title": "s-t-Diagramme zweier Bewegungen",
+    "xLabel": "t / s",
+    "yLabel": "s / m",
+    "series": [
+      {
+        "name": "A",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            50
+          ],
+          [
+            20,
+            100
+          ],
+          [
+            30,
+            150
+          ]
+        ]
+      },
+      {
+        "name": "B",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            30
+          ],
+          [
+            20,
+            60
+          ],
+          [
+            30,
+            90
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Welches Objekt ist schneller?",
+      "Bestimme die Geschwindigkeit von A aus der Steigung."
+    ]
+  },
+  "answers": [
+    "Warm-up: v konstant; m/s; 5 m in jeder Sekunde; Geschwindigkeit; ja, z. B. am Umkehrpunkt einer Bewegung.",
+    "Basis 1: 5 m/s.",
+    "Basis 2: 600 m.",
+    "Basis 3: 4 m/s².",
+    "Anwendung: 5 m/s.",
+    "Konzeptfrage: Nein. Die mittlere Geschwindigkeit hängt nur von Gesamtstrecke und Gesamtzeit ab; z. B. kann ein Bus gleichförmig fahren, während der andere schneller fährt, anhält und wieder anfährt."
+  ],
+  "exit_ticket": "Nenne ein Beispiel für eine Bewegung mit v ≠ 0, aber a = 0.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

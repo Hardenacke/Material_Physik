@@ -61,5 +61,99 @@
     "Warum kann Licht in einer Glasfaser geführt werden?",
     "Welche Strahlen nutzt du für eine Bildkonstruktion an der Sammellinse?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 5: Optische Instrumente",
+    "foci": [
+      "Spiegelungen: Reflexionsgesetz, Bildentstehung am Planspiegel",
+      "Lichtbrechung: Grenzflächen, Totalreflexion, Lichtleiter, Sammellinsen, Auge und optische Instrumente",
+      "Licht und Farben: Spektralzerlegung, Absorption, Farbmischung"
+    ],
+    "pages": "S. 33–34",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Einfallswinkel α",
+      "definition": "Winkel zwischen einfallendem Lichtstrahl und Lot.",
+      "unit": "°"
+    },
+    {
+      "name": "Brechung",
+      "definition": "Richtungsänderung beim Übergang zwischen optisch unterschiedlichen Medien.",
+      "unit": "–"
+    },
+    {
+      "name": "Brennweite f",
+      "definition": "Abstand zwischen Sammellinse und Brennpunkt.",
+      "unit": "m bzw. cm"
+    },
+    {
+      "name": "Totalreflexion",
+      "definition": "Vollständige Reflexion beim Übergang vom optisch dichteren ins dünnere Medium ab einem Grenzwinkel.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Trifft Licht auf einen Spiegel: Wird es reflektiert, absorbiert oder neu erzeugt?",
+    "Werden Einfalls- und Reflexionswinkel zum Lot oder zur Spiegeloberfläche gemessen?",
+    "Wie lautet das Reflexionsgesetz?",
+    "Was bewirkt eine Sammellinse mit achsenparallelen Lichtstrahlen?",
+    "Welche drei Grundfarben nutzt die additive Farbmischung?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Lichtstrahl trifft mit 35° zum Lot auf einen Spiegel. Bestimme den Reflexionswinkel.",
+      "hint": ""
+    },
+    {
+      "q": "Licht tritt von Luft in Glas ein. Wird der Strahl zum Lot hin oder vom Lot weg gebrochen?",
+      "hint": ""
+    },
+    {
+      "q": "Eine Sammellinse hat f = 10 cm. Wo liegt der Brennpunkt relativ zur Linse?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Erkläre, warum Licht in einem Glasfaserkabel auch um Kurven geführt werden kann.",
+      "hint": ""
+    },
+    {
+      "q": "Vergleiche Auge und Kamera: Nenne je ein Bauteilpaar mit ähnlicher Funktion und einen wichtigen Unterschied.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "lens",
+    "title": "Sammellinse – Hauptstrahlen",
+    "questions": [
+      "Welcher Strahl wird durch den Brennpunkt gebrochen?",
+      "Wo entsteht bei einem Gegenstand außerhalb der Brennweite ein reelles Bild?"
+    ]
+  },
+  "answers": [
+    "Warm-up: reflektiert; zum Lot; Einfallswinkel = Reflexionswinkel; achsenparallele Strahlen werden im Brennpunkt gesammelt; Rot, Grün und Blau.",
+    "Basis 1: 35°.",
+    "Basis 2: zum Lot hin.",
+    "Basis 3: 10 cm hinter der Linse (für einfallendes Parallellicht).",
+    "Transfer 1: wiederholte Totalreflexion an der Grenzfläche hält Licht im Kern.",
+    "Transfer 2: Linse ↔ Augenlinse/Objektiv, Netzhaut ↔ Sensor; Auge fokussiert u. a. durch Akkommodation."
+  ],
+  "exit_ticket": "Skizziere einen einfallenden und reflektierten Lichtstrahl mit Lot und beiden Winkeln.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

@@ -66,5 +66,98 @@
     "Was unterscheidet Eigenfrequenz und Anregungsfrequenz?",
     "Welche Phasendifferenz führt bei zwei gleich starken Wellen zur Auslöschung?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Schwingende Systeme und Wellen (LK)",
+    "foci": [
+      "Schwingungen/Wellen: harmonische Schwingungen; Huygens, Reflexion, Brechung, Beugung; Polarisation, Superposition; Michelson-Interferometer",
+      "Schwingende Systeme: Feder-/Fadenpendel, Resonanz; Schwingkreis, Hertzscher Dipol"
+    ],
+    "pages": "S. 47–49",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Eigenfrequenz f₀",
+      "definition": "Charakteristische Frequenz eines schwingungsfähigen Systems.",
+      "unit": "Hz"
+    },
+    {
+      "name": "Resonanz",
+      "definition": "Starke Antwort bei Anregung nahe der Eigenfrequenz.",
+      "unit": "–"
+    },
+    {
+      "name": "Kreisfrequenz ω",
+      "definition": "ω = 2πf.",
+      "unit": "rad/s"
+    },
+    {
+      "name": "Wellenlänge λ",
+      "definition": "Räumliche Periodenlänge einer Welle.",
+      "unit": "m"
+    }
+  ],
+  "warmup": [
+    "Eine Schaukel bewegt sich regelmäßig hin und her. Ist das eine Schwingung?",
+    "Was passiert oft, wenn man eine Schaukel immer im passenden Rhythmus anschubst?",
+    "Wie hängen Periodendauer T und Frequenz f zusammen?",
+    "Welche zwei mechanischen Energieformen wechseln sich beim Federpendel ab?",
+    "Was ist die zentrale Gemeinsamkeit von Federpendel und LC-Schwingkreis?"
+  ],
+  "basis": [
+    {
+      "q": "Federpendel: m=1,0 kg, D=100 N/m. Bestimme T = 2π√(m/D).",
+      "hint": ""
+    },
+    {
+      "q": "Fadenpendel: l=1,0 m, g≈10 m/s². Bestimme T ≈ 2π√(l/g).",
+      "hint": ""
+    },
+    {
+      "q": "Eine Welle hat λ=0,50 m und f=4,0 Hz. Bestimme v.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Eine Brücke wird periodisch angeregt. Welche zwei Maßnahmen können eine Resonanzkatastrophe vermeiden? Begründe physikalisch.",
+      "hint": ""
+    },
+    {
+      "q": "Warum wird die Resonanzkurve bei stärkerer Dämpfung niedriger und breiter? Erkläre den Zusammenhang energetisch.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "resonance",
+    "title": "Resonanzkurve",
+    "questions": [
+      "Wo liegt die Eigenfrequenz?",
+      "Wie verändert stärkere Dämpfung Höhe und Breite der Kurve?"
+    ]
+  },
+  "answers": [
+    "Warm-up: ja; die Amplitude kann durch Resonanz stark wachsen; f=1/T; Federenergie und Bewegungsenergie; in beiden Systemen pendelt Energie periodisch zwischen zwei Speicherformen.",
+    "Basis 1: T≈0,63 s.",
+    "Basis 2: T≈1,99 s.",
+    "Basis 3: 2,0 m/s.",
+    "Anwendung: Dämpfung erhöhen und/oder Eigenfrequenz bzw. Anregungsfrequenz so verändern, dass keine starke Resonanz entsteht.",
+    "Konzeptfrage: Stärkere Dämpfung entzieht dem System pro Schwingung mehr mechanische Energie. Dadurch sinkt die maximale Amplitude; zugleich reagiert das System über einen breiteren Frequenzbereich weniger scharf selektiv."
+  ],
+  "exit_ticket": "Ordne Energieformen zu: Federpendel ↔ LC-Schwingkreis.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

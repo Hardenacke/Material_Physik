@@ -61,5 +61,100 @@
     "Nenne je einen Vorteil von Reihen- und Parallelschaltungen.",
     "Wie kann man ein Magnetfeld sichtbar bzw. untersuchbar machen?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 2: Elektrischer Strom und Magnetismus",
+    "foci": [
+      "Stromkreise und Schaltungen: Spannungsquellen, Leiter/Nichtleiter, verzweigte Stromkreise, Elektronen in Leitern",
+      "Wirkungen des elektrischen Stroms: Wärme, Magnetismus, Gefahren",
+      "Magnetische Kräfte und Felder: Pole, Feldlinienmodell, Erdmagnetfeld",
+      "Magnetisierung: magnetisierbare Stoffe, Modell der Elementarmagnete"
+    ],
+    "pages": "S. 24–26",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Stromkreis",
+      "definition": "Geschlossener Weg aus Quelle, Leitungen und Verbrauchern.",
+      "unit": "–"
+    },
+    {
+      "name": "Leiter",
+      "definition": "Stoff, in dem sich elektrische Ladungsträger gut bewegen können.",
+      "unit": "–"
+    },
+    {
+      "name": "Parallelschaltung",
+      "definition": "Mehrere Stromwege liegen zwischen denselben Knoten.",
+      "unit": "–"
+    },
+    {
+      "name": "Magnetfeld",
+      "definition": "Raumbereich, in dem magnetische Kräfte wirken können.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Wann kann in einem einfachen Stromkreis Strom fließen?",
+    "Nenne einen Leiter und einen Nichtleiter.",
+    "Was ist der wichtigste Unterschied zwischen Reihen- und Parallelschaltung?",
+    "Nenne zwei Wirkungen des elektrischen Stroms.",
+    "Welche Magnetpole ziehen sich an?"
+  ],
+  "basis": [
+    {
+      "q": "Eine Lampe ist mit Batterie und Kabeln verbunden, aber ein Schalter ist geöffnet. Leuchtet sie? Begründe.",
+      "hint": ""
+    },
+    {
+      "q": "Ordne zu: Kupfer, Kunststoff, Aluminium, Glas – Leiter oder Nichtleiter?",
+      "hint": ""
+    },
+    {
+      "q": "Zwei Lampen sind parallel geschaltet. Eine Lampe wird herausgeschraubt. Was geschieht mit der anderen?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Warum dürfen beschädigte Kabel mit freiliegendem Metall nicht weiter benutzt werden? Nenne Wirkung und Schutzmaßnahme.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Nagel wird von einer stromdurchflossenen Spule angezogen. Erkläre die Beobachtung mit der magnetischen Wirkung des Stroms.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "circuit",
+    "title": "Verzweigter Stromkreis",
+    "questions": [
+      "Markiere gedanklich die beiden Stromwege.",
+      "Was passiert mit Lampe L2, wenn nur der Zweig mit L1 geöffnet wird?"
+    ]
+  },
+  "answers": [
+    "Warm-up: nur im geschlossenen Stromkreis; z. B. Kupfer/Kunststoff; ein vs. mehrere Stromwege; z. B. Wärme und Magnetismus; Nord–Süd.",
+    "Basis 1: Nein, der Stromkreis ist unterbrochen.",
+    "Basis 2: Kupfer/Aluminium Leiter; Kunststoff/Glas Nichtleiter.",
+    "Basis 3: Die andere Lampe bleibt an.",
+    "Transfer 1: Stromschlag/Kurzschluss möglich; nicht berühren, Gerät spannungsfrei machen/ersetzen.",
+    "Transfer 2: Strom erzeugt ein Magnetfeld; der Eisenkern wird magnetisiert."
+  ],
+  "exit_ticket": "Skizziere aus dem Kopf eine Batterie und zwei parallel geschaltete Lampen.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft – Kriterien bereits erfüllt",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

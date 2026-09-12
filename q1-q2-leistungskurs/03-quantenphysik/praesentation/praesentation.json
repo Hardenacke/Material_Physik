@@ -66,5 +66,98 @@
     "Wie verändert sich die de-Broglie-Wellenlänge bei größerem Impuls?",
     "Warum beschreibt die Quantenphysik Messergebnisse häufig probabilistisch?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Quantenphysik (LK)",
+    "foci": [
+      "Teilchenaspekte von Photonen: Energiequantelung, Photoeffekt, Bremsstrahlung",
+      "Photonen und Elektronen als Quantenobjekte: Doppelspalt, Bragg, Elektronenbeugung; Wahrscheinlichkeitsinterpretation, Delayed Choice, Kopenhagener Deutung"
+    ],
+    "pages": "S. 50–51",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Photon",
+      "definition": "Quant elektromagnetischer Strahlung mit E=hf und p=h/λ.",
+      "unit": "–"
+    },
+    {
+      "name": "de-Broglie-Wellenlänge",
+      "definition": "λ=h/p für Materieteilchen.",
+      "unit": "m"
+    },
+    {
+      "name": "Wahrscheinlichkeitsdichte |ψ|²",
+      "definition": "Maß für die räumliche Nachweiswahrscheinlichkeit.",
+      "unit": "–"
+    },
+    {
+      "name": "Unbestimmtheit",
+      "definition": "Bestimmte Größenpaare können nicht gleichzeitig beliebig scharf präpariert werden.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Welche Farbe hat die höhere Frequenz: rotes oder blaues Licht?",
+    "Werden Elektronen auf einem Schirm als einzelne lokalisierte Treffer oder als verwaschene Welle registriert?",
+    "Welche Gleichung verknüpft Photonenenergie und Frequenz?",
+    "Welche Beziehung verknüpft Teilchenimpuls und de-Broglie-Wellenlänge?",
+    "Was bedeutet |ψ|² in der Kopenhagener Deutung?"
+  ],
+  "basis": [
+    {
+      "q": "Photonenergie 3,0 eV, Austrittsarbeit 2,0 eV: Berechne E_kin,max.",
+      "hint": ""
+    },
+    {
+      "q": "p=6,63·10⁻²⁴ kg·m/s. Berechne λ=h/p.",
+      "hint": ""
+    },
+    {
+      "q": "Bragg: d=0,20 nm, θ=30°, n=1. Bestimme λ aus 2d·sinθ=nλ.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Ein Display sendet blaues und rotes Licht aus. Begründe mit E=h·f und c=λ·f, warum blaue Photonen energiereicher und kurzwelliger sind.",
+      "hint": ""
+    },
+    {
+      "q": "Erkläre, warum beim Delayed-Choice-Experiment die Messanordnung bestimmt, welche komplementäre Eigenschaft zugänglich ist, ohne rückwirkende klassische Signalübertragung anzunehmen.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "photoeffect",
+    "title": "Photoeffekt – lineare Auswertung",
+    "questions": [
+      "Wie erkennt man die Grenzfrequenz?",
+      "Wie lässt sich h aus einer geeigneten linearen Darstellung bestimmen?"
+    ]
+  },
+  "answers": [
+    "Warm-up: blau; als einzelne Treffer; E=h·f; λ=h/p; |ψ|² beschreibt die Wahrscheinlichkeitsdichte für ein Messergebnis bzw. einen Nachweisort.",
+    "Basis 1: 1,0 eV.",
+    "Basis 2: 1,0·10⁻¹⁰ m.",
+    "Basis 3: 0,20 nm.",
+    "Anwendung: Blaues Licht hat eine höhere Frequenz und daher E=h·f eine größere Photonenenergie; wegen c=λ·f besitzt es zugleich die kleinere Wellenlänge.",
+    "Konzeptfrage: Die Versuchsanordnung legt fest, welche Observable sinnvoll bestimmt wird. Das ist eine Aussage über Messkontext und Komplementarität, nicht über eine klassische rückwärts laufende Ursache oder Signalübertragung."
+  ],
+  "exit_ticket": "Nenne zwei Grenzen klassischer Anschauungsbegriffe bei Quantenobjekten.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

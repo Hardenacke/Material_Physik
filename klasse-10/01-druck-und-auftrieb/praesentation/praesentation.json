@@ -61,5 +61,127 @@
     "Wovon hängt der Schweredruck in einer Flüssigkeit ab?",
     "Wann schwebt ein Körper in einer Flüssigkeit?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 8: Druck und Auftrieb",
+    "foci": [
+      "Druck in Flüssigkeiten und Gasen: Dichte, Schweredruck, Auftrieb, archimedisches Prinzip, Luftdruck",
+      "Druckmessung: Druck und Kraftwirkungen"
+    ],
+    "pages": "S. 38–39",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Dichte ρ",
+      "definition": "Masse pro Volumen; Stoffeigenschaft.",
+      "unit": "kg/m³ bzw. g/cm³"
+    },
+    {
+      "name": "Druck p",
+      "definition": "Kraft pro Fläche.",
+      "unit": "Pa = N/m²"
+    },
+    {
+      "name": "Schweredruck p_h",
+      "definition": "Druck durch das Gewicht einer Flüssigkeitssäule.",
+      "unit": "Pa"
+    },
+    {
+      "name": "Auftriebskraft F_A",
+      "definition": "Resultierende Kraft durch Druckunterschiede; entspricht dem Gewicht des verdrängten Mediums.",
+      "unit": "N"
+    }
+  ],
+  "warmup": [
+    "Wie ist die Dichte definiert?",
+    "Welche SI-Einheit hat die Dichte?",
+    "Wie ist der Druck definiert und welche Einheit hat er?",
+    "Wovon hängt der Schweredruck in einer Flüssigkeit ab?",
+    "Was besagt das archimedische Prinzip?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Körper hat m = 600 g und V = 200 cm³. Berechne seine Dichte.",
+      "hint": "ρ = m/V"
+    },
+    {
+      "q": "Eine Kraft von 500 N wirkt auf A = 0,020 m². Berechne den Druck.",
+      "hint": "p = F/A"
+    },
+    {
+      "q": "Berechne den Schweredruck in 2,0 m Wassertiefe mit ρ = 1000 kg/m³ und g ≈ 10 N/kg.",
+      "hint": "p_h = ρ·g·h"
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Ein vollständig eingetauchter Körper verdrängt 2,0 L Wasser. Berechne die Auftriebskraft mit g ≈ 10 N/kg.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Körper hat eine mittlere Dichte von 800 kg/m³ und liegt in Wasser. Sage voraus, ob er steigt, sinkt oder schwebt, und begründe.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "line",
+    "title": "Schweredruck in Wasser",
+    "xLabel": "Tiefe h / m",
+    "yLabel": "p_h / kPa",
+    "series": [
+      {
+        "name": "Wasser",
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            20
+          ],
+          [
+            3,
+            30
+          ],
+          [
+            4,
+            40
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Welcher Zusammenhang ist im Diagramm erkennbar?",
+      "Lies den Schweredruck bei 3 m ab."
+    ]
+  },
+  "answers": [
+    "Warm-up: ρ = m/V; kg/m³; p = F/A, Pa; Dichte, g und Tiefe; F_A entspricht der Gewichtskraft des verdrängten Mediums.",
+    "Basis 1: 3,0 g/cm³ = 3000 kg/m³.",
+    "Basis 2: 25 000 Pa = 25 kPa.",
+    "Basis 3: 20 000 Pa = 20 kPa.",
+    "Transfer 1: V = 0,002 m³ → F_A = 20 N.",
+    "Transfer 2: Er steigt/schwimmt auf, weil seine mittlere Dichte kleiner als die von Wasser ist."
+  ],
+  "exit_ticket": "Warum erzeugt dieselbe Gewichtskraft mit einem Stöckelschuh höheren Druck als mit einem Schneeschuh?",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft – Kriterien bereits erfüllt",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

@@ -61,5 +61,98 @@
     "Wie entsteht ein Schatten?",
     "Was unterscheidet Reflexion von Streuung?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 4: Licht",
+    "foci": [
+      "Ausbreitung von Licht: Lichtquellen und Lichtempfänger, Modell des Lichtstrahls, Abbildungen",
+      "Sichtbarkeit und Erscheinung: Streuung, Reflexion, Transmission, Absorption, Schattenbildung"
+    ],
+    "pages": "S. 28–29",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Lichtquelle",
+      "definition": "Körper oder Gerät, das selbst Licht aussendet.",
+      "unit": "–"
+    },
+    {
+      "name": "Lichtstrahl",
+      "definition": "Modelllinie für die Ausbreitungsrichtung des Lichts.",
+      "unit": "–"
+    },
+    {
+      "name": "Reflexion",
+      "definition": "Licht wird an einer Oberfläche zurückgeworfen.",
+      "unit": "–"
+    },
+    {
+      "name": "Absorption",
+      "definition": "Lichtenergie wird von Materie aufgenommen und meist in andere Energieformen umgewandelt.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Ist der Mond eine Lichtquelle? Begründe.",
+    "Breitet sich Licht in Luft normalerweise geradlinig oder in Kurven aus?",
+    "Wie gelangt Licht von einem nicht selbst leuchtenden Buch in unser Auge?",
+    "Was ist ein Schatten?",
+    "Nenne je ein Beispiel für Reflexion, Transmission und Absorption."
+  ],
+  "basis": [
+    {
+      "q": "Ordne zu: Sonne, Spiegel, LED, Mond – Lichtquelle oder beleuchteter Gegenstand?",
+      "hint": ""
+    },
+    {
+      "q": "Ein undurchsichtiger Gegenstand steht zwischen Lampe und Schirm. Wo entsteht der Schatten? Erkläre mit Lichtstrahlen.",
+      "hint": ""
+    },
+    {
+      "q": "Warum ist ein weißes Blatt aus vielen Richtungen gut sichtbar, obwohl es nicht selbst leuchtet?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Bei einer Lochkamera wird der Abstand zwischen Loch und Schirm vergrößert. Wie verändert sich das Bild ungefähr? Begründe mit dem Strahlenmodell.",
+      "hint": ""
+    },
+    {
+      "q": "Warum sind helle Reflektoren an Fahrrädern nachts nützlich, obwohl sie keine eigene Lampe besitzen?",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "rays",
+    "title": "Schatten mit einer punktförmigen Lichtquelle",
+    "questions": [
+      "Welche beiden Randstrahlen begrenzen den Schatten?",
+      "Wie verändert sich der Schatten, wenn der Gegenstand näher an die Lampe rückt?"
+    ]
+  },
+  "answers": [
+    "Warm-up: nein, der Mond reflektiert Sonnenlicht; in Luft näherungsweise geradlinig; Licht von einer Quelle trifft das Buch, wird reflektiert und gelangt ins Auge; ein lichtarmer Bereich hinter einem undurchsichtigen Gegenstand; z. B. Spiegel – Fensterscheibe – schwarzer Stoff.",
+    "Basis 1: Sonne/LED Lichtquellen; Spiegel/Mond beleuchtete Gegenstände.",
+    "Basis 2: hinter dem Gegenstand auf dem Schirm, begrenzt durch Randstrahlen.",
+    "Basis 3: Das Blatt streut einfallendes Licht in viele Richtungen.",
+    "Transfer 1: Bild wird größer und lichtschwächer; Strahlen fächern weiter auf.",
+    "Transfer 2: Sie reflektieren Licht von Scheinwerfern gezielt zurück."
+  ],
+  "exit_ticket": "Erkläre Sehen mit genau drei Stationen: Quelle – Gegenstand – Auge.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

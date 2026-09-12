@@ -66,5 +66,99 @@
     "Wann beschreibt die Lorentzkraft eine Kreisbahn?",
     "Welche Rolle spielt Energieerhaltung bei der Lenzschen Regel?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Ladungen, Felder und Induktion (LK)",
+    "foci": [
+      "Elektrische Ladungen/Felder: E, Coulomb, Potential, Spannung, Kondensator/Kapazität; magnetische Felder/B",
+      "Bewegungen in Feldern: Längs-/Querfeld, Lorentzkraft, gekreuzte E- und B-Felder",
+      "Elektromagnetische Induktion: Φ, Induktionsgesetz, Lenz, Selbstinduktion, Induktivität"
+    ],
+    "pages": "S. 45–47",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Elektrische Feldstärke E",
+      "definition": "Kraft pro Probeladung; im Plattenkondensator E≈U/d.",
+      "unit": "V/m"
+    },
+    {
+      "name": "Potential φ",
+      "definition": "Potentielle elektrische Energie pro Ladung.",
+      "unit": "V"
+    },
+    {
+      "name": "Kapazität C",
+      "definition": "Q/U eines Kondensators.",
+      "unit": "F"
+    },
+    {
+      "name": "Induktivität L",
+      "definition": "Kenngröße für Selbstinduktion einer Spule.",
+      "unit": "H"
+    }
+  ],
+  "warmup": [
+    "Ein geladener Luftballon zieht Papierschnipsel an: Ist das vor allem eine elektrische oder magnetische Wirkung?",
+    "Eine stromdurchflossene Spule zieht einen Eisenkern an: Ist das vor allem eine elektrische oder magnetische Wirkung?",
+    "Welche Einheit hat die elektrische Spannung?",
+    "Wirkt auf eine ruhende Ladung in einem reinen Magnetfeld eine Lorentzkraft?",
+    "Was beobachtet man, wenn sich der magnetische Fluss durch eine Spule ändert?"
+  ],
+  "basis": [
+    {
+      "q": "q₁=q₂=1,0 µC, r=0,10 m. Berechne F_C mit k≈9,0·10⁹ N·m²/C².",
+      "hint": ""
+    },
+    {
+      "q": "Plattenkondensator: U=200 V, d=0,020 m. Berechne E.",
+      "hint": ""
+    },
+    {
+      "q": "Q=2,0 µC bei U=10 V. Berechne C.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Kabelloses Laden: Eine Sendespule erzeugt ein zeitlich veränderliches Magnetfeld. Erkläre, warum in der Empfängerspule eine Spannung entsteht und wovon ihr Betrag qualitativ abhängt.",
+      "hint": ""
+    },
+    {
+      "q": "Warum muss der induzierte Strom nach der Lenzschen Regel der verursachenden Flussänderung entgegenwirken? Begründe mit Energieerhaltung.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "field",
+    "title": "Gekreuzte elektrische und magnetische Felder",
+    "questions": [
+      "Wann heben sich elektrische und magnetische Kraft auf?",
+      "Welche Ladungsvorzeichen würden die Kraftrichtungen vertauschen?"
+    ]
+  },
+  "answers": [
+    "Warm-up: elektrische Wirkung; magnetische Wirkung; Volt (V); nein; eine Induktionsspannung kann auftreten.",
+    "Basis 1: 0,90 N.",
+    "Basis 2: 1,0·10⁴ V/m.",
+    "Basis 3: 2,0·10⁻⁷ F = 0,20 µF.",
+    "Anwendung: Das zeitlich veränderliche Magnetfeld verändert den magnetischen Fluss durch die Empfängerspule; U_ind wächst qualitativ mit Windungszahl und Änderungsrate des Flusses.",
+    "Konzeptfrage: Die induzierte Wirkung muss die verursachende Änderung hemmen. Eine Verstärkung ohne zusätzliche Arbeit würde eine selbsttätige Energiezunahme ermöglichen und der Energieerhaltung widersprechen."
+  ],
+  "exit_ticket": "Formuliere die Bedingung für geradlinigen Durchgang im Wien-Filter sowohl als Kräfte- als auch als Geschwindigkeitsgleichung.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

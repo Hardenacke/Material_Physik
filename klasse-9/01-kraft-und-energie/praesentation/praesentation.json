@@ -61,5 +61,100 @@
     "Welche Energieumwandlungen treten bei einer fallenden Kugel auf?",
     "Was bedeutet eine Leistung von 100 W?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 7: Bewegung, Kraft und Energie – Schwerpunkt Kraft/Energie",
+    "foci": [
+      "Kraft: Bewegungsänderung, Verformung, Wechselwirkungsprinzip, Gewichtskraft/Masse, Kräfteaddition, Reibung",
+      "Goldene Regel der Mechanik: einfache Maschinen",
+      "Energieformen: Lage-, Bewegungs-, Spannenergie",
+      "Energieumwandlung: Energieerhaltung und Leistung"
+    ],
+    "pages": "S. 36–37",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Kraft F",
+      "definition": "Wechselwirkung, die Bewegungszustand oder Form ändern kann.",
+      "unit": "N"
+    },
+    {
+      "name": "Gewichtskraft F_G",
+      "definition": "Gravitationskraft auf einen Körper nahe der Erdoberfläche.",
+      "unit": "N"
+    },
+    {
+      "name": "Energie E",
+      "definition": "Erhaltungsgröße; Fähigkeit eines Systems, Wirkungen hervorzurufen.",
+      "unit": "J"
+    },
+    {
+      "name": "Leistung P",
+      "definition": "Umgesetzte Energie bzw. verrichtete Arbeit pro Zeit.",
+      "unit": "W"
+    }
+  ],
+  "warmup": [
+    "Ein Buch liegt ruhig auf dem Tisch. Wirken trotzdem Kräfte auf das Buch?",
+    "In welcher Einheit wird eine Kraft gemessen?",
+    "Was ist der Unterschied zwischen Masse und Gewichtskraft?",
+    "Was bedeutet Kräftegleichgewicht?",
+    "Warum spart eine ideale Rampe Kraft, aber keine Arbeit?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Körper hat m = 2 kg. Berechne seine Gewichtskraft mit g ≈ 10 N/kg.",
+      "hint": "F_G = m·g"
+    },
+    {
+      "q": "Eine 5-kg-Kiste wird 2 m angehoben. Berechne die Zunahme der Lageenergie.",
+      "hint": "E_pot = m·g·h"
+    },
+    {
+      "q": "Eine Maschine setzt in 3 s 600 J Energie um. Berechne die Leistung.",
+      "hint": "P = E/t"
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Eine ideale Rampe ist viermal so lang wie die direkte Hubhöhe. Wie verändert sich die nötige Kraft gegenüber direktem Heben? Begründe mit der Goldenen Regel.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Wagen rollt einen Hügel hinab. Beschreibe die Energieumwandlung und erkläre, warum reale Wagen nicht wieder exakt dieselbe Höhe erreichen.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "energy_bars",
+    "title": "Energieumwandlung bei einer Abfahrt",
+    "questions": [
+      "Welche Energieform nimmt beim Abwärtsfahren ab?",
+      "Wo taucht bei realer Reibung ein Teil der mechanischen Energie auf?"
+    ]
+  },
+  "answers": [
+    "Warm-up: ja, Gewichtskraft und Stützkraft wirken; Newton (N); Masse in kg ist ortsunabhängig, Gewichtskraft ist eine Kraft in N; bei Kräftegleichgewicht ist die resultierende Kraft 0; kleinere Kraft wird durch einen längeren Weg ausgeglichen.",
+    "Basis 1: 20 N.",
+    "Basis 2: 100 J.",
+    "Basis 3: 200 W.",
+    "Transfer 1: ideal nur ein Viertel der Kraft, dafür vierfacher Weg.",
+    "Transfer 2: Lage → Bewegung; durch Reibung wird mechanische Energie u. a. in thermische Energie umgewandelt."
+  ],
+  "exit_ticket": "Erkläre, warum Energie „erhalten“ bleibt, aber dennoch „entwertet“ werden kann.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

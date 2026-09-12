@@ -66,5 +66,98 @@
     "Warum ändert ein homogenes Magnetfeld bei senkrechtem Eintritt nur die Bewegungsrichtung?",
     "Welche Wellenphänomene lassen sich mit dem Huygensschen Prinzip erklären?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Klassische Wellen und geladene Teilchen in Feldern (GK)",
+    "foci": [
+      "Klassische Wellen: Federpendel, harmonische Schwingungen/Wellen; Huygens; Reflexion, Brechung, Beugung; Superposition, Polarisation",
+      "Teilchen in Feldern: elektrische/magnetische Felder; E, U, B; Bahnformen geladener Teilchen in homogenen Feldern"
+    ],
+    "pages": "S. 35–38",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Frequenz f",
+      "definition": "Anzahl der Schwingungen pro Zeit.",
+      "unit": "Hz"
+    },
+    {
+      "name": "Wellenlänge λ",
+      "definition": "Räumliche Periodenlänge einer Welle.",
+      "unit": "m"
+    },
+    {
+      "name": "Elektrische Feldstärke E",
+      "definition": "Kraft pro positiver Probeladung.",
+      "unit": "N/C = V/m"
+    },
+    {
+      "name": "Magnetische Flussdichte B",
+      "definition": "Kenngröße der magnetischen Feldwirkung.",
+      "unit": "T"
+    }
+  ],
+  "warmup": [
+    "Ein Ton wird höher. Wird seine Frequenz größer oder kleiner?",
+    "Ein Ton wird lauter. Welche Wellengröße wird dabei größer?",
+    "Welche Einheit hat die Frequenz?",
+    "Wie hängen Ausbreitungsgeschwindigkeit v, Wellenlänge λ und Frequenz f zusammen?",
+    "Wann ist die Lorentzkraft auf eine bewegte Ladung im Magnetfeld null?"
+  ],
+  "basis": [
+    {
+      "q": "Schall: v = 340 m/s, f = 170 Hz. Berechne λ.",
+      "hint": ""
+    },
+    {
+      "q": "Auf q = 0,004 C wirkt F = 0,020 N. Bestimme E.",
+      "hint": ""
+    },
+    {
+      "q": "q = 2·10⁻⁶ C, v = 100 m/s, B = 0,50 T, v ⟂ B. Berechne F_L.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Noise-Cancelling-Kopfhörer erzeugen Gegenschall. Erkläre mit dem Superpositionsprinzip, welche Phasenlage zur möglichst starken Abschwächung nötig ist.",
+      "hint": ""
+    },
+    {
+      "q": "Ein positiv geladenes Teilchen fliegt senkrecht in ein homogenes Magnetfeld. Begründe die Kreisbahn über die Richtung von Lorentzkraft und Geschwindigkeit.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "waves",
+    "title": "Wellen – Frequenz und Wellenlänge",
+    "questions": [
+      "Welche Kurve besitzt die kürzere Wellenlänge?",
+      "Wie ändert sich λ bei gleicher Ausbreitungsgeschwindigkeit, wenn f verdoppelt wird?"
+    ]
+  },
+  "answers": [
+    "Warm-up: größer; die Amplitude; Hertz (Hz); v=λ·f; bei v parallel/antiparallel zu B oder bei v=0.",
+    "Basis 1: 2,0 m.",
+    "Basis 2: 5 N/C.",
+    "Basis 3: 1,0·10⁻⁴ N.",
+    "Anwendung: Für ideale Auslöschung sind die beiden Schallwellen am Ohr näherungsweise gegenphasig (Phasenverschiebung π bzw. 180°), sodass sich ihre Druckschwankungen überlagern und abschwächen.",
+    "Konzeptfrage: Die Lorentzkraft steht bei v ⟂ B stets senkrecht auf der momentanen Geschwindigkeit. Sie ändert daher die Richtung, nicht den Betrag von v, und wirkt als Zentripetalkraft."
+  ],
+  "exit_ticket": "Nenne einen experimentellen Unterschied zwischen Beugung und Polarisation.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

@@ -66,5 +66,128 @@
     "Wann darfst du ΣF = m·a direkt anwenden?",
     "Welche Systemgrenze ist bei einer Impulsbilanz sinnvoll?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Grundlagen der Mechanik (EF)",
+    "foci": [
+      "Kinematik: gleichförmige/gleichmäßig beschleunigte Bewegung; freier Fall; waagerechter Wurf; vektorielle Größen",
+      "Dynamik: Newtonsche Gesetze; beschleunigende Kräfte; Kräftegleichgewicht; Reibungskräfte",
+      "Erhaltungssätze: Impuls; mechanische Energie; Energiebilanzen; Stoßvorgänge"
+    ],
+    "pages": "S. 26–27",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Geschwindigkeit v",
+      "definition": "Zeitliche Änderung des Ortes.",
+      "unit": "m/s"
+    },
+    {
+      "name": "Beschleunigung a",
+      "definition": "Zeitliche Änderung der Geschwindigkeit.",
+      "unit": "m/s²"
+    },
+    {
+      "name": "Kraft F",
+      "definition": "Ursache einer Beschleunigung im Newtonschen Modell.",
+      "unit": "N"
+    },
+    {
+      "name": "Impuls p",
+      "definition": "Produkt aus Masse und Geschwindigkeit; vektorielle Erhaltungsgröße.",
+      "unit": "kg·m/s"
+    }
+  ],
+  "warmup": [
+    "Ein Auto fährt 10 s lang mit konstantem Tempo geradeaus. Ist seine Beschleunigung 0 oder ungleich 0?",
+    "Ein Fahrrad wird schneller. Ist seine Beschleunigung 0 oder ungleich 0?",
+    "Welche SI-Einheit hat die Geschwindigkeit?",
+    "Was zeigt die Steigung in einem s-t-Diagramm?",
+    "Was bedeutet eine resultierende Kraft von 0 N für die Bewegung?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Fahrrad legt 120 m in 10 s gleichförmig zurück. Berechne v.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Auto erhöht seine Geschwindigkeit in 3 s von 5 m/s auf 20 m/s. Berechne a.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Einkaufswagen mit m = 2 kg wird mit der resultierenden Kraft F = 10 N beschleunigt. Berechne a.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Ein Ball verlässt waagerecht eine 5,0 m hohe Plattform mit v_x = 8,0 m/s; g ≈ 10 m/s². Bestimme Fallzeit und Wurfweite.",
+      "hint": ""
+    },
+    {
+      "q": "Bei einem vollständig unelastischen Stoß bleibt der Gesamtimpuls eines abgeschlossenen Systems erhalten, die kinetische Energie aber nicht. Erkläre, wohin ein Teil der kinetischen Energie geht.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "line",
+    "title": "v-t-Diagramm einer gleichmäßig beschleunigten Bewegung",
+    "xLabel": "t / s",
+    "yLabel": "v / m/s",
+    "series": [
+      {
+        "name": "v(t)",
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            4,
+            14
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Bestimme a aus der Steigung.",
+      "Welche Strecke entspricht der Fläche unter v(t) zwischen 0 und 4 s?"
+    ]
+  },
+  "answers": [
+    "Warm-up: a=0; a≠0; m/s; die Steigung ist die Geschwindigkeit v; bei ΣF=0 bleibt der Bewegungszustand unverändert (Ruhe oder gleichförmig-geradlinige Bewegung).",
+    "Basis 1: 12 m/s.",
+    "Basis 2: 5 m/s².",
+    "Basis 3: 5 m/s².",
+    "Anwendung: t = 1,0 s; x = 8,0 m.",
+    "Konzeptfrage: Ein Teil der kinetischen Energie wird z. B. in Verformungsenergie, thermische Energie und Schall umgewandelt; der Gesamtimpuls bleibt im abgeschlossenen System erhalten."
+  ],
+  "exit_ticket": "Erkläre, warum Energieerhaltung und Impulserhaltung bei einem Stoß unterschiedliche Aussagen sind.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

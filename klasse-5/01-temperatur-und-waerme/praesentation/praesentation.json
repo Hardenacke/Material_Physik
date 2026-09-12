@@ -61,5 +61,132 @@
     "Welche Wärmetransportart spielt bei einer Thermoskanne jeweils eine Rolle?",
     "Wie erklärt das Teilchenmodell die Ausdehnung vieler Stoffe beim Erwärmen?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld 1: Temperatur und Wärme",
+    "foci": [
+      "Thermische Energie: Wärme, Temperatur und Temperaturmessung",
+      "Wärmetransport: Mitführung, Leitung, Strahlung; Temperaturausgleich; Wärmedämmung",
+      "Wirkungen von Wärme: Aggregatzustände und Wärmeausdehnung"
+    ],
+    "pages": "S. 23–24",
+    "source": "KLP Physik NRW 2019",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-i/kernlehrplaene-fuer-das-gymnasium-ab-sj-20192020/physik-gymnasium"
+  },
+  "concepts": [
+    {
+      "name": "Temperatur T",
+      "definition": "Beschreibt den thermischen Zustand eines Körpers.",
+      "unit": "°C bzw. K"
+    },
+    {
+      "name": "Wärme Q",
+      "definition": "Energie, die wegen eines Temperaturunterschieds übertragen wird.",
+      "unit": "J"
+    },
+    {
+      "name": "Wärmeleitung",
+      "definition": "Energieübertragung im Stoff ohne makroskopischen Stofftransport.",
+      "unit": "–"
+    },
+    {
+      "name": "Wärmestrahlung",
+      "definition": "Energieübertragung durch elektromagnetische Strahlung; kein Stoff nötig.",
+      "unit": "–"
+    }
+  ],
+  "warmup": [
+    "Welche physikalische Größe zeigt ein Thermometer an?",
+    "Welche Einheit wird im Alltag für die Temperatur verwendet?",
+    "Worin unterscheiden sich Temperatur und Wärme?",
+    "Nenne die drei Arten des Wärmetransports.",
+    "Bei welcher Temperatur besitzt Wasser ungefähr seine größte Dichte?"
+  ],
+  "basis": [
+    {
+      "q": "Ein Raum erwärmt sich von 18 °C auf 24 °C. Bestimme die Temperaturänderung ΔT.",
+      "hint": "ΔT = T₂ − T₁"
+    },
+    {
+      "q": "Ein Metalllöffel steht in heißem Tee. Welche Art des Wärmetransports erwärmt den Griff vor allem? Begründe kurz.",
+      "hint": ""
+    },
+    {
+      "q": "Ein 80 °C warmer Körper berührt einen 20 °C kalten Körper. In welche Richtung wird Wärme übertragen?",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Eine Thermoskanne besitzt eine Vakuumschicht und verspiegelte Flächen. Ordne beiden Bauteilen die jeweils verringerte Art des Wärmetransports zu.",
+      "hint": ""
+    },
+    {
+      "q": "Erkläre mit dem Teilchenmodell, warum sich ein Gas beim Erwärmen bei gleichem Außendruck ausdehnen kann.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "line",
+    "title": "Erwärmen von Eis und Wasser",
+    "xLabel": "Zeit / min",
+    "yLabel": "Temperatur / °C",
+    "series": [
+      {
+        "name": "Messung",
+        "points": [
+          [
+            0,
+            -10
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            10,
+            20
+          ]
+        ]
+      }
+    ],
+    "questions": [
+      "Was geschieht im waagerechten Abschnitt bei 0 °C?",
+      "Warum steigt die Temperatur dort trotz Energiezufuhr zunächst nicht?"
+    ]
+  },
+  "answers": [
+    "Warm-up: Temperatur; °C; Temperatur = Zustand, Wärme = Energieübertragung; Leitung/Mitführung/Strahlung; ca. 4 °C.",
+    "Basis 1: ΔT = 6 °C.",
+    "Basis 2: Wärmeleitung im Metall.",
+    "Basis 3: vom warmen zum kalten Körper.",
+    "Transfer 1: Vakuum ↓ Leitung/Mitführung; Verspiegelung ↓ Wärmestrahlung.",
+    "Transfer 2: Teilchen bewegen sich schneller und benötigen bei gleichem Druck mehr Raum."
+  ],
+  "exit_ticket": "Erkläre in einem Satz, warum eine Winterjacke nicht „Wärme erzeugt“, sondern Wärmeverlust verringert.",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft – Kriterien bereits erfüllt",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }

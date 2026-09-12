@@ -61,5 +61,99 @@
     "Was weist der Franck-Hertz-Versuch nach?",
     "Welche Faktoren bestimmen die Gefährdung durch ionisierende Strahlung?"
   ],
-  "lessons": []
+  "lessons": [],
+  "klp": {
+    "name": "Inhaltsfeld Strahlung und Materie (GK)",
+    "foci": [
+      "Strahlung: elektromagnetisches Spektrum; ionisierende Strahlung; Geiger-Müller-Zählrohr; biologische Wirkungen",
+      "Atomphysik: Linienspektrum, Energieniveauschema, Kern-Hülle-Modell, Röntgenstrahlung",
+      "Kernphysik: Nukleonen; Zerfall/Kernumwandlung; Kernspaltung und -fusion"
+    ],
+    "pages": "S. 42–43",
+    "source": "KLP Physik NRW 2022",
+    "url": "https://lehrplannavigator.nrw.de/sekundarstufe-ii/kernlehrplaene-fuer-die-gymnasiale-oberstufe-ab-sj-20222023/physik-gymnasiale"
+  },
+  "concepts": [
+    {
+      "name": "Energieniveau",
+      "definition": "Diskreter erlaubter Energiezustand in der Atomhülle.",
+      "unit": "J bzw. eV"
+    },
+    {
+      "name": "Linienspektrum",
+      "definition": "Spektrum aus diskreten, für ein Element charakteristischen Linien.",
+      "unit": "–"
+    },
+    {
+      "name": "Aktivität A",
+      "definition": "Zerfälle pro Sekunde.",
+      "unit": "Bq"
+    },
+    {
+      "name": "Halbwertszeit T₁/₂",
+      "definition": "Zeit bis zur statistischen Halbierung einer großen Ausgangsmenge.",
+      "unit": "s, d, a …"
+    }
+  ],
+  "warmup": [
+    "Welche Strahlung nutzt man häufig für eine Aufnahme von Knochen im Krankenhaus?",
+    "Wird die Aktivität einer radioaktiven Probe mit der Zeit im Mittel größer oder kleiner?",
+    "Was bedeutet Halbwertszeit in einem Satz?",
+    "Warum bestehen Atomspektren aus einzelnen charakteristischen Linien?",
+    "Welche Rolle spielt der Massendefekt bei Kernreaktionen?"
+  ],
+  "basis": [
+    {
+      "q": "ΔE = 3,32·10⁻¹⁹ J. Bestimme f mit h = 6,63·10⁻³⁴ J·s.",
+      "hint": ""
+    },
+    {
+      "q": "Eine Probe enthält nach einer Halbwertszeit noch 4000 instabile Kerne. Wie viele waren es näherungsweise zu Beginn?",
+      "hint": ""
+    },
+    {
+      "q": "Δm = 1,0·10⁻³⁰ kg. Berechne ΔE = Δm·c² mit c ≈ 3,0·10⁸ m/s.",
+      "hint": ""
+    }
+  ],
+  "transfer": [
+    {
+      "q": "Bewerte eine medizinische Röntgenaufnahme: Nenne je einen Nutzen, ein Risiko und eine Maßnahme zur Dosisminimierung.",
+      "hint": ""
+    },
+    {
+      "q": "Ein Gas zeigt drei charakteristische Emissionslinien. Erkläre, wie daraus auf diskrete Energieniveaus geschlossen wird.",
+      "hint": ""
+    }
+  ],
+  "visual": {
+    "type": "energy_levels",
+    "title": "Energieniveaus und Spektrallinien",
+    "questions": [
+      "Welcher Übergang erzeugt das energiereichste Photon?",
+      "Wie ändert sich die Wellenlänge bei größerem ΔE?"
+    ]
+  },
+  "answers": [
+    "Warm-up: Röntgenstrahlung; kleiner; nach einer Halbwertszeit ist bei einer großen Ausgangsmenge im Mittel die Hälfte noch nicht zerfallen; diskrete Energieniveaus erlauben nur bestimmte ΔE; ein Massendefekt entspricht nach E=Δm·c² einer Energiedifferenz.",
+    "Basis 1: ≈ 5,0·10¹⁴ Hz.",
+    "Basis 2: 8000 Kerne.",
+    "Basis 3: 9,0·10⁻¹⁴ J.",
+    "Anwendung: Nutzen ist diagnostischer Informationsgewinn; Risiko ist ionisierende Strahlung; Dosis wird durch klare Indikation, passende Abschirmung und möglichst geringe notwendige Exposition minimiert.",
+    "Konzeptfrage: Jede Spektrallinie entspricht einer bestimmten Photonenenergie ΔE=h·f. Nur bestimmte Linien bedeuten daher: Nur bestimmte Energiedifferenzen und damit diskrete Energieniveaus sind möglich."
+  ],
+  "exit_ticket": "Warum ist ein Spektrum ein „Fingerabdruck“ eines Atoms?",
+  "researchDate": "2026-09-12",
+  "structure": "8 Kernfolien: KLP → leichte Abruffragen → Fachbegriffe/Formeln → Basisrechnen → Transfer → Grafik/Daten → Lösungen",
+  "qualityReview": {
+    "date": "2026-09-12",
+    "status": "geprüft und überarbeitet",
+    "criteria": [
+      "leichter Einstieg",
+      "fachliche Vertiefung",
+      "Alltags-/Anwendungsbezug",
+      "einfache Rechenaufgaben ab Klasse 8",
+      "Grafik/Daten"
+    ]
+  }
 }
