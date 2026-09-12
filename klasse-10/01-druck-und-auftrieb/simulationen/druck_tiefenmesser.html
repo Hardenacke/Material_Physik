@@ -1,0 +1,31 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Druck-Tiefenmesser</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Schweredruck</div><h1>Druck-Tiefenmesser</h1>
+<p>Steuere eine Messsonde auf die Tiefe, bei der ein vorgegebener Flüssigkeitsdruck herrscht. Das Spiel macht den linearen Zusammenhang zwischen Tiefe, Dichte und Schweredruck unmittelbar nutzbar.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="900" height="590"></canvas>
+<div class="readout"><div>Tiefe h<b id="rh">–</b></div><div>Dichte ρ<b id="rrho">–</b></div><div>Schweredruck<b id="rp">–</b></div></div>
+<div id="status" class="status info">Bewege die Sonde und miss.</div></section>
+<aside class="card controls"><h2>Sonde</h2>
+<label>Tiefe <input id="depth" type="range" min="0" max="20" step=".1" value="5"><span id="dv"></span></label>
+<button id="measure">Druck messen</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Physik-Hilfe</summary><p>Der Schweredruck wächst mit Tiefe und Flüssigkeitsdichte. Hier wird nur der zusätzliche Druck der Flüssigkeit betrachtet, nicht der Luftdruck an der Oberfläche.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),g=9.81;
+const levels=[
+ {t:'Mission 1 – Wasser',d:'Finde die Tiefe, bei der der Schweredruck ungefähr 49 kPa beträgt.',rho:1000,target:49000,tol:1300,name:'Wasser',col:'#b9dcff'},
+ {t:'Mission 2 – Salzwasser',d:'Finde in Salzwasser die Tiefe für ungefähr 80 kPa. Vergleiche mit Wasser.',rho:1030,target:80000,tol:1500,name:'Salzwasser',col:'#a5d4f4'},
+ {t:'Mission 3 – unbekannte Flüssigkeit',d:'Die Flüssigkeit hat ρ = 800 kg/m³. Finde die Tiefe für 40 kPa.',rho:800,target:40000,tol:1200,name:'Öl',col:'#efd996'}
+];let li=0,measured=false;
+function p(){return levels[li].rho*g*(+depth.value)}
+function update(){const L=levels[li];dv.textContent=' '+depth.value+' m';rh.textContent=(+depth.value).toFixed(1).replace('.',',')+' m';rrho.textContent=L.rho+' kg/m³';rp.textContent=measured?(p()/1000).toFixed(1).replace('.',',')+' kPa':'–';draw()}
+depth.oninput=()=>{measured=false;update()};reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+measure.onclick=()=>{measured=true;const L=levels[li],err=Math.abs(p()-L.target);if(err<L.tol){status.className='status ok';status.textContent='Zieltiefe gefunden. Bei größerer Dichte wird derselbe Druck bereits in geringerer Tiefe erreicht.';next.disabled=false}else{status.className='status bad';status.textContent=p()<L.target?'Der Druck ist noch zu klein – die Sonde muss tiefer.':'Der Druck ist zu groß – die Sonde muss höher.'}update()};
+function draw(){const L=levels[li];c.clearRect(0,0,cv.width,cv.height);c.fillStyle=L.col;c.fillRect(100,70,700,470);c.strokeStyle='#64758b';c.lineWidth=4;c.strokeRect(100,70,700,470);
+ for(let d=0;d<=20;d+=2){const y=70+d/20*470;c.strokeStyle='rgba(50,70,90,.25)';c.beginPath();c.moveTo(100,y);c.lineTo(800,y);c.stroke();c.fillStyle='#34455b';c.font='15px system-ui';c.fillText(d+' m',55,y+5)}
+ const y=70+(+depth.value)/20*470;c.fillStyle='#354e75';c.beginPath();c.arc(450,y,24,0,Math.PI*2);c.fill();c.strokeStyle='#26384f';c.beginPath();c.moveTo(450,70);c.lineTo(450,y-24);c.stroke();c.fillStyle='#26384f';c.font='bold 18px system-ui';c.fillText(L.name,120,105)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;depth.value=5;measured=false;next.disabled=true;status.className='status info';status.textContent='Bewege die Sonde und miss.';update()}
+init();
+</script></body></html>

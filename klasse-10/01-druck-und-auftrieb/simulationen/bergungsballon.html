@@ -1,0 +1,34 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Bergungsballon</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Auftrieb · Archimedisches Prinzip</div><h1>Bergungsballon</h1>
+<p>Hebe eine versunkene Last möglichst kontrolliert an. Du bestimmst das zusätzliche Luftvolumen und damit das verdrängte Wasservolumen – die Auftriebskraft entsteht direkt daraus.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="900" height="590"></canvas>
+<div class="readout"><div>Gewichtskraft<b id="fg">–</b></div><div>Auftriebskraft<b id="fa">–</b></div><div>resultierende Kraft<b id="fr">–</b></div></div>
+<div id="status" class="status info">Fülle den Bergungsballon mit Luft.</div></section>
+<aside class="card controls"><h2>Bergungsballon</h2>
+<label>Luftvolumen <input id="air" type="range" min="0" max="120" step="1" value="30"><span id="av"></span></label>
+<button id="release">Last lösen</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Modell</summary><p>Die Last und der Ballon verdrängen gemeinsam Wasser. Je größer das verdrängte Volumen, desto größer die Auftriebskraft. Für eine sanfte Bergung sollte die resultierende Kraft nur wenig nach oben zeigen.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),rho=1000,g=9.81;
+const levels=[
+ {t:'Mission 1 – Instrumentenkiste',d:'Eine 70-kg-Kiste mit 25 L Eigenvolumen soll mit einer resultierenden Kraft zwischen 20 N und 80 N nach oben starten.',m:70,V:25,range:[20,80]},
+ {t:'Mission 2 – Motorblock',d:'Berge 120 kg bei 35 L Eigenvolumen. Starte mit höchstens 100 N resultierender Aufwärtskraft.',m:120,V:35,range:[10,100]},
+ {t:'Mission 3 – Präzisionsbergung',d:'90 kg, 30 L Eigenvolumen. Die resultierende Aufwärtskraft soll nur 10 bis 40 N betragen.',m:90,V:30,range:[10,40]}
+];let li=0,y=430,vy=0,running=false,last=0,raf;
+function calc(){const L=levels[li],V=(L.V+(+air.value))/1000,FA=rho*g*V,FG=L.m*g,FR=FA-FG;return{FA,FG,FR}}
+function update(){const z=calc();av.textContent=' '+air.value+' L';fg.textContent=z.FG.toFixed(0)+' N';fa.textContent=z.FA.toFixed(0)+' N';fr.textContent=z.FR.toFixed(0)+' N';draw()}
+air.oninput=update;reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+release.onclick=()=>{const L=levels[li],z=calc();if(z.FR>=L.range[0]&&z.FR<=L.range[1]){status.className='status ok';status.textContent='Gute Einstellung: Die Auftriebskraft übersteigt die Gewichtskraft nur moderat. Die Last steigt kontrolliert.';next.disabled=false}else{status.className='status bad';status.textContent=z.FR<=0?'Die Last bleibt unten: Die Auftriebskraft reicht nicht aus.':'Die Aufwärtskraft ist für diese Mission zu groß. Reduziere das Ballonvolumen.'}
+ running=true;last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)};
+function loop(now){const dt=Math.min(.04,(now-last)/1000);last=now;const a=calc().FR/levels[li].m;vy+=a*dt;vy*=.985;y-=vy*dt*12;if(y<150){y=150;running=false}if(y>440){y=440;vy=0;running=false}draw();if(running)raf=requestAnimationFrame(loop)}
+function draw(){const L=levels[li],z=calc();c.clearRect(0,0,cv.width,cv.height);c.fillStyle='#b8ddf7';c.fillRect(80,65,740,470);c.fillStyle='#8d806d';c.fillRect(80,505,740,30);
+ const r=32+Math.sqrt(+air.value)*4;c.fillStyle='rgba(245,220,105,.82)';c.beginPath();c.ellipse(450,y-r-60,r,r*.8,0,0,Math.PI*2);c.fill();c.strokeStyle='#665b42';c.beginPath();c.moveTo(430,y-r);c.lineTo(420,y);c.moveTo(470,y-r);c.lineTo(480,y);c.stroke();
+ c.fillStyle='#586879';c.fillRect(395,y,110,65);c.fillStyle='#fff';c.font='bold 18px system-ui';c.fillText(L.m+' kg',425,y+38);
+ c.fillStyle='#31445c';c.font='17px system-ui';c.fillText('Eigenvolumen der Last: '+L.V+' L',110,105)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;air.value=40;y=430;vy=0;running=false;next.disabled=true;status.className='status info';status.textContent='Fülle den Bergungsballon mit Luft.';update()}
+init();
+</script></body></html>

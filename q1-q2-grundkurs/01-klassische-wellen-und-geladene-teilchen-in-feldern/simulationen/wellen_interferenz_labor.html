@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Interaktive Simulation zu Interferenz zweier kohärenter Wellenquellen mit Detektor-Aufgabe und einstellbarer Wellenlänge, Quellenabstand und Phase.">
+  <title>Wellen-Interferenzlabor</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --panel: #fffdf8;
+      --ink: #173338;
+      --muted: #667675;
+      --line: #ded6c8;
+      --primary: #0f8b8d;
+      --primary-dark: #0b5f61;
+      --accent: #f2a23a;
+      --accent-2: #d95f43;
+      --ok: #20804f;
+      --bad: #a43f35;
+      --shadow: 0 18px 40px rgba(39, 64, 67, .13);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(115deg, rgba(15, 139, 141, .13), transparent 34%),
+        linear-gradient(245deg, rgba(242, 162, 58, .2), transparent 38%),
+        var(--bg);
+    }
+
+    a { color: var(--primary-dark); font-weight: 750; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 8px;
+      padding: 24px;
+      border: 1px solid rgba(15, 139, 141, .2);
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(9, 76, 79, .95), rgba(13, 133, 136, .92)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 2px, transparent 2px 24px);
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .76rem;
+      font-weight: 850;
+      opacity: .86;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 0; font-size: clamp(1.7rem, 4vw, 3rem); letter-spacing: 0; }
+    .hero p { margin-bottom: 0; max-width: 850px; line-height: 1.52; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(310px, .75fr);
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, .96);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .mission {
+      display: grid;
+      gap: 5px;
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border-left: 5px solid var(--accent);
+      background: #fff6df;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #cfc6b8;
+      border-radius: 8px;
+      background: #10292e;
+      touch-action: none;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .readout div {
+      min-height: 72px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #edf7f4;
+      border: 1px solid #c8e2dc;
+      text-align: center;
+      color: #24494c;
+    }
+
+    .readout b {
+      display: block;
+      margin-top: 4px;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      color: var(--ink);
+    }
+
+    .controls {
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-weight: 760;
+    }
+
+    .value {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: .92rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 38px;
+      accent-color: var(--primary);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    button {
+      appearance: none;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font: inherit;
+      font-weight: 800;
+      color: #fff;
+      background: var(--primary);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, box-shadow .2s ease, border-color .2s ease;
+      touch-action: manipulation;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:active { transform: translateY(1px) scale(.99); }
+    button.secondary { color: var(--ink); background: #f4e7cf; border-color: #e1c79a; }
+    button.secondary:hover { background: #eed8b2; }
+    button.selected {
+      color: #fff;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 4px rgba(217, 95, 67, .18);
+      animation: pop .28s ease;
+    }
+
+    .status {
+      min-height: 58px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d8cebd;
+      background: #f8f3e8;
+      line-height: 1.42;
+      color: #394644;
+    }
+
+    .status.ok { color: #0d6037; background: #e7f6ed; border-color: #bddfcb; }
+    .status.bad { color: #842d24; background: #fde9e4; border-color: #edc2b9; }
+
+    details {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffaf0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #fff8e8;
+      border: 1px solid #e9d1a7;
+      font-weight: 730;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    @keyframes pop {
+      0% { transform: scale(.96); }
+      70% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 16px, 1180px); padding-top: 10px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero, .card { padding: 13px; }
+      .readout, .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="kicker">Q1/Q2 Grundkurs · Klassische Wellen</div>
+      <h1>Wellen-Interferenzlabor</h1>
+      <p>Untersuche, wie Gangunterschied, Wellenlänge, Quellenabstand und Phasenverschiebung das Interferenzbild zweier kohärenter Quellen verändern.</p>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="mission">
+          <strong>Auftrag</strong>
+          Stelle den Detektor auf eine helle oder dunkle Linie und entscheide, ob dort konstruktive oder destruktive Interferenz vorliegt.
+        </div>
+        <canvas id="field" width="960" height="540" aria-label="Interferenzmuster zweier Kreiswellen"></canvas>
+        <div class="readout">
+          <div>Gangunterschied<b id="delta">0,0 λ</b></div>
+          <div>Intensität<b id="intensity">mittel</b></div>
+          <div>Detektorhöhe<b id="detectorLabel">0 cm</b></div>
+        </div>
+      </section>
+
+      <aside class="card controls">
+        <h2>Experiment</h2>
+        <label>
+          Wellenlänge <span class="value" id="lambdaLabel"></span>
+          <input id="lambda" type="range" min="42" max="150" value="84">
+        </label>
+        <label>
+          Quellenabstand <span class="value" id="distanceLabel"></span>
+          <input id="distance" type="range" min="42" max="220" value="132">
+        </label>
+        <label>
+          Phasenverschiebung <span class="value" id="phaseLabel"></span>
+          <input id="phase" type="range" min="-180" max="180" value="0" step="5">
+        </label>
+        <label>
+          Detektorposition <span class="value" id="detectorValue"></span>
+          <input id="detector" type="range" min="-220" max="220" value="0">
+        </label>
+
+        <h3>Detektor-Check</h3>
+        <div class="row" id="choices">
+          <button class="secondary" data-choice="max">Maximum</button>
+          <button class="secondary" data-choice="min">Minimum</button>
+          <button class="secondary" data-choice="mid">Dazwischen</button>
+        </div>
+        <div class="status" id="feedback">Verändere zuerst eine Größe oder gib direkt eine Einschätzung für den Detektorpunkt ab.</div>
+
+        <div class="legend" aria-hidden="true">
+          <span class="chip"><span class="dot"></span>hell: große Intensität</span>
+          <span class="chip"><span class="dot" style="background:#123138"></span>dunkel: kleine Intensität</span>
+        </div>
+
+        <details>
+          <summary>Modellidee</summary>
+          <p>Für zwei kohärente Quellen entscheidet der effektive Gangunterschied. Maxima entstehen näherungsweise bei Δs + Phasenanteil = k · λ, Minima bei (k + 0,5) · λ.</p>
+        </details>
+      </aside>
+    </div>
+    <p><a href="../../../index.html">Zurück zur Materialübersicht</a></p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("field");
+    const ctx = canvas.getContext("2d");
+    const controls = {
+      lambda: document.getElementById("lambda"),
+      distance: document.getElementById("distance"),
+      phase: document.getElementById("phase"),
+      detector: document.getElementById("detector")
+    };
+    const labels = {
+      lambda: document.getElementById("lambdaLabel"),
+      distance: document.getElementById("distanceLabel"),
+      phase: document.getElementById("phaseLabel"),
+      detector: document.getElementById("detectorValue"),
+      detectorLabel: document.getElementById("detectorLabel"),
+      delta: document.getElementById("delta"),
+      intensity: document.getElementById("intensity"),
+      feedback: document.getElementById("feedback")
+    };
+    const buttons = Array.from(document.querySelectorAll("[data-choice]"));
+    let tick = 0;
+    let lastChoice = "";
+
+    function state() {
+      return {
+        lambda: Number(controls.lambda.value),
+        distance: Number(controls.distance.value),
+        phase: Number(controls.phase.value),
+        detector: Number(controls.detector.value)
+      };
+    }
+
+    function detectorInfo(s) {
+      const sx = 235;
+      const sy1 = canvas.height / 2 - s.distance / 2;
+      const sy2 = canvas.height / 2 + s.distance / 2;
+      const dx = 790;
+      const dy = canvas.height / 2 + s.detector;
+      const r1 = Math.hypot(dx - sx, dy - sy1);
+      const r2 = Math.hypot(dx - sx, dy - sy2);
+      const relative = (r1 - r2) / s.lambda + s.phase / 360;
+      const phase = 2 * Math.PI * relative;
+      const value = (1 + Math.cos(phase)) / 2;
+      let kind = "mid";
+      if (value > .78) kind = "max";
+      if (value < .22) kind = "min";
+      return { dx, dy, relative, value, kind };
+    }
+
+    function paintBackground() {
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, "#102a2f");
+      gradient.addColorStop(.54, "#153b42");
+      gradient.addColorStop(1, "#2a2f31");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawPattern(s) {
+      const sx = 235;
+      const sy1 = canvas.height / 2 - s.distance / 2;
+      const sy2 = canvas.height / 2 + s.distance / 2;
+      const step = 5;
+      for (let y = 0; y < canvas.height; y += step) {
+        for (let x = 0; x < canvas.width; x += step) {
+          const r1 = Math.hypot(x - sx, y - sy1);
+          const r2 = Math.hypot(x - sx, y - sy2);
+          const fade = Math.min(1, Math.max(0, (x - 105) / 740));
+          const value = (1 + Math.cos(2 * Math.PI * ((r1 - r2) / s.lambda + s.phase / 360))) / 2;
+          const light = 14 + value * 55 * fade;
+          const hue = 188 - value * 150;
+          ctx.fillStyle = `hsl(${hue}, ${46 + value * 36}%, ${light}%)`;
+          ctx.fillRect(x, y, step + 1, step + 1);
+        }
+      }
+    }
+
+    function drawSources(s) {
+      const sx = 235;
+      const sources = [
+        { x: sx, y: canvas.height / 2 - s.distance / 2 },
+        { x: sx, y: canvas.height / 2 + s.distance / 2 }
+      ];
+
+      ctx.lineWidth = 1.4;
+      for (const source of sources) {
+        for (let i = 0; i < 4; i += 1) {
+          const radius = ((tick * 1.8 + i * s.lambda / 2) % (s.lambda * 2.3)) + 18;
+          ctx.beginPath();
+          ctx.arc(source.x, source.y, radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(242, 162, 58, ${.34 - i * .055})`;
+          ctx.stroke();
+        }
+        ctx.beginPath();
+        ctx.arc(source.x, source.y, 14, 0, Math.PI * 2);
+        ctx.fillStyle = "#f7b24d";
+        ctx.fill();
+        ctx.strokeStyle = "#fff1c4";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+    }
+
+    function drawDetector(info) {
+      ctx.save();
+      ctx.strokeStyle = "#fff7de";
+      ctx.setLineDash([7, 9]);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(info.dx, 60);
+      ctx.lineTo(info.dx, canvas.height - 60);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.beginPath();
+      ctx.arc(info.dx, info.dy, 22, 0, Math.PI * 2);
+      ctx.fillStyle = info.kind === "max" ? "#f2a23a" : info.kind === "min" ? "#1b3237" : "#d95f43";
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#fffdf8";
+      ctx.stroke();
+      ctx.fillStyle = "#fffdf8";
+      ctx.font = "800 16px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText("D", info.dx, info.dy + 6);
+      ctx.restore();
+    }
+
+    function updateLabels(s, info) {
+      labels.lambda.textContent = `${Math.round(s.lambda / 8)} cm`;
+      labels.distance.textContent = `${Math.round(s.distance / 8)} cm`;
+      labels.phase.textContent = `${s.phase}°`;
+      labels.detector.textContent = `${Math.round(s.detector / 5)} cm`;
+      labels.detectorLabel.textContent = `${Math.round(s.detector / 5)} cm`;
+      labels.delta.textContent = `${info.relative.toFixed(2).replace(".", ",")} λ`;
+      labels.intensity.textContent = info.kind === "max" ? "Maximum" : info.kind === "min" ? "Minimum" : "mittel";
+    }
+
+    function draw() {
+      const s = state();
+      const info = detectorInfo(s);
+      paintBackground();
+      drawPattern(s);
+      drawSources(s);
+      drawDetector(info);
+      updateLabels(s, info);
+      tick += 1;
+      requestAnimationFrame(draw);
+    }
+
+    function evaluate(choice) {
+      lastChoice = choice;
+      buttons.forEach((button) => button.classList.toggle("selected", button.dataset.choice === choice));
+      const info = detectorInfo(state());
+      labels.feedback.className = "status " + (choice === info.kind ? "ok" : "bad");
+      if (choice === info.kind) {
+        labels.feedback.textContent = "Richtig. Dein Detektor liegt gerade auf einem " + (info.kind === "max" ? "Interferenzmaximum." : info.kind === "min" ? "Interferenzminimum." : "Zwischenwert ohne klare Auslöschung oder Verstärkung.");
+      } else {
+        labels.feedback.textContent = "Noch nicht. Vergleiche den effektiven Gangunterschied mit ganzen beziehungsweise halben Vielfachen der Wellenlänge.";
+      }
+    }
+
+    for (const input of Object.values(controls)) {
+      input.addEventListener("input", () => {
+        if (lastChoice) {
+          buttons.forEach((button) => button.classList.remove("selected"));
+          labels.feedback.className = "status";
+          labels.feedback.textContent = "Neue Einstellung: Schätze den Detektorpunkt erneut ein.";
+          lastChoice = "";
+        }
+      });
+    }
+    buttons.forEach((button) => button.addEventListener("click", () => evaluate(button.dataset.choice)));
+    draw();
+  </script>
+</body>
+</html>

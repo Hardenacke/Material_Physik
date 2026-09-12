@@ -1,0 +1,37 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Hydraulik-Werkstatt</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Druck · Hydraulik</div><h1>Hydraulik-Werkstatt</h1>
+<p>Hebe ein Fahrzeug mit einer hydraulischen Presse. Eine große Kolbenfläche verstärkt die Kraft – zugleich muss am kleinen Kolben über mehrere Pumpstöße ein längerer Gesamtweg zurückgelegt werden. So wird aus dem Druckgesetz ein technisches Optimierungsproblem.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="950" height="560"></canvas>
+<div class="readout"><div>Druck<b id="rp">–</b></div><div>Hubkraft<b id="rF2">–</b></div><div>Hubhöhe<b id="rh">–</b></div></div>
+<div id="status" class="status info">Wähle Kolbenflächen und Handkraft.</div></section>
+<aside class="card controls"><h2>Presse konstruieren</h2>
+<label>Kleiner Kolben A₁ <input id="A1" type="range" min="5" max="30" step="1" value="10"><span id="a1v"></span></label>
+<label>Großer Kolben A₂ <input id="A2" type="range" min="100" max="600" step="10" value="300"><span id="a2v"></span></label>
+<label>Handkraft F₁ <input id="F1" type="range" min="50" max="350" step="10" value="200"><span id="f1v"></span></label>
+<button id="test">Presse betätigen</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Physik-Hilfe</summary><p>Der Druck wird in der Flüssigkeit übertragen. Für beide Kolben gilt derselbe Druck. Volumenerhaltung bedeutet zusätzlich: Ein großer Kraftgewinn führt zu einem kleineren Weg am großen Kolben. Das Spiel fasst mehrere Pumpstöße zu einem Gesamt-Pumpweg von 6 m zusammen.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),g=9.81,stroke1=6.0;
+const levels=[
+ {t:'Mission 1 – Kleinwagen',d:'Hebe ein 900-kg-Auto mindestens 10 cm an. Deine Handkraft darf höchstens 250 N sein.',mass:900,minH:.10,maxF:250},
+ {t:'Mission 2 – Transporter',d:'Hebe 1500 kg mindestens 8 cm an. F₁ darf höchstens 300 N sein.',mass:1500,minH:.08,maxF:300},
+ {t:'Mission 3 – nicht nur Kraftgewinn',d:'Hebe 1100 kg mindestens 15 cm an. Eine zu große Übersetzung hilft bei der Kraft, aber nicht beim Hubweg.',mass:1100,minH:.15,maxF:300}
+];let li=0;
+function calc(){const a1=+A1.value/1e4,a2=+A2.value/1e4,f1=+F1.value,p=f1/a1,f2=p*a2,h=stroke1*a1/a2;return{a1,a2,f1,p,f2,h}}
+function update(){const z=calc();a1v.textContent=' '+A1.value+' cm²';a2v.textContent=' '+A2.value+' cm²';f1v.textContent=' '+F1.value+' N';rp.textContent=(z.p/1000).toFixed(0)+' kPa';rF2.textContent=Math.round(z.f2)+' N';rh.textContent=(z.h*100).toFixed(1).replace('.',',')+' cm';draw()}
+[A1,A2,F1].forEach(e=>e.oninput=update);reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+test.onclick=()=>{const L=levels[li],z=calc(),need=L.mass*g,ok=z.f2>=need&&z.h>=L.minH&&z.f1<=L.maxF;
+ if(ok){status.className='status ok';status.textContent='Werkstattauftrag erfüllt. Die Presse liefert genügend Kraft und gleichzeitig genügend Hubweg. Kraftgewinn und Wegverlust gehören zusammen.';next.disabled=false}
+ else{status.className='status bad';let s='Benötigt werden etwa '+Math.round(need)+' N. ';if(z.f2<need)s+='Die Hubkraft ist zu klein. ';if(z.h<L.minH)s+='Der große Kolben bewegt sich nicht weit genug. ';if(z.f1>L.maxF)s+='Die Handkraft ist zu groß. ';status.textContent=s}};
+function draw(){const z=calc(),L=levels[li];c.clearRect(0,0,cv.width,cv.height);c.fillStyle='#dce7f2';c.fillRect(110,340,700,90);c.fillStyle='#87bde9';c.fillRect(110,385,700,45);
+ const w1=50+(+A1.value)*2,w2=120+(+A2.value)/6;c.fillStyle='#5c6c7f';c.fillRect(150-w1/2,280,w1,30);c.fillRect(650-w2/2,280,w2,30);
+ c.strokeStyle='#4c5a6c';c.lineWidth=12;c.beginPath();c.moveTo(150,310);c.lineTo(150,385);c.moveTo(650,310);c.lineTo(650,385);c.stroke();
+ c.fillStyle='#3b6fa9';c.fillRect(650-w2/2+15,220,w2-30,55);c.fillStyle='#fff';c.font='bold 17px system-ui';c.fillText(L.mass+' kg',650-30,253);
+ c.fillStyle='#45566c';c.font='17px system-ui';c.fillText('kleiner Kolben',95,465);c.fillText('großer Kolben',595,465)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;A1.value=10;A2.value=300;F1.value=200;next.disabled=true;status.className='status info';status.textContent='Wähle Kolbenflächen und Handkraft.';update()}
+init();
+</script></body></html>

@@ -1,0 +1,37 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Strahlenschutz-Mission</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Ionisierende Strahlung · Schutzmaßnahmen</div><h1>Strahlenschutz-Mission</h1>
+<p>Plane einen simulierten Arbeitseinsatz mit möglichst kleiner relativer Dosis. Du kannst Einwirkzeit, Abstand und Abschirmung verändern. Das Modell dient ausschließlich dem Physiklernen und enthält keine realen Sicherheitsgrenzwerte.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="900" height="500"></canvas>
+<div class="readout"><div>relative Dosis<b id="dose">–</b></div><div>Abstand<b id="rr">–</b></div><div>Zeit<b id="rt">–</b></div></div>
+<div id="status" class="status info">Plane den Einsatz und prüfe ihn.</div></section>
+<aside class="card controls"><h2>Planung</h2>
+<label>Arbeitsabstand <input id="dist" type="range" min=".5" max="3" step=".1" value="1"><span id="dv"></span></label>
+<label>Einwirkzeit <input id="time" type="range" min="10" max="120" step="5" value="60"><span id="tv"></span></label>
+<label>Abschirmung <select id="shield"><option value="1">keine</option><option value=".55">leichte Abschirmung</option><option value=".22">starke Abschirmung</option></select></label>
+<button id="check">Einsatz simulieren</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Modell</summary><p>Die relative Dosis wächst mit der Zeit, nimmt mit größerem Abstand stark ab und wird durch Abschirmung reduziert. Für die Mission gibt es zugleich Arbeitsbedingungen, sodass nicht einfach jeder Regler auf sein Minimum oder Maximum gestellt werden kann.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d');
+const levels=[
+ {t:'Mission 1 – kurze Kontrolle',d:'Die Arbeit benötigt mindestens 30 s und höchstens 2,0 m Abstand. Halte die relative Dosis unter 3,0.',minT:30,maxR:2,target:3},
+ {t:'Mission 2 – Reparatur',d:'Mindestens 60 s Arbeit, maximal 1,5 m Abstand. Halte die relative Dosis unter 6,0.',minT:60,maxR:1.5,target:6},
+ {t:'Mission 3 – ohne starke Abschirmung',d:'Mindestens 45 s, maximal 2,5 m. Die starke Abschirmung ist nicht verfügbar. Bleibe unter 1,5.',minT:45,maxR:2.5,target:1.5,noStrong:true}
+];let li=0;
+function calc(){return 20*(+time.value/60)/((+dist.value)**2)*(+shield.value)}
+function update(){dv.textContent=' '+dist.value+' m';tv.textContent=' '+time.value+' s';rr.textContent=dist.value+' m';rt.textContent=time.value+' s';dose.textContent=calc().toFixed(1);draw()}
+[dist,time].forEach(e=>e.oninput=update);shield.onchange=update;reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+check.onclick=()=>{const L=levels[li],D=calc(),okT=+time.value>=L.minT,okR=+dist.value<=L.maxR,okS=!L.noStrong||shield.value!=='.22';
+ if(D<L.target&&okT&&okR&&okS){status.className='status ok';status.textContent='Mission erfüllt. Du hast die drei Schutzprinzipien Zeit, Abstand und Abschirmung sinnvoll kombiniert.';next.disabled=false}
+ else{status.className='status bad';let s='Relative Dosis: '+D.toFixed(1)+'. ';if(!okT)s+='Die notwendige Arbeitszeit ist nicht erreicht. ';if(!okR)s+='Der Abstand ist für diese Arbeit zu groß. ';if(!okS)s+='Die starke Abschirmung ist hier nicht verfügbar. ';if(D>=L.target)s+='Die Dosis ist noch zu hoch.';status.textContent=s}};
+function draw(){c.clearRect(0,0,cv.width,cv.height);const sx=130,py=260,px=sx+(+dist.value)/3*620;c.fillStyle='#767f8c';c.fillRect(sx-35,py-45,70,90);c.fillStyle='#ffb22f';c.beginPath();c.arc(sx,py,14,0,Math.PI*2);c.fill();
+ c.fillStyle='#315b91';c.beginPath();c.arc(px,py-35,24,0,Math.PI*2);c.fill();c.fillRect(px-18,py-10,36,80);
+ if(shield.value!=='1'){c.fillStyle=shield.value==='.22'?'#545b67':'#a7b1bf';c.fillRect((sx+px)/2-12,150,24,220)}
+ c.strokeStyle='#d38a1f';c.globalAlpha=.35;c.lineWidth=2;for(let i=0;i<16;i++){let a=(i-8)*.045;c.beginPath();c.moveTo(sx,py);c.lineTo(850,py+a*720);c.stroke()}c.globalAlpha=1;
+ c.fillStyle='#3e4d62';c.font='16px system-ui';c.fillText('didaktische relative Dosis – keine reale Sicherheitsberechnung',220,455)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;dist.value=1;time.value=L.minT;shield.value='1';[...shield.options].forEach(o=>o.disabled=L.noStrong&&o.value==='.22');next.disabled=true;status.className='status info';status.textContent='Plane den Einsatz und prüfe ihn.';update()}
+init();
+</script></body></html>

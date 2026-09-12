@@ -1,0 +1,133 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EF – Kinematik-Challenge</title><link rel="stylesheet" href="shared.css">
+</head><body><div class="wrap">
+<header class="hero"><div class="kicker">EF · Kinematik</div><h1>Kinematik-Challenge</h1>
+<p>Steuere den Rover über seine Beschleunigung. Verknüpfe dabei a(t), v(t) und x(t): Die Diagramme entstehen unmittelbar aus deiner Steuerung.</p></header>
+
+<div class="grid">
+<section class="card">
+  <div class="mission"><strong id="missionTitle"></strong><span id="missionText"></span></div>
+  <canvas id="cv" width="1000" height="650" aria-label="Fahrbahn und live gezeichnete Bewegungsdiagramme"></canvas>
+  <div class="readout">
+    <div>Zeit<b id="rt">0,0 s</b></div><div>Ort<b id="rx">0,0 m</b></div><div>Geschwindigkeit<b id="rv">0,0 m/s</b></div>
+  </div>
+  <div id="status" class="status info">Starte die Mission und steuere mit den drei großen Tasten.</div>
+</section>
+
+<aside class="card controls">
+  <h2>Steuerung</h2>
+  <button id="start">▶ Start</button>
+  <div class="row big-buttons">
+    <button id="brake" class="danger">− bremsen</button>
+    <button id="coast" class="secondary">rollen</button>
+    <button id="accel" class="good">+ beschleunigen</button>
+  </div>
+  <p class="help">Während du eine Beschleunigungs- oder Bremstaste gedrückt hältst, wirkt eine konstante Beschleunigung. Beim Loslassen rollt der Rover weiter.</p>
+  <button id="reset" class="secondary">↻ Versuch zurücksetzen</button>
+  <button id="next" class="secondary" disabled>Nächste Mission →</button>
+  <details><summary>Was soll ich beobachten?</summary><p>Achte gleichzeitig auf den Rover und auf die Steigung der beiden Diagramme. Probiere bewusst Phasen mit Beschleunigen, Rollen und Bremsen.</p></details>
+  <details><summary>Mathematische Deutung</summary><p>Die Steigung von x(t) ist v(t). Die Steigung von v(t) ist a(t). Bei konstantem a gilt außerdem v(t)=v₀+a·t und x(t)=x₀+v₀·t+½a·t².</p></details>
+</aside></div>
+<p><a href="../../../index.html">← Spielesammlung</a></p>
+</div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const levels=[
+ {title:'Mission 1 – Präzisionsstopp',text:'Fahre los und halte vollständig in der grünen Zone zwischen 6,5 m und 7,5 m.',zone:[6.5,7.5],limit:14},
+ {title:'Mission 2 – später bremsen?',text:'Halte zwischen 9,0 m und 10,0 m. Du hast höchstens 10 s.',zone:[9,10],limit:10},
+ {title:'Mission 3 – Kontrollpunkt',text:'Passiere die blaue Linie bei 7,5 m zwischen 4,5 s und 6,0 s und halte anschließend zwischen 10,5 m und 11,5 m.',zone:[10.5,11.5],limit:12,checkpoint:{x:7.5,t:[4.5,6.0]}}
+];
+let li=0,state,raf,last=0,sampleClock=0;
+function newState(){return {t:0,x:0,v:0,a:0,running:false,finished:false,data:[{t:0,x:0,v:0}],checkpointOK:false,checkpointT:null}}
+function reset(){
+ cancelAnimationFrame(raf);state=newState();last=0;sampleClock=0;
+ status.className='status info';status.textContent='Starte die Mission und steuere mit den drei großen Tasten.';
+ next.disabled=true;start.textContent='▶ Start';updateMission();draw();
+}
+function updateMission(){const L=levels[li];missionTitle.textContent=L.title;missionText.textContent=L.text}
+function setA(a){ if(!state.finished) state.a=a; }
+['pointerup','pointercancel','pointerleave'].forEach(ev=>{
+  accel.addEventListener(ev,()=>setA(0)); brake.addEventListener(ev,()=>setA(0));
+});
+accel.addEventListener('pointerdown',e=>{e.preventDefault();setA(1.25)});
+brake.addEventListener('pointerdown',e=>{e.preventDefault();setA(-1.25)});
+coast.addEventListener('click',()=>setA(0));
+start.addEventListener('click',()=>{
+ if(state.finished)return;
+ state.running=!state.running;start.textContent=state.running?'⏸ Pause':'▶ Weiter';
+ if(state.running){last=performance.now();raf=requestAnimationFrame(loop)}
+});
+reset.addEventListener('click',reset);
+next.addEventListener('click',()=>{li=(li+1)%levels.length;reset()});
+
+function loop(now){
+ if(!state.running)return;
+ let dt=Math.min(.035,(now-last)/1000);last=now;
+ state.t+=dt;
+ state.v=Math.max(0,Math.min(4.2,state.v+state.a*dt));
+ state.x+=state.v*dt;
+ sampleClock+=dt;
+ if(sampleClock>.055){state.data.push({t:state.t,x:state.x,v:state.v});sampleClock=0}
+ const L=levels[li];
+ if(L.checkpoint && state.checkpointT===null && state.x>=L.checkpoint.x){
+   state.checkpointT=state.t;
+   state.checkpointOK=state.t>=L.checkpoint.t[0]&&state.t<=L.checkpoint.t[1];
+   status.className=state.checkpointOK?'status ok':'status bad';
+   status.textContent=state.checkpointOK?'Kontrollpunkt im Zeitfenster getroffen. Jetzt sauber anhalten.':'Kontrollpunkt außerhalb des Zeitfensters. Du kannst weiterfahren und den Graphen auswerten.';
+ }
+ const stopped=state.v<.035, inZone=state.x>=L.zone[0]&&state.x<=L.zone[1];
+ if(stopped && inZone && state.t>1.2 && (!L.checkpoint||state.checkpointOK)) finish(true);
+ else if(state.t>L.limit || state.x>13) finish(false);
+ draw();updateReadout();
+ if(state.running)raf=requestAnimationFrame(loop);
+}
+function finish(ok){
+ state.running=false;state.finished=true;state.a=0;start.textContent='▶ Start';
+ if(ok){
+   status.className='status ok';
+   status.innerHTML='Mission geschafft. <b>Der entscheidende Trick:</b> Beschleunigen verändert zuerst die Geschwindigkeit; die Geschwindigkeit bestimmt anschließend, wie schnell sich der Ort ändert.';
+   next.disabled=false;
+ }else{
+   status.className='status bad';
+   status.textContent='Mission noch nicht geschafft. Nutze den Verlauf von v(t): Solange v größer als 0 ist, wächst der Ort weiter – auch wenn du bereits bremst.';
+ }
+}
+function updateReadout(){
+ rt.textContent=state.t.toFixed(1).replace('.',',')+' s';
+ rx.textContent=state.x.toFixed(1).replace('.',',')+' m';
+ rv.textContent=state.v.toFixed(1).replace('.',',')+' m/s';
+}
+function map(v,a,b,c,d){return c+(v-a)/(b-a)*(d-c)}
+function axes(x,y,w,h,xlab,ylab){
+ ctx.strokeStyle='#8795a8';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+w,y);ctx.moveTo(x,y);ctx.lineTo(x,y-h);ctx.stroke();
+ ctx.fillStyle='#39465a';ctx.font='17px system-ui';ctx.fillText(xlab,x+w-8,y+25);ctx.fillText(ylab,x-36,y-h+8);
+}
+function plot(key,color,maxY,ox,oy,w,h){
+ if(state.data.length<2)return;ctx.strokeStyle=color;ctx.lineWidth=4;ctx.beginPath();
+ state.data.forEach((p,i)=>{const X=map(p.t,0,levels[li].limit,ox,ox+w),Y=map(p[key],0,maxY,oy,oy-h); i?ctx.lineTo(X,Y):ctx.moveTo(X,Y)});ctx.stroke();
+}
+function draw(){
+ ctx.clearRect(0,0,cv.width,cv.height);
+ // Track
+ const tx=70,ty=165,tw=850;
+ ctx.fillStyle='#eef2f7';ctx.fillRect(tx,ty-34,tw,70);
+ ctx.strokeStyle='#6b7687';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(tx,ty+36);ctx.lineTo(tx+tw,ty+36);ctx.stroke();
+ for(let m=0;m<=13;m++){const x=map(m,0,13,tx,tx+tw);ctx.strokeStyle='#b9c3d1';ctx.beginPath();ctx.moveTo(x,ty+38);ctx.lineTo(x,ty+48);ctx.stroke();if(m%2===0){ctx.fillStyle='#536074';ctx.font='15px system-ui';ctx.fillText(m+' m',x-12,ty+66)}}
+ const L=levels[li],zx1=map(L.zone[0],0,13,tx,tx+tw),zx2=map(L.zone[1],0,13,tx,tx+tw);
+ ctx.fillStyle='rgba(29,151,83,.25)';ctx.fillRect(zx1,ty-34,zx2-zx1,70);
+ if(L.checkpoint){const cx=map(L.checkpoint.x,0,13,tx,tx+tw);ctx.strokeStyle='#1b72d2';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(cx,ty-47);ctx.lineTo(cx,ty+37);ctx.stroke()}
+ // rover
+ const px=map(Math.min(13,state.x),0,13,tx,tx+tw);ctx.fillStyle='#225cab';ctx.fillRect(px-26,ty-19,52,27);ctx.fillStyle='#1b2430';
+ ctx.beginPath();ctx.arc(px-17,ty+12,9,0,Math.PI*2);ctx.arc(px+17,ty+12,9,0,Math.PI*2);ctx.fill();
+ // acceleration indicator
+ ctx.fillStyle=state.a>0?'#137a42':state.a<0?'#b13a2f':'#5e6a7d';ctx.font='bold 18px system-ui';ctx.fillText('a = '+state.a.toFixed(2)+' m/s²',70,90);
+ // graphs
+ const ox=80,w=840,h=120;
+ axes(ox,390,w,h,'t','x');plot('x','#1769e0',13,ox,390,w,h);
+ axes(ox,595,w,h,'t','v');plot('v','#d77608',4.5,ox,595,w,h);
+ ctx.fillStyle='#1769e0';ctx.font='bold 17px system-ui';ctx.fillText('x(t)',90,285);
+ ctx.fillStyle='#d77608';ctx.fillText('v(t)',90,490);
+}
+reset();
+</script></body></html>

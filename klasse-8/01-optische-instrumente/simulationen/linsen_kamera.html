@@ -1,0 +1,54 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 8 – Kamera-Fokus</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 8 · Optik · Sammellinsen</div><h1>Kamera-Fokus</h1>
+<p>Fokussiere ein Bild auf dem Sensor. Wenn sich der Gegenstand bewegt, muss sich auch die Lage des scharfen Bildes ändern. Die Strahlenzeichnung entsteht live.</p></header>
+<div class="grid"><section class="card">
+<div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="980" height="580"></canvas>
+<div class="readout"><div>Gegenstandsweite g<b id="rg">–</b></div><div>Brennweite f<b id="rf">–</b></div><div>Bildweite b<b id="rb">–</b></div></div>
+<div id="status" class="status info">Verschiebe den Sensor, bis das Bild scharf wird.</div></section>
+<aside class="card controls"><h2>Kamera einstellen</h2>
+<label>Sensorposition <input id="sensor" type="range" min="520" max="900" step="2" value="700"></label>
+<label>Brennweite der Linse <input id="focal" type="range" min="70" max="180" step="5" value="120"><span id="fv"></span></label>
+<button id="check">Schärfe prüfen</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Beobachtungshilfe</summary><p>Der Parallelstrahl wird hinter der Sammellinse durch den Brennpunkt gelenkt. Der Mittelpunktstrahl ändert seine Richtung im vereinfachten Modell nicht.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),lensX=430,axisY=300;
+const levels=[
+ {t:'Mission 1 – Porträt scharfstellen',d:'Das Objekt steht relativ nah. Verschiebe den Sensor an die Stelle, an der sich die Hauptstrahlen treffen.',objX:110,objH:125,f:120},
+ {t:'Mission 2 – Fernes Objekt',d:'Das Objekt ist weiter entfernt. Fokussiere erneut und vergleiche die nötige Sensorposition.',objX:40,objH:105,f:120},
+ {t:'Mission 3 – Zoom-Linse',d:'Verändere zusätzlich die Brennweite. Erzeuge ein scharfes Bild mit f = 160 px.',objX:80,objH:120,f:160,lockF:true}
+];
+let li=0;
+function values(){const L=levels[li],g=lensX-L.objX,f=+focal.value,b=f*g/(g-f);return{g,f,b,imageX:lensX+b}}
+function update(){const z=values();rg.textContent=z.g.toFixed(0)+' px';rf.textContent=z.f.toFixed(0)+' px';rb.textContent=z.b.toFixed(0)+' px';fv.textContent=' '+focal.value+' px';draw()}
+sensor.oninput=update;focal.oninput=update;reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+check.onclick=()=>{const z=values(),diff=Math.abs(+sensor.value-z.imageX);
+ if(diff<10){status.className='status ok';status.textContent='Scharf! Der Sensor liegt dort, wo sich die Hauptstrahlen vereinigen. Verschiebe gedanklich das Objekt: Die Bildweite bleibt nicht konstant.';next.disabled=false}
+ else{status.className='status bad';status.textContent=+sensor.value<z.imageX?'Der Sensor steht zu nah an der Linse. Die Strahlen sind dort noch nicht vereinigt.':'Der Sensor steht zu weit hinten. Die Strahlen haben sich bereits gekreuzt.'}};
+function line(x1,y1,x2,y2,col,w=3){c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke()}
+function draw(){const L=levels[li],z=values(),sx=+sensor.value;c.clearRect(0,0,cv.width,cv.height);c.fillStyle='#f9fbfe';c.fillRect(0,0,980,580);
+ line(35,axisY,940,axisY,'#8b98aa',2);
+ // object
+ line(L.objX,axisY,L.objX,axisY-L.objH,'#263e65',8);c.fillStyle='#263e65';c.beginPath();c.moveTo(L.objX,axisY-L.objH-14);c.lineTo(L.objX-10,axisY-L.objH+4);c.lineTo(L.objX+10,axisY-L.objH+4);c.fill();
+ // lens
+ c.strokeStyle='#347dcc';c.lineWidth=7;c.beginPath();c.ellipse(lensX,axisY,20,155,0,0,Math.PI*2);c.stroke();
+ const f=z.f;c.fillStyle='#347dcc';c.beginPath();c.arc(lensX+f,axisY,6,0,Math.PI*2);c.fill();c.fillText('F',lensX+f+8,axisY-8);
+ // sensor
+ c.fillStyle='#343d4d';c.fillRect(sx-5,115,10,370);c.fillStyle='#343d4d';c.font='16px system-ui';c.fillText('Sensor',sx-25,510);
+ // rays from object top
+ const ox=L.objX,oy=axisY-L.objH,ix=z.imageX;
+ // central ray
+ line(ox,oy,lensX,axisY,'#e0414f',3);line(lensX,axisY,Math.min(ix,950),axisY+(Math.min(ix,950)-lensX)*(axisY-oy)/(lensX-ox),'#e0414f',3);
+ // parallel then focal
+ line(ox,oy,lensX,oy,'#f08a24',3);
+ const slope=(axisY-oy)/f;line(lensX,oy,Math.min(ix,950),oy+slope*(Math.min(ix,950)-lensX),'#f08a24',3);
+ // blur at sensor: distance between rays
+ const y1=axisY+(sx-lensX)*(axisY-oy)/(lensX-ox), y2=oy+slope*(sx-lensX), blur=Math.abs(y1-y2);
+ c.fillStyle=blur<10?'rgba(33,160,82,.32)':'rgba(210,70,65,.25)';c.fillRect(sx-18,(y1+y2)/2-blur/2-8,36,blur+16);
+ c.fillStyle='#526075';c.font='16px system-ui';c.fillText('Je schmaler der Farbbalken am Sensor, desto schärfer das Bild.',55,555)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;focal.value=L.f;sensor.value=700;focal.disabled=!!L.lockF;next.disabled=true;status.className='status info';status.textContent='Verschiebe den Sensor, bis das Bild scharf wird.';update()}
+init();
+</script></body></html>

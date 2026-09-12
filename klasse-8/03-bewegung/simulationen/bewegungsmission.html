@@ -1,0 +1,45 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 8 – Bewegungsmission</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 8 · Bewegung</div><h1>Bewegungsmission</h1>
+<p>Stelle die Geschwindigkeit des Fahrzeugs ein und erfülle Lieferaufträge. Dabei entsteht aus deiner Fahrt ein Strecke-Zeit-Diagramm.</p></header>
+<div class="grid">
+<section class="card">
+<div class="mission"><strong id="missionTitle"></strong><span id="missionText"></span></div>
+<canvas id="cv" width="1000" height="590"></canvas>
+<div class="readout"><div>Zeit<b id="rt">0,0 s</b></div><div>Strecke<b id="rs">0,0 m</b></div><div>v<b id="rv">0,0 m/s</b></div></div>
+<div id="status" class="status info">Wähle eine Geschwindigkeit und starte.</div>
+</section>
+<aside class="card controls"><h2>Geschwindigkeit</h2>
+<label><input id="speed" type="range" min="0.5" max="3.0" step="0.1" value="1.0"><span id="sv">1,0 m/s</span></label>
+<button id="start">▶ Fahren</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Physik-Hilfe</summary><p>Bei einer gleichförmigen Bewegung gilt: <strong>v = s / t</strong>. Im Strecke-Zeit-Diagramm bedeutet eine größere Geschwindigkeit eine steilere Gerade.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const levels=[
+ {title:'Mission 1 – 6 Meter in 4 Sekunden',text:'Wähle eine konstante Geschwindigkeit, mit der das Fahrzeug nach 4,0 s möglichst genau bei 6,0 m ist.',t:4,s:6,tol:.25},
+ {title:'Mission 2 – 10 Meter in 5 Sekunden',text:'Wähle v so, dass das Fahrzeug nach 5,0 s bei 10,0 m ankommt.',t:5,s:10,tol:.3},
+ {title:'Mission 3 – Diagramm lesen',text:'Erzeuge eine Gerade mit der Steigung 2,5 m/s und erkläre dir: Warum ist sie steiler als in Mission 1?',t:4,s:10,tol:.3,required:2.5}
+];
+let li=0,running=false,t=0,s=0,data=[],last=0,raf;
+speed.oninput=()=>{sv.textContent=(+speed.value).toFixed(1).replace('.',',')+' m/s'};
+start.onclick=()=>{if(running)return;t=0;s=0;data=[{t:0,s:0}];running=true;last=performance.now();status.className='status info';status.textContent='Fahrt läuft …';raf=requestAnimationFrame(loop)};
+reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+function loop(now){const L=levels[li],dt=Math.min(.04,(now-last)/1000);last=now;t+=dt;s=(+speed.value)*t;data.push({t,s});if(t>=L.t){t=L.t;s=(+speed.value)*t;running=false;evaluate()}update();draw();if(running)raf=requestAnimationFrame(loop)}
+function evaluate(){const L=levels[li],ok=Math.abs(s-L.s)<=L.tol && (!L.required||Math.abs(+speed.value-L.required)<.05);
+ if(ok){status.className='status ok';status.textContent='Geschafft. Deine Geschwindigkeit passt zur Steigung der Geraden: Je mehr Strecke pro Sekunde, desto steiler der Graph.';next.disabled=false}
+ else{status.className='status bad';status.textContent='Noch nicht. Nach '+L.t.toFixed(1).replace('.',',')+' s bist du bei '+s.toFixed(1).replace('.',',')+' m. Nutze v = s/t und probiere erneut.'}}
+function map(v,a,b,c,d){return c+(v-a)/(b-a)*(d-c)}
+function draw(){const L=levels[li];ctx.clearRect(0,0,cv.width,cv.height);
+ const tx=70,ty=145,tw=850;ctx.fillStyle='#eef2f7';ctx.fillRect(tx,ty-30,tw,60);ctx.strokeStyle='#6d7888';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(tx,ty+31);ctx.lineTo(tx+tw,ty+31);ctx.stroke();
+ for(let m=0;m<=12;m+=2){const x=map(m,0,12,tx,tx+tw);ctx.fillStyle='#526075';ctx.font='16px system-ui';ctx.fillText(m+' m',x-12,ty+58)}
+ const px=map(Math.min(12,s),0,12,tx,tx+tw);ctx.fillStyle='#225cab';ctx.fillRect(px-24,ty-18,48,25);
+ const ox=80,oy=530,w=840,h=280;ctx.strokeStyle='#7b8797';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+w,oy);ctx.moveTo(ox,oy);ctx.lineTo(ox,oy-h);ctx.stroke();
+ ctx.fillStyle='#344156';ctx.font='17px system-ui';ctx.fillText('Zeit t in s',ox+w-80,oy+27);ctx.fillText('Strecke s in m',ox-10,oy-h-10);
+ if(data.length>1){ctx.strokeStyle='#1769e0';ctx.lineWidth=4;ctx.beginPath();data.forEach((p,i)=>{const X=map(p.t,0,L.t,ox,ox+w),Y=map(p.s,0,12,oy,oy-h);i?ctx.lineTo(X,Y):ctx.moveTo(X,Y)});ctx.stroke()}
+}
+function update(){rt.textContent=t.toFixed(1).replace('.',',')+' s';rs.textContent=s.toFixed(1).replace('.',',')+' m';rv.textContent=(+speed.value).toFixed(1).replace('.',',')+' m/s'}
+function init(){cancelAnimationFrame(raf);running=false;t=0;s=0;data=[];const L=levels[li];missionTitle.textContent=L.title;missionText.textContent=L.text;speed.value=L.required||1;speed.dispatchEvent(new Event('input'));next.disabled=true;status.className='status info';status.textContent='Wähle eine Geschwindigkeit und starte.';update();draw()}
+init();
+</script></body></html>

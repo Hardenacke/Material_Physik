@@ -1,0 +1,34 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Strahlungs-Detektiv</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Ionisierende Strahlung · Absorption</div><h1>Strahlungs-Detektiv</h1>
+<p>Identifiziere eine unbekannte Strahlungsart durch Messungen mit verschiedenen Abschirmungen. Die Zählrate schwankt zufällig – entscheidend ist das Muster der Absorption, nicht ein einzelner perfekter Messwert.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong>Auftrag</strong>Finde mit möglichst wenigen Messungen heraus, ob die Quelle überwiegend Alpha-, Beta- oder Gammastrahlung aussendet.</div>
+<canvas id="cv" width="900" height="470"></canvas>
+<div class="readout"><div>Zählrate<b id="count">–</b></div><div>Messungen<b id="nm">0</b></div><div>Abschirmung<b id="rs">keine</b></div></div>
+<div id="log" class="status info">Wähle eine Abschirmung und miss 10 Sekunden.</div></section>
+<aside class="card controls"><h2>Messaufbau</h2>
+<label>Abschirmung <select id="shield"><option value="none">keine</option><option value="paper">Papier</option><option value="alu">Aluminium</option><option value="lead">Blei</option></select></label>
+<button id="measure">10 s messen</button>
+<h3>Deine Diagnose</h3><div class="row"><button onclick="guess('alpha')" class="secondary">Alpha</button><button onclick="guess('beta')" class="secondary">Beta</button><button onclick="guess('gamma')" class="secondary">Gamma</button></div>
+<button id="newq" class="secondary">Neue unbekannte Quelle</button>
+<details><summary>Modellhinweis</summary><p>Das Spiel verwendet vereinfachte Transmissionswerte und statistische Schwankungen. Papier schwächt Alpha stark, Aluminium Beta deutlich, Gammastrahlung ist wesentlich durchdringender und wird durch Blei nur abgeschwächt.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d');
+const trans={alpha:{none:1,paper:.03,alu:.01,lead:.01},beta:{none:1,paper:.90,alu:.10,lead:.05},gamma:{none:1,paper:.98,alu:.88,lead:.30}};
+let source='alpha',measures=0,history=[];
+function poisson(lambda){if(lambda>50){return Math.max(0,Math.round(lambda+Math.sqrt(lambda)*(Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random()-3)*1.4))}
+ let L=Math.exp(-lambda),k=0,p=1;do{k++;p*=Math.random()}while(p>L);return k-1}
+function reset(){source=['alpha','beta','gamma'][Math.floor(Math.random()*3)];measures=0;history=[];count.textContent='–';nm.textContent='0';log.className='status info';log.textContent='Wähle eine Abschirmung und miss 10 Sekunden.';draw()}
+newq.onclick=reset;shield.onchange=()=>{rs.textContent=shield.options[shield.selectedIndex].text;draw()};
+measure.onclick=()=>{measures++;const base=120,background=4,rate=base*trans[source][shield.value]+background,val=poisson(rate);history.push({s:shield.value,v:val});count.textContent=val+' Imp./10 s';nm.textContent=measures;log.className='status info';log.textContent='Messwert gespeichert. Vergleiche systematisch mit einer anderen Abschirmung.';draw()};
+function guess(g){if(g===source){log.className='status ok';log.textContent='Richtig: '+g.toUpperCase()+'. Du hast die Strahlungsart aus ihrem unterschiedlichen Durchdringungs- und Absorptionsverhalten erschlossen.'}else{log.className='status bad';log.textContent='Noch nicht. Ein einzelner Messwert reicht oft nicht. Vergleiche insbesondere Papier und Aluminium mit der ungeschirmten Messung.'}}
+function draw(){c.clearRect(0,0,cv.width,cv.height);c.fillStyle='#f8fafc';c.fillRect(0,0,900,470);
+ c.fillStyle='#6e7785';c.fillRect(100,190,100,100);c.fillStyle='#fff';c.font='bold 18px system-ui';c.fillText('Quelle ?',112,245);
+ c.fillStyle='#314d71';c.fillRect(700,185,90,110);c.fillStyle='#fff';c.fillText('Zähler',713,245);
+ const x=410;c.fillStyle=shield.value==='paper'?'#d8c9a9':shield.value==='alu'?'#aab6c4':shield.value==='lead'?'#596170':'rgba(0,0,0,0)';if(shield.value!=='none')c.fillRect(x,125,35,235);
+ c.strokeStyle='#e79d22';c.lineWidth=2;for(let i=0;i<18;i++){const yy=205+Math.random()*70;c.beginPath();c.moveTo(200,yy);c.lineTo(shield.value==='none'?700:x,yy+(Math.random()-.5)*25);c.stroke()}
+ c.fillStyle='#3e4d61';c.font='16px system-ui';c.fillText('vereinfachter Messaufbau',330,420)}
+reset();
+</script></body></html>

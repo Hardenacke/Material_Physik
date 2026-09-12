@@ -1,0 +1,66 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 5/6 – Wärme-Mischlabor</title><link rel="stylesheet" href="shared.css">
+<style>
+.story{font-size:1.05rem;line-height:1.55}.thermo{font-size:1.25rem;font-weight:800}
+.choicegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.choicegrid{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 5/6 · Temperatur und Wärme</div>
+<h1>Wärme-Mischlabor</h1>
+<p>Du arbeitest in einer Teeküche. Dein Ziel: Wasser so mischen, dass es weder zu heiß noch zu kalt ist. Du brauchst keine Formel – beobachte, vergleiche und finde Regeln.</p></header>
+<div class="grid">
+<section class="card">
+<div class="mission"><strong id="missionTitle"></strong><span id="missionText"></span></div>
+<canvas id="cv" width="900" height="600"></canvas>
+<div class="readout"><div>Heißes Wasser<b id="rh">0 ml</b></div><div>Kaltes Wasser<b id="rc">0 ml</b></div><div>Temperatur<b id="rT">–</b></div></div>
+<div id="status" class="status info">Fülle Wasser ein und mische.</div>
+</section>
+<aside class="card controls">
+<h2>Wasser einfüllen</h2>
+<div class="choicegrid">
+<button id="hotPlus" class="danger">+ 50 ml heiß</button>
+<button id="coldPlus">+ 50 ml kalt</button>
+<button id="hotMinus" class="secondary">− 50 ml heiß</button>
+<button id="coldMinus" class="secondary">− 50 ml kalt</button>
+</div>
+<button id="mix" class="good">Mischen</button>
+<button id="reset" class="secondary">↻ Noch einmal</button>
+<button id="next" class="secondary" disabled>Nächste Aufgabe →</button>
+<details><summary>Beobachtungshilfe</summary><p>Vergleiche zuerst die beiden Wassermengen. Ist von einer Sorte deutlich mehr im Becher, zieht sie die Mischtemperatur stärker in ihre Richtung.</p></details>
+<details><summary>Was sollst du lernen?</summary><p>Beim Mischen findet ein Temperaturausgleich statt. Die Mischung liegt zwischen den beiden Ausgangstemperaturen. Gleiche Wassermengen wirken gleich stark.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const levels=[
+ {title:'Aufgabe 1 – genau in die Mitte',text:'Heißes Wasser hat 80 °C, kaltes Wasser 20 °C. Erzeuge eine Mischung mit 50 °C.',Th:80,Tc:20,target:50,total:null},
+ {title:'Aufgabe 2 – mehr kaltes Wasser',text:'Erzeuge mit denselben Ausgangstemperaturen eine Mischung mit 40 °C. Was musst du im Vergleich zu Aufgabe 1 verändern?',Th:80,Tc:20,target:40,total:null},
+ {title:'Aufgabe 3 – Zielmenge',text:'Erzeuge genau 300 ml Wasser mit 40 °C.',Th:80,Tc:20,target:40,total:300}
+];
+let li=0,mh=0,mc=0,Tmix=null,mixed=false;
+function clamp(v){return Math.max(0,Math.min(500,v))}
+function change(which,d){if(mixed)return;if(which==='h')mh=clamp(mh+d);else mc=clamp(mc+d);update()}
+hotPlus.onclick=()=>change('h',50);hotMinus.onclick=()=>change('h',-50);coldPlus.onclick=()=>change('c',50);coldMinus.onclick=()=>change('c',-50);
+reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+mix.onclick=()=>{if(mh===0||mc===0){setStatus('Nimm von beiden Wassersorten etwas. Nur dann kannst du das Mischen untersuchen.','bad');return}
+ const L=levels[li];Tmix=(mh*L.Th+mc*L.Tc)/(mh+mc);mixed=true;evaluate();update()};
+function setStatus(t,c){status.className='status '+c;status.textContent=t}
+function evaluate(){const L=levels[li],okT=Math.abs(Tmix-L.target)<.6,okV=L.total===null||mh+mc===L.total;
+ if(okT&&okV){setStatus('Geschafft! Vergleiche deine beiden Wassermengen. Daraus kannst du eine Regel für die Mischtemperatur ableiten.','ok');next.disabled=false}
+ else{let s='Du erhältst '+Tmix.toFixed(1).replace('.',',')+' °C. ';
+ if(L.total!==null&&mh+mc!==L.total)s+='Die Gesamtmenge ist noch nicht '+L.total+' ml. ';
+ s+=Tmix>L.target?'Die Mischung ist noch zu warm.':'Die Mischung ist noch zu kalt.';setStatus(s,'bad')}
+}
+function init(){const L=levels[li];missionTitle.textContent=L.title;missionText.textContent=L.text;mh=0;mc=0;Tmix=null;mixed=false;next.disabled=true;setStatus('Fülle Wasser ein und mische.','info');update()}
+function drawBeaker(x,y,w,h,amount,temp,label,color){ctx.strokeStyle='#607089';ctx.lineWidth=4;ctx.strokeRect(x,y,w,h);
+ const fh=h*Math.min(1,amount/500);ctx.fillStyle=color;ctx.globalAlpha=.78;ctx.fillRect(x,y+h-fh,w,fh);ctx.globalAlpha=1;
+ ctx.fillStyle='#172033';ctx.font='bold 20px system-ui';ctx.fillText(label,x,y-18);ctx.fillText(temp+' °C',x+w-66,y-18);ctx.font='18px system-ui';ctx.fillText(amount+' ml',x+10,y+h+28)}
+function draw(){const L=levels[li];ctx.clearRect(0,0,cv.width,cv.height);
+ drawBeaker(75,130,210,300,mh,L.Th,'heiß','#ff8067');drawBeaker(345,130,210,300,mc,L.Tc,'kalt','#70bfff');
+ drawBeaker(630,130,210,300,mixed?Math.min(500,mh+mc):0,mixed?Math.round(Tmix):0,'Mischung','#a799ef');
+ ctx.fillStyle='#4f5d70';ctx.font='18px system-ui';ctx.fillText('Beobachte: Welche Wassermenge ist größer?',75,515);
+ if(mixed){ctx.fillStyle='#172033';ctx.font='bold 28px system-ui';ctx.fillText('Mischtemperatur: '+Tmix.toFixed(1).replace('.',',')+' °C',250,565)}
+}
+function update(){rh.textContent=mh+' ml';rc.textContent=mc+' ml';rT.textContent=Tmix===null?'–':Tmix.toFixed(1).replace('.',',')+' °C';draw()}
+init();
+</script></body></html>

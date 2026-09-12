@@ -1,0 +1,40 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 8 – Farblicht-Mischer</title><link rel="stylesheet" href="shared.css">
+<style>.swatch{height:90px;border-radius:14px;border:1px solid #aab5c4;display:grid;place-items:center;font-weight:800;text-shadow:0 1px 2px #fff}</style></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 8 · Optik · additive Farbmischung</div><h1>Farblicht-Mischer</h1>
+<p>Mische rotes, grünes und blaues Licht so, dass die Zielfarbe entsteht. Die Farbe wird nicht als Text erklärt – sie entsteht direkt aus den drei Lichtanteilen.</p></header>
+<div class="grid"><section class="card">
+<div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="900" height="500"></canvas>
+<div class="row"><div style="flex:1"><b>Ziel</b><div id="target" class="swatch"></div></div><div style="flex:1"><b>Deine Mischung</b><div id="mixSw" class="swatch"></div></div></div>
+<div id="status" class="status info">Verändere die drei Lichtstärken.</div></section>
+<aside class="card controls"><h2>Lichtstärken</h2>
+<label>Rot <input id="R" type="range" min="0" max="255" step="5" value="0"><span id="rv"></span></label>
+<label>Grün <input id="G" type="range" min="0" max="255" step="5" value="0"><span id="gv"></span></label>
+<label>Blau <input id="B" type="range" min="0" max="255" step="5" value="0"><span id="bv"></span></label>
+<button id="check">Farbe prüfen</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Forscherhinweis</summary><p>Bei Licht werden Intensitäten addiert. Zwei kräftige Grundfarben können deshalb eine neue helle Farbe ergeben; alle drei zusammen können weißes Licht erzeugen.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d');
+const levels=[
+ {t:'Mission 1 – Gelbes Licht',d:'Erzeuge Gelb ausschließlich aus farbigem Licht.',rgb:[255,255,0]},
+ {t:'Mission 2 – Cyan',d:'Erzeuge Cyan. Welche zwei Grundfarben brauchst du?',rgb:[0,255,255]},
+ {t:'Mission 3 – Weiß',d:'Erzeuge möglichst neutrales weißes Licht.',rgb:[255,255,255]},
+ {t:'Mission 4 – unbekannter Farbcode',d:'Treffe die Zielfarbe so genau wie möglich.',rgb:[180,80,230]}
+];let li=0;
+function vals(){return[+R.value,+G.value,+B.value]}
+function col(v){return `rgb(${v[0]},${v[1]},${v[2]})`}
+function update(){const v=vals();rv.textContent=' '+v[0];gv.textContent=' '+v[1];bv.textContent=' '+v[2];mixSw.style.background=col(v);draw()}
+[R,G,B].forEach(e=>e.oninput=update);reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+check.onclick=()=>{const t=levels[li].rgb,v=vals(),err=Math.sqrt(t.reduce((s,x,i)=>s+(x-v[i])**2,0));
+ if(err<35){status.className='status ok';status.textContent='Treffer. Die resultierende Farbe entsteht durch additive Überlagerung der drei Lichtanteile.';next.disabled=false}
+ else{status.className='status bad';status.textContent='Noch zu weit vom Ziel entfernt. Ändere jeweils nur einen Farbkanal und beobachte seine Wirkung.'}};
+function draw(){c.clearRect(0,0,cv.width,cv.height);c.fillStyle='#111923';c.fillRect(0,0,900,500);
+ const v=vals(),spots=[{x:350,y:230,r:150,col:`rgba(255,0,0,${v[0]/255*.8})`},{x:550,y:230,r:150,col:`rgba(0,255,0,${v[1]/255*.8})`},{x:450,y:330,r:150,col:`rgba(0,0,255,${v[2]/255*.8})`}];
+ c.globalCompositeOperation='screen';spots.forEach(s=>{c.fillStyle=s.col;c.beginPath();c.arc(s.x,s.y,s.r,0,Math.PI*2);c.fill()});c.globalCompositeOperation='source-over';
+ c.fillStyle='#fff';c.font='bold 18px system-ui';c.fillText('Überlagerung von Licht',335,45)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;target.style.background=col(L.rgb);R.value=G.value=B.value=0;next.disabled=true;status.className='status info';status.textContent='Verändere die drei Lichtstärken.';update()}
+init();
+</script></body></html>

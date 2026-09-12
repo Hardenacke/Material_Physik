@@ -1,0 +1,67 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EF – Kraft-Balance</title><link rel="stylesheet" href="shared.css">
+<style>#scene{height:420px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;position:relative}#fallback{width:100%;height:100%}</style>
+</head><body><div class="wrap">
+<header class="hero"><div class="kicker">EF · Dynamik · Newton</div><h1>Kraft-Balance</h1>
+<p>Untersuche Newtons zweites Gesetz spielerisch: Die resultierende Kraft bestimmt die Beschleunigung, nicht direkt die Geschwindigkeit.</p></header>
+<div class="grid">
+<section class="card"><div class="mission"><strong>Mission</strong>Bringe den Klotz in die grüne Zone und halte ihn dort mindestens 2 Sekunden nahezu in Ruhe.</div>
+<div id="scene"><canvas id="fallback" width="900" height="420"></canvas></div>
+<div class="readout"><div>F links<b id="rl">0 N</b></div><div>F rechts<b id="rr">0 N</b></div><div>v<b id="rv">0,00 m/s</b></div></div>
+<div id="status" class="status info">Verändere die beiden Kräfte. Beobachte nicht nur die Position, sondern auch die Geschwindigkeit.</div></section>
+<aside class="card controls">
+<h2>Kräfte einstellen</h2>
+<label>Kraft nach links <input id="leftF" type="range" min="0" max="6" step=".5" value="0"></label>
+<label>Kraft nach rechts <input id="rightF" type="range" min="0" max="6" step=".5" value="0"></label>
+<button id="reset" class="secondary">↻ Zurücksetzen</button>
+<p id="rendererInfo" class="help">Renderer wird geprüft …</p>
+<details><summary>Warum dieses Beispiel?</summary><p>Wenn Internet verfügbar ist, lädt die Seite die MIT-lizenzierte <strong>Scenery</strong>-Bibliothek von PhET. Sie ist das 2D-Szenengraph-System hinter vielen PhET-HTML5-Simulationen. Falls sie nicht geladen werden kann, bleibt das Spiel mit einem lokalen Canvas-Renderer spielbar.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+
+<script src="https://phetsims.github.io/scenery/dist/scenery.min.js"></script>
+<script>
+let x=1.5,v=0,last=performance.now(),hold=0,usingScenery=false,display,scene,block,targetNode,leftArrow,rightArrow;
+const fb=document.getElementById('fallback'),fctx=fb.getContext('2d');
+function initScenery(){
+ try{
+   if(!window.phet||!phet.scenery)throw new Error('Scenery nicht geladen');
+   fb.style.display='none';
+   scene=new phet.scenery.Node();
+   display=new phet.scenery.Display(scene,{container:document.getElementById('scene'),width:900,height:420});
+   if(display.initializeEvents)display.initializeEvents();
+   targetNode=new phet.scenery.Rectangle(620,110,150,170,{fill:'rgba(46,170,91,.22)',stroke:'#2b9b57',lineWidth:3});
+   block=new phet.scenery.Rectangle(0,0,90,70,{fill:'#476b9d',stroke:'#23466f',lineWidth:3});
+   scene.addChild(targetNode);scene.addChild(block);
+   usingScenery=true;rendererInfo.textContent='PhET Scenery aktiv (extern geladen).';
+ }catch(e){usingScenery=false;fb.style.display='block';rendererInfo.textContent='Offline-Fallback aktiv: identische Physik, lokales Canvas.'}
+}
+function resetState(){x=1.5;v=0;hold=0;leftF.value=0;rightF.value=0;status.className='status info';status.textContent='Verändere die beiden Kräfte. Beobachte nicht nur die Position, sondern auch die Geschwindigkeit.'}
+reset.onclick=resetState;
+function physics(now){
+ const dt=Math.min(.04,(now-last)/1000);last=now;
+ const Fl=+leftF.value,Fr=+rightF.value,m=2;
+ const a=(Fr-Fl)/m;v+=a*dt;v*=Math.pow(.997,dt*60);x+=v*dt;
+ if(x<0){x=0;v=0}if(x>10){x=10;v=0}
+ const inZone=x>=7.0&&x<=8.6;
+ if(inZone&&Math.abs(v)<.12)hold+=dt;else hold=0;
+ if(hold>2){status.className='status ok';status.textContent='Geschafft. In der Zielzone musstest du die resultierende Kraft wieder ungefähr auf null bringen – und vorher die vorhandene Bewegung abbremsen.'}
+ rl.textContent=Fl.toFixed(1).replace('.',',')+' N';rr.textContent=Fr.toFixed(1).replace('.',',')+' N';rv.textContent=v.toFixed(2).replace('.',',')+' m/s';
+ render(Fl,Fr);requestAnimationFrame(physics)
+}
+function render(Fl,Fr){
+ const px=80+x/10*740;
+ if(usingScenery){
+   block.x=px-45; block.y=230;
+   if(display.updateDisplay)display.updateDisplay();
+ }else{
+   fctx.clearRect(0,0,900,420);fctx.fillStyle='#f4f7fb';fctx.fillRect(0,0,900,420);
+   fctx.fillStyle='rgba(46,170,91,.22)';fctx.fillRect(80+7/10*740,120,(1.6/10)*740,170);
+   fctx.strokeStyle='#6b788a';fctx.lineWidth=4;fctx.beginPath();fctx.moveTo(80,300);fctx.lineTo(820,300);fctx.stroke();
+   fctx.fillStyle='#476b9d';fctx.fillRect(px-45,230,90,70);
+   drawArrow(px-50,215,Fl*16,-1,'#b13a2f');drawArrow(px+50,215,Fr*16,1,'#137a42');
+ }
+}
+function drawArrow(x,y,len,dir,color){if(len<2)return;fctx.strokeStyle=color;fctx.fillStyle=color;fctx.lineWidth=5;fctx.beginPath();fctx.moveTo(x,y);fctx.lineTo(x+dir*len,y);fctx.stroke();fctx.beginPath();fctx.moveTo(x+dir*len,y);fctx.lineTo(x+dir*(len-12),y-8);fctx.lineTo(x+dir*(len-12),y+8);fctx.closePath();fctx.fill()}
+window.addEventListener('load',()=>{initScenery();resetState();last=performance.now();requestAnimationFrame(physics)});
+</script></body></html>

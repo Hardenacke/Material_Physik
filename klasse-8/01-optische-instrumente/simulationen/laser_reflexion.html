@@ -1,0 +1,88 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 8 – Laserlabor</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 8 · Optik · Reflexion</div><h1>Laserlabor</h1>
+<p>Lenke einen Lichtstrahl mit Spiegeln ins Ziel. Beobachte zuerst den Strahlweg; nutze anschließend Lot und Winkel, um das Reflexionsgesetz als Strategie einzusetzen.</p></header>
+<div class="grid">
+<section class="card"><div class="mission"><strong id="missionTitle"></strong><span id="missionText"></span></div>
+<canvas id="cv" width="950" height="570"></canvas><div id="status" class="status info">Drehe den Spiegel und beobachte, wie sich die Richtung des reflektierten Strahls ändert.</div></section>
+<aside class="card controls"><h2>Spiegel einstellen</h2>
+<label>Spiegel A <input id="a1" type="range" min="-70" max="70" step="1" value="0"><span id="v1"></span></label>
+<label id="row2">Spiegel B <input id="a2" type="range" min="-70" max="70" step="1" value="0"><span id="v2"></span></label>
+<button id="test">Strahl testen</button>
+<button id="measure" class="secondary">Messhilfe: Lot & Winkel</button>
+<button id="reset" class="secondary">↻ Versuch zurücksetzen</button>
+<button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Strategie statt Raten</summary><p>Überlege zunächst: In welche Richtung muss der Strahl nach dem Spiegel laufen? Der Spiegel liegt genau zwischen Einfalls- und Ausfallsrichtung.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const levels=[
+ {title:'Mission 1 – ein Spiegel',text:'Lenke den horizontalen Laser mit Spiegel A in den grünen Detektor.',source:{x:60,y:300},mirrors:[{x:400,y:300}],goal:{x:760,y:100,r:30},sol:[-15]},
+ {title:'Mission 2 – zwei Reflexionen',text:'Der Strahl soll nacheinander Spiegel A und B treffen und danach den Detektor erreichen.',source:{x:55,y:350},mirrors:[{x:350,y:350},{x:555,y:165}],goal:{x:820,y:292,r:30},sol:[-21,-8]},
+ {title:'Mission 3 – Ziel über dir',text:'Nutze beide Spiegel, um den Strahl zum hoch liegenden Detektor zu führen.',source:{x:55,y:420},mirrors:[{x:300,y:420},{x:520,y:220}],goal:{x:815,y:72,r:30},sol:[-21,-24]}
+];
+let li=0,showMeasure=false,lastHits=[],hitGoal=false;
+function rad(d){return d*Math.PI/180}
+function norm(a){const l=Math.hypot(a.x,a.y);return{x:a.x/l,y:a.y/l}}
+function cross(a,b){return a.x*b.y-a.y*b.x}
+function sub(a,b){return{x:a.x-b.x,y:a.y-b.y}}
+function add(a,b){return{x:a.x+b.x,y:a.y+b.y}}
+function mul(a,s){return{x:a.x*s,y:a.y*s}}
+function intersectRaySegment(p,d,a,b){
+ const v=sub(b,a),w=sub(a,p),den=cross(d,v);if(Math.abs(den)<1e-8)return null;
+ const t=cross(w,v)/den,u=cross(w,d)/den;
+ if(t>1e-3&&u>=0&&u<=1)return{t,p:add(p,mul(d,t))};return null
+}
+function mirrorEnds(m,ang){const q={x:Math.cos(ang)*90,y:Math.sin(ang)*90};return [sub(m,q),add(m,q)]}
+function reflect(d,lineAng){const e={x:Math.cos(lineAng),y:Math.sin(lineAng)};const dot=d.x*e.x+d.y*e.y;return norm({x:2*dot*e.x-d.x,y:2*dot*e.y-d.y})}
+function rayCircle(p,d,c,r){
+ const f=sub(p,c),A=1,B=2*(f.x*d.x+f.y*d.y),C=f.x*f.x+f.y*f.y-r*r,disc=B*B-4*A*C;if(disc<0)return null;
+ const t1=(-B-Math.sqrt(disc))/2;if(t1>0)return t1;return null
+}
+function trace(){
+ const L=levels[li],angles=[rad(+a1.value),rad(+a2.value)],segs=[],hits=[];let p={...L.source},d={x:1,y:0},used=new Set(),goalHit=false;
+ for(let bounce=0;bounce<4;bounce++){
+   let best={t:1e9,type:'none'};
+   const tg=rayCircle(p,d,L.goal,L.goal.r);if(tg&&tg<best.t)best={t:tg,type:'goal'};
+   L.mirrors.forEach((m,i)=>{
+     if(used.has(i))return;const [A,B]=mirrorEnds(m,angles[i]);const q=intersectRaySegment(p,d,A,B);if(q&&q.t<best.t)best={t:q.t,type:'mirror',i,p:q.p}
+   });
+   if(best.type==='none'){segs.push([p,add(p,mul(d,1300))]);break}
+   const end=best.type==='goal'?add(p,mul(d,best.t)):best.p;segs.push([p,end]);
+   if(best.type==='goal'){goalHit=true;break}
+   hits.push({p:end,i:best.i,in:{...d},ang:angles[best.i]});used.add(best.i);d=reflect(d,angles[best.i]);p=add(end,mul(d,.5));
+ }
+ return{segs,hits,goalHit}
+}
+function angleToNormal(d,lineAng){
+ const n1={x:-Math.sin(lineAng),y:Math.cos(lineAng)},n2={x:-n1.x,y:-n1.y};
+ const n=(d.x*n1.x+d.y*n1.y)<0?n1:n2;
+ return Math.acos(Math.min(1,Math.abs(d.x*n.x+d.y*n.y)))*180/Math.PI
+}
+function draw(){
+ const L=levels[li],tr=trace();lastHits=tr.hits;hitGoal=tr.goalHit;
+ ctx.clearRect(0,0,cv.width,cv.height);ctx.fillStyle='#101722';ctx.fillRect(0,0,cv.width,cv.height);
+ // detector
+ ctx.fillStyle=tr.goalHit?'#7ff0a6':'#43b86c';ctx.beginPath();ctx.arc(L.goal.x,L.goal.y,L.goal.r,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#d9ffe5';ctx.font='bold 16px system-ui';ctx.fillText('DETEKTOR',L.goal.x-42,L.goal.y+5);
+ // mirrors
+ const angles=[rad(+a1.value),rad(+a2.value)];
+ L.mirrors.forEach((m,i)=>{const[A,B]=mirrorEnds(m,angles[i]);ctx.strokeStyle='#dbe6f4';ctx.lineWidth=12;ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();ctx.fillStyle='#9db2cc';ctx.font='bold 18px system-ui';ctx.fillText(i?'B':'A',m.x-6,m.y-18)});
+ // ray
+ ctx.strokeStyle='#ff394b';ctx.shadowColor='#ff394b';ctx.shadowBlur=8;ctx.lineWidth=4;ctx.beginPath();tr.segs.forEach((s,i)=>{ctx.moveTo(s[0].x,s[0].y);ctx.lineTo(s[1].x,s[1].y)});ctx.stroke();ctx.shadowBlur=0;
+ // laser
+ ctx.fillStyle='#d9e2ed';ctx.fillRect(L.source.x-28,L.source.y-13,35,26);
+ if(showMeasure){
+   tr.hits.forEach(h=>{const na=h.ang+Math.PI/2;ctx.strokeStyle='#65c8ff';ctx.lineWidth=2;ctx.setLineDash([8,7]);ctx.beginPath();ctx.moveTo(h.p.x-Math.cos(na)*75,h.p.y-Math.sin(na)*75);ctx.lineTo(h.p.x+Math.cos(na)*75,h.p.y+Math.sin(na)*75);ctx.stroke();ctx.setLineDash([]);
+     const alpha=angleToNormal(h.in,h.ang);ctx.fillStyle='#aee5ff';ctx.font='bold 17px system-ui';ctx.fillText('α ≈ '+alpha.toFixed(0)+'°',h.p.x+14,h.p.y+26);
+   });
+ }
+ v1.textContent=' '+a1.value+'°';v2.textContent=' '+a2.value+'°';
+}
+a1.oninput=draw;a2.oninput=draw;measure.onclick=()=>{showMeasure=!showMeasure;measure.textContent=showMeasure?'Messhilfe ausblenden':'Messhilfe: Lot & Winkel';draw()};
+test.onclick=()=>{draw();if(hitGoal){status.className='status ok';status.textContent='Treffer. Der Strahl wurde an jedem Spiegel so gespiegelt, dass Einfalls- und Reflexionswinkel zum Lot gleich groß sind.';next.disabled=false}else{status.className='status bad';status.textContent='Noch kein Treffer. Verändere nur einen Spiegel und beobachte zuerst, wie sich genau dieser Teil des Strahlwegs dreht.'}};
+reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+function init(){const L=levels[li];missionTitle.textContent=L.title;missionText.textContent=L.text;a1.value=0;a2.value=0;row2.style.display=L.mirrors.length>1?'block':'none';showMeasure=false;measure.textContent='Messhilfe: Lot & Winkel';next.disabled=true;status.className='status info';status.textContent='Drehe den Spiegel und beobachte, wie sich die Richtung des reflektierten Strahls ändert.';draw()}
+init();
+</script></body></html>

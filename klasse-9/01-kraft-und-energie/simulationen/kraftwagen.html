@@ -1,0 +1,45 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 9 – Kraftwagen</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 9 · Mechanik · Kraft und Beschleunigung</div><h1>Kraftwagen</h1>
+<p>Steuere einen Wagen mit einer einstellbaren Kraft. Masse und Reibung verändern die Reaktion des Systems. Die Kraftpfeile und Messwerte zeigen, warum gleiche Kräfte nicht immer dieselbe Beschleunigung erzeugen.</p></header>
+<div class="grid"><section class="card">
+<div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="980" height="570"></canvas>
+<div class="readout"><div>resultierende Kraft<b id="rF">0 N</b></div><div>Beschleunigung<b id="ra">0 m/s²</b></div><div>Geschwindigkeit<b id="rv">0 m/s</b></div></div>
+<div id="status" class="status info">Stelle Masse und Antriebskraft ein. Dann starte.</div></section>
+<aside class="card controls"><h2>Wagen einstellen</h2>
+<label>Masse <input id="mass" type="range" min="1" max="5" step=".5" value="2"><span id="mv"></span></label>
+<label>Antriebskraft <input id="force" type="range" min="0" max="12" step=".5" value="5"><span id="fv"></span></label>
+<label>Reibungskraft <input id="fric" type="range" min="0" max="4" step=".5" value="1"><span id="frv"></span></label>
+<button id="start">▶ Start</button><button id="coast" class="secondary">Antrieb aus</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Physik-Hilfe</summary><p>Die Beschleunigung hängt von der resultierenden Kraft und der Masse ab. Reibung wirkt der Bewegung entgegen.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d');
+const levels=[
+ {t:'Mission 1 – 4 m/s an der Messlinie',d:'Erreiche an der Linie bei 8 m eine Geschwindigkeit zwischen 3,8 m/s und 4,2 m/s.',x:8,v:[3.8,4.2]},
+ {t:'Mission 2 – schwere Ladung',d:'Der Wagen hat mindestens 4 kg. Erreiche an 8 m wieder ungefähr 4 m/s.',x:8,v:[3.8,4.2],minM:4},
+ {t:'Mission 3 – mit Reibung',d:'Nutze mindestens 2 N Reibung und erreiche an der Linie 3,0 bis 3,5 m/s.',x:8,v:[3,3.5],minFric:2}
+];let li=0,x=0,v=0,running=false,drive=true,last=0,raf,checked=false;
+function vals(){let F=drive?+force.value:0,Fr=v>0?+fric.value:0,Fnet=F-Fr,a=Fnet/+mass.value;return{F,Fr,Fnet,a}}
+function updateLabels(){mv.textContent=' '+mass.value+' kg';fv.textContent=' '+force.value+' N';frv.textContent=' '+fric.value+' N'}
+[mass,force,fric].forEach(e=>e.oninput=()=>{updateLabels();draw()});coast.onclick=()=>{drive=false};reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+start.onclick=()=>{if(running)return;drive=true;running=true;last=performance.now();raf=requestAnimationFrame(loop)};
+function loop(now){const dt=Math.min(.035,(now-last)/1000);last=now;const z=vals();v=Math.max(0,v+z.a*dt);x+=v*dt;
+ if(!checked&&x>=levels[li].x){checked=true;evaluate()}
+ if(x>12||checked){running=false}
+ update();if(running)raf=requestAnimationFrame(loop)}
+function evaluate(){const L=levels[li],okV=v>=L.v[0]&&v<=L.v[1],okM=!L.minM||+mass.value>=L.minM,okR=!L.minFric||+fric.value>=L.minFric;
+ if(okV&&okM&&okR){status.className='status ok';status.textContent='Mission geschafft. Entscheidend war die resultierende Kraft im Verhältnis zur Masse; die Reibung verringerte die Beschleunigung.';next.disabled=false}
+ else{status.className='status bad';let s='An der Messlinie: v = '+v.toFixed(2).replace('.',',')+' m/s. ';if(!okM)s+='Die Masse ist zu klein. ';if(!okR)s+='Die geforderte Reibung fehlt. ';s+=okV?'':'Passe Kraft, Masse oder Reibung gezielt an.';status.textContent=s}}
+function update(){const z=vals();rF.textContent=z.Fnet.toFixed(1).replace('.',',')+' N';ra.textContent=z.a.toFixed(2).replace('.',',')+' m/s²';rv.textContent=v.toFixed(2).replace('.',',')+' m/s';draw()}
+function draw(){c.clearRect(0,0,cv.width,cv.height);const tx=70,ty=265,w=840;c.fillStyle='#eef2f7';c.fillRect(tx,ty-40,w,80);c.strokeStyle='#647287';c.lineWidth=3;c.beginPath();c.moveTo(tx,ty+42);c.lineTo(tx+w,ty+42);c.stroke();
+ const px=tx+Math.min(12,x)/12*w,goal=tx+levels[li].x/12*w;c.strokeStyle='#2c9c55';c.lineWidth=5;c.beginPath();c.moveTo(goal,ty-80);c.lineTo(goal,ty+45);c.stroke();
+ c.fillStyle='#315f9d';c.fillRect(px-35,ty-26,70,38);c.fillStyle='#222c38';c.beginPath();c.arc(px-23,ty+17,11,0,Math.PI*2);c.arc(px+23,ty+17,11,0,Math.PI*2);c.fill();
+ const z=vals();arrow(px,ty-55,z.F*8,1,'#168149','F_A');arrow(px,ty-88,z.Fr*8,-1,'#b53a31','F_R');
+ c.fillStyle='#4e5b6e';c.font='17px system-ui';c.fillText('Messlinie bei '+levels[li].x+' m',goal-60,ty-95);c.fillText('x = '+x.toFixed(1)+' m',70,470)}
+function arrow(x,y,L,dir,col,label){if(L<2)return;c.strokeStyle=col;c.fillStyle=col;c.lineWidth=5;c.beginPath();c.moveTo(x,y);c.lineTo(x+dir*L,y);c.stroke();c.beginPath();c.moveTo(x+dir*L,y);c.lineTo(x+dir*(L-12),y-8);c.lineTo(x+dir*(L-12),y+8);c.closePath();c.fill();c.font='bold 16px system-ui';c.fillText(label,x+dir*L+(dir>0?5:-30),y-8)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;x=0;v=0;running=false;drive=true;checked=false;mass.value=L.minM||2;force.value=5;fric.value=L.minFric||1;next.disabled=true;status.className='status info';status.textContent='Stelle Masse und Antriebskraft ein. Dann starte.';updateLabels();update()}
+init();
+</script></body></html>

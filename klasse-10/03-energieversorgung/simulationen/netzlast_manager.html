@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Lernspiel zur Energieversorgung: Stromnachfrage, Wind, Solar, Speicher, flexible Lasten und Reservekraftwerke über einen Tagesverlauf ausbalancieren.">
+  <title>Netzlast-Manager</title>
+  <style>
+    :root {
+      --bg: #f4f6ee;
+      --panel: #fffef8;
+      --ink: #253125;
+      --muted: #687165;
+      --line: #d9decf;
+      --primary: #3d7f47;
+      --primary-dark: #285b32;
+      --solar: #f2b331;
+      --wind: #4d97b8;
+      --gas: #b56a46;
+      --battery: #7167b2;
+      --bad: #a84235;
+      --shadow: 0 18px 42px rgba(57, 74, 49, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(130deg, rgba(61, 127, 71, .14), transparent 34%),
+        linear-gradient(250deg, rgba(242, 179, 49, .18), transparent 36%),
+        var(--bg);
+    }
+
+    a { color: var(--primary-dark); font-weight: 780; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+
+    .hero {
+      padding: 24px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(37, 91, 48, .97), rgba(73, 130, 78, .94)),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 2px, transparent 2px 24px);
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .76rem;
+      font-weight: 850;
+      opacity: .87;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(1.7rem, 4vw, 3rem); letter-spacing: 0; }
+    .hero p { margin-bottom: 0; max-width: 890px; line-height: 1.52; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(310px, .75fr);
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,254,248,.96);
+      box-shadow: var(--shadow);
+    }
+
+    .mission {
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-left: 5px solid var(--solar);
+      border-radius: 8px;
+      background: #fff5d9;
+      line-height: 1.42;
+    }
+
+    .mission strong { display: block; margin-bottom: 4px; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #d1d8c6;
+      border-radius: 8px;
+      background: #182318;
+      touch-action: none;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .readout div {
+      padding: 10px;
+      min-height: 76px;
+      border-radius: 8px;
+      border: 1px solid #cdddc8;
+      background: #eef7ec;
+      text-align: center;
+      color: #3e583e;
+    }
+
+    .readout b {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+    }
+
+    .controls {
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-weight: 760;
+    }
+
+    .value {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: .92rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 38px;
+      accent-color: var(--primary);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    button {
+      appearance: none;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font: inherit;
+      font-weight: 800;
+      color: #fff;
+      background: var(--primary);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, box-shadow .2s ease, border-color .2s ease;
+      touch-action: manipulation;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:active { transform: translateY(1px) scale(.99); }
+    button.secondary { color: var(--ink); background: #f3ead8; border-color: #e3c99e; }
+    button.secondary:hover { background: #eddcbf; }
+    button.selected {
+      color: #fff;
+      background: var(--wind);
+      box-shadow: 0 0 0 4px rgba(77, 151, 184, .18);
+      animation: pop .28s ease;
+    }
+
+    .status {
+      min-height: 66px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d2dccf;
+      background: #f7faf4;
+      line-height: 1.42;
+      color: #415046;
+    }
+
+    .status.ok { color: #0f6038; background: #e8f6ef; border-color: #bddfca; }
+    .status.warn { color: #744b08; background: #fff3d0; border-color: #ecc56d; }
+    .status.bad { color: #842d24; background: #fde8e5; border-color: #efc3bb; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #fff9ea;
+      border: 1px solid #e8d6ad;
+      font-weight: 730;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    details {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffdf7;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(.96); }
+      70% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 16px, 1180px); padding-top: 10px; }
+      .readout { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .hero, .card { padding: 13px; }
+      .readout, .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="kicker">Klasse 10 · Energieversorgung</div>
+      <h1>Netzlast-Manager</h1>
+      <p>Plane einen Strommix für 24 Stunden: Erneuerbare Energien senken Emissionen, Speicher glätten Schwankungen, Reservekraftwerke sichern die Versorgung.</p>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="mission">
+          <strong>Auftrag</strong>
+          Halte die Versorgungssicherheit bei 100 Prozent und senke zugleich CO2-Ausstoß und Abregelung. Die beste Lösung balanciert Technik, Wetter und Nachfrage.
+        </div>
+        <canvas id="gridCanvas" width="960" height="540" aria-label="Tagesverlauf von Nachfrage und Stromerzeugung"></canvas>
+        <div class="readout">
+          <div>Versorgung<b id="security">0%</b></div>
+          <div>CO2-Score<b id="co2">0</b></div>
+          <div>Abregelung<b id="curtailment">0 GWh</b></div>
+          <div>Gesamtwertung<b id="score">0</b></div>
+        </div>
+      </section>
+
+      <aside class="card controls">
+        <h2>Kraftwerkspark</h2>
+        <div class="row">
+          <button class="secondary selected" data-scenario="spring">Frühling</button>
+          <button class="secondary" data-scenario="winter">Winter</button>
+          <button class="secondary" data-scenario="calm">Flaute</button>
+        </div>
+        <label>
+          Solar-Ausbau <span class="value" id="solarLabel"></span>
+          <input id="solar" type="range" min="10" max="90" value="45">
+        </label>
+        <label>
+          Wind-Ausbau <span class="value" id="windLabel"></span>
+          <input id="wind" type="range" min="10" max="90" value="48">
+        </label>
+        <label>
+          Speichergröße <span class="value" id="storageLabel"></span>
+          <input id="storage" type="range" min="0" max="90" value="34">
+        </label>
+        <label>
+          Flexible Nachfrage <span class="value" id="flexLabel"></span>
+          <input id="flex" type="range" min="0" max="30" value="8">
+        </label>
+        <label>
+          Reservekraftwerke <span class="value" id="gasLabel"></span>
+          <input id="gas" type="range" min="15" max="85" value="48">
+        </label>
+        <div class="status" id="feedback">Passe den Kraftwerkspark an. Ziel: keine Lücke, wenig Reserveeinsatz, wenig Abregelung.</div>
+        <div class="legend" aria-hidden="true">
+          <span class="chip"><span class="dot" style="background:var(--solar)"></span>Solar</span>
+          <span class="chip"><span class="dot" style="background:var(--wind)"></span>Wind</span>
+          <span class="chip"><span class="dot" style="background:var(--battery)"></span>Speicher</span>
+          <span class="chip"><span class="dot" style="background:var(--gas)"></span>Reserve</span>
+        </div>
+        <details>
+          <summary>Modellhinweis</summary>
+          <p>Das Spiel rechnet mit normierten Gigawatt-Werten. Speicher laden bei Überschuss und entladen bei Lücken. Flexible Nachfrage verschiebt einen Teil der Last aus kritischen Stunden.</p>
+        </details>
+      </aside>
+    </div>
+    <p><a href="../../../index.html">Zurück zur Materialübersicht</a></p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("gridCanvas");
+    const ctx = canvas.getContext("2d");
+    const controls = {
+      solar: document.getElementById("solar"),
+      wind: document.getElementById("wind"),
+      storage: document.getElementById("storage"),
+      flex: document.getElementById("flex"),
+      gas: document.getElementById("gas")
+    };
+    const labels = {
+      solar: document.getElementById("solarLabel"),
+      wind: document.getElementById("windLabel"),
+      storage: document.getElementById("storageLabel"),
+      flex: document.getElementById("flexLabel"),
+      gas: document.getElementById("gasLabel"),
+      security: document.getElementById("security"),
+      co2: document.getElementById("co2"),
+      curtailment: document.getElementById("curtailment"),
+      score: document.getElementById("score"),
+      feedback: document.getElementById("feedback")
+    };
+    const scenarioButtons = Array.from(document.querySelectorAll("[data-scenario]"));
+    let scenario = "spring";
+    let tick = 0;
+
+    const scenarioData = {
+      spring: { sun: 1.0, wind: .78, demand: 1.0, label: "Frühling" },
+      winter: { sun: .42, wind: 1.05, demand: 1.16, label: "Winter" },
+      calm: { sun: .82, wind: .33, demand: 1.04, label: "Flaute" }
+    };
+
+    function values() {
+      return {
+        solar: Number(controls.solar.value),
+        wind: Number(controls.wind.value),
+        storage: Number(controls.storage.value),
+        flex: Number(controls.flex.value),
+        gas: Number(controls.gas.value)
+      };
+    }
+
+    function demandAt(hour, v, s) {
+      const morning = 18 * Math.exp(-Math.pow((hour - 8) / 3.1, 2));
+      const evening = 25 * Math.exp(-Math.pow((hour - 19) / 3.6, 2));
+      const night = hour < 5 ? -8 : 0;
+      const flexibleRelief = v.flex * (Math.exp(-Math.pow((hour - 19) / 3.2, 2)) - .42 * Math.exp(-Math.pow((hour - 13) / 4.4, 2)));
+      return Math.max(34, (54 + morning + evening + night - flexibleRelief) * s.demand);
+    }
+
+    function solarAt(hour, v, s) {
+      const daylight = Math.max(0, Math.sin((hour - 6) / 12 * Math.PI));
+      return v.solar * s.sun * Math.pow(daylight, 1.45);
+    }
+
+    function windAt(hour, v, s) {
+      const wave = .72 + .22 * Math.sin((hour + 2) / 24 * Math.PI * 2) + .12 * Math.sin((hour * 3 + 7) / 24 * Math.PI * 2);
+      return v.wind * s.wind * Math.max(.12, wave);
+    }
+
+    function simulate() {
+      const v = values();
+      const s = scenarioData[scenario];
+      const batteryCap = v.storage;
+      const batteryPower = Math.max(8, v.storage * .34);
+      let battery = batteryCap * .45;
+      let shortage = 0;
+      let curtailed = 0;
+      let gasUse = 0;
+      const hours = [];
+      for (let h = 0; h < 24; h += 1) {
+        const demand = demandAt(h, v, s);
+        const solar = solarAt(h, v, s);
+        const wind = windAt(h, v, s);
+        let residual = demand - solar - wind;
+        let discharge = 0;
+        let charge = 0;
+        let gas = 0;
+        if (residual > 0) {
+          discharge = Math.min(residual, batteryPower, battery);
+          battery -= discharge;
+          residual -= discharge;
+          gas = Math.min(residual, v.gas);
+          residual -= gas;
+          shortage += Math.max(0, residual);
+          gasUse += gas;
+        } else {
+          charge = Math.min(-residual, batteryPower, batteryCap - battery);
+          battery += charge;
+          residual += charge;
+          curtailed += Math.max(0, -residual);
+        }
+        hours.push({ hour: h, demand, solar, wind, discharge, charge, gas, shortage: Math.max(0, residual), battery });
+      }
+      const totalDemand = hours.reduce((sum, item) => sum + item.demand, 0);
+      const security = Math.max(0, 100 - shortage / totalDemand * 100);
+      const co2 = gasUse * .42;
+      const score = Math.round(security * 5 - co2 * 2.1 - curtailed * .7 - v.gas * .22 + (v.solar + v.wind) * .25);
+      return { hours, security, co2, curtailed, gasUse, score, values: v, scenario: s };
+    }
+
+    function yScale(value) {
+      return 466 - value / 135 * 332;
+    }
+
+    function draw(sim) {
+      const bg = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      bg.addColorStop(0, "#172618");
+      bg.addColorStop(.62, "#223523");
+      bg.addColorStop(1, "#30351e");
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = "rgba(255,255,255,.15)";
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 6; i += 1) {
+        const y = 466 - i * 55;
+        ctx.beginPath();
+        ctx.moveTo(72, y);
+        ctx.lineTo(900, y);
+        ctx.stroke();
+      }
+
+      const barW = 828 / 24;
+      sim.hours.forEach((item, index) => {
+        const x = 72 + index * barW + 3;
+        let bottom = 466;
+        const parts = [
+          ["solar", item.solar, "#f2b331"],
+          ["wind", item.wind, "#4d97b8"],
+          ["discharge", item.discharge, "#7167b2"],
+          ["gas", item.gas, "#b56a46"]
+        ];
+        parts.forEach((part) => {
+          const h = part[1] / 135 * 332;
+          ctx.fillStyle = part[2];
+          ctx.fillRect(x, bottom - h, barW - 6, h);
+          bottom -= h;
+        });
+        if (item.shortage > 0) {
+          const h = item.shortage / 135 * 332;
+          ctx.fillStyle = "#d85c4f";
+          ctx.fillRect(x, bottom - h, barW - 6, h);
+        }
+      });
+
+      ctx.strokeStyle = "#fffdf1";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      sim.hours.forEach((item, index) => {
+        const x = 72 + index * barW + barW / 2;
+        const y = yScale(item.demand);
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      const active = Math.floor((tick / 28) % 24);
+      const activeX = 72 + active * barW + barW / 2;
+      ctx.strokeStyle = "rgba(255,255,255,.76)";
+      ctx.setLineDash([7, 8]);
+      ctx.beginPath();
+      ctx.moveTo(activeX, 112);
+      ctx.lineTo(activeX, 482);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = "#fff";
+      ctx.font = "800 16px system-ui";
+      ctx.fillText(`Szenario: ${sim.scenario.label}`, 76, 72);
+      ctx.font = "13px system-ui";
+      ctx.fillText("gestapelte Erzeugung, weiße Linie = Nachfrage", 76, 94);
+
+      drawBattery(sim.hours[active], sim.values.storage);
+    }
+
+    function drawBattery(hour, capacity) {
+      const x = 758;
+      const y = 58;
+      const w = 126;
+      const h = 34;
+      const fill = capacity > 0 ? hour.battery / capacity : 0;
+      ctx.save();
+      ctx.strokeStyle = "#fffdf1";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x, y, w, h);
+      ctx.fillStyle = "#fffdf1";
+      ctx.fillRect(x + w, y + 10, 8, 14);
+      ctx.fillStyle = "#7167b2";
+      ctx.fillRect(x + 3, y + 3, Math.max(0, w - 6) * fill, h - 6);
+      ctx.fillStyle = "#fff";
+      ctx.font = "800 13px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText(`Speicher ${Math.round(fill * 100)}%`, x + w / 2, y + 56);
+      ctx.restore();
+    }
+
+    function update(sim) {
+      const v = sim.values;
+      labels.solar.textContent = `${v.solar} GW`;
+      labels.wind.textContent = `${v.wind} GW`;
+      labels.storage.textContent = `${v.storage} GWh`;
+      labels.flex.textContent = `${v.flex}% Lastverschiebung`;
+      labels.gas.textContent = `${v.gas} GW`;
+      labels.security.textContent = `${sim.security.toFixed(1).replace(".", ",")}%`;
+      labels.co2.textContent = sim.co2.toFixed(1).replace(".", ",");
+      labels.curtailment.textContent = `${sim.curtailed.toFixed(1).replace(".", ",")} GWh`;
+      labels.score.textContent = sim.score;
+
+      if (sim.security < 99.9) {
+        labels.feedback.className = "status bad";
+        labels.feedback.textContent = "Es gibt noch Versorgungslücken. Mehr Speicher, Wind, Reserve oder Flexibilität kann kritische Stunden abfangen.";
+      } else if (sim.co2 > 18 || sim.curtailed > 45) {
+        labels.feedback.className = "status warn";
+        labels.feedback.textContent = "Stabil, aber noch nicht elegant. Prüfe, ob Reserveeinsatz oder Abregelung durch Speicher und Lastverschiebung sinken.";
+      } else {
+        labels.feedback.className = "status ok";
+        labels.feedback.textContent = "Starkes Netzdesign: Versorgung gesichert, Emissionen begrenzt und Überschüsse nutzbar gehalten.";
+      }
+    }
+
+    function frame() {
+      const sim = simulate();
+      draw(sim);
+      update(sim);
+      tick += 1;
+      requestAnimationFrame(frame);
+    }
+
+    for (const input of Object.values(controls)) {
+      input.addEventListener("input", () => {});
+    }
+    scenarioButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        scenario = button.dataset.scenario;
+        scenarioButtons.forEach((item) => item.classList.toggle("selected", item === button));
+      });
+    });
+    frame();
+  </script>
+</body>
+</html>

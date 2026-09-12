@@ -1,0 +1,45 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Auftriebslabor</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Druck und Auftrieb</div><h1>Auftriebslabor</h1>
+<p>Konstruiere Körper, die schwimmen, schweben oder sinken. Das Spiel verbindet Dichtevergleich, verdrängtes Volumen und Auftriebskraft.</p></header>
+<div class="grid"><section class="card">
+<div class="mission"><strong id="missionTitle"></strong><span id="missionText"></span></div>
+<canvas id="cv" width="900" height="610"></canvas>
+<div class="readout"><div>Dichte Körper<b id="rhoK">–</b></div><div>F<sub>G</sub><b id="fg">–</b></div><div>F<sub>A,max</sub><b id="fa">–</b></div></div>
+<div id="status" class="status info">Passe Masse und Volumen an und teste.</div></section>
+<aside class="card controls"><h2>Parameter</h2>
+<label>Masse <input id="mass" type="range" min="200" max="900" step="50" value="500"><span id="mv"></span></label>
+<label>Volumen <input id="volume" type="range" min="250" max="900" step="25" value="500"><span id="vv"></span></label>
+<div class="row"><button id="water">Wasser</button><button id="oil" class="secondary">Öl</button></div>
+<button id="test">Testen</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Formelhilfe</summary><p>Dichte: ρ = m/V. Maximale Auftriebskraft bei vollständigem Eintauchen: F<sub>A</sub> = ρ<sub>Fl</sub> · V · g. Gewichtskraft: F<sub>G</sub> = m · g.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),g=9.81;
+const fluids={water:{name:'Wasser',rho:1000,color:'#b8dcff'},oil:{name:'Öl',rho:800,color:'#f4dda0'}};
+const levels=[
+ {title:'Mission 1 – Schweben',text:'Konstruiere einen Körper, der in Wasser schwebt. Begründe anschließend mit Dichte oder Kräftegleichgewicht.',mode:'neutral'},
+ {title:'Mission 2 – schwimmt hier, sinkt dort',text:'Konstruiere denselben Körper so, dass er in Wasser schwimmt, in Öl aber sinkt. Teste beide Flüssigkeiten.',mode:'between'},
+ {title:'Mission 3 – 60 % eintauchen',text:'Konstruiere einen Körper, der in Wasser schwimmt und ungefähr 60 % seines Volumens eintaucht.',mode:'fraction',target:.60}
+];
+let li=0,fluid='water',tested={water:null,oil:null};
+function vals(){const m=+mass.value/1000,V=+volume.value/1e6,rho=m/V,FG=m*g,FA=fluids[fluid].rho*V*g;return{m,V,rho,FG,FA}}
+function result(){const z=vals();if(Math.abs(z.rho-fluids[fluid].rho)<20)return'neutral';return z.rho<fluids[fluid].rho?'float':'sink'}
+function update(){const z=vals();mv.textContent=' '+mass.value+' g';vv.textContent=' '+volume.value+' cm³';rhoK.textContent=Math.round(z.rho)+' kg/m³';fg.textContent=z.FG.toFixed(2).replace('.',',')+' N';fa.textContent=z.FA.toFixed(2).replace('.',',')+' N';draw()}
+mass.oninput=update;volume.oninput=update;water.onclick=()=>setFluid('water');oil.onclick=()=>setFluid('oil');reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+function setFluid(k){fluid=k;water.className=k==='water'?'':'secondary';oil.className=k==='oil'?'':'secondary';update()}
+test.onclick=()=>{const r=result(),L=levels[li],z=vals();tested[fluid]=r;
+ if(L.mode==='neutral'&&fluid==='water'&&r==='neutral')success('Schwebezustand erreicht: F_A und F_G sind nahezu gleich groß. Ebenso sind Körper- und Wasserdichte nahezu gleich.')
+ else if(L.mode==='between'&&tested.water==='float'&&tested.oil==='sink')success('Geschafft. Deine Körperdichte liegt zwischen 800 kg/m³ und 1000 kg/m³.')
+ else if(L.mode==='fraction'&&fluid==='water'&&r==='float'&&Math.abs(z.rho/1000-L.target)<.04)success('Geschafft. Beim Schwimmen entspricht der eingetauchte Volumenanteil hier ungefähr dem Verhältnis ρ_Körper/ρ_Wasser.')
+ else{status.className='status bad';status.textContent=fluids[fluid].name+': Der Körper '+(r==='float'?'schwimmt':r==='sink'?'sinkt':'schwebt')+'. Nutze die angezeigten Dichten und Kräfte, um gezielt nachzujustieren.'}
+};
+function success(t){status.className='status ok';status.textContent=t;next.disabled=false}
+function draw(){const z=vals(),r=result();ctx.clearRect(0,0,cv.width,cv.height);ctx.fillStyle='#f8fbff';ctx.fillRect(110,70,680,470);ctx.strokeStyle='#708096';ctx.lineWidth=5;ctx.strokeRect(110,70,680,470);ctx.fillStyle=fluids[fluid].color;ctx.globalAlpha=.75;ctx.fillRect(115,155,670,380);ctx.globalAlpha=1;
+ let frac=r==='float'?Math.min(1,z.rho/fluids[fluid].rho):r==='neutral'?1:1;const Vcm=+volume.value,w=120+(Vcm-250)/650*70,h=105+(Vcm-250)/650*65,x=450-w/2;
+ let oy=r==='float'?155-h*frac:r==='neutral'?260:390;ctx.fillStyle='#536f9f';ctx.fillRect(x,oy,w,h);ctx.strokeStyle='#24436e';ctx.lineWidth=4;ctx.strokeRect(x,oy,w,h);
+ ctx.fillStyle='#182638';ctx.font='bold 19px system-ui';ctx.fillText(fluids[fluid].name+'  ρ = '+fluids[fluid].rho+' kg/m³',130,115);ctx.fillText('Ergebnis: '+(r==='float'?'schwimmt':r==='sink'?'sinkt':'schwebt'),130,575)}
+function init(){const L=levels[li];missionTitle.textContent=L.title;missionText.textContent=L.text;mass.value=500;volume.value=500;fluid='water';tested={water:null,oil:null};next.disabled=true;water.className='';oil.className='secondary';status.className='status info';status.textContent='Passe Masse und Volumen an und teste.';update()}
+init();
+</script></body></html>

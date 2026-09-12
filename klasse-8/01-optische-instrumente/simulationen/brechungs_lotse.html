@@ -1,0 +1,68 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 8 – Brechungs-Lotse</title><link rel="stylesheet" href="shared.css">
+<style>.predict{background:#fff8dc;border-left:5px solid #e7ad18;padding:10px 12px;border-radius:12px}.predict button{margin-top:8px}</style>
+</head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 8 · Optik · Lichtbrechung</div>
+<h1>Brechungs-Lotse</h1><p>Lenke einen Lichtstrahl aus der Luft durch eine Grenzfläche genau auf das Unterwasser-Ziel. Du gewinnst nicht durch Raten, sondern indem du verstehst, wie stark Licht beim Eintritt in verschiedene Stoffe zum Lot hin gebrochen wird.</p></header>
+<div class="grid">
+<section class="card">
+<div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<div id="predBox" class="predict"><b>Vorhersage:</b> Wird der Strahl beim Eintritt in den ausgewählten Stoff zum Lot hin oder vom Lot weg gebrochen?
+<div class="row"><button id="toward" class="secondary">zum Lot hin</button><button id="away" class="secondary">vom Lot weg</button></div></div>
+<canvas id="cv" width="900" height="600"></canvas>
+<div class="readout"><div>Einfallswinkel<b id="ri">0°</b></div><div>Brechungswinkel<b id="rr">–</b></div><div>Trefferpunkt<b id="rx">–</b></div></div>
+<div id="status" class="status info">Gib zuerst eine Vorhersage ab.</div>
+</section>
+<aside class="card controls">
+<h2>Versuch</h2>
+<label>Stoff unter der Grenzfläche
+<select id="medium"><option value="water">Wasser</option><option value="glass">Glas</option><option value="acryl">Acrylglas</option></select></label>
+<label>Einfallswinkel zum Lot <input id="angle" type="range" min="0" max="70" step="1" value="25"><span id="av"></span></label>
+<button id="fire" disabled>Laser einschalten</button>
+<button id="reset" class="secondary">↻ Versuch zurücksetzen</button>
+<button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Messhilfe</summary><p>Das Lot steht senkrecht auf der Grenzfläche. Vergleiche Einfalls- und Brechungswinkel immer zum Lot.</p></details>
+<details><summary>Physikalische Regel</summary><p>Beim Übergang von Luft in einen optisch dichteren Stoff wird der Strahl zum Lot hin gebrochen. Je größer die optische Dichte, desto stärker die Richtungsänderung.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d');
+const media={water:{n:1.33,name:'Wasser',col:'#b9dcff'},glass:{n:1.52,name:'Glas',col:'#d9ecf2'},acryl:{n:1.49,name:'Acrylglas',col:'#d6e9ff'}};
+const levels=[
+ {t:'Mission 1 – Taucher finden',d:'Triff den grünen Taucher im Wasser. Stelle nur den Einfallswinkel ein.',med:'water',targetX:605,tol:16},
+ {t:'Mission 2 – Glasfenster',d:'Der Zielpunkt liegt hinter einer Glasscheibe. Finde den passenden Winkel.',med:'glass',targetX:560,tol:16},
+ {t:'Mission 3 – Stoffvergleich',d:'Triff denselben Zielpunkt zunächst mit Wasser und dann mit Acrylglas. Die benötigten Winkel sind nicht gleich.',med:'water',targetX:640,tol:18,compare:true}
+];
+let li=0,pred=false,fired=false,compareDone={};
+const S={x:250,y:70},B={x:450,y:260},depth=260;
+function theta2(){let th=+angle.value*Math.PI/180,n2=media[medium.value].n;return Math.asin(Math.sin(th)/n2)}
+function hitX(){return B.x+depth*Math.tan(theta2())}
+function update(){av.textContent=' '+angle.value+'°';ri.textContent=angle.value+'°';if(fired){rr.textContent=(theta2()*180/Math.PI).toFixed(1).replace('.',',')+'°';rx.textContent=hitX().toFixed(0)+' px'}else{rr.textContent='–';rx.textContent='–'}draw()}
+angle.oninput=()=>{fired=false;update()};medium.onchange=()=>{fired=false;update()};
+toward.onclick=()=>predict('toward');away.onclick=()=>predict('away');
+function predict(which){pred=true;fire.disabled=false;predBox.style.display='none';status.className='status info';status.textContent=which==='toward'?'Vorhersage gespeichert. Führe jetzt den Versuch aus.':'Vorhersage gespeichert. Teste sie am Strahlweg.'}
+fire.onclick=()=>{if(!pred)return;fired=true;evaluate();update()};
+reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+function evaluate(){const L=levels[li],x=hitX(),ok=Math.abs(x-L.targetX)<=L.tol;
+ if(ok){
+   if(L.compare){compareDone[medium.value]=+angle.value;if(compareDone.water!=null&&compareDone.acryl!=null){status.className='status ok';status.textContent='Beide Treffer geschafft. Vergleiche die Winkel: Die unterschiedliche optische Dichte verändert die Brechung.';next.disabled=false}else{status.className='status ok';status.textContent='Treffer! Wechsle nun zwischen Wasser und Acrylglas und triff dasselbe Ziel erneut.'}}
+   else{status.className='status ok';status.textContent='Treffer. Der Strahl wird im dichteren Medium zum Lot hin gebrochen; der Brechungswinkel ist kleiner als der Einfallswinkel.';next.disabled=false}
+ }else{status.className='status bad';status.textContent=x<L.targetX?'Der Strahl landet links vom Ziel. Verändere den Einfallswinkel gezielt und beobachte, wie sich der Trefferpunkt verschiebt.':'Der Strahl landet rechts vom Ziel. Verändere den Einfallswinkel gezielt.'}}
+function draw(){
+ c.clearRect(0,0,cv.width,cv.height);const m=media[medium.value];
+ c.fillStyle='#f7fbff';c.fillRect(0,0,900,260);c.fillStyle=m.col;c.fillRect(0,260,900,340);
+ c.strokeStyle='#516177';c.lineWidth=3;c.beginPath();c.moveTo(0,260);c.lineTo(900,260);c.stroke();
+ c.setLineDash([8,7]);c.strokeStyle='#728197';c.beginPath();c.moveTo(B.x,120);c.lineTo(B.x,520);c.stroke();c.setLineDash([]);
+ const L=levels[li];c.fillStyle='#38aa63';c.beginPath();c.arc(L.targetX,520,22,0,Math.PI*2);c.fill();
+ c.fillStyle='#fff';c.font='bold 14px system-ui';c.fillText('ZIEL',L.targetX-18,525);
+ c.fillStyle='#263b57';c.fillRect(S.x-35,S.y-14,50,28);
+ if(fired){
+   const th1=+angle.value*Math.PI/180,dx1=(B.y-S.y)*Math.tan(th1);
+   const start={x:B.x-dx1,y:S.y}; 
+   c.strokeStyle='#ed3045';c.lineWidth=4;c.shadowColor='#ed3045';c.shadowBlur=8;c.beginPath();c.moveTo(start.x,start.y);c.lineTo(B.x,B.y);c.lineTo(hitX(),520);c.stroke();c.shadowBlur=0;
+ }
+ c.fillStyle='#36465a';c.font='18px system-ui';c.fillText('Luft',40,55);c.fillText(m.name,40,310);
+}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;medium.value=L.med;angle.value=25;pred=false;fired=false;compareDone={};predBox.style.display='block';fire.disabled=true;next.disabled=true;status.className='status info';status.textContent='Gib zuerst eine Vorhersage ab.';update()}
+init();
+</script></body></html>

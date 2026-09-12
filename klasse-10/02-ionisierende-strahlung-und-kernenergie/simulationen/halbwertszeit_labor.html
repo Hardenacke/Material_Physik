@@ -1,0 +1,31 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 10 – Halbwertszeit-Labor</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 10 · Radioaktiver Zerfall · Halbwertszeit</div><h1>Halbwertszeit-Labor</h1>
+<p>Beobachte viele instabile Kerne. Einzelne Zerfälle sind zufällig, aber für eine große Anzahl entsteht ein regelmäßiger statistischer Verlauf. Schätze daraus die Halbwertszeit einer unbekannten Probe.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong>Auftrag</strong>Bestimme die Halbwertszeit der Probe möglichst genau. Du darfst den Zerfall Schritt für Schritt beobachten und den Graphen nutzen.</div>
+<canvas id="cv" width="980" height="570"></canvas>
+<div class="readout"><div>Zeit<b id="rt">0</b></div><div>nicht zerfallen<b id="rn">256</b></div><div>Zerfälle zuletzt<b id="rd">0</b></div></div>
+<div id="status" class="status info">Starte die Messreihe.</div></section>
+<aside class="card controls"><h2>Messreihe</h2><button id="step">+ 1 Zeiteinheit</button><button id="auto" class="secondary">▶ automatisch</button>
+<label>Deine Schätzung t½ <select id="guess"><option value="2">2 Zeiteinheiten</option><option value="4">4 Zeiteinheiten</option><option value="6">6 Zeiteinheiten</option><option value="8">8 Zeiteinheiten</option></select></label>
+<button id="check">Schätzung prüfen</button><button id="newp" class="secondary">Neue Probe</button>
+<details><summary>Beobachtungshilfe</summary><p>Suche den Zeitpunkt, an dem ungefähr die Hälfte der anfangs 256 Kerne noch vorhanden ist. Bei einer weiteren Halbwertszeit bleibt davon wiederum ungefähr die Hälfte übrig.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d');let half=4,N=256,t=0,data=[],lastDecay=0,timer=null;
+function reset(){clearInterval(timer);timer=null;auto.textContent='▶ automatisch';half=[2,4,6,8][Math.floor(Math.random()*4)];N=256;t=0;lastDecay=0;data=[{t:0,n:N}];status.className='status info';status.textContent='Starte die Messreihe.';update()}
+newp.onclick=reset;step.onclick=doStep;auto.onclick=()=>{if(timer){clearInterval(timer);timer=null;auto.textContent='▶ automatisch'}else{timer=setInterval(()=>{if(N<4){clearInterval(timer);timer=null;auto.textContent='▶ automatisch'}else doStep()},500);auto.textContent='⏸ Pause'}};
+function doStep(){let p=1-Math.pow(.5,1/half),d=0;for(let i=0;i<N;i++)if(Math.random()<p)d++;N-=d;t++;lastDecay=d;data.push({t,n:N});update()}
+check.onclick=()=>{if(+guess.value===half){status.className='status ok';status.textContent='Richtig. Die Halbwertszeit beschreibt nicht den Zerfall eines einzelnen Kerns, sondern den statistischen Verlauf einer großen Anzahl.'}else{status.className='status bad';status.textContent='Noch nicht. Suche im Graphen zuerst N ≈ 128 und prüfe danach, wann ungefähr N ≈ 64 erreicht wird.'}};
+function update(){rt.textContent=t;rn.textContent=N;rd.textContent=lastDecay;draw()}
+function draw(){c.clearRect(0,0,cv.width,cv.height);
+ // nuclei field
+ c.fillStyle='#f7f9fc';c.fillRect(30,35,400,400);let shown=Math.min(256,N);for(let i=0;i<256;i++){let col=i<shown?'#3a73af':'#e6eaf0';c.fillStyle=col;let x=48+(i%16)*23,y=55+Math.floor(i/16)*23;c.beginPath();c.arc(x,y,6,0,Math.PI*2);c.fill()}
+ // graph
+ const ox=500,oy=485,w=430,h=390;c.strokeStyle='#7e8a9a';c.lineWidth=2;c.beginPath();c.moveTo(ox,oy);c.lineTo(ox+w,oy);c.moveTo(ox,oy);c.lineTo(ox,oy-h);c.stroke();
+ c.fillStyle='#47566a';c.font='16px system-ui';c.fillText('t',ox+w-10,oy+25);c.fillText('N',ox-25,oy-h+8);
+ c.strokeStyle='#1d6eca';c.lineWidth=4;c.beginPath();data.forEach((p,i)=>{let X=ox+Math.min(16,p.t)/16*w,Y=oy-p.n/256*h;i?c.lineTo(X,Y):c.moveTo(X,Y)});c.stroke();
+ c.setLineDash([6,6]);c.strokeStyle='#a6afbb';[128,64].forEach(n=>{let y=oy-n/256*h;c.beginPath();c.moveTo(ox,y);c.lineTo(ox+w,y);c.stroke()});c.setLineDash([])}
+reset();
+</script></body></html>

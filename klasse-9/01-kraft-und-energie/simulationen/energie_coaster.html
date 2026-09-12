@@ -1,0 +1,41 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 9 – Energie-Coaster</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 9 · Mechanik · Energie</div><h1>Energie-Coaster</h1>
+<p>Wähle die Starthöhe so, dass der Wagen den Hügel überquert, aber am Ziel nicht zu schnell ist. Lageenergie wird in Bewegungsenergie umgewandelt; Reibung entwertet einen Teil der mechanischen Energie.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="1000" height="600"></canvas>
+<div class="readout"><div>Starthöhe<b id="rh">–</b></div><div>Geschwindigkeit<b id="rv">–</b></div><div>mechanische Energie<b id="re">–</b></div></div>
+<div id="status" class="status info">Wähle eine Starthöhe und starte den Wagen.</div></section>
+<aside class="card controls"><h2>Startbedingungen</h2>
+<label>Starthöhe <input id="height" type="range" min="2.5" max="6.0" step=".1" value="4"><span id="hv"></span></label>
+<label>Reibungsverlust pro Meter <input id="loss" type="range" min="0" max="12" step="1" value="4"><span id="lv"></span></label>
+<button id="start">▶ Losfahren</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Physik-Hilfe</summary><p>Ohne Reibung bleibt die mechanische Energie erhalten. Beim Abwärtsfahren sinkt die Lageenergie und die Bewegungsenergie steigt. Reibung verringert die nutzbare mechanische Energie.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),g=9.81,m=80;
+const levels=[
+ {t:'Mission 1 – Hügel schaffen',d:'Überquere den 3,2-m-Hügel und erreiche das Ziel mit weniger als 7 m/s.',hill:3.2,maxV:7,loss:2},
+ {t:'Mission 2 – mit Reibung',d:'Überquere den 3,8-m-Hügel bei mindestens 5 J/m Reibungsverlust und bleibe am Ziel unter 6,5 m/s.',hill:3.8,maxV:6.5,minLoss:5},
+ {t:'Mission 3 – Energiesparfahrt',d:'Überquere 4,2 m und nutze eine möglichst niedrige Starthöhe: höchstens 4,8 m.',hill:4.2,maxV:6,maxH:4.8}
+];let li=0,x=0,v=0,running=false,last=0,raf,failed=false;
+function profile(X){ // X 0..1, track height in m
+ const L=levels[li];return .8+(+height.value-.8)*Math.exp(-X*7)+L.hill*Math.exp(-(((X-.55)/.13)**2));
+}
+function speedAt(X){const E=m*g*(+height.value)-(+loss.value)*(X*18),h=profile(X),K=E-m*g*h;return K>0?Math.sqrt(2*K/m):0}
+function update(){hv.textContent=' '+height.value+' m';lv.textContent=' '+loss.value+' J/m';rh.textContent=(+height.value).toFixed(1).replace('.',',')+' m';rv.textContent=v.toFixed(1).replace('.',',')+' m/s';const E=m*g*profile(x)+.5*m*v*v;re.textContent=Math.round(E)+' J';draw()}
+height.oninput=update;loss.oninput=update;reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+start.onclick=()=>{if(running)return;x=.005;failed=false;running=true;last=performance.now();raf=requestAnimationFrame(loop)};
+function loop(now){const dt=Math.min(.04,(now-last)/1000);last=now;v=speedAt(x);if(v<=.05&&x>.03){running=false;failed=true;finish(false);update();return}x+=v/18*dt;
+ if(x>=1){x=1;v=speedAt(1);running=false;finish(true)}update();if(running)raf=requestAnimationFrame(loop)}
+function finish(reached){const L=levels[li],ok=reached&&v<=L.maxV&&(!L.minLoss||+loss.value>=L.minLoss)&&(!L.maxH||+height.value<=L.maxH);
+ if(ok){status.className='status ok';status.textContent='Mission geschafft. Deine Starthöhe lieferte genug Lageenergie für den Hügel, aber nicht unnötig viel Bewegungsenergie am Ziel.';next.disabled=false}
+ else if(!reached){status.className='status bad';status.textContent='Der Wagen bleibt vor dem Ziel stehen. Die verfügbare mechanische Energie reicht an einer Stelle nicht mehr für die notwendige Lageenergie.'}
+ else{status.className='status bad';status.textContent='Ziel erreicht, aber die Nebenbedingung ist noch nicht erfüllt. Versuche mit weniger Starthöhe oder mehr Reibungsverlust.'}}
+function draw(){c.clearRect(0,0,cv.width,cv.height);const baseY=520,scale=75;c.strokeStyle='#5b687a';c.lineWidth=7;c.beginPath();for(let i=0;i<=200;i++){const X=i/200,y=baseY-profile(X)*scale,px=50+X*900;i?c.lineTo(px,y):c.moveTo(px,y)}c.stroke();
+ const px=50+x*900,py=baseY-profile(x)*scale;c.save();c.translate(px,py-18);c.fillStyle='#2f68a8';c.fillRect(-28,-20,56,28);c.fillStyle='#222';c.beginPath();c.arc(-18,12,9,0,Math.PI*2);c.arc(18,12,9,0,Math.PI*2);c.fill();c.restore();
+ c.fillStyle='#526075';c.font='17px system-ui';c.fillText('Lageenergie ↔ Bewegungsenergie; Reibung entwertet mechanische Energie.',70,575)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;height.value=L.maxH?4.6:4;loss.value=L.minLoss||L.loss||3;x=0;v=0;running=false;next.disabled=true;status.className='status info';status.textContent='Wähle eine Starthöhe und starte den Wagen.';update()}
+init();
+</script></body></html>

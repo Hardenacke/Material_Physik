@@ -1,0 +1,56 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 8 – Glasfaser-Signal</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 8 · Optik · Totalreflexion</div><h1>Glasfaser-Signal</h1>
+<p>Schicke einen Lichtimpuls durch eine Glasfaser. Ist der Strahl zu steil, verlässt er den Kern. Bei geeigneter Richtung wird er an der Grenzfläche vollständig reflektiert.</p></header>
+<div class="grid"><section class="card">
+<div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="950" height="520"></canvas>
+<div class="readout"><div>Startwinkel<b id="ra">–</b></div><div>Grenzwinkel<b id="rc">–</b></div><div>Reflexionen<b id="rb">0</b></div></div>
+<div id="status" class="status info">Wähle einen Startwinkel und sende den Impuls.</div></section>
+<aside class="card controls"><h2>Glasfaser einstellen</h2>
+<label>Startwinkel zur Faserrichtung <input id="ang" type="range" min="2" max="65" step="1" value="20"><span id="av"></span></label>
+<label>Mantelmaterial <select id="clad"><option value="1.30">n = 1,30</option><option value="1.40">n = 1,40</option><option value="1.46">n = 1,46</option></select></label>
+<button id="send">Lichtimpuls senden</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Was bedeutet Totalreflexion?</summary><p>Beim Übergang vom optisch dichteren Kern zum optisch dünneren Mantel kann Licht vollständig zurückgeworfen werden. Dafür muss der Einfallswinkel zum Lot groß genug sein.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),nCore=1.50;
+const levels=[
+ {t:'Mission 1 – Signal retten',d:'Finde einen Winkel, bei dem das Licht den Detektor erreicht.',minB:1,maxB:8},
+ {t:'Mission 2 – drei bis fünf Reflexionen',d:'Erreiche den Detektor mit mindestens 3 und höchstens 5 Totalreflexionen.',minB:3,maxB:5},
+ {t:'Mission 3 – schwieriger Mantel',d:'Der Mantel hat n = 1,46. Finde trotzdem einen Startwinkel, bei dem das Licht vollständig im Kern bleibt.',minB:1,maxB:8,clad:'1.46'}
+];
+let li=0,lastPath=[],escaped=false,bounces=0;
+const x0=90,x1=860,top=130,bottom=390,mid=(top+bottom)/2;
+function crit(){return Math.asin((+clad.value)/nCore)*180/Math.PI}
+function trace(){
+ let x=x0,y=mid,phi=+ang.value*Math.PI/180,dySign=-1;let pts=[[x,y]],B=0,esc=false;
+ // incidence to normal at horizontal wall = 90° - phi
+ const incidence=90-(+ang.value);
+ const tir=incidence>crit();
+ while(x<x1 && B<30){
+   const wall=dySign<0?top:bottom;
+   const dx=Math.abs((wall-y)/Math.tan(phi));
+   if(x+dx>=x1){y+=dySign*Math.tan(phi)*(x1-x);x=x1;pts.push([x,y]);break}
+   x+=dx;y=wall;pts.push([x,y]);B++;
+   if(!tir){esc=true;pts.push([x+85,y+dySign*95]);break}
+   dySign*=-1;
+ }
+ return{pts,B,esc,tir,incidence}
+}
+function update(){av.textContent=' '+ang.value+'°';ra.textContent=ang.value+'°';rc.textContent=crit().toFixed(1).replace('.',',')+'°';draw()}
+ang.oninput=update;clad.onchange=update;reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+send.onclick=()=>{const L=levels[li],tr=trace();bounces=tr.B;escaped=tr.esc;rb.textContent=bounces;
+ if(!tr.tir){status.className='status bad';status.textContent='Der Impuls tritt aus. Der Einfallswinkel zum Lot ('+tr.incidence.toFixed(0)+'°) ist kleiner als der Grenzwinkel.'}
+ else if(bounces>=L.minB&&bounces<=L.maxB){status.className='status ok';status.textContent='Signal angekommen. An jeder Wand war der Einfallswinkel groß genug für Totalreflexion.';next.disabled=false}
+ else{status.className='status bad';status.textContent='Der Impuls bleibt im Kern, aber die Zahl der Reflexionen passt noch nicht zur Mission. Verändere den Startwinkel.'}draw(true)};
+function draw(show=true){const tr=trace();c.clearRect(0,0,cv.width,cv.height);c.fillStyle='#edf7ff';c.fillRect(x0,top,x1-x0,bottom-top);
+ c.fillStyle='#cbd7e5';c.fillRect(x0,top-32,x1-x0,32);c.fillRect(x0,bottom,x1-x0,32);
+ c.strokeStyle='#60758d';c.lineWidth=3;c.strokeRect(x0,top,x1-x0,bottom-top);
+ c.fillStyle='#33a75e';c.fillRect(x1,mid-45,25,90);c.fillStyle='#1d2b3d';c.font='bold 16px system-ui';c.fillText('Detektor',x1-35,mid-58);
+ if(show){c.strokeStyle='#ef3547';c.lineWidth=4;c.shadowColor='#ef3547';c.shadowBlur=8;c.beginPath();tr.pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.stroke();c.shadowBlur=0}
+ c.fillStyle='#33445a';c.font='17px system-ui';c.fillText('Kern n = 1,50',115,180);c.fillText('Mantel n = '+clad.value,115,108);}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;ang.value=20;clad.value=L.clad||'1.30';next.disabled=true;rb.textContent='0';status.className='status info';status.textContent='Wähle einen Startwinkel und sende den Impuls.';update()}
+init();
+</script></body></html>

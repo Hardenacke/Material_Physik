@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Interaktive Simulation zur elektromagnetischen Induktion mit bewegtem Magneten, Spule, Induktionsspannung und Lenzscher Regel.">
+  <title>Induktions-Spulenlabor</title>
+  <style>
+    :root {
+      --bg: #f0f5ef;
+      --panel: #fffef8;
+      --ink: #1f3428;
+      --muted: #617066;
+      --line: #d7dfd2;
+      --primary: #2f7d4f;
+      --primary-dark: #1d5936;
+      --accent: #d7892f;
+      --accent-2: #3f6ea8;
+      --ok: #1e7548;
+      --bad: #a14033;
+      --shadow: 0 18px 42px rgba(46, 71, 50, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(125deg, rgba(47, 125, 79, .15), transparent 35%),
+        linear-gradient(245deg, rgba(215, 137, 47, .16), transparent 36%),
+        var(--bg);
+    }
+
+    a { color: var(--primary-dark); font-weight: 780; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+
+    .hero {
+      padding: 24px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(27, 76, 49, .96), rgba(47, 125, 79, .92)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.11) 0 2px, transparent 2px 22px);
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .76rem;
+      font-weight: 850;
+      opacity: .87;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(1.7rem, 4vw, 3rem); letter-spacing: 0; }
+    .hero p { margin-bottom: 0; max-width: 880px; line-height: 1.52; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(310px, .75fr);
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,254,248,.96);
+      box-shadow: var(--shadow);
+    }
+
+    .mission {
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      background: #fff4df;
+      line-height: 1.42;
+    }
+
+    .mission strong { display: block; margin-bottom: 4px; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #cdd8ca;
+      border-radius: 8px;
+      background: #14231a;
+      touch-action: none;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .readout div {
+      padding: 10px;
+      min-height: 76px;
+      border-radius: 8px;
+      border: 1px solid #c8dfd0;
+      background: #edf8ef;
+      text-align: center;
+      color: #365a42;
+    }
+
+    .readout b {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+    }
+
+    .controls {
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-weight: 760;
+    }
+
+    .value {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: .92rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 38px;
+      accent-color: var(--primary);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .row.single { grid-template-columns: 1fr; }
+
+    button {
+      appearance: none;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font: inherit;
+      font-weight: 800;
+      color: #fff;
+      background: var(--primary);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, box-shadow .2s ease, border-color .2s ease;
+      touch-action: manipulation;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:active { transform: translateY(1px) scale(.99); }
+    button.secondary { color: var(--ink); background: #f4eadc; border-color: #e5cda8; }
+    button.secondary:hover { background: #eeddbf; }
+    button.selected {
+      color: #fff;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 4px rgba(63, 110, 168, .18);
+      animation: pop .28s ease;
+    }
+
+    .status {
+      min-height: 58px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d2dccf;
+      background: #f7faf4;
+      line-height: 1.42;
+      color: #415046;
+    }
+
+    .status.ok { color: #0f6038; background: #e8f6ef; border-color: #bddfca; }
+    .status.bad { color: #842d24; background: #fde8e5; border-color: #efc3bb; }
+
+    details {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fffdf7;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(.96); }
+      70% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 16px, 1180px); padding-top: 10px; }
+      .readout { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 540px) {
+      .hero, .card { padding: 13px; }
+      .readout, .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="kicker">Q1/Q2 Grundkurs · Elektrodynamik</div>
+      <h1>Induktions-Spulenlabor</h1>
+      <p>Bewege einen Magneten durch eine Spule und beobachte, wie Windungszahl, Feldstärke, Fläche und Geschwindigkeit die Induktionsspannung verändern.</p>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="mission">
+          <strong>Auftrag</strong>
+          Erzeuge eine möglichst große Spannungsspitze und erkläre anschließend mit der Lenzschen Regel, warum die Induktion der Änderung des Flusses entgegenwirkt.
+        </div>
+        <canvas id="stage" width="960" height="540" aria-label="Bewegter Magnet, Spule und Spannungsmessung"></canvas>
+        <div class="readout">
+          <div>magnetischer Fluss<b id="flux">0 mWb</b></div>
+          <div>U_ind<b id="voltage">0 V</b></div>
+          <div>Spitzenwert<b id="peak">0 V</b></div>
+          <div>Lenz-Reaktion<b id="lenz">bremst</b></div>
+        </div>
+      </section>
+
+      <aside class="card controls">
+        <h2>Spule und Magnet</h2>
+        <div class="row">
+          <button id="toggle">Start</button>
+          <button id="reverse" class="secondary">Richtung wechseln</button>
+        </div>
+        <button id="reset" class="secondary">Messung zurücksetzen</button>
+        <label>
+          Geschwindigkeit <span class="value" id="speedLabel"></span>
+          <input id="speed" type="range" min="1" max="9" value="4" step="0.5">
+        </label>
+        <label>
+          Windungszahl <span class="value" id="turnsLabel"></span>
+          <input id="turns" type="range" min="50" max="320" value="160" step="10">
+        </label>
+        <label>
+          Feldstärke <span class="value" id="fieldLabel"></span>
+          <input id="field" type="range" min="0.2" max="1.5" value="0.7" step="0.05">
+        </label>
+        <label>
+          Spulenfläche <span class="value" id="areaLabel"></span>
+          <input id="area" type="range" min="20" max="120" value="55" step="5">
+        </label>
+
+        <h3>Lenz-Check</h3>
+        <div class="row single">
+          <button class="secondary" data-choice="oppose">Die Induktion bremst die Änderung</button>
+          <button class="secondary" data-choice="support">Die Induktion verstärkt die Änderung</button>
+        </div>
+        <div class="status" id="feedback">Starte die Bewegung und entscheide, welche Aussage zur Lenzschen Regel passt.</div>
+
+        <details>
+          <summary>Formelhinweis</summary>
+          <p>Faradays Induktionsgesetz: U_ind = -N · dΦ/dt. Mehr Windungen, größere Fläche, stärkeres Feld oder schnellere Änderung erhöhen den Betrag der Spannung.</p>
+        </details>
+      </aside>
+    </div>
+    <p><a href="../../../index.html">Zurück zur Materialübersicht</a></p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("stage");
+    const ctx = canvas.getContext("2d");
+    const els = {
+      speed: document.getElementById("speed"),
+      turns: document.getElementById("turns"),
+      field: document.getElementById("field"),
+      area: document.getElementById("area"),
+      speedLabel: document.getElementById("speedLabel"),
+      turnsLabel: document.getElementById("turnsLabel"),
+      fieldLabel: document.getElementById("fieldLabel"),
+      areaLabel: document.getElementById("areaLabel"),
+      flux: document.getElementById("flux"),
+      voltage: document.getElementById("voltage"),
+      peak: document.getElementById("peak"),
+      lenz: document.getElementById("lenz"),
+      toggle: document.getElementById("toggle"),
+      reverse: document.getElementById("reverse"),
+      reset: document.getElementById("reset"),
+      feedback: document.getElementById("feedback")
+    };
+    const choiceButtons = Array.from(document.querySelectorAll("[data-choice]"));
+    let running = false;
+    let direction = 1;
+    let x = 170;
+    let lastFlux = 0;
+    let voltage = 0;
+    let peak = 0;
+    let tick = 0;
+    const graph = [];
+
+    function params() {
+      return {
+        speed: Number(els.speed.value),
+        turns: Number(els.turns.value),
+        field: Number(els.field.value),
+        area: Number(els.area.value) / 10000
+      };
+    }
+
+    function fluxAt(position, p) {
+      const coilX = 575;
+      const sigma = 95;
+      const coupling = Math.exp(-Math.pow((position - coilX) / sigma, 2));
+      return p.field * p.area * coupling;
+    }
+
+    function updatePhysics() {
+      const p = params();
+      if (running) {
+        x += direction * p.speed * 1.4;
+        if (x > 820 || x < 140) {
+          direction *= -1;
+          x = Math.max(140, Math.min(820, x));
+        }
+      }
+      const flux = fluxAt(x, p);
+      voltage = -p.turns * (flux - lastFlux) * 46;
+      if (!running) voltage *= .82;
+      lastFlux = flux;
+      peak = Math.max(peak, Math.abs(voltage));
+      graph.push(voltage);
+      if (graph.length > 170) graph.shift();
+      return { p, flux };
+    }
+
+    function drawCoil() {
+      const coilX = 575;
+      ctx.save();
+      ctx.strokeStyle = "#d7892f";
+      ctx.lineWidth = 6;
+      for (let i = 0; i < 9; i += 1) {
+        ctx.beginPath();
+        ctx.ellipse(coilX + i * 14 - 58, 245, 23, 96, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.strokeStyle = "#f6d39b";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(coilX - 90, 132, 180, 226);
+      ctx.restore();
+    }
+
+    function drawMagnet() {
+      ctx.save();
+      ctx.translate(x, 245);
+      ctx.fillStyle = direction > 0 ? "#c9463c" : "#3f6ea8";
+      ctx.fillRect(-58, -34, 58, 68);
+      ctx.fillStyle = direction > 0 ? "#3f6ea8" : "#c9463c";
+      ctx.fillRect(0, -34, 58, 68);
+      ctx.strokeStyle = "#fffaf0";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(-58, -34, 116, 68);
+      ctx.fillStyle = "#fff";
+      ctx.font = "900 18px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText(direction > 0 ? "N" : "S", -28, 6);
+      ctx.fillText(direction > 0 ? "S" : "N", 28, 6);
+      ctx.restore();
+    }
+
+    function drawMeter() {
+      const cx = 800;
+      const cy = 154;
+      const amount = Math.max(-1, Math.min(1, voltage / 4));
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,.55)";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 58, Math.PI, 0);
+      ctx.stroke();
+      ctx.strokeStyle = amount >= 0 ? "#7bd894" : "#80a8e0";
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      const angle = Math.PI - (amount + 1) / 2 * Math.PI;
+      ctx.lineTo(cx + Math.cos(angle) * 50, cy - Math.sin(angle) * 50);
+      ctx.stroke();
+      ctx.fillStyle = "#fff";
+      ctx.font = "800 14px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText("U_ind", cx, cy + 75);
+      ctx.restore();
+    }
+
+    function drawGraph() {
+      const x0 = 130;
+      const y0 = 468;
+      const w = 700;
+      const h = 88;
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,.45)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x0, y0 - h, w, h);
+      ctx.beginPath();
+      ctx.moveTo(x0, y0 - h / 2);
+      ctx.lineTo(x0 + w, y0 - h / 2);
+      ctx.stroke();
+      ctx.beginPath();
+      graph.forEach((value, index) => {
+        const gx = x0 + index / 169 * w;
+        const gy = y0 - h / 2 - Math.max(-1, Math.min(1, value / 4)) * h * .42;
+        if (index === 0) ctx.moveTo(gx, gy);
+        else ctx.lineTo(gx, gy);
+      });
+      ctx.strokeStyle = "#f0c27a";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      ctx.fillStyle = "#fff";
+      ctx.font = "13px system-ui";
+      ctx.fillText("Spannungsverlauf", x0 + 12, y0 - h + 19);
+      ctx.restore();
+    }
+
+    function drawFieldLines() {
+      ctx.save();
+      ctx.strokeStyle = "rgba(126, 205, 149, .28)";
+      ctx.lineWidth = 2;
+      for (let i = 0; i < 8; i += 1) {
+        const y = 145 + i * 28 + Math.sin((tick + i * 9) / 24) * 4;
+        ctx.beginPath();
+        ctx.moveTo(x + 60 * direction, y);
+        ctx.bezierCurveTo(430, y - 65, 610, y + 65, 760, y);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawScene(data) {
+      const bg = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      bg.addColorStop(0, "#14231a");
+      bg.addColorStop(.65, "#1d3324");
+      bg.addColorStop(1, "#2d3428");
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawFieldLines();
+      drawCoil();
+      drawMagnet();
+      drawMeter();
+      drawGraph();
+
+      ctx.fillStyle = "rgba(255,255,255,.9)";
+      ctx.font = "800 16px system-ui";
+      ctx.fillText("Φ ändert sich besonders stark am Rand der Spule", 92, 88);
+      const markerX = 575;
+      ctx.strokeStyle = "rgba(255,255,255,.32)";
+      ctx.setLineDash([7, 9]);
+      ctx.beginPath();
+      ctx.moveTo(markerX, 98);
+      ctx.lineTo(markerX, 370);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function updateLabels(data) {
+      const p = data.p;
+      els.speedLabel.textContent = `${p.speed.toFixed(1).replace(".", ",")} Einheiten/s`;
+      els.turnsLabel.textContent = `${p.turns} Windungen`;
+      els.fieldLabel.textContent = `${p.field.toFixed(2).replace(".", ",")} T`;
+      els.areaLabel.textContent = `${Math.round(p.area * 10000)} cm²`;
+      els.flux.textContent = `${(data.flux * 1000).toFixed(2).replace(".", ",")} mWb`;
+      els.voltage.textContent = `${voltage.toFixed(2).replace(".", ",")} V`;
+      els.peak.textContent = `${peak.toFixed(2).replace(".", ",")} V`;
+      els.lenz.textContent = Math.abs(voltage) < .08 ? "kaum Änderung" : "bremst Änderung";
+    }
+
+    function animate() {
+      const data = updatePhysics();
+      drawScene(data);
+      updateLabels(data);
+      tick += 1;
+      requestAnimationFrame(animate);
+    }
+
+    els.toggle.addEventListener("click", () => {
+      running = !running;
+      els.toggle.textContent = running ? "Pause" : "Start";
+    });
+    els.reverse.addEventListener("click", () => {
+      direction *= -1;
+    });
+    els.reset.addEventListener("click", () => {
+      running = false;
+      els.toggle.textContent = "Start";
+      direction = 1;
+      x = 170;
+      peak = 0;
+      voltage = 0;
+      lastFlux = fluxAt(x, params());
+      graph.length = 0;
+      els.feedback.className = "status";
+      els.feedback.textContent = "Messung zurückgesetzt. Starte den Magneten erneut.";
+      choiceButtons.forEach((button) => button.classList.remove("selected"));
+    });
+    choiceButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const correct = button.dataset.choice === "oppose";
+        choiceButtons.forEach((item) => item.classList.toggle("selected", item === button));
+        els.feedback.className = "status " + (correct ? "ok" : "bad");
+        els.feedback.textContent = correct
+          ? "Richtig. Die induzierte Wirkung ist so gerichtet, dass sie der Flussänderung entgegenwirkt."
+          : "Noch nicht. Nach der Lenzschen Regel wirkt die Induktion der Ursache der Änderung entgegen.";
+      });
+    });
+    lastFlux = fluxAt(x, params());
+    animate();
+  </script>
+</body>
+</html>

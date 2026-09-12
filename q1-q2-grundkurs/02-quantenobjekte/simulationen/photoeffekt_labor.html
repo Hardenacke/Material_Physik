@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Interaktive Simulation zum Photoeffekt mit Grenzfrequenz, Gegenfeldmethode, Intensität und Energieauswertung.">
+  <title>Photoeffekt-Labor</title>
+  <style>
+    :root {
+      --bg: #f7f4fb;
+      --panel: #fff;
+      --ink: #24223a;
+      --muted: #69677b;
+      --line: #ded8ea;
+      --primary: #7c4d9e;
+      --primary-dark: #54316f;
+      --accent: #f0b429;
+      --accent-2: #2b8a9a;
+      --ok: #1f7a4d;
+      --bad: #a84235;
+      --shadow: 0 18px 42px rgba(57, 44, 76, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(130deg, rgba(124, 77, 158, .13), transparent 32%),
+        linear-gradient(250deg, rgba(240, 180, 41, .18), transparent 36%),
+        var(--bg);
+    }
+
+    a { color: var(--primary-dark); font-weight: 780; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 42px;
+    }
+
+    .hero {
+      padding: 24px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(52, 31, 78, .96), rgba(124, 77, 158, .92)),
+        repeating-linear-gradient(115deg, rgba(255,255,255,.12) 0 1px, transparent 1px 18px);
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .76rem;
+      font-weight: 850;
+      opacity: .87;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(1.7rem, 4vw, 3rem); letter-spacing: 0; }
+    .hero p { margin-bottom: 0; max-width: 850px; line-height: 1.52; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(310px, .75fr);
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow);
+    }
+
+    .mission {
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      background: #fff7dc;
+      line-height: 1.42;
+    }
+
+    .mission strong { display: block; margin-bottom: 4px; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #d8d1e6;
+      border-radius: 8px;
+      background: #171627;
+      touch-action: none;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .readout div {
+      padding: 10px;
+      min-height: 76px;
+      border-radius: 8px;
+      border: 1px solid #d7cae7;
+      background: #f4eefb;
+      text-align: center;
+      color: #4b4263;
+    }
+
+    .readout b {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+    }
+
+    .controls {
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-weight: 760;
+    }
+
+    .value {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: .92rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 38px;
+      accent-color: var(--primary);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    button {
+      appearance: none;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font: inherit;
+      font-weight: 800;
+      color: #fff;
+      background: var(--primary);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, box-shadow .2s ease, border-color .2s ease;
+      touch-action: manipulation;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:active { transform: translateY(1px) scale(.99); }
+    button.secondary { color: var(--ink); background: #f2e9fb; border-color: #dbc9eb; }
+    button.secondary:hover { background: #eadcf6; }
+    button.selected {
+      color: #fff;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 4px rgba(43, 138, 154, .18);
+      animation: pop .28s ease;
+    }
+
+    .status {
+      min-height: 58px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #dad3e6;
+      background: #f8f5fc;
+      line-height: 1.42;
+      color: #454158;
+    }
+
+    .status.ok { color: #0f6038; background: #e8f6ef; border-color: #bddfca; }
+    .status.bad { color: #842d24; background: #fde8e5; border-color: #efc3bb; }
+
+    details {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fdfbff;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(.96); }
+      70% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 16px, 1180px); padding-top: 10px; }
+      .readout { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .hero, .card { padding: 13px; }
+      .readout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="kicker">Q1/Q2 Grundkurs · Quantenobjekte</div>
+      <h1>Photoeffekt-Labor</h1>
+      <p>Teste Einsteins Deutung des Photoeffekts: Entscheidend für die maximale Energie der Elektronen ist die Frequenz des Lichts, nicht die Intensität.</p>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="mission">
+          <strong>Auftrag</strong>
+          Finde eine Einstellung, bei der Elektronen austreten, und bestimme anschließend mit der Gegenspannung näherungsweise die maximale kinetische Energie.
+        </div>
+        <canvas id="lab" width="960" height="540" aria-label="Photoeffekt-Aufbau mit Lichtquelle, Metallplatte, Elektronen und Messkurve"></canvas>
+        <div class="readout">
+          <div>Photonenergie<b id="photonEnergy">0 eV</b></div>
+          <div>Austrittsarbeit<b id="workFunction">0 eV</b></div>
+          <div>E_kin,max<b id="kineticEnergy">0 eV</b></div>
+          <div>Photostrom<b id="current">0</b></div>
+        </div>
+      </section>
+
+      <aside class="card controls">
+        <h2>Parameter</h2>
+        <label>
+          Frequenz <span class="value" id="frequencyLabel"></span>
+          <input id="frequency" type="range" min="4" max="12" value="7.5" step="0.1">
+        </label>
+        <label>
+          Intensität <span class="value" id="intensityLabel"></span>
+          <input id="intensity" type="range" min="10" max="100" value="55">
+        </label>
+        <label>
+          Austrittsarbeit <span class="value" id="workLabel"></span>
+          <input id="work" type="range" min="1.6" max="5.0" value="2.3" step="0.1">
+        </label>
+        <label>
+          Spannung zwischen den Platten <span class="value" id="voltageLabel"></span>
+          <input id="voltage" type="range" min="-4" max="4" value="0" step="0.1">
+        </label>
+
+        <h3>Konzept-Check</h3>
+        <div class="row" id="choices">
+          <button class="secondary" data-choice="none">Es treten keine Elektronen aus</button>
+          <button class="secondary" data-choice="intensity">Mehr Intensität macht jedes Elektron schneller</button>
+          <button class="secondary" data-choice="frequency">Die Frequenz bestimmt E_kin,max</button>
+        </div>
+        <div class="status" id="feedback">Wähle eine Aussage, die zur aktuellen Einstellung passt.</div>
+
+        <details>
+          <summary>Formelhinweis</summary>
+          <p>Im vereinfachten Modell gilt E_photon = h · f und E_kin,max = E_photon - W_A. Eine negative Gegenspannung stoppt die Elektronen, wenn e · U_g ≈ E_kin,max ist.</p>
+        </details>
+      </aside>
+    </div>
+    <p><a href="../../../index.html">Zurück zur Materialübersicht</a></p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("lab");
+    const ctx = canvas.getContext("2d");
+    const hEvPer14Hz = 0.41357;
+    const els = {
+      frequency: document.getElementById("frequency"),
+      intensity: document.getElementById("intensity"),
+      work: document.getElementById("work"),
+      voltage: document.getElementById("voltage"),
+      frequencyLabel: document.getElementById("frequencyLabel"),
+      intensityLabel: document.getElementById("intensityLabel"),
+      workLabel: document.getElementById("workLabel"),
+      voltageLabel: document.getElementById("voltageLabel"),
+      photonEnergy: document.getElementById("photonEnergy"),
+      workFunction: document.getElementById("workFunction"),
+      kineticEnergy: document.getElementById("kineticEnergy"),
+      current: document.getElementById("current"),
+      feedback: document.getElementById("feedback")
+    };
+    const buttons = Array.from(document.querySelectorAll("[data-choice]"));
+    let tick = 0;
+
+    function params() {
+      const f = Number(els.frequency.value);
+      const intensity = Number(els.intensity.value);
+      const work = Number(els.work.value);
+      const voltage = Number(els.voltage.value);
+      const photon = f * hEvPer14Hz;
+      const kinetic = Math.max(0, photon - work);
+      const emitted = kinetic > 0;
+      const transmission = emitted ? Math.max(0, Math.min(1, (kinetic + voltage) / Math.max(.25, kinetic))) : 0;
+      const current = emitted ? intensity / 100 * transmission : 0;
+      return { f, intensity, work, voltage, photon, kinetic, emitted, current };
+    }
+
+    function lightColor(f) {
+      if (f < 4.8) return "#d95f43";
+      if (f < 5.8) return "#f0b429";
+      if (f < 7.0) return "#69b96f";
+      if (f < 8.6) return "#42a6d8";
+      return "#8f6de0";
+    }
+
+    function updateLabels(p) {
+      els.frequencyLabel.textContent = `${p.f.toFixed(1).replace(".", ",")} · 10^14 Hz`;
+      els.intensityLabel.textContent = `${p.intensity}%`;
+      els.workLabel.textContent = `${p.work.toFixed(1).replace(".", ",")} eV`;
+      els.voltageLabel.textContent = `${p.voltage.toFixed(1).replace(".", ",")} V`;
+      els.photonEnergy.textContent = `${p.photon.toFixed(2).replace(".", ",")} eV`;
+      els.workFunction.textContent = `${p.work.toFixed(2).replace(".", ",")} eV`;
+      els.kineticEnergy.textContent = `${p.kinetic.toFixed(2).replace(".", ",")} eV`;
+      els.current.textContent = p.current > 0 ? `${Math.round(p.current * 100)}%` : "0";
+    }
+
+    function drawLab(p) {
+      const w = canvas.width;
+      const h = canvas.height;
+      const beam = lightColor(p.f);
+      const bg = ctx.createLinearGradient(0, 0, w, h);
+      bg.addColorStop(0, "#171627");
+      bg.addColorStop(.6, "#22243b");
+      bg.addColorStop(1, "#2d2640");
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.save();
+      ctx.globalAlpha = .18 + p.intensity / 160;
+      for (let i = 0; i < 11; i += 1) {
+        const y = 112 + i * 20 + Math.sin((tick + i * 12) / 24) * 6;
+        ctx.beginPath();
+        ctx.moveTo(95, y);
+        ctx.bezierCurveTo(210, y - 40, 285, y + 50, 385, y + 2);
+        ctx.strokeStyle = beam;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.fillStyle = "#f7f0d7";
+      ctx.fillRect(62, 92, 50, 185);
+      ctx.fillStyle = beam;
+      ctx.beginPath();
+      ctx.arc(87, 184, 18, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#c0b6d5";
+      ctx.fillRect(392, 104, 30, 258);
+      ctx.fillStyle = "#7b718e";
+      ctx.fillRect(705, 104, 18, 258);
+
+      ctx.fillStyle = "#f8f3c8";
+      ctx.font = "800 18px system-ui";
+      ctx.fillText("Metall", 374, 388);
+      ctx.fillText("Auffänger", 666, 388);
+
+      const electronCount = p.emitted ? Math.round(5 + p.intensity / 8) : 0;
+      for (let i = 0; i < electronCount; i += 1) {
+        const progress = ((tick * (.006 + p.kinetic * .002) + i / electronCount) % 1);
+        const stopped = p.voltage < -p.kinetic + .04;
+        const x = 430 + progress * (stopped ? 170 : 245);
+        const y = 160 + Math.sin(progress * Math.PI * 2 + i) * (42 + p.kinetic * 7) + i % 3 * 18;
+        ctx.beginPath();
+        ctx.arc(x, y, 5.5, 0, Math.PI * 2);
+        ctx.fillStyle = stopped && progress > .78 ? "rgba(240,180,41,.35)" : "#75d7e7";
+        ctx.fill();
+      }
+
+      const meter = Math.max(0, Math.min(1, p.current));
+      ctx.strokeStyle = "#ddd4ee";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.arc(805, 185, 58, Math.PI, 0);
+      ctx.stroke();
+      ctx.strokeStyle = meter > .02 ? "#2b8a9a" : "#6a5e7e";
+      ctx.beginPath();
+      ctx.moveTo(805, 185);
+      ctx.lineTo(805 - 49 * Math.cos(meter * Math.PI), 185 - 49 * Math.sin(meter * Math.PI));
+      ctx.stroke();
+      ctx.fillStyle = "#fff";
+      ctx.font = "800 16px system-ui";
+      ctx.textAlign = "center";
+      ctx.fillText("Photostrom", 805, 270);
+
+      drawGraph(p);
+    }
+
+    function drawGraph(p) {
+      const x0 = 110;
+      const y0 = 470;
+      const gw = 740;
+      const gh = 110;
+      ctx.save();
+      ctx.translate(0, -8);
+      ctx.strokeStyle = "rgba(255,255,255,.55)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x0, y0 - gh);
+      ctx.lineTo(x0, y0);
+      ctx.lineTo(x0 + gw, y0);
+      ctx.stroke();
+
+      const threshold = p.work / hEvPer14Hz;
+      const tx = x0 + (threshold - 4) / 8 * gw;
+      ctx.strokeStyle = "#f0b429";
+      ctx.setLineDash([8, 8]);
+      ctx.beginPath();
+      ctx.moveTo(tx, y0 - gh);
+      ctx.lineTo(tx, y0);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.strokeStyle = "#75d7e7";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (let i = 0; i <= 80; i += 1) {
+        const f = 4 + i / 10;
+        const e = Math.max(0, f * hEvPer14Hz - p.work);
+        const x = x0 + i / 80 * gw;
+        const y = y0 - Math.min(gh, e / 3.2 * gh);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      const px = x0 + (p.f - 4) / 8 * gw;
+      const py = y0 - Math.min(gh, p.kinetic / 3.2 * gh);
+      ctx.fillStyle = "#f0b429";
+      ctx.beginPath();
+      ctx.arc(px, py, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#fff";
+      ctx.font = "13px system-ui";
+      ctx.textAlign = "left";
+      ctx.fillText("E_kin,max gegen f", x0 + 8, y0 - gh + 18);
+      ctx.restore();
+    }
+
+    function evaluate(choice) {
+      const p = params();
+      let correct = "frequency";
+      if (!p.emitted) correct = "none";
+      buttons.forEach((button) => button.classList.toggle("selected", button.dataset.choice === choice));
+      els.feedback.className = "status " + (choice === correct ? "ok" : "bad");
+      if (choice === correct && correct === "none") {
+        els.feedback.textContent = "Richtig. Die Photonenergie liegt unter der Austrittsarbeit; höhere Intensität allein löst keine Elektronen aus.";
+      } else if (choice === correct) {
+        els.feedback.textContent = "Richtig. Mehr Intensität erhöht den Photostrom, aber die maximale Elektronenenergie folgt aus der Frequenz.";
+      } else {
+        els.feedback.textContent = "Noch nicht. Prüfe zuerst, ob E_photon größer als die Austrittsarbeit ist.";
+      }
+    }
+
+    function animate() {
+      const p = params();
+      updateLabels(p);
+      drawLab(p);
+      tick += 1;
+      requestAnimationFrame(animate);
+    }
+
+    for (const input of [els.frequency, els.intensity, els.work, els.voltage]) {
+      input.addEventListener("input", () => {
+        buttons.forEach((button) => button.classList.remove("selected"));
+        els.feedback.className = "status";
+        els.feedback.textContent = "Neue Einstellung: Welche Aussage passt jetzt?";
+      });
+    }
+    buttons.forEach((button) => button.addEventListener("click", () => evaluate(button.dataset.choice)));
+    animate();
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Klasse 9 – Hebelkran</title><link rel="stylesheet" href="shared.css"></head><body><div class="wrap">
+<header class="hero"><div class="kicker">Klasse 9 · Mechanik · Hebel</div><h1>Hebelkran</h1>
+<p>Balanciere einen Kran. Eine große Kraft nahe am Drehpunkt kann durch eine kleinere Kraft weiter außen ausgeglichen werden – entscheidend ist das Drehmoment.</p></header>
+<div class="grid"><section class="card"><div class="mission"><strong id="mt"></strong><span id="md"></span></div>
+<canvas id="cv" width="950" height="560"></canvas>
+<div class="readout"><div>Drehmoment Last<b id="ml">–</b></div><div>Drehmoment Gegengewicht<b id="mc">–</b></div><div>Differenz<b id="mdiff">–</b></div></div>
+<div id="status" class="status info">Stelle Gegengewicht und Hebelarm ein.</div></section>
+<aside class="card controls"><h2>Gegengewicht</h2>
+<label>Masse <input id="cmass" type="range" min="50" max="500" step="10" value="200"><span id="cmv"></span></label>
+<label>Abstand vom Drehpunkt <input id="carm" type="range" min="0.5" max="4.0" step=".1" value="2"><span id="cav"></span></label>
+<button id="test">Kran freigeben</button><button id="reset" class="secondary">↻ Zurücksetzen</button><button id="next" class="secondary" disabled>Nächste Mission →</button>
+<details><summary>Physik-Hilfe</summary><p>Für das Gleichgewicht müssen die Drehmomente auf beiden Seiten gleich groß sein. Das Drehmoment wächst sowohl mit der Kraft als auch mit dem Abstand zum Drehpunkt.</p></details>
+</aside></div><p><a href="../../../index.html">← Spielesammlung</a></p></div>
+<script>
+const cv=document.getElementById('cv'),c=cv.getContext('2d'),g=9.81;
+const levels=[
+ {t:'Mission 1 – Baustahl',d:'Eine 300-kg-Last hängt 2,0 m rechts vom Drehpunkt. Balanciere den Kran.',lm:300,la:2},
+ {t:'Mission 2 – möglichst leicht',d:'Eine 400-kg-Last hängt 2,5 m rechts. Balanciere mit höchstens 250 kg Gegengewicht.',lm:400,la:2.5,maxM:250},
+ {t:'Mission 3 – kurzer Ausleger links',d:'Die 250-kg-Last hängt 3,0 m rechts. Dein Gegengewicht darf höchstens 2,0 m entfernt sein.',lm:250,la:3,maxA:2}
+];let li=0,tilt=0;
+function moments(){const L=levels[li],a=L.lm*g*L.la,b=(+cmass.value)*g*(+carm.value);return{a,b,d:b-a}}
+function update(){const z=moments();cmv.textContent=' '+cmass.value+' kg';cav.textContent=' '+carm.value+' m';ml.textContent=(z.a/1000).toFixed(1).replace('.',',')+' kNm';mc.textContent=(z.b/1000).toFixed(1).replace('.',',')+' kNm';mdiff.textContent=(z.d/1000).toFixed(1).replace('.',',')+' kNm';draw()}
+cmass.oninput=update;carm.oninput=update;reset.onclick=init;next.onclick=()=>{li=(li+1)%levels.length;init()};
+test.onclick=()=>{const L=levels[li],z=moments(),rel=Math.abs(z.d)/z.a,ok=rel<.03&&(!L.maxM||+cmass.value<=L.maxM)&&(!L.maxA||+carm.value<=L.maxA);
+ tilt=Math.max(-.16,Math.min(.16,-z.d/Math.max(z.a,1)*.12));draw();
+ if(ok){status.className='status ok';status.textContent='Kran im Gleichgewicht. Die Drehmomente sind nahezu gleich. Eine kleinere Masse kann durch einen längeren Hebelarm ausgleichen.';next.disabled=false}
+ else{status.className='status bad';status.textContent=z.d>0?'Das Gegengewicht erzeugt ein zu großes Drehmoment.':'Die Last erzeugt das größere Drehmoment.'}};
+function draw(){const L=levels[li];c.clearRect(0,0,cv.width,cv.height);c.save();c.translate(475,280);c.rotate(tilt);c.strokeStyle='#314966';c.lineWidth=16;c.beginPath();c.moveTo(-390,0);c.lineTo(390,0);c.stroke();
+ const lx=L.la/4*330,cx=+carm.value/4*330;c.fillStyle='#b94a3d';c.fillRect(lx-34,10,68,55);c.fillStyle='#3b72ae';c.fillRect(-cx-34,10,68,55);
+ c.fillStyle='#223044';c.font='bold 16px system-ui';c.fillText(L.lm+' kg',lx-25,45);c.fillText(cmass.value+' kg',-cx-25,45);c.restore();
+ c.fillStyle='#7b8798';c.beginPath();c.moveTo(475,285);c.lineTo(425,420);c.lineTo(525,420);c.closePath();c.fill();c.fillStyle='#425267';c.font='17px system-ui';c.fillText('Drehpunkt',440,452)}
+function init(){const L=levels[li];mt.textContent=L.t;md.textContent=L.d;cmass.value=L.maxM?200:200;carm.value=L.maxA?1.5:2;tilt=0;next.disabled=true;status.className='status info';status.textContent='Stelle Gegengewicht und Hebelarm ein.';update()}
+init();
+</script></body></html>
