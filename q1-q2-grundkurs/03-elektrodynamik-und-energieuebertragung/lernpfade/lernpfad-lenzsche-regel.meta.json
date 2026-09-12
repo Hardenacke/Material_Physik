@@ -1,0 +1,7 @@
+{
+  "title": "Lenzsche Regel und Induktionsgesetz",
+  "description": "Interaktiver Lernpfad zur Herleitung des Induktionsgesetzes und zur Lenzschen Regel.",
+  "type": "lernpfad",
+  "visible": true,
+  "order": 10
+}
