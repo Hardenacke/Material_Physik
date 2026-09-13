@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102a43">
+<title>Quantenphysik · Q1/Q2 GK</title>
+<style>
+:root{--ink:#102a43;--blue:#1976d2;--teal:#0f9d8a;--gold:#f4b942;--bg:#f4f7fb;--card:#fff;--muted:#5d6b7a;--line:#dce5ee;--ok:#13795b;--bad:#b33a3a;--shadow:0 16px 42px rgba(16,42,67,.10)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#172536;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.62}
+button,input{font:inherit} a{color:inherit}
+.shell{width:min(1080px,calc(100% - 28px));margin:auto}
+header{background:linear-gradient(135deg,#102a43,#184e77 58%,#0f9d8a);color:white;padding:18px 0 68px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center}
+.brand{font-weight:850;letter-spacing:.02em} .home{text-decoration:none;padding:9px 12px;border:1px solid rgba(255,255,255,.25);border-radius:12px;background:rgba(255,255,255,.08)}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;padding-top:50px}
+.kicker{font-weight:800;color:#d9fff7;font-size:.95rem;text-transform:uppercase;letter-spacing:.08em}
+h1{font-size:clamp(2.2rem,5vw,4.5rem);line-height:1.02;margin:.18em 0 .16em;letter-spacing:-.045em}
+.subtitle{font-size:clamp(1.05rem,2vw,1.35rem);max-width:720px;color:#e8f5ff}
+.level{display:inline-block;margin-top:16px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.12);font-size:.9rem}
+.hero-icon{display:grid;place-items:center;min-height:240px;border-radius:30px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:8rem;box-shadow:0 25px 60px rgba(0,0,0,.18)}
+main{margin-top:-34px;padding-bottom:70px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,4vw,34px);box-shadow:var(--shadow);margin-bottom:22px}
+.card h2{margin:.1em 0 .45em;font-size:clamp(1.45rem,3vw,2rem);color:var(--ink)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:#0d6b61;background:#e4f7f3;padding:6px 10px;border-radius:999px;font-size:.88rem}
+.everyday{font-size:1.15rem;margin:14px 0 0}
+.question{margin-top:18px;padding:16px 18px;border-left:5px solid var(--gold);background:#fff8e7;border-radius:14px;font-weight:750}
+.idea-grid{display:grid;gap:14px}
+.idea-card{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:17px;border:1px solid #e2eaf1;border-radius:18px;background:linear-gradient(180deg,#fff,#f9fbfd)}
+.idea-no{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#1c92d2,#0f9d8a);color:white;font-weight:900}
+.idea-card h3{margin:0 0 4px;color:var(--ink)} .idea-card p{margin:0;color:#314355}
+.sim-grid{display:grid;grid-template-columns:1fr 310px;gap:18px;align-items:start}
+.canvas-wrap{background:#09192b;border-radius:20px;overflow:hidden;border:1px solid #213753}
+canvas{display:block;width:100%;aspect-ratio:16/9;height:auto;touch-action:none}
+.controls{padding:16px;background:#f7fafc;border:1px solid var(--line);border-radius:18px}
+.control{margin:0 0 18px} .control label{display:flex;justify-content:space-between;font-weight:800;margin-bottom:6px} input[type=range]{width:100%;accent-color:var(--teal)}
+.sim-note{font-size:.94rem;color:var(--muted);margin-top:10px}
+.connection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.connection{padding:16px;border-radius:16px;background:#eef7fb;border:1px solid #d7e8f1} .connection strong{display:block;color:#0c4f78;margin-bottom:5px} .connection span{color:#405567}
+.quiz{display:grid;gap:18px} .qbox{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fbfdff}
+.qbox h3{margin:0 0 12px} .answers{display:grid;gap:9px}
+.answer{border:1px solid #cfdae4;background:white;border-radius:14px;padding:12px 14px;text-align:left;cursor:pointer;min-height:48px}
+.answer:hover{border-color:#6aa6c9} .answer.ok{background:#e6f7ef;border-color:#4ba982} .answer.bad{background:#fff0f0;border-color:#d58a8a}
+.feedback{min-height:24px;font-weight:750;margin-top:8px}
+.takeaway{background:linear-gradient(135deg,#e7f7f3,#fff7dc)} .takeaway ul{margin-bottom:0}
+.progress{position:sticky;bottom:12px;z-index:20;margin:0 auto;width:min(680px,calc(100% - 24px));background:rgba(16,42,67,.94);color:white;border-radius:18px;padding:10px 14px;box-shadow:0 12px 35px rgba(0,0,0,.25);display:flex;gap:12px;align-items:center}
+.progressbar{height:10px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;flex:1} .progressbar span{display:block;height:100%;background:linear-gradient(90deg,#45d3b5,#ffd166);width:0;transition:.3s}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-weight:700} .check input{width:22px;height:22px;accent-color:var(--teal)}
+footer{color:#607181;text-align:center;padding:10px 0 35px}
+@media(max-width:820px){.hero,.sim-grid{grid-template-columns:1fr}.hero-icon{min-height:150px;font-size:5.5rem}.connection-grid{grid-template-columns:1fr}header{padding-bottom:55px}.top{align-items:flex-start}}
+@media print{.progress,.home,.controls{display:none!important}body{background:white}header{padding-bottom:30px}main{margin-top:0}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <div class="shell top">
+    <div class="brand">Physik · Q1/Q2 GK</div>
+    <a class="home" href="../../../../index.html">← Übersicht</a>
+  </div>
+  <div class="shell hero">
+    <div>
+      <div class="kicker">Informierender Lernpfad</div>
+      <h1>Quantenphysik</h1>
+      <div class="subtitle">Photonen, Elektronen, Interferenz und Wahrscheinlichkeitsdeutung</div>
+      <div class="level">Grundkurs · Abiturrelevante Kernideen · mathematische Beschreibung</div>
+    </div>
+    <div class="hero-icon" aria-hidden="true">✨</div>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="card module">
+    <span class="badge">1 · Alltagseinstieg</span>
+    <h2>Das kennst du aus dem Alltag</h2>
+    <p class="everyday">Eine Digitalkamera zählt letztlich einzelne Energieüberträge von Licht an einen Sensor. Bei sehr schwachem Licht erscheinen Treffer einzeln – das Gesamtbild entsteht statistisch.</p>
+    <div class="question">Leitfrage: Warum reichen klassische Teilchen- und Wellenmodelle allein nicht aus, um Quantenobjekte zu beschreiben?</div>
+    <label class="check"><input type="checkbox" data-done><span>Ich kann die Leitfrage in eigenen Worten wiedergeben.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">2 · Kernideen</span>
+    <h2>Die wichtigsten Gedanken</h2>
+    <div class="idea-grid"><article class="idea-card">
+          <div class="idea-no">1</div>
+          <div><h3>Photonen</h3><p>Licht überträgt Energie in Quanten E = h·f. Der Photoeffekt zeigt, dass die Frequenz entscheidend für die Elektronenemission ist.</p></div>
+        </article>
+<article class="idea-card">
+          <div class="idea-no">2</div>
+          <div><h3>De-Broglie-Idee</h3><p>Materieteilchen können Welleneigenschaften zeigen. Ihre Wellenlänge ist λ = h/p.</p></div>
+        </article>
+<article class="idea-card">
+          <div class="idea-no">3</div>
+          <div><h3>Doppelspalt</h3><p>Einzelne Quantenobjekte werden punktförmig nachgewiesen, erzeugen statistisch aber Interferenzmuster.</p></div>
+        </article>
+<article class="idea-card">
+          <div class="idea-no">4</div>
+          <div><h3>Wahrscheinlichkeit</h3><p>Die Quantentheorie sagt nicht im Allgemeinen den einzelnen Treffer voraus, sondern Wahrscheinlichkeitsverteilungen.</p></div>
+        </article>
+<article class="idea-card">
+          <div class="idea-no">5</div>
+          <div><h3>Komplementarität</h3><p>Je nach Versuchsanordnung treten unterschiedliche, sich ergänzende Aspekte eines Quantenobjekts hervor.</p></div>
+        </article></div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe die Kernideen gelesen und die zentralen Begriffe markiert.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">3 · Beobachten und verändern</span>
+    <h2>Quanten-Doppelspalt</h2>
+    <p>Verändere jeweils nur einen Regler und beobachte, was sich im Modell ändert. Die Darstellung ist bewusst vereinfacht: Sie soll einen Zusammenhang sichtbar machen, nicht die Wirklichkeit vollständig ersetzen.</p>
+    <div class="sim-grid">
+      <div class="canvas-wrap"><canvas id="sim" width="900" height="506" aria-label="Quanten-Doppelspalt"></canvas></div>
+      <div class="controls">
+        <div class="control"><label>Spaltabstand <span id="v1">50</span></label><input id="r1" type="range" min="0" max="100" value="50"></div>
+        <div class="control"><label>Impuls <span id="v2">50</span></label><input id="r2" type="range" min="0" max="100" value="50"></div>
+        <div class="sim-note">Forscherfrage: Was bleibt gleich? Was ändert sich? Formuliere eine Wenn-dann-Aussage.</div>
+      </div>
+    </div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe beide Regler einzeln verändert und einen Zusammenhang beschrieben.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">4 · Vernetzen</span>
+    <h2>So hängen die Ideen zusammen</h2>
+    <div class="connection-grid"><div class="connection"><strong>E = hf</strong><span>Höhere Lichtfrequenz bedeutet größere Energie pro Photon.</span></div>
+<div class="connection"><strong>λ = h/p</strong><span>Größerer Impuls bedeutet kleinere de-Broglie-Wellenlänge.</span></div>
+<div class="connection"><strong>Versuchsanordnung bestimmt beobachtbare Struktur</strong><span>Welcher-Weg-Information und Interferenz stehen in einem grundlegenden Zusammenhang.</span></div></div>
+    <label class="check"><input type="checkbox" data-done><span>Ich kann mindestens zwei Kernideen miteinander verknüpfen.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">5 · Wissen prüfen</span>
+    <h2>Drei kurze Kontrollfragen</h2>
+    <div class="quiz" id="quiz"></div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe die Kontrollfragen bearbeitet.</span></label>
+  </section>
+
+  <section class="card takeaway module">
+    <span class="badge">6 · Sicherung</span>
+    <h2>Das musst du mitnehmen</h2>
+    <ul><li>Quantenobjekte zeigen Teilchen- und Wellenaspekte.</li><li>Energie des Photons ist quantisiert.</li><li>Materie besitzt eine de-Broglie-Wellenlänge.</li><li>Quantenphysik beschreibt Messergebnisse wesentlich probabilistisch.</li></ul>
+    <label class="check"><input type="checkbox" data-done><span>Ich kann die vier Aussagen ohne Nachlesen erklären.</span></label>
+  </section>
+</main>
+<div class="progress"><strong id="ptxt">0 / 6</strong><div class="progressbar"><span id="pbar"></span></div></div>
+<footer class="shell">Offline-fähiger Lernpfad · keine externen Bibliotheken · Lernstand nur lokal im Browser</footer>
+
+<script>
+const SIM="quantum";
+const QUIZ=[{"q": "Wovon hängt die Photonenergie ab?", "a": ["Von der Frequenz", "Nur von der Intensität", "Von der Ausbreitungsrichtung"], "correct": 0}, {"q": "Was zeigt der Elektronen-Doppelspalt?", "a": ["Einzeltreffer bauen statistisch ein Interferenzmuster auf.", "Elektronen sind klassische Kügelchen ohne Welleneffekt.", "Jedes Elektron wird als ausgedehnter Fleck gemessen."], "correct": 0}, {"q": "Wie lautet die de-Broglie-Beziehung?", "a": ["λ = h/p", "λ = p/h", "E = p·h"], "correct": 0}];
+const KEY="physik-informativ:"+location.pathname;
+const r1=document.getElementById('r1'), r2=document.getElementById('r2'), v1=document.getElementById('v1'), v2=document.getElementById('v2');
+const c=document.getElementById('sim'), ctx=c.getContext('2d');
+
+function line(x1,y1,x2,y2,col="#fff",w=3,dash=[]){
+  ctx.beginPath();ctx.setLineDash(dash);ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=col;ctx.lineWidth=w;ctx.stroke();ctx.setLineDash([]);
+}
+function circle(x,y,r,col,fill=true){
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);if(fill){ctx.fillStyle=col;ctx.fill()}else{ctx.strokeStyle=col;ctx.stroke()}
+}
+function txt(s,x,y,size=18,col="#e8f2ff",align="left"){
+  ctx.font="700 "+size+"px system-ui";ctx.fillStyle=col;ctx.textAlign=align;ctx.fillText(s,x,y);
+}
+function arrow(x1,y1,x2,y2,col="#fff",w=4){
+  line(x1,y1,x2,y2,col,w);let a=Math.atan2(y2-y1,x2-x1),s=10;
+  line(x2,y2,x2-s*Math.cos(a-.5),y2-s*Math.sin(a-.5),col,w);line(x2,y2,x2-s*Math.cos(a+.5),y2-s*Math.sin(a+.5),col,w)
+}
+function bg(){
+  ctx.fillStyle="#09192b";ctx.fillRect(0,0,c.width,c.height);
+  for(let x=0;x<c.width;x+=60)line(x,0,x,c.height,"rgba(255,255,255,.035)",1);
+  for(let y=0;y<c.height;y+=60)line(0,y,c.width,y,"rgba(255,255,255,.035)",1);
+}
+function draw(){
+  let a=+r1.value,b=+r2.value;v1.textContent=a;v2.textContent=b;bg();
+  const W=c.width,H=c.height;
+  if(SIM==="ray"){
+    circle(120,240,38,"#ffd65a"); txt("Lampe",120,305,17,"#ffd65a","center");
+    let gap=25+b*.5;ctx.fillStyle="#496277";ctx.fillRect(390,80,24,150-gap/2);ctx.fillRect(390,230+gap/2,24,180-gap/2);
+    let spread=.15+a/220;for(let k=-3;k<=3;k++){let y=240+k*25*spread*4;line(158,240,390,y,"#ffe88b",3);line(414,y,790,240+(y-240)*1.7,"rgba(255,232,139,.75)",2)}
+    txt("Licht breitet sich geradlinig aus",450,55,22,"#fff","center");
+  } else if(SIM==="circuit"){
+    let U=1+a/12,R=1+b/8,I=U/R;ctx.strokeStyle="#d6e5f5";ctx.lineWidth=8;ctx.strokeRect(180,120,540,260);
+    ctx.fillStyle="#ffdf6c";ctx.fillRect(145,190,70,120);txt("+",180,180,26,"#fff","center");txt("−",180,335,26,"#fff","center");
+    circle(720,250,52,"#ffd65a");txt("Lampe",720,330,16,"#fff","center");
+    let glow=Math.min(1,I/2);circle(720,250,75,`rgba(255,214,90,${.08+.28*glow})`);
+    txt("I ≈ "+I.toFixed(2)+" (Modellwert)",450,65,22,"#45e2d2","center");
+  } else if(SIM==="particles"){
+    let temp=10+a*.8,n=18+Math.round(b/4);txt("Temperatur ≈ "+temp.toFixed(0)+" °C",450,55,22,"#ffd65a","center");
+    ctx.strokeStyle="#9fc5db";ctx.lineWidth=4;ctx.strokeRect(130,100,640,320);
+    for(let i=0;i<n;i++){let x=160+(i*97)%575,y=135+(i*67)%250;let rr=5+temp/35;circle(x,y,rr,i%2?"#45e2d2":"#ffb56b")}
+    txt("Höhere Temperatur → stärkere Teilchenbewegung",450,470,18,"#fff","center");
+  } else if(SIM==="wave"||SIM==="interference"||SIM==="wavefield"){
+    let f=1+a/22,amp=25+b*.55;line(70,250,830,250,"#51667a",2);
+    ctx.beginPath();for(let x=70;x<=830;x++){let y=250+amp*Math.sin((x-70)/48*f);if(SIM==="interference")y+=amp*.55*Math.sin((x-70)/48*f+(b/100)*Math.PI*2);x===70?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.strokeStyle="#45e2d2";ctx.lineWidth=4;ctx.stroke();
+    txt(SIM==="wavefield"?"Welle: Ausbreitung + Feldwirkung":"Schwingung / Welle",450,65,22,"#fff","center");
+    txt("Frequenz",160,455,16,"#ffd65a");txt("Amplitude",740,455,16,"#ffd65a");
+  } else if(SIM==="motion"){
+    let v=20+a*.7,acc=(b-50)/25;line(70,410,830,410,"#8aa0b5",4);
+    let t=6,x=120+v*t*.8+acc*t*t*5;x=Math.min(790,Math.max(100,x));circle(x,380,25,"#45e2d2");
+    line(80,300,80,80,"#fff",2);line(80,300,820,300,"#fff",2);
+    ctx.beginPath();for(let i=0;i<=100;i++){let tt=i/100*7,ss=v*tt+0.5*acc*tt*tt*10;let px=80+i*7.2,py=300-Math.min(210,ss*.35);i?ctx.lineTo(px,py):ctx.moveTo(px,py)}ctx.strokeStyle="#ffd65a";ctx.lineWidth=4;ctx.stroke();
+    txt("s-t-Diagramm: Steigung beschreibt Geschwindigkeit",450,55,20,"#fff","center");
+  } else if(SIM==="lens"){
+    line(70,255,830,255,"#6f8296",2);ctx.beginPath();ctx.ellipse(450,255,24,160,0,0,Math.PI*2);ctx.fillStyle="rgba(82,210,255,.28)";ctx.fill();ctx.strokeStyle="#5bdcff";ctx.lineWidth=4;ctx.stroke();
+    let g=120+a*2.7,f=70+b*1.05,ox=450-g;arrow(ox,365,ox,145,"#ffd65a",6);
+    let denom=1/f-1/g,bi=denom>0?1/denom:330;bi=Math.max(-320,Math.min(330,bi));let ix=450+bi,mag=-bi/g,iy=255+(145-255)*mag;
+    line(ox,145,450,145,"#ffd65a",3);line(450,145,ix,iy,"#ffd65a",3);line(ox,145,450,255,"#45e2d2",3);line(450,255,ix,iy,"#45e2d2",3);arrow(ix,255,ix,iy,"#ff8a7a",5);
+    circle(450-f,255,5,"#fff");circle(450+f,255,5,"#fff");txt("F",450+f,280,16,"#fff","center");
+  } else if(SIM==="orbit"){
+    circle(450,250,48,"#4cb8ff");let ang=a/100*Math.PI*2,mx=450+190*Math.cos(ang),my=250+120*Math.sin(ang);circle(mx,my,24,"#dedede");
+    circle(100,250,45,"#ffd65a");arrow(155,250,390,250,"rgba(255,220,90,.7)",3);
+    let tilt=(-23+b*.46)*Math.PI/180;line(450-45*Math.sin(tilt),250+45*Math.cos(tilt),450+45*Math.sin(tilt),250-45*Math.cos(tilt),"#fff",4);
+    txt("Beleuchtung + Bewegung + Achsneigung",450,55,21,"#fff","center");
+  } else if(SIM==="ohm"){
+    let U=1+a/10,R=2+b/10,I=U/R;line(110,410,810,410,"#fff",2);line(110,410,110,80,"#fff",2);
+    ctx.beginPath();for(let i=0;i<=100;i++){let x=110+i*6.6,y=410-i*2.8*(12/R);i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.strokeStyle="#45e2d2";ctx.lineWidth=4;ctx.stroke();
+    circle(110+a*6.6,410-(a*2.8*(12/R)),7,"#ffd65a");txt(`U=${U.toFixed(1)} V   R=${R.toFixed(1)} Ω   I≈${I.toFixed(2)} A`,450,55,21,"#fff","center");
+  } else if(SIM==="energy"){
+    let h=1+a/20,fr=b/100;ctx.fillStyle="#34516a";ctx.beginPath();ctx.moveTo(80,410);ctx.lineTo(340,130);ctx.lineTo(780,410);ctx.closePath();ctx.fill();
+    circle(340,110,24,"#45e2d2");let Ep=h*100*(1-fr*.15),Ek=h*100-Ep*(1-fr);txt("Lageenergie",175,90,18,"#ffd65a");ctx.fillStyle="#ffd65a";ctx.fillRect(120,120,70,Math.min(250,Ep));
+    txt("Wärme durch Reibung",650,90,18,"#ff9b75");ctx.fillStyle="#ff9b75";ctx.fillRect(660,120,70,Math.min(250,h*100*fr));
+  } else if(SIM==="pressure"){
+    let depth=40+a*2.8,rho=700+b*6;ctx.fillStyle="#1d6f9e";ctx.fillRect(90,100,720,350);ctx.fillStyle="#45e2d2";let y=120+depth;ctx.fillRect(380,y,140,80);
+    arrow(450,y+80,450,y+10,"#ffd65a",6);arrow(450,y+40,450,y+125,"#ff8f77",5);txt("Auftrieb",540,y+25,17,"#ffd65a");txt("Gewicht",540,y+115,17,"#ff8f77");
+    txt("Δp ≈ ρ·g·h",450,60,24,"#fff","center");txt("Tiefe ↑ → Druck ↑",450,485,18,"#d9f5ff","center");
+  } else if(SIM==="decay"||SIM==="nuclear"){
+    let t=a/18,half=1+b/18,N=100*Math.pow(.5,t/half);line(90,410,820,410,"#fff",2);line(90,410,90,80,"#fff",2);
+    ctx.beginPath();for(let i=0;i<=100;i++){let tt=i/100*8,nn=100*Math.pow(.5,tt/half);let x=90+i*7.2,y=410-nn*3;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.strokeStyle="#ffd65a";ctx.lineWidth=4;ctx.stroke();
+    circle(90+(t/8)*720,410-N*3,8,"#45e2d2");txt("N(t) / Zerfallskurve",450,55,22,"#fff","center");
+  } else if(SIM==="grid"){
+    circle(150,250,70,"#45e2d2",false);for(let i=0;i<6;i++){let an=i*Math.PI/3+a/100;line(150,250,150+58*Math.cos(an),250+58*Math.sin(an),"#45e2d2",5)}
+    line(220,250,370,250,"#ffd65a",5);ctx.strokeStyle="#fff";ctx.lineWidth=5;ctx.strokeRect(370,175,120,150);line(490,250,760,250,"#ffd65a",4);
+    for(let i=0;i<3;i++)line(565+i*65,160,565+i*65,340,"#6fa8d6",3);
+    txt("Generator",150,355,18,"#fff","center");txt("Trafo",430,355,18,"#fff","center");txt("Übertragung",660,390,18,"#fff","center");
+  } else if(SIM==="projectile"){
+    let v=10+a*.35,h=80+b*2.4,scale=.65;line(70,420,830,420,"#788da3",3);ctx.fillStyle="#5c6f82";ctx.fillRect(100,420-h,80,h);
+    ctx.beginPath();for(let i=0;i<=80;i++){let tt=i/80*3.4,x=180+v*tt*6,y=420-h+0.5*9.81*tt*tt*16;if(y>420)break;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.strokeStyle="#ffd65a";ctx.lineWidth=4;ctx.stroke();
+    arrow(180,420-h,260,420-h,"#45e2d2",5);txt("Horizontal gleichförmig – vertikal beschleunigt",450,55,20,"#fff","center");
+  } else if(SIM==="circular"){
+    let v=10+a*.3,r=90+b*1.4;circle(450,260,8,"#fff");ctx.beginPath();ctx.arc(450,260,r,0,Math.PI*2);ctx.strokeStyle="#54718d";ctx.lineWidth=3;ctx.stroke();
+    let ang=1.1,x=450+r*Math.cos(ang),y=260+r*Math.sin(ang);circle(x,y,18,"#45e2d2");arrow(x,y,450,260,"#ffd65a",5);arrow(x,y,x-70*Math.sin(ang),y+70*Math.cos(ang),"#ff8f77",4);
+    txt("a_z zum Mittelpunkt · v tangential",450,55,22,"#fff","center");
+  } else if(SIM==="induction"){
+    let rate=(a-50)/10,N=50+b*4;for(let i=0;i<7;i++){ctx.beginPath();ctx.ellipse(450,250,170-i*15,110-i*8,0,0,Math.PI*2);ctx.strokeStyle="rgba(69,226,210,.5)";ctx.stroke()}
+    let x=150+a*5.5;ctx.fillStyle="#ff6b6b";ctx.fillRect(x,180,45,140);txt("N",x+22,205,18,"#fff","center");ctx.fillStyle="#4d8dff";ctx.fillRect(x+45,180,45,140);txt("S",x+67,205,18,"#fff","center");
+    let U=Math.abs(rate)*N/120;txt("U_ind ∝ N · ΔΦ/Δt",450,55,24,"#fff","center");txt("Modellwert U ≈ "+U.toFixed(1),450,460,19,"#ffd65a","center");
+  } else if(SIM==="quantum"||SIM==="quantum2"){
+    let info=SIM==="quantum2"?a/100:0,sep=30+b*.5;ctx.fillStyle="#51667a";ctx.fillRect(300,70,20,370);ctx.clearRect(300,210-sep/2,20,18);ctx.clearRect(300,210+sep/2,20,18);
+    for(let i=0;i<140;i++){let yy=250+120*Math.sin(i*.63)*(1-info)+((i*37)%60-30)*info;circle(700+((i*29)%60),Math.max(90,Math.min(420,yy)),2.5,"rgba(255,214,90,.7)")}
+    arrow(100,250,290,250,"#45e2d2",5);txt(SIM==="quantum2"?"Welcher-Weg-Info reduziert Interferenz":"Einzeltreffer → statistisches Interferenzmuster",450,55,20,"#fff","center");
+  } else if(SIM==="spectrum"){
+    const cols=["#6d28d9","#2563eb","#0ea5e9","#22c55e","#facc15","#f97316","#ef4444"];for(let i=0;i<cols.length;i++){ctx.fillStyle=cols[i];ctx.fillRect(100+i*100,180,90,150)}
+    let lines=[160,260,420,610,735];for(let x of lines){ctx.fillStyle="#09192b";ctx.fillRect(x,175,8,160)}txt("Spektrallinien ↔ Energiedifferenzen",450,75,22,"#fff","center");
+  } else if(SIM==="particlefield"){
+    let B=.2+b/70,v=1+a/35,r=80+v/B*32;ctx.beginPath();ctx.arc(450,270,Math.min(210,r),Math.PI*.9,Math.PI*1.9);ctx.strokeStyle="#45e2d2";ctx.lineWidth=5;ctx.stroke();
+    for(let x=120;x<820;x+=55)for(let y=120;y<430;y+=55)txt("×",x,y,16,"#6f8cab","center");
+    txt("r ∝ m·v / (q·B)",450,55,24,"#fff","center");
+  }
+}
+r1.addEventListener('input',draw);r2.addEventListener('input',draw);draw();
+
+const quiz=document.getElementById("quiz");
+QUIZ.forEach((item,qi)=>{
+  const box=document.createElement("div");box.className="qbox";
+  box.innerHTML=`<h3>${qi+1}. ${item.q}</h3><div class="answers"></div><div class="feedback"></div>`;
+  const ans=box.querySelector(".answers"),fb=box.querySelector(".feedback");
+  item.a.forEach((a,i)=>{
+    const btn=document.createElement("button");btn.className="answer";btn.textContent=a;
+    btn.addEventListener("click",()=>{
+      [...ans.children].forEach(x=>x.classList.remove("ok","bad"));
+      if(i===item.correct){btn.classList.add("ok");fb.textContent="Richtig – die Kernidee passt.";fb.style.color="#13795b"}
+      else{btn.classList.add("bad");fb.textContent="Noch nicht. Lies die passende Kernidee noch einmal.";fb.style.color="#b33a3a"}
+    });
+    ans.appendChild(btn);
+  });
+  quiz.appendChild(box);
+});
+
+let saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const checks=[...document.querySelectorAll("[data-done]")];
+checks.forEach((ch,i)=>{ch.checked=!!saved[i];ch.addEventListener("change",()=>{saved[i]=ch.checked;localStorage.setItem(KEY,JSON.stringify(saved));progress()})});
+function progress(){
+ const n=checks.filter(x=>x.checked).length;
+ document.getElementById("ptxt").textContent=n+" / "+checks.length;
+ document.getElementById("pbar").style.width=(100*n/checks.length)+"%";
+}
+progress();
+</script>
+</body>
+</html>
