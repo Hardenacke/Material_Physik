@@ -1,0 +1,99 @@
+{
+  "date": "2026-09-14",
+  "archive": {
+    "files": 16,
+    "crc": "passed",
+    "sha256_entries": 15,
+    "sha256": "passed"
+  },
+  "videos": [
+    {
+      "file": "klasse-8/01-optische-instrumente/lernmaterial/erklaervideos/reflexion-und-brechung/optik_klasse8.mp4",
+      "duration_seconds": 137.5,
+      "pixel_width": 1920,
+      "pixel_height": 1080,
+      "frame_rate": 30.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "size_bytes": 6721986,
+      "sha256": "2c53f58429558f62a4142858052b6d0c98ef6acde290f520b6a08ed8110b8313",
+      "full_decode": "passed",
+      "faststart": true,
+      "site_copy": "identical"
+    },
+    {
+      "file": "klasse-8/01-optische-instrumente/lernmaterial/erklaervideos/reflexionsgesetz/reflexionsgesetz.mp4",
+      "duration_seconds": 34.0,
+      "pixel_width": 1920,
+      "pixel_height": 1080,
+      "frame_rate": 30.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "size_bytes": 864147,
+      "sha256": "3fbd3b6a9fedbfff71c2c0cfe2922fa726a5296c9c140bf44f09f6e034fdffed",
+      "full_decode": "passed",
+      "faststart": true,
+      "site_copy": "identical"
+    },
+    {
+      "file": "klasse-8/03-bewegung/lernmaterial/erklaervideos/aequivalenzumformungen/aequivalenzumformungen.mp4",
+      "duration_seconds": 37.2,
+      "pixel_width": 1920,
+      "pixel_height": 1080,
+      "frame_rate": 30.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "size_bytes": 948061,
+      "sha256": "d4746c0036d64baefb1bdca9422e3aeb689103613d3138442d16c0375cd98269",
+      "full_decode": "passed",
+      "faststart": true,
+      "site_copy": "identical"
+    }
+  ],
+  "browser": {
+    "browser": "Microsoft Edge / Chromium",
+    "videos": [
+      {
+        "title": "Das Reflexionsgesetz – Winkel verändern",
+        "width": 1920,
+        "height": 1080,
+        "duration": 34,
+        "seek": 17,
+        "error": null
+      },
+      {
+        "title": "Reflexion, Spiegelbild und Brechung an einer Sammellinse",
+        "width": 1920,
+        "height": 1080,
+        "duration": 137.5,
+        "seek": 68.75,
+        "error": null
+      },
+      {
+        "title": "Rechenhilfe: Gleichungen schrittweise lösen",
+        "width": 1920,
+        "height": 1080,
+        "duration": 37.2,
+        "seek": 18.6,
+        "error": null
+      }
+    ],
+    "checks": [
+      "project subpath",
+      "class support links",
+      "native playback",
+      "seek",
+      "1920x1080",
+      "mobile no overflow",
+      "video search",
+      "existing learning paths"
+    ],
+    "errors": []
+  },
+  "builds": {
+    "presentations": 22,
+    "catalog": "passed",
+    "site": "passed"
+  },
+  "published": false
+}

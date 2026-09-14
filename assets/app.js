@@ -118,7 +118,7 @@ function topicMatchesQuery(topic, query) {
     .map((item) => `${item.title} ${item.description}`)
     .join(" ");
   const fileText = (topic.files || [])
-    .map((item) => `${item.title} ${item.category} ${item.type}`)
+    .map((item) => `${item.title} ${item.description || ""} ${item.category} ${item.type}`)
     .join(" ");
 
   return topicOwnMatchesQuery(topic, query) ||
@@ -332,7 +332,7 @@ function renderLearningPaths(topic, query) {
 }
 
 function renderFiles(topic, query) {
-  const files = resourcesForQuery(topic.files || [], query);
+  const files = resourcesForQuery(topic.files || [], query).filter((item) => !isVideo(item));
   const section = document.createElement("section");
   section.className = "resource-section";
   section.appendChild(createText("h3", "", "Dateien"));
@@ -364,6 +364,80 @@ function renderFiles(topic, query) {
   return section;
 }
 
+function isVideo(item) {
+  return item.type === "MP4" || item.type === "WEBM";
+}
+
+function renderClassVideos(schoolClass, query) {
+  const section = document.createElement("section");
+  section.className = "support-section";
+  section.appendChild(createText("p", "step-label", "Unterstützung"));
+  section.appendChild(createText("h2", "", "Erklärvideos"));
+  section.appendChild(createText("p", "view-copy", "Kurze Erklärungen zum Anschauen, Pausieren und Wiederholen. Wähle ein Video, um zum passenden Themenfeld zu gelangen."));
+  const list = document.createElement("div");
+  list.className = "support-list";
+  for (const topic of schoolClass.topics) {
+    const resourceQuery = classOwnMatchesQuery(schoolClass, query) || topicOwnMatchesQuery(topic, query) ? "" : query;
+    const videos = resourcesForQuery(topic.files || [], resourceQuery).filter(isVideo);
+    for (const item of videos) {
+      list.appendChild(renderSupportLink({
+        ...item,
+        description: `${topic.title} · ${item.description || ""}`,
+        url: `#/${schoolClass.id}/${topic.id}`
+      }, topic.theme));
+    }
+  }
+  if (!list.childElementCount) return null;
+  section.appendChild(list);
+  return section;
+}
+
+function renderVideos(topic, query) {
+  const videos = resourcesForQuery(topic.files || [], query).filter(isVideo);
+  if (!videos.length) return null;
+  const section = document.createElement("section");
+  section.className = "resource-section";
+  section.appendChild(createText("h3", "", "Erklärvideos zur Unterstützung"));
+  const grid = document.createElement("div");
+  grid.className = "video-grid";
+  for (const item of videos) {
+    const card = document.createElement("article");
+    card.className = "video-card";
+    card.appendChild(createText("h4", "video-title", item.title));
+    if (item.description) card.appendChild(createText("p", "video-description", item.description));
+    const player = document.createElement("video");
+    player.controls = true;
+    player.preload = "none";
+    player.playsInline = true;
+    player.setAttribute("aria-label", item.title);
+    if (item.poster) player.poster = encodeURI(item.poster);
+    const source = document.createElement("source");
+    source.src = encodeURI(item.url);
+    source.type = item.type === "WEBM" ? "video/webm" : "video/mp4";
+    player.appendChild(source);
+    player.appendChild(createText("p", "", "Dein Browser unterstützt die Videowiedergabe nicht. Nutze den Download unter dem Video."));
+    card.appendChild(player);
+    const hints = [];
+    if (item.durationSeconds) {
+      const duration = Math.round(item.durationSeconds);
+      hints.push(`${Math.floor(duration / 60)}:${String(duration % 60).padStart(2, "0")} Minuten`);
+    }
+    if (item.silent) hints.push("Ohne Ton · Erklärungen im Bild");
+    hints.push("Zum Nachdenken pausieren");
+    card.appendChild(createText("p", "video-hint", hints.join(" · ")));
+    const download = document.createElement("a");
+    download.className = "video-download";
+    download.href = encodeURI(item.url);
+    download.download = item.url.split("/").pop();
+    download.textContent = "Video herunterladen";
+    card.appendChild(download);
+    if (item.checkQuestion) card.appendChild(createText("p", "video-question", `Prüfe dich: ${item.checkQuestion}`));
+    grid.appendChild(card);
+  }
+  section.appendChild(grid);
+  return section;
+}
+
 function renderTopicDetail(topic, query) {
   const resourceQuery = topicOwnMatchesQuery(topic, query) ? "" : query;
   const learningPaths = resourcesForQuery(topic.learningPaths || [], resourceQuery);
@@ -387,6 +461,8 @@ function renderTopicDetail(topic, query) {
   ));
 
   detail.appendChild(header);
+  const videos = renderVideos(topic, resourceQuery);
+  if (videos) detail.appendChild(videos);
   detail.appendChild(renderLearningPaths(topic, resourceQuery));
   detail.appendChild(renderFiles(topic, resourceQuery));
 
@@ -422,6 +498,11 @@ function renderClassPage(schoolClass, query) {
   }
 
   catalogRoot.appendChild(renderTopicPicker(schoolClass, topics, visibleSelectedTopic));
+
+  if (!visibleSelectedTopic) {
+    const videos = renderClassVideos(schoolClass, query);
+    if (videos) catalogRoot.appendChild(videos);
+  }
 
   const supportSection = renderClassSupport(schoolClass, query);
   if (supportSection) {

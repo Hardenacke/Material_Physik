@@ -802,3 +802,34 @@ h1 {
     transition-duration: 1ms !important;
   }
 }
+/* Videos inherit the topic palette and remain usable on small screens. */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 32rem), 1fr));
+  gap: 1.25rem;
+}
+.video-card {
+  min-width: 0;
+  padding: 1.1rem;
+  border: 1px solid var(--topic-accent, #1e8a83);
+  border-radius: 1rem;
+  background: #fff;
+}
+.video-title { margin: 0 0 .65rem; font-size: 1.15rem; }
+.video-description { margin: 0 0 1rem; line-height: 1.6; }
+.video-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111827;
+  border-radius: .5rem;
+}
+.video-hint { font-size: .85rem; line-height: 1.6; color: #52646a; }
+.video-download { color: var(--topic-accent-dark, #23454a); font-weight: 700; }
+.video-question {
+  margin: 1rem 0 0;
+  padding: .8rem;
+  line-height: 1.6;
+  border-radius: .5rem;
+  background: var(--topic-accent-soft, #e4f4ef);
+}

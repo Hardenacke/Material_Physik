@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Erklärvideos: Vorschauen rendern",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv-manim/bin/node",
+      "windows": { "command": "${workspaceFolder}\\.venv-manim\\Scripts\\node.exe" },
+      "args": ["${workspaceFolder}/tools/render-videos.js", "--preview"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Erklärvideos: Endfassungen und Pages bauen",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv-manim/bin/node",
+      "windows": { "command": "${workspaceFolder}\\.venv-manim\\Scripts\\node.exe" },
+      "args": ["${workspaceFolder}/tools/render-videos.js"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}

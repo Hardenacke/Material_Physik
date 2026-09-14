@@ -1,3 +1,8 @@
 node_modules/
 _site/
 data.json
+.build/
+.venv/
+.venv-manim/
+__pycache__/
+*.pyc

@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "source": "optik_klasse8.py",
+  "language": "de-DE",
+  "role": "Aus dem aktuellen Skript abgeleiteter Drehbuch-Export; kein Laufzeiteingang.",
+  "default_pause_seconds": 2.5,
+  "planned_duration_seconds": 137.5,
+  "voiceover_enabled": false,
+  "steps": [
+    {
+      "number": 1,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 0.5,
+      "end_seconds": 4.3,
+      "screen_text": "Wir zeichnen den Spiegel als gerade Linie.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 2,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 4.3,
+      "end_seconds": 8.1,
+      "screen_text": "Der Pfeil stellt einen Gegenstand vor dem Spiegel dar.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 3,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 8.1,
+      "end_seconds": 11.9,
+      "screen_text": "Von der Gegenstandsspitze trifft ein Lichtstrahl auf den Spiegel.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 4,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 11.9,
+      "end_seconds": 15.7,
+      "screen_text": "Das Lot steht am Auftreffpunkt senkrecht auf dem Spiegel.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 5,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 15.7,
+      "end_seconds": 19.5,
+      "screen_text": "Der Lichtstrahl wird zurück in den Raum reflektiert.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 6,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 19.5,
+      "end_seconds": 23.3,
+      "screen_text": "Beide Winkel messen wir zwischen Strahl und Lot.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 7,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 23.3,
+      "end_seconds": 27.6,
+      "screen_text": "Das Reflexionsgesetz bestimmt die Richtung des reflektierten Strahls.",
+      "pause_seconds": 3,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 8,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 27.6,
+      "end_seconds": 31.4,
+      "screen_text": "Für das Bild betrachten wir einen zweiten Strahl derselben Spitze.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 9,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 31.4,
+      "end_seconds": 35.2,
+      "screen_text": "Auch dieser Strahl wird nach dem Reflexionsgesetz reflektiert.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 10,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 35.2,
+      "end_seconds": 39.0,
+      "screen_text": "Wir verlängern die reflektierten Strahlen rückwärts.\nDie gestrichelten Linien sind nur Konstruktionshilfen.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 11,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 39.0,
+      "end_seconds": 42.8,
+      "screen_text": "Ihr Schnittpunkt ist die virtuelle Bildspitze hinter dem Spiegel.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 12,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 42.8,
+      "end_seconds": 46.6,
+      "screen_text": "Das Bild ist aufrecht, gleich groß und gleich weit vom Spiegel entfernt.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 13,
+      "section": "reflexion",
+      "section_title": "Reflexion und Spiegelbild",
+      "start_seconds": 46.6,
+      "end_seconds": 49.9,
+      "screen_text": "Merke: g = b. Vom virtuellen Bild geht kein Licht aus.\nEs lässt sich dort nicht auf einem Schirm auffangen.",
+      "pause_seconds": 3,
+      "animation_seconds": 0.0
+    },
+    {
+      "number": 14,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 50.9,
+      "end_seconds": 54.7,
+      "screen_text": "Der Aufbau besteht aus Lichtquelle und Glaskörper.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 15,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 54.7,
+      "end_seconds": 58.5,
+      "screen_text": "Wir zeichnen wieder das Lot an der Auftreffstelle.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 16,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 58.5,
+      "end_seconds": 62.3,
+      "screen_text": "Der Lichtstrahl trifft schräg auf die Glasoberfläche.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 17,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 62.3,
+      "end_seconds": 66.1,
+      "screen_text": "Gestrichelt: So würde der Strahl ohne Ablenkung weiterlaufen.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 18,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 66.1,
+      "end_seconds": 69.9,
+      "screen_text": "Im Glas verläuft der gebrochene Strahl näher am Lot.\nEin kleiner Lichtanteil wird zusätzlich reflektiert.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 19,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 69.9,
+      "end_seconds": 73.7,
+      "screen_text": "Auch bei der Brechung werden die Winkel zum Lot gemessen.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 20,
+      "section": "brechung",
+      "section_title": "Lichtbrechung an Luft und Glas",
+      "start_seconds": 73.7,
+      "end_seconds": 78.0,
+      "screen_text": "Merke: Beim schrägen Übergang von Luft in Glas\nwird Licht zum Lot hin gebrochen.",
+      "pause_seconds": 3,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 21,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 79.0,
+      "end_seconds": 82.8,
+      "screen_text": "Versuchsaufbau: beleuchteter Gegenstand, Sammellinse und Schirm.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 22,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 82.8,
+      "end_seconds": 86.6,
+      "screen_text": "Wir zeichnen den Gegenstand als aufrechten Pfeil.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 23,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 86.6,
+      "end_seconds": 90.4,
+      "screen_text": "Beide Brennpunkte liegen im gleichen Abstand von der Linse.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 24,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 90.4,
+      "end_seconds": 94.2,
+      "screen_text": "Die Gegenstandsweite g ist der Abstand vom Gegenstand zur Linse.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 25,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 94.2,
+      "end_seconds": 98.0,
+      "screen_text": "1. Parallelstrahl: von der Pfeilspitze parallel zur optischen Achse.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 26,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 98.0,
+      "end_seconds": 101.8,
+      "screen_text": "Hinter der Sammellinse verläuft er durch den rechten Brennpunkt F₂.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 27,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 101.8,
+      "end_seconds": 105.6,
+      "screen_text": "2. Mittelpunktstrahl: Er trifft die Mitte der dünnen Linse.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 28,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 105.6,
+      "end_seconds": 109.4,
+      "screen_text": "Im Modell der dünnen Linse verläuft dieser Strahl gerade weiter.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 29,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 109.4,
+      "end_seconds": 113.2,
+      "screen_text": "3. Brennpunktstrahl: Er verläuft zuerst durch den linken Brennpunkt F₁.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 30,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 113.2,
+      "end_seconds": 117.0,
+      "screen_text": "Hinter der Sammellinse verläuft er parallel zur optischen Achse.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 31,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 117.0,
+      "end_seconds": 120.8,
+      "screen_text": "Die Strahlen treffen sich in der Bildspitze auf dem Schirm.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 32,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 120.8,
+      "end_seconds": 124.6,
+      "screen_text": "Die Bildweite b ist der Abstand zwischen Linse und scharfem Bild.",
+      "pause_seconds": 2.5,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 33,
+      "section": "sammellinse",
+      "section_title": "Bildkonstruktion an der Sammellinse",
+      "start_seconds": 124.6,
+      "end_seconds": 127.9,
+      "screen_text": "Hier entsteht ein umgekehrtes, verkleinertes, reelles Bild.\nWir können es auf einem Schirm auffangen.",
+      "pause_seconds": 3,
+      "animation_seconds": 0.0
+    },
+    {
+      "number": 34,
+      "section": "abschluss",
+      "section_title": "Merksätze",
+      "start_seconds": 128.9,
+      "end_seconds": 133.2,
+      "screen_text": "Reflexion und Brechung verändern den Weg des Lichts.",
+      "pause_seconds": 3,
+      "animation_seconds": 1.0
+    },
+    {
+      "number": 35,
+      "section": "abschluss",
+      "section_title": "Merksätze",
+      "start_seconds": 133.2,
+      "end_seconds": 137.5,
+      "screen_text": "Die Sammellinse nutzt die Lichtbrechung zur Bildentstehung.",
+      "pause_seconds": 3,
+      "animation_seconds": 1.0
+    }
+  ]
+}

@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "build:videos": "node tools/render-videos.js",
     "build:pptx": "node tools/build-presentations.js",
     "watch:pptx": "node tools/watch-presentations.js",
     "build:catalog": "node tools/build-catalog.js",

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "physik-klasse-8-aequivalenzumformungen",
+  "title": "Rechenhilfe: Gleichungen schrittweise lösen",
+  "description": "Löse 2x + 3 = 11 durch gleiche Rechenschritte auf beiden Seiten. Eine mathematische Grundlage für das Umstellen von Formeln bei Bewegungsaufgaben.",
+  "subject": "Mathematik als Unterstützung für Physik",
+  "grade": "8",
+  "source": "aequivalenzumformungen.py",
+  "scene": "Aequivalenzumformungen",
+  "output": "aequivalenzumformungen.mp4",
+  "voiceover": {
+    "enabled": false,
+    "language": "de-DE"
+  },
+  "render": {
+    "pixel_width": 1920,
+    "pixel_height": 1080,
+    "frame_rate": 30
+  },
+  "poster_seconds": 28,
+  "check_question": "Löse 3x + 2 = 17. Welche Rechenschritte führst du auf beiden Seiten aus?",
+  "status": "gerendert",
+  "poster": "../../../bilder/erklaervideos/_aequivalenzumformungen.jpg",
+  "measured": {
+    "duration_seconds": 37.2,
+    "pixel_width": 1920,
+    "pixel_height": 1080,
+    "frame_rate": 30.0,
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "size_bytes": 948061
+  }
+}

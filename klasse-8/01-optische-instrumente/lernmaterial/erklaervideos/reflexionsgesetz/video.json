@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "physik-klasse-8-reflexionsgesetz",
+  "title": "Das Reflexionsgesetz – Winkel verändern",
+  "description": "Beobachte, wie sich einfallender und reflektierter Strahl gemeinsam verändern. Beide Winkel werden zum Lot gemessen.",
+  "subject": "Physik",
+  "grade": "8",
+  "source": "reflexionsgesetz.py",
+  "scene": "Reflexionsgesetz",
+  "output": "reflexionsgesetz.mp4",
+  "voiceover": {
+    "enabled": false,
+    "language": "de-DE"
+  },
+  "render": {
+    "pixel_width": 1920,
+    "pixel_height": 1080,
+    "frame_rate": 30
+  },
+  "poster_seconds": 20,
+  "check_question": "Was passiert mit dem Reflexionswinkel, wenn du den Einfallswinkel vergrößerst?",
+  "status": "gerendert",
+  "poster": "../../../bilder/erklaervideos/_reflexionsgesetz.jpg",
+  "measured": {
+    "duration_seconds": 34.0,
+    "pixel_width": 1920,
+    "pixel_height": 1080,
+    "frame_rate": 30.0,
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "size_bytes": 864147
+  }
+}

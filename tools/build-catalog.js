@@ -257,12 +257,26 @@ function scanFiles(topicPath) {
       if (isLearningPathHtml(entryPath, topicPath)) continue;
 
       const ext = path.extname(entryPath).toLowerCase();
+      const isVideo = ext === ".mp4" || ext === ".webm";
+      const metadata = isVideo ? readJson(path.join(currentPath, "video.json")) : null;
+      const video = metadata && metadata.output === entry.name ? metadata : null;
+      if (video && video.visible === false) continue;
+      const posterPath = video && video.poster ? path.resolve(currentPath, video.poster) : null;
+      const poster = posterPath && posterPath.startsWith(topicPath + path.sep) && fs.existsSync(posterPath)
+        ? repoRelative(posterPath) : undefined;
       results.push({
         id: repoRelative(entryPath),
-        title: resourceTitle(entryPath, topicPath),
-        category: resourceCategory(entryPath, topicPath),
+        title: video && video.title || resourceTitle(entryPath, topicPath),
+        category: isVideo ? "Erklärvideo" : resourceCategory(entryPath, topicPath),
         type: ext ? ext.slice(1).toUpperCase() : "Datei",
-        url: repoRelative(entryPath)
+        url: repoRelative(entryPath),
+        ...(isVideo ? {
+          description: video && video.description || "",
+          durationSeconds: video && video.measured && video.measured.duration_seconds,
+          silent: Boolean(video && video.voiceover && video.voiceover.enabled === false),
+          checkQuestion: video && video.check_question || "",
+          poster
+        } : {})
       });
     }
   }

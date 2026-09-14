@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "physik-klasse-8-reflexion-und-brechung",
+  "title": "Reflexion, Spiegelbild und Brechung an einer Sammellinse",
+  "description": "Schrittweise Strahlenkonstruktionen: ebener Spiegel, virtuelles Bild, Lichtbrechung beim Übergang von Luft in Glas und Bildentstehung an einer Sammellinse.",
+  "poster_seconds": 115,
+  "check_question": "Wodurch unterscheiden sich das virtuelle Spiegelbild und das reelle Bild auf dem Schirm?",
+  "subject": "Physik",
+  "grade": "8",
+  "source": "optik_klasse8.py",
+  "scene": "OptikKlasse8",
+  "output": "optik_klasse8.mp4",
+  "content": "inhalt.json",
+  "voiceover": {
+    "enabled": false,
+    "language": "de-DE"
+  },
+  "render": {
+    "pixel_width": 1920,
+    "pixel_height": 1080,
+    "frame_rate": 30
+  },
+  "status": "gerendert",
+  "note": "tools/manim/render_videos.py liest diese Metadaten und legt das fertige Video automatisch ab. inhalt.json beschreibt die Schritte; die Szeneninhalte stehen im Python-Skript.",
+  "poster": "../../../bilder/erklaervideos/_optik_klasse8.jpg",
+  "measured": {
+    "duration_seconds": 137.5,
+    "pixel_width": 1920,
+    "pixel_height": 1080,
+    "frame_rate": 30.0,
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "size_bytes": 6721986
+  }
+}
