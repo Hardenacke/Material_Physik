@@ -50,7 +50,7 @@ function totalsForClass(schoolClass) {
       learningPaths: total.learningPaths + (topic.learningPaths || []).length,
       files: total.files + (topic.files || []).length
     }),
-    { learningPaths: 0, files: 0 }
+    { learningPaths: 0, files: (schoolClass.support || []).length }
   );
 }
 
@@ -126,9 +126,15 @@ function topicMatchesQuery(topic, query) {
     normalize(fileText).includes(needle);
 }
 
+function supportMatchesQuery(schoolClass, query) {
+  if (!query) return true;
+  return resourcesForQuery(schoolClass.support || [], query).length > 0;
+}
+
 function classMatchesQuery(schoolClass, query) {
   if (!query) return true;
   if (classOwnMatchesQuery(schoolClass, query)) return true;
+  if (supportMatchesQuery(schoolClass, query)) return true;
   return schoolClass.topics.some((topic) => topicMatchesQuery(topic, query));
 }
 
@@ -146,7 +152,7 @@ function resourcesForQuery(items, query) {
   if (!query) return items;
   const needle = normalize(query);
   return items.filter((item) =>
-    normalize(`${item.title} ${item.description || ""} ${item.category || ""} ${item.type || ""}`).includes(needle)
+    normalize(`${item.title} ${item.description || ""} ${item.category || ""} ${item.type || ""} ${item.fileName || ""}`).includes(needle)
   );
 }
 
@@ -247,6 +253,51 @@ function renderTopicPicker(schoolClass, topics, selectedTopic) {
   }
 
   section.appendChild(grid);
+  return section;
+}
+
+function renderSupportLink(item, theme) {
+  const link = document.createElement("a");
+  link.className = "file-link";
+  applyTheme(link, theme);
+  link.href = encodeURI(item.url);
+
+  const copy = document.createElement("span");
+  copy.className = "file-copy";
+  copy.appendChild(createText("span", "file-title", item.title));
+  if (item.description) {
+    copy.appendChild(createText("span", "file-description", item.description));
+  }
+  link.appendChild(copy);
+
+  const meta = document.createElement("span");
+  meta.className = "file-meta";
+  meta.appendChild(createText("span", "badge", item.category || "Unterstützung"));
+  meta.appendChild(createText("span", "badge soft", item.type || "Datei"));
+  link.appendChild(meta);
+
+  return link;
+}
+
+function renderClassSupport(schoolClass, query) {
+  const supportQuery = classOwnMatchesQuery(schoolClass, query) ? "" : query;
+  const materials = resourcesForQuery(schoolClass.support || [], supportQuery);
+  if (!materials.length) return null;
+
+  const theme = { accent: "#c85f48", accentDark: "#23454a", accentSoft: "#faebe5" };
+  const section = document.createElement("section");
+  section.className = "support-section";
+  section.appendChild(createText("p", "step-label", "Unterstützung"));
+  section.appendChild(createText("h2", "", "Question Shells"));
+  section.appendChild(createText("p", "view-copy", "Jahrgangsbezogene Vorlagen zum Formulieren von Physik- und Versuchsfragen."));
+
+  const list = document.createElement("div");
+  list.className = "support-list";
+  for (const material of materials) {
+    list.appendChild(renderSupportLink(material, theme));
+  }
+
+  section.appendChild(list);
   return section;
 }
 
@@ -363,10 +414,19 @@ function renderClassPage(schoolClass, query) {
 
   if (!topics.length) {
     catalogRoot.appendChild(createText("p", "empty-state", "Keine passenden Themenfelder gefunden."));
+    const supportSection = renderClassSupport(schoolClass, query);
+    if (supportSection) {
+      catalogRoot.appendChild(supportSection);
+    }
     return;
   }
 
   catalogRoot.appendChild(renderTopicPicker(schoolClass, topics, visibleSelectedTopic));
+
+  const supportSection = renderClassSupport(schoolClass, query);
+  if (supportSection) {
+    catalogRoot.appendChild(supportSection);
+  }
 
   if (visibleSelectedTopic) {
     catalogRoot.appendChild(renderTopicDetail(visibleSelectedTopic, query));

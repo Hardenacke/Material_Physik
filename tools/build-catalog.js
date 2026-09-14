@@ -36,8 +36,11 @@ const CATEGORY_BY_FOLDER = {
   lernmaterial: "Lernmaterial",
   lernpfade: "Lernpfad-Datei",
   praesentation: "Präsentation",
-  simulationen: "Simulation"
+  simulationen: "Simulation",
+  unterstuetzung: "Unterstützung"
 };
+
+const SUPPORT_DIR_NAME = "unterstuetzung";
 
 const DEFAULT_THEME = {
   accent: "#1e8a83",
@@ -272,6 +275,46 @@ function scanFiles(topicPath) {
   );
 }
 
+function supportTitle(filePath) {
+  let label = path.basename(filePath, path.extname(filePath))
+    .replace(/^question_shells_/i, "")
+    .replace(/^physik_/i, "")
+    .replace(/_/g, "-");
+
+  if (/^klasse-\d+$/i.test(label)) {
+    label = label.replace(/^klasse-/i, "Klasse ");
+  } else if (/^(ef|q1|q2)$/i.test(label)) {
+    label = label.toUpperCase();
+  } else {
+    label = humanize(label);
+  }
+
+  return `Question Shells ${label}`.trim();
+}
+
+function scanSupport(classPath) {
+  const supportDir = path.join(classPath, SUPPORT_DIR_NAME);
+  if (!fs.existsSync(supportDir) || !fs.statSync(supportDir).isDirectory()) return [];
+
+  return fs.readdirSync(supportDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => path.join(supportDir, entry.name))
+    .filter((filePath) => !isInternalResource(filePath))
+    .map((filePath) => {
+      const ext = path.extname(filePath).toLowerCase();
+      return {
+        id: repoRelative(filePath),
+        title: supportTitle(filePath),
+        description: "Jahrgangsbezogene Question Shells zum Erstellen passender Physik- und Versuchsfragen.",
+        category: "Unterstützung",
+        type: ext ? ext.slice(1).toUpperCase() : "Datei",
+        fileName: path.basename(filePath),
+        url: repoRelative(filePath)
+      };
+    })
+    .sort((a, b) => a.title.localeCompare(b.title, "de"));
+}
+
 function isClassFolder(name) {
   return /^klasse-\d+$/i.test(name) || name === "ef" || /^q\d.*-(grundkurs|leistungskurs)$/i.test(name);
 }
@@ -312,6 +355,7 @@ function scanClasses() {
         title: meta.title || defaults.title || humanize(entry.name),
         description: meta.description || "",
         order: toNumber(meta.order, defaults.order ?? 9999),
+        support: scanSupport(classPath),
         topics: scanTopics(classPath)
       };
     })
@@ -332,7 +376,10 @@ const learningPathCount = catalog.classes.reduce(
 );
 
 const fileCount = catalog.classes.reduce(
-  (sum, schoolClass) => sum + schoolClass.topics.reduce((topicSum, topic) => topicSum + topic.files.length, 0),
+  (sum, schoolClass) =>
+    sum +
+    (schoolClass.support || []).length +
+    schoolClass.topics.reduce((topicSum, topic) => topicSum + topic.files.length, 0),
   0
 );
 

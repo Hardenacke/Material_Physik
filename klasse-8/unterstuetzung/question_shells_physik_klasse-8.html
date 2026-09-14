@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Question Shells Physik – Klasse 8</title>
+<style>
+:root{
+  --bg:#f4f7f9; --card:#fff; --ink:#18222d; --muted:#66727e;
+  --accent:#0c7280; --accent2:#19a0ad; --line:#dce5e8;
+  --ok:#187a52; --warn:#9a6a00; --shadow:0 12px 30px rgba(18,65,75,.10);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#eaf6f7 0,#f7f9fa 36%,#f7f9fa 100%);color:var(--ink);font-size:17px;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{min-height:48px}
+.wrapper{width:min(980px,calc(100% - 28px));margin:0 auto}
+header{position:sticky;top:0;z-index:20;background:rgba(247,249,250,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.badge{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--accent);color:white;font-weight:900}
+.progress{height:8px;background:#e3ebed;border-radius:999px;overflow:hidden}
+.progress>span{display:block;height:100%;width:16%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s ease}
+main{padding:24px 0 70px}
+.screen{display:none;animation:fade .2s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+.hero{padding:clamp(24px,6vw,58px);background:linear-gradient(135deg,#075c67,#18a0ad);color:white;border-radius:30px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.hero:after{content:"⚛";position:absolute;right:22px;bottom:-20px;font-size:150px;font-weight:900;opacity:.09;line-height:1}
+.hero h1{font-size:clamp(2rem,6vw,4rem);line-height:1.03;margin:.15em 0}
+.hero p{max-width:720px;font-size:clamp(1.05rem,2.7vw,1.25rem)}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-weight:800;font-size:.82rem;opacity:.85}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{border:0;border-radius:15px;padding:12px 18px;font-weight:750;cursor:pointer}
+.btn.primary{background:var(--accent);color:white}
+.hero .btn.primary{background:white;color:#075c67}
+.btn.secondary{background:#edf5f6;color:#214148;border:1px solid #d4e4e7}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn:focus-visible,.shell:focus-visible,.topic-chip:focus-visible{outline:4px solid rgba(12,114,128,.22);outline-offset:2px}
+.section-title{margin:12px 0 4px;font-size:clamp(1.55rem,4vw,2.35rem)}
+.lead{color:var(--muted);max-width:800px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 5px 18px rgba(18,65,75,.06)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
+.step-card{position:relative;padding-top:52px}
+.step-no{position:absolute;top:18px;left:18px;width:30px;height:30px;border-radius:9px;background:#e9f5f6;color:#076875;display:grid;place-items:center;font-weight:900}
+.topic-wrap{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.topic-chip{border:1px solid #dce5e8;background:white;border-radius:999px;padding:9px 13px;min-height:42px;cursor:pointer}
+.topic-chip.active{background:#e4f5f6;border-color:#55aab3;color:#075c67;font-weight:750}
+.example{border-left:5px solid var(--accent);padding-left:16px}
+.example small{display:block;color:var(--muted);font-weight:700;margin-bottom:6px}
+.level{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#e7f5f6;color:#076875;font-weight:800;font-size:.82rem;margin-bottom:10px}
+.shell-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.shell{width:100%;text-align:left;border:1px solid #dce5e8;background:white;border-radius:16px;padding:14px;cursor:pointer;min-height:76px}
+.shell:hover,.shell.selected{border-color:#4e9faa;background:#edf9fa;box-shadow:0 0 0 3px rgba(12,114,128,.10)}
+.shell strong{display:block;margin-bottom:4px}
+.builder{display:grid;gap:16px}
+.field label{display:block;font-weight:800;margin-bottom:7px}
+select,textarea,input[type="text"]{width:100%;border:1px solid #cad8dc;border-radius:14px;background:white;padding:13px 14px;color:var(--ink)}
+textarea{min-height:128px;resize:vertical}
+.hint{background:#edf8f9;border:1px solid #d2ecef;border-radius:16px;padding:14px 16px;color:#28484f}
+.checks{display:grid;gap:10px}
+.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fbfdfd}
+.check input{width:22px;height:22px;flex:0 0 auto}
+.feedback{min-height:28px;font-weight:750}
+.feedback.ok{color:var(--ok)} .feedback.warn{color:var(--warn)}
+.saved-list{display:grid;gap:12px;margin-top:16px}
+.saved{border:1px solid var(--line);border-radius:16px;padding:14px;background:white}
+.saved .meta{font-size:.82rem;color:var(--muted);margin-bottom:6px}
+.saved .q{font-weight:780;font-size:1.04rem}
+.saved-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.mini{min-height:38px;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:#f6f9fa;cursor:pointer}
+.empty{color:var(--muted);padding:14px 0}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:26px}
+.nav .btn{min-width:120px}
+.tipbox{border:1px dashed #82b8be;background:#f4fbfb;padding:16px;border-radius:16px;margin-top:16px}
+.hidden{display:none!important}
+footer{color:var(--muted);font-size:.85rem;padding:24px 0 48px}
+@media (max-width:600px){
+  body{font-size:16px}.wrapper{width:min(100% - 20px,980px)}
+  .topbar .brand-text{display:none}
+  .hero{border-radius:22px;padding:26px 20px}
+  .card{padding:16px;border-radius:18px}
+  .nav{position:sticky;bottom:0;background:rgba(247,249,250,.95);backdrop-filter:blur(10px);padding:10px 0 12px;border-top:1px solid var(--line)}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrapper">
+    <div class="topbar">
+      <div class="brand"><div class="badge">8</div><span class="brand-text">Question Shells · Physik</span></div>
+      <button class="btn ghost" id="jumpSaved" type="button">Meine Fragen <span id="savedCount">0</span></button>
+    </div>
+    <div class="progress" aria-label="Fortschritt"><span id="progressBar"></span></div>
+  </div>
+</header>
+
+<main class="wrapper">
+  <section class="screen active" data-screen="0">
+    <div class="hero">
+      <div class="eyebrow">Physik · Klasse 8</div>
+      <h1>Aus Beobachtungen werden Fragen.</h1>
+      <p>Nutze Question Shells, um aus Versuchen, Modellen, Diagrammen und Erklärungen deine eigene Physikfrage zu bauen.</p>
+      <div class="actions"><button class="btn primary next" type="button">Los geht’s</button></div>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="1">
+    <h2 class="section-title">Was sind Question Shells?</h2>
+    <p class="lead">Question Shells sind Fragerahmen. Du nutzt sie, um aus Versuchen, Modellen, Diagrammen und physikalischen Erklärungen eigene Fragen zu formulieren. So überprüfst du, ob du nicht nur ein Ergebnis kennst, sondern einen Zusammenhang wirklich verstanden hast.</p>
+    <div class="grid">
+      <div class="card step-card"><span class="step-no">1</span><h3>Erinnere dich</h3><p>Was war heute wichtig? Denke an eine Beobachtung, ein Experiment, den Versuchsaufbau, ein Gesetz, ein Diagramm oder ein Modell.</p></div>
+      <div class="card step-card"><span class="step-no">2</span><h3>Wähle einen Frage-Starter</h3><p>Zum Beispiel: „Warum passiert …?“, „Wie hängt … zusammen?“ oder „Was würde passieren, wenn …?“</p></div>
+      <div class="card step-card"><span class="step-no">3</span><h3>Baue deine Frage</h3><p>Fülle den Fragerahmen mit dem Inhalt der Stunde. Formuliere so, dass klar ist, was untersucht oder erklärt werden soll.</p></div>
+      <div class="card step-card"><span class="step-no">4</span><h3>Mach den Selbstcheck</h3><p>Kannst du deine Frage mit Beobachtungen, Modellen, Formeln oder Wissen aus der Stunde beantworten? Dann ist sie bereit.</p></div>
+    </div>
+    <div class="hint"><strong>Merke:</strong> Eine gute Physikfrage fragt nicht nur nach einem Zahlenwert. Sie fordert dich dazu auf, einen Zusammenhang zu erklären, Daten zu deuten, ein Modell anzuwenden, einen Versuchsaufbau zu verändern oder eine Vorhersage zu begründen.</div>
+    <div class="nav"><button class="btn secondary prev" type="button">Zurück</button><button class="btn primary next" type="button">Beispiele ansehen</button></div>
+  </section>
+
+  <section class="screen" data-screen="2">
+    <h2 class="section-title">So können gute Fragen aussehen</h2>
+    <p class="lead">Die Beispiele beziehen sich auf typische Themen aus Klasse 8. Sie zeigen dir, wie aus Unterrichtsinhalten eigene fachliche Fragen entstehen können.</p>
+    <div id="examples" class="grid"></div>
+    <div class="nav"><button class="btn secondary prev" type="button">Zurück</button><button class="btn primary next" type="button">Frage-Starter entdecken</button></div>
+  </section>
+
+  <section class="screen" data-screen="3">
+    <h2 class="section-title">Wähle deinen Frage-Starter</h2>
+    <p class="lead">Tippe auf einen Fragerahmen. Du kannst ihn übernehmen oder beim Schreiben verändern.</p>
+    <div id="shellGroups"></div>
+    <div class="nav"><button class="btn secondary prev" type="button">Zurück</button><button class="btn primary next" type="button">Eigene Frage bauen</button></div>
+  </section>
+
+  <section class="screen" data-screen="4">
+    <h2 class="section-title">Baue deine eigene Physikfrage</h2>
+    <div class="card builder">
+      <div class="field">
+        <label for="topicSelect">1. Worum ging es heute?</label>
+        <select id="topicSelect"></select>
+      </div>
+      <div class="field">
+        <label>2. Welchen Frage-Starter möchtest du nutzen?</label>
+        <div id="selectedShell" class="hint">Wähle unten einen Frage-Starter.</div>
+        <div id="quickShells" class="topic-wrap"></div>
+      </div>
+      <div class="field">
+        <label for="questionText">3. Formuliere deine Frage</label>
+        <textarea id="questionText" placeholder="Schreibe hier deine vollständige Physikfrage …"></textarea>
+      </div>
+      <div class="checks">
+        <label class="check"><input type="checkbox" id="checkUnderstand"><span><strong>Die Frage ist verständlich.</strong><br>Eine andere Person weiß, was untersucht oder erklärt werden soll.</span></label>
+        <label class="check"><input type="checkbox" id="checkLesson"><span><strong>Die Frage passt zur heutigen Stunde.</strong><br>Ich benutze Beobachtungen, Begriffe, Größen oder Modelle aus der Stunde.</span></label>
+        <label class="check"><input type="checkbox" id="checkAnswer"><span><strong>Ich könnte sie selbst beantworten.</strong><br>Ich kann dazu Wissen aus der Stunde, ein Diagramm, eine Formel oder eine Beobachtung nutzen.</span></label>
+      </div>
+      <div class="actions">
+        <button class="btn secondary" type="button" id="improveBtn">Frage prüfen</button>
+        <button class="btn primary" type="button" id="saveBtn">In meine Fragenbox legen</button>
+      </div>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+    </div>
+    <div class="nav"><button class="btn secondary prev" type="button">Zurück</button><button class="btn primary next" type="button">Meine Fragenbox</button></div>
+  </section>
+
+  <section class="screen" data-screen="5">
+    <h2 class="section-title">Meine Fragenbox</h2>
+    <p class="lead">Hier liegen deine gespeicherten Fragen auf diesem Gerät. Du kannst später eine Frage ziehen, sie mit anderen tauschen oder die gesamte Liste kopieren.</p>
+    <div class="actions">
+      <button class="btn secondary" type="button" id="randomBtn">🎲 Zufällige Frage ziehen</button>
+      <button class="btn secondary" type="button" id="copyAllBtn">📋 Alle Fragen kopieren</button>
+      <button class="btn ghost" type="button" id="clearBtn">Fragenbox leeren</button>
+    </div>
+    <div id="randomCard" class="tipbox hidden"></div>
+    <div id="savedList" class="saved-list"></div>
+    <div class="nav"><button class="btn secondary prev" type="button">Zurück</button><button class="btn primary" type="button" id="newQuestionBtn">Neue Frage formulieren</button></div>
+  </section>
+</main>
+
+<footer class="wrapper">
+  <p>Deine Fragen werden nur in diesem Browser auf diesem Gerät gespeichert.</p>
+</footer>
+
+<script>
+const DATA = {"label": "Klasse 8", "short": "8", "intro": "Question Shells sind Fragerahmen. Du nutzt sie, um aus Versuchen, Modellen, Diagrammen und physikalischen Erklärungen eigene Fragen zu formulieren. So überprüfst du, ob du nicht nur ein Ergebnis kennst, sondern einen Zusammenhang wirklich verstanden hast.", "topics": ["Reflexion", "Brechung", "Totalreflexion", "Linsen und Bildentstehung", "Schatten und Lichtausbreitung", "Bewegung und Geschwindigkeit", "Schwerelosigkeit", "Sterne und Hertzsprung-Russell-Diagramm", "Weltbilder und Astronomie"], "examples": [["Erklären", "Reflexion", "Warum sind Einfallswinkel und Reflexionswinkel gleich groß?"], ["Erklären", "Brechung", "Wie lässt sich erklären, dass ein Lichtstrahl beim Übergang in ein anderes Medium seine Richtung ändert?"], ["Anwenden", "Geschwindigkeit", "Wie lässt sich aus einem Weg-Zeit-Diagramm erkennen, ob sich ein Körper gleichförmig bewegt?"], ["Anwenden", "Linsen", "Wie unterscheiden sich die Bilder einer Sammellinse, wenn sich der Gegenstand vor oder hinter der doppelten Brennweite befindet?"], ["Weiterdenken", "Totalreflexion", "Was würde passieren, wenn der Einfallswinkel immer weiter vergrößert wird?"], ["Weiterdenken", "Sterne", "Welche Vorhersage kannst du über die Farbe eines Sterns treffen, wenn seine Oberflächentemperatur steigt?"], ["Experiment verändern", "Brechung", "Wie könnte der Versuchsaufbau verändert werden, damit die Richtungsänderung des Lichtstrahls deutlicher sichtbar wird?"]], "key": "klasse-8"};
+const SHELL_GROUPS = [{"name": "Erklären", "icon": "🟢", "desc": "Einen physikalischen Zusammenhang erklären oder begründen.", "items": ["Warum passiert …?", "Woran erkennt man, dass …?", "Welche Beobachtung zeigt, dass …?", "Wie lässt sich erklären, dass …?"]}, {"name": "Anwenden", "icon": "🟡", "desc": "Ein Gesetz, Modell oder eine Darstellung auf eine Situation anwenden.", "items": ["Wie hängt … mit … zusammen?", "Wie unterscheiden sich … und …?", "Welches physikalische Gesetz oder Modell hilft bei …? Warum?", "Wie lässt sich … mit einer Skizze, einem Diagramm oder einer Formel beschreiben?"]}, {"name": "Weiterdenken", "icon": "🔵", "desc": "Eine Bedingung verändern, eine Vorhersage treffen oder die Grenzen eines Modells prüfen.", "items": ["Was würde passieren, wenn … verändert wird?", "Welche Größe müsste verändert werden, damit …?", "Welche Voraussetzung muss erfüllt sein, damit … gilt?", "Wann reicht das verwendete Modell nicht mehr aus?", "Wie lässt sich … auf eine neue Situation übertragen?", "Welche Vorhersage kannst du für … treffen?"]}, {"name": "Experiment verändern", "icon": "🧪", "desc": "Verändere gezielt den Versuchsaufbau und begründe, wie sich Beobachtung oder Ergebnis ändern würden.", "items": ["Was würde passieren, wenn am Versuchsaufbau … verändert wird?", "Wie würde das Experiment anders ablaufen, wenn …?", "Welche Größe müsste verändert werden, damit … deutlicher beobachtet werden kann?", "Wie könnte der Aufbau verändert werden, damit das Ergebnis zuverlässiger wird?", "Welche Bedingung sollte gleich bleiben, damit die Ergebnisse gut vergleichbar sind?"]}];
+const storageKey = "question-shells-physik-" + DATA.key;
+let current = 0;
+let selectedShell = "";
+
+const screens = [...document.querySelectorAll(".screen")];
+const progress = document.getElementById("progressBar");
+
+function showScreen(n){
+  current = Math.max(0, Math.min(screens.length-1, n));
+  screens.forEach((s,i)=>s.classList.toggle("active", i===current));
+  progress.style.width = (((current+1)/screens.length)*100) + "%";
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+document.querySelectorAll(".next").forEach(b=>b.addEventListener("click",()=>showScreen(current+1)));
+document.querySelectorAll(".prev").forEach(b=>b.addEventListener("click",()=>showScreen(current-1)));
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]));
+}
+
+function renderExamples(){
+  const wrap = document.getElementById("examples");
+  wrap.innerHTML = DATA.examples.map(([level,topic,q]) => `
+    <article class="card example">
+      <span class="level">${esc(level)}</span>
+      <small>${esc(topic)}</small>
+      <div>${esc(q)}</div>
+    </article>`).join("");
+}
+
+function renderShellGroups(){
+  const wrap = document.getElementById("shellGroups");
+  wrap.innerHTML = SHELL_GROUPS.map((g)=>`
+    <div class="card" style="margin:14px 0">
+      <div class="level">${g.icon} ${esc(g.name)}</div>
+      <p style="margin-top:0;color:var(--muted)">${esc(g.desc)}</p>
+      <div class="shell-grid">
+        ${g.items.map((s)=>`<button class="shell" type="button" data-shell="${esc(s)}"><strong>${esc(s)}</strong><span style="color:var(--muted)">Tippen, um diesen Fragerahmen zu wählen.</span></button>`).join("")}
+      </div>
+    </div>`).join("");
+  wrap.querySelectorAll(".shell").forEach(btn=>btn.addEventListener("click",()=>{
+    selectedShell = btn.dataset.shell;
+    wrap.querySelectorAll(".shell").forEach(x=>x.classList.remove("selected"));
+    btn.classList.add("selected");
+    updateSelectedShell();
+  }));
+}
+
+function renderBuilder(){
+  const sel = document.getElementById("topicSelect");
+  sel.innerHTML = `<option value="">Thema auswählen …</option>` + DATA.topics.map(t=>`<option>${esc(t)}</option>`).join("");
+  const quick = document.getElementById("quickShells");
+  const all = SHELL_GROUPS.flatMap(g=>g.items);
+  quick.innerHTML = all.map(s=>`<button class="topic-chip" type="button" data-shell="${esc(s)}">${esc(s)}</button>`).join("");
+  quick.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
+    selectedShell = btn.dataset.shell;
+    quick.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x===btn));
+    updateSelectedShell();
+    const ta=document.getElementById("questionText");
+    if(!ta.value.trim()) ta.value = selectedShell.replaceAll("…","_____");
+    ta.focus();
+  }));
+}
+function updateSelectedShell(){
+  document.getElementById("selectedShell").innerHTML = selectedShell ? `<strong>Dein Fragerahmen:</strong> ${esc(selectedShell)}` : `Wähle unten einen Frage-Starter.`;
+}
+
+function getSaved(){
+  try{return JSON.parse(localStorage.getItem(storageKey) || "[]")}catch(e){return []}
+}
+function setSaved(arr){
+  localStorage.setItem(storageKey, JSON.stringify(arr));
+  renderSaved();
+}
+function renderSaved(){
+  const arr=getSaved();
+  document.getElementById("savedCount").textContent=arr.length;
+  const wrap=document.getElementById("savedList");
+  if(!arr.length){wrap.innerHTML=`<div class="empty">Noch keine Frage gespeichert. Formuliere deine erste Frage.</div>`;return}
+  wrap.innerHTML=arr.map((item,i)=>`
+    <article class="saved">
+      <div class="meta">${esc(item.topic || "Ohne Thema")} · ${esc(item.shell || "eigene Formulierung")}</div>
+      <div class="q">${esc(item.question)}</div>
+      <div class="saved-actions">
+        <button class="mini" type="button" data-copy="${i}">Kopieren</button>
+        <button class="mini" type="button" data-delete="${i}">Löschen</button>
+      </div>
+    </article>`).join("");
+  wrap.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",()=>copyText(arr[+btn.dataset.copy].question)));
+  wrap.querySelectorAll("[data-delete]").forEach(btn=>btn.addEventListener("click",()=>{
+    const n=getSaved(); n.splice(+btn.dataset.delete,1); setSaved(n);
+  }));
+}
+
+function questionQuality(){
+  const q=document.getElementById("questionText").value.trim();
+  const fb=document.getElementById("feedback");
+  const topic=document.getElementById("topicSelect").value;
+  const checks=[...document.querySelectorAll(".checks input")];
+  const issues=[];
+  if(!topic) issues.push("Wähle zuerst ein Thema.");
+  if(q.length<18) issues.push("Deine Frage ist noch sehr kurz. Ergänze einen physikalischen Begriff, eine Größe oder einen Zusammenhang.");
+  if(!q.includes("?")) issues.push("Setze am Ende ein Fragezeichen.");
+  if(!selectedShell && q.length<35) issues.push("Wähle einen Frage-Starter oder formuliere die Frage noch genauer.");
+  if(checks.filter(x=>x.checked).length<3) issues.push("Prüfe noch die drei Selbstcheck-Punkte.");
+  if(issues.length){
+    fb.className="feedback warn";
+    fb.innerHTML="Noch ein kleiner Check: " + issues.join(" ");
+    return false;
+  }
+  fb.className="feedback ok";
+  fb.textContent="Das sieht nach einer gut bearbeitbaren Physikfrage aus.";
+  return true;
+}
+document.getElementById("improveBtn").addEventListener("click",questionQuality);
+document.getElementById("saveBtn").addEventListener("click",()=>{
+  if(!questionQuality()) return;
+  const arr=getSaved();
+  arr.unshift({
+    topic:document.getElementById("topicSelect").value,
+    shell:selectedShell,
+    question:document.getElementById("questionText").value.trim(),
+    time:new Date().toISOString()
+  });
+  setSaved(arr);
+  document.getElementById("feedback").className="feedback ok";
+  document.getElementById("feedback").textContent="Gespeichert! Deine Frage liegt jetzt in der Fragenbox.";
+});
+
+async function copyText(t){
+  try{
+    await navigator.clipboard.writeText(t);
+  }catch(e){
+    const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
+  }
+}
+document.getElementById("copyAllBtn").addEventListener("click",()=>{
+  const arr=getSaved();
+  if(!arr.length) return;
+  copyText(arr.map((x,i)=>`${i+1}. ${x.question}`).join("\n"));
+});
+document.getElementById("randomBtn").addEventListener("click",()=>{
+  const arr=getSaved();
+  const card=document.getElementById("randomCard");
+  if(!arr.length){card.classList.remove("hidden");card.textContent="Speichere zuerst mindestens eine Frage.";return}
+  const q=arr[Math.floor(Math.random()*arr.length)];
+  card.classList.remove("hidden");
+  card.innerHTML=`<strong>Deine gezogene Frage:</strong><br>${esc(q.question)}`;
+});
+document.getElementById("clearBtn").addEventListener("click",()=>{
+  if(confirm("Möchtest du wirklich alle gespeicherten Fragen auf diesem Gerät löschen?")) setSaved([]);
+});
+document.getElementById("newQuestionBtn").addEventListener("click",()=>{
+  document.getElementById("questionText").value="";
+  document.getElementById("topicSelect").value="";
+  document.querySelectorAll(".checks input").forEach(x=>x.checked=false);
+  document.getElementById("feedback").textContent="";
+  showScreen(4);
+});
+document.getElementById("jumpSaved").addEventListener("click",()=>showScreen(5));
+
+renderExamples();
+renderShellGroups();
+renderBuilder();
+renderSaved();
+showScreen(0);
+</script>
+</body>
+</html>

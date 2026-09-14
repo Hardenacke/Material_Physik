@@ -184,6 +184,7 @@ h1 {
 }
 
 .view-header,
+.support-section,
 .topic-picker-section,
 .topic-detail,
 .empty-panel,
@@ -195,6 +196,7 @@ h1 {
 }
 
 .view-header,
+.support-section,
 .topic-picker-section,
 .empty-panel {
   position: relative;
@@ -203,6 +205,7 @@ h1 {
 }
 
 .view-header::before,
+.support-section::before,
 .topic-picker-section::before,
 .empty-panel::before {
   content: "";
@@ -213,6 +216,7 @@ h1 {
 }
 
 .view-header h2,
+.support-section h2,
 .topic-picker-section h2,
 .topic-detail h2 {
   color: var(--accent-dark);
@@ -407,6 +411,21 @@ h1 {
   gap: 16px;
 }
 
+.support-section {
+  display: grid;
+  gap: 14px;
+}
+
+.support-section::before {
+  background: var(--coral);
+}
+
+.support-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
 .topic-button {
   --card-accent: var(--topic-accent, var(--teal));
   min-height: 116px;
@@ -565,6 +584,12 @@ h1 {
   gap: 10px;
 }
 
+.file-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
 .file-link {
   --card-accent: var(--topic-accent, var(--teal));
   position: relative;
@@ -603,6 +628,13 @@ h1 {
 .badge.soft {
   color: #744918;
   background: var(--amber-soft);
+}
+
+.file-description {
+  display: block;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.35;
 }
 
 .empty-panel h3 {
@@ -649,6 +681,7 @@ h1 {
 }
 
 .view-header,
+.support-section,
 .topic-picker-section,
 .class-card,
 .topic-button,
@@ -729,6 +762,7 @@ h1 {
   }
 
   .view-header,
+  .support-section,
   .topic-picker-section,
   .topic-detail-header,
   .resource-section,
@@ -738,6 +772,7 @@ h1 {
   }
 
   .class-grid,
+  .support-list,
   .topic-grid,
   .path-grid {
     grid-template-columns: 1fr;
