@@ -645,7 +645,7 @@
       </div>
       <div class="header-actions">
         <div class="header-progress" aria-label="Lernfortschritt">
-          <div class="header-progress-meta"><span>Fortschritt</span><strong id="progressText">0/8</strong></div>
+          <div class="header-progress-meta"><span>Fortschritt</span><strong id="progressText">0/6</strong></div>
           <div class="header-progress-track"><div class="progress-fill" id="progressFill"></div></div>
         </div>
         <button class="icon-btn" id="resetAll" type="button" title="Lernstand zurücksetzen" aria-label="Lernstand zurücksetzen">↺</button>
@@ -656,10 +656,10 @@
       <div>
         <p class="eyebrow">Interaktiver Lernpfad · Grundkurs</p>
         <h2 id="hero-title">Vom Fluss zur Gegenwirkung</h2>
-        <p>Du entwickelst das Induktionsgesetz Schritt für Schritt: von bekannten Änderungen der Fläche und der Flussdichte über den magnetischen Fluss und die Ableitung bis zur Lenzschen Regel.</p>
+        <p>Du entwickelst das Induktionsgesetz Schritt für Schritt: von bekannten Änderungen der Fläche und der Flussdichte über den magnetischen Fluss und die mittlere Änderungsrate bis zur Lenzschen Regel. Die Ableitung wird dabei nur als mathematischer Zusammenhang kurz eingeordnet.</p>
         <div class="hero-route" aria-label="Lernweg">
           <div class="route-node"><strong>1 · Verknüpfen</strong><span>Fläche und Feld</span></div>
-          <div class="route-node"><strong>2 · Grenzwert</strong><span>Sekante und Tangente</span></div>
+          <div class="route-node"><strong>2 · Änderungsrate</strong><span>Ableitung als kurzer Hinweis</span></div>
           <div class="route-node"><strong>3 · Begründen</strong><span>Minuszeichen und Energie</span></div>
         </div>
       </div>
@@ -667,16 +667,14 @@
 
     <div class="layout">
       <aside class="sidebar" aria-label="Lernpfad-Navigation">
-        <div class="sidebar-title"><span class="sidebar-title-mark" aria-hidden="true">✓</span><div><strong>Dein Lernweg</strong><span>8 Stationen · Schritt für Schritt</span></div></div>
+        <div class="sidebar-title"><span class="sidebar-title-mark" aria-hidden="true">✓</span><div><strong>Dein Lernweg</strong><span>6 Stationen · Schritt für Schritt</span></div></div>
         <nav class="step-nav">
           <button type="button" data-go="0" class="active"><span class="step-number">1</span><span class="step-text">Fall A: Fläche</span></button>
           <button type="button" data-go="1"><span class="step-number">2</span><span class="step-text">Fall B: Feld</span></button>
           <button type="button" data-go="2"><span class="step-number">3</span><span class="step-text">Beide Fälle</span></button>
           <button type="button" data-go="3"><span class="step-number">4</span><span class="step-text">Mittlere Änderungsrate</span></button>
-          <button type="button" data-go="4"><span class="step-number">5</span><span class="step-text">Grenzübergang</span></button>
-          <button type="button" data-go="5"><span class="step-number">6</span><span class="step-text">Neue Schreibweisen</span></button>
-          <button type="button" data-go="6"><span class="step-number">7</span><span class="step-text">LEIFI-Film: Lenz</span></button>
-          <button type="button" data-go="7"><span class="step-number">8</span><span class="step-text">Minuszeichen &amp; Energie</span></button>
+          <button type="button" data-go="4"><span class="step-number">5</span><span class="step-text">LEIFI-Film: Lenz</span></button>
+          <button type="button" data-go="5"><span class="step-number">6</span><span class="step-text">Minuszeichen &amp; Energie</span></button>
         </nav>
         <p class="save-note">Dein Lernstand wird auf diesem Gerät gespeichert.</p>
       </aside>
@@ -814,97 +812,15 @@
             </div>
             <div class="feedback" id="feedback-rate" aria-live="polite"></div>
           </div>
-          <div class="page-footer"><button class="ghost-btn prev-btn" type="button">← Zurück</button><div class="button-row"><button class="primary-btn next-btn" type="button">Das Zeitintervall verkleinern →</button></div></div>
-        </section>
 
-        <section class="page" id="page-4" aria-labelledby="page-title-4">
-          <div class="page-head"><div><span class="station-tag">5 · Grenzübergang</span><h3 id="page-title-4">Von der Sekante zur Tangente</h3></div></div>
-          <p class="page-intro">Eine mittlere Änderungsrate gehört immer zu einem Zeitintervall. Wird dieses Intervall um den betrachteten Zeitpunkt immer kleiner, entsteht ein Grenzübergang: Aus der durchschnittlichen Änderungsrate wird die tatsächliche Änderungsrate genau an diesem Zeitpunkt.</p>
-
-          <div class="card transition-card">
-            <div class="transition-grid" aria-label="Vom Sekantenanstieg zur Tangentensteigung">
-              <article class="transition-step">
-                <div class="transition-number">1</div>
-                <h4>Sekantensteigung</h4>
-                <p>Eine Sekante verbindet zwei Punkte einer Kurve. Ihre Steigung beschreibt, wie stark sich der magnetische Fluss <em>im Mittel</em> innerhalb des Zeitintervalls verändert.</p>
-                <div class="mini-formula"><span class="eq" data-tex="m_{\mathrm{Sek}}=\frac{\Delta\Phi}{\Delta t}"><span class="frac"><span>ΔΦ</span><span>Δt</span></span></span></div>
-                <p class="tiny muted">mittlere Änderungsrate</p>
-              </article>
-              <span class="transition-arrow" aria-hidden="true">→</span>
-              <article class="transition-step highlight">
-                <div class="transition-number">2</div>
-                <h4>Grenzübergang</h4>
-                <p>Wir lassen <span class="eq" data-tex="\Delta t">Δt</span> immer kleiner werden. Die beiden Punkte der Sekante rücken dabei auf den betrachteten Zeitpunkt <span class="eq" data-tex="t_0">t<sub>0</sub></span> zu.</p>
-                <div class="mini-formula"><span class="eq" data-tex="\lim_{\Delta t\to 0}\frac{\Delta\Phi}{\Delta t}">lim<sub>Δt→0</sub> <span class="frac"><span>ΔΦ</span><span>Δt</span></span></span></div>
-                <p class="tiny muted">Grenzwert für <span class="eq" data-tex="\Delta t\to 0">Δt → 0</span></p>
-              </article>
-              <span class="transition-arrow" aria-hidden="true">→</span>
-              <article class="transition-step">
-                <div class="transition-number">3</div>
-                <h4>Tangentensteigung</h4>
-                <p>Im Grenzfall wird aus der Sekante die Tangente. Ihre Steigung gibt die Änderung des Flusses <em>genau im Moment</em> <span class="eq" data-tex="t_0">t<sub>0</sub></span> an.</p>
-                <div class="mini-formula"><span class="eq" data-tex="\left.\frac{\mathrm{d}\Phi}{\mathrm{d}t}\right|_{t_0}=\dot{\Phi}(t_0)"><span class="frac"><span>dΦ</span><span>dt</span></span> = Φ̇</span></div>
-                <p class="tiny muted">tatsächliche Änderungsrate</p>
-              </article>
-            </div>
-            <div class="callout green transition-highlight"><strong>Der entscheidende Schritt:</strong> Die Induktionsspannung wird nun mit der momentanen Änderungsrate beschrieben: <span class="eq" data-tex="U_{\mathrm{ind}}=N\cdot\frac{\mathrm{d}\Phi}{\mathrm{d}t}=N\cdot\dot{\Phi}">U<sub>ind</sub> = N · <span class="frac"><span>dΦ</span><span>dt</span></span> = N · Φ̇</span>. Das Minuszeichen wird im nächsten Abschnitt durch die Lenzsche Regel begründet.</div>
-          </div>
-
-          <div class="card">
-            <h4>Was bedeutet der Grenzübergang?</h4>
-            <ol class="transition-list">
-              <li><strong>Endliches Intervall:</strong> <span class="eq" data-tex="\frac{\Delta\Phi}{\Delta t}">ΔΦ/Δt</span> vergleicht zwei Zeitpunkte und liefert eine mittlere Änderungsrate.</li>
-              <li><strong>Intervall verkleinern:</strong> Für immer kleinere <span class="eq" data-tex="\Delta t">Δt</span> beschreibt die Sekante die Kurve in der Umgebung von <span class="eq" data-tex="t_0">t<sub>0</sub></span> immer genauer.</li>
-              <li><strong>Grenzfall:</strong> Für <span class="eq" data-tex="\Delta t\to 0">Δt → 0</span> wird die Sekantensteigung zur Tangentensteigung. Diese momentane Änderungsrate heißt Ableitung.</li>
-            </ol>
-          </div>
-          <div class="page-footer"><button class="ghost-btn prev-btn" type="button">← Zurück</button><div class="button-row"><button class="primary-btn next-btn" type="button">Die Ableitung benennen →</button></div></div>
-        </section>
-
-        <section class="page" id="page-5" aria-labelledby="page-title-5">
-          <div class="page-head"><div><span class="station-tag">6 · Schreibweise</span><h3 id="page-title-5">Die tatsächliche Änderungsrate</h3></div></div>
-          <p class="page-intro">Der Grenzwert der mittleren Änderungsraten ist die Änderungsrate genau am Zeitpunkt <span class="eq" data-tex="t_0">t<sub>0</sub></span>. In der Mathematik heißt dieser Grenzwert die <strong>Ableitung</strong>.</p>
-
-          <div class="formula-chain" aria-label="Übergang von der mittleren Änderungsrate zur Ableitung">
-            <div class="chain-step"><span class="eq" data-tex="\frac{\Delta\Phi}{\Delta t}"><span class="frac"><span>ΔΦ</span><span>Δt</span></span></span></div><span class="chain-arrow">→</span>
-            <div class="chain-step"><span class="eq" data-tex="\lim_{\Delta t\to 0}\frac{\Delta\Phi}{\Delta t}">lim<sub>Δt→0</sub> <span class="frac"><span>ΔΦ</span><span>Δt</span></span></span></div><span class="chain-arrow">→</span>
-            <div class="chain-step"><span class="eq" data-tex="\frac{\mathrm{d}\Phi}{\mathrm{d}t}"><span class="frac"><span>dΦ</span><span>dt</span></span></span></div><span class="chain-arrow">=</span>
-            <div class="chain-step"><span class="eq" data-tex="\dot{\Phi}">Φ̇</span></div>
-          </div>
-
-          <div class="notation-grid">
-            <article class="notation-card"><span class="eq" data-tex="\frac{\mathrm{d}\Phi}{\mathrm{d}t}"><span class="frac"><span>dΦ</span><span>dt</span></span></span><p>„Ableitung von Φ nach der Zeit t“</p></article>
-            <article class="notation-card"><span class="eq" data-tex="\dot{\Phi}">Φ̇</span><p>„Phi Punkt“ – die zeitliche Änderungsrate von Φ</p></article>
-            <article class="notation-card"><span class="eq" data-tex="\lim_{\Delta t\to 0}">lim<sub>Δt→0</sub></span><p>Grenzwert für immer kleinere Zeitintervalle</p></article>
-          </div>
-          <div class="callout orange" style="margin-top:1rem"><strong>Wichtig:</strong> <span class="eq" data-tex="\frac{\mathrm{d}\Phi}{\mathrm{d}t}">dΦ/dt</span> ist hier keine gewöhnliche Bruchrechnung, die du einfach kürzen darfst. Die Schreibweise erinnert daran, dass eine zeitliche Änderung von <span class="eq" data-tex="\Phi">Φ</span> betrachtet wird.</div>
-
-          <div class="card">
-            <h4>Setze die Entwicklung in die richtige Reihenfolge</h4>
-            <p>Klicke die Schreibweisen von links nach rechts an. Ein Klick auf „Zurücksetzen“ beginnt die Reihe neu.</p>
-            <div class="sequence-box" id="sequenceBox"><span class="placeholder">Noch keine Schreibweise ausgewählt.</span></div>
-            <div class="choice-row" id="sequenceChoices" style="margin-top:.75rem">
-              <button class="choice" type="button" data-seq="rate"><span class="eq" data-tex="\frac{\Delta\Phi}{\Delta t}">ΔΦ/Δt</span></button>
-              <button class="choice" type="button" data-seq="limit"><span class="eq" data-tex="\lim_{\Delta t\to 0}\frac{\Delta\Phi}{\Delta t}">lim Δt→0 ΔΦ/Δt</span></button>
-              <button class="choice" type="button" data-seq="derivative"><span class="eq" data-tex="\frac{\mathrm{d}\Phi}{\mathrm{d}t}">dΦ/dt</span></button>
-              <button class="choice" type="button" data-seq="dot"><span class="eq" data-tex="\dot{\Phi}">Φ̇</span></button>
-            </div>
-            <div class="button-row"><button class="ghost-btn" id="sequenceReset" type="button">Reihe zurücksetzen</button></div>
-            <div class="feedback" id="feedback-sequence" aria-live="polite"></div>
-          </div>
-
-          <div class="card">
-            <h4>Mini-Anwendung</h4>
-            <p>Für <span class="eq" data-tex="\Phi(t)=0{,}20+0{,}18t-0{,}04t^2">Φ(t) = 0,20 + 0,18t − 0,04t²</span> lautet die Ableitung:</p>
-            <div class="input-inline"><input id="derivativeInput" type="text" inputmode="text" placeholder="z. B. 0,18 − 0,08t"><span class="unit">Wb/s</span></div>
-            <button class="secondary-btn check-btn" type="button" data-check="derivative-input" style="margin-top:.7rem">Ableitung prüfen</button>
-            <div class="feedback" id="feedback-derivative-input" aria-live="polite"></div>
+          <div class="callout orange">
+            <strong>Mathematischer Hinweis:</strong> Für sehr kleine Zeitintervalle <span class="eq" data-tex="\Delta t">Δt</span> geht die mittlere Änderungsrate <span class="eq" data-tex="\frac{\Delta\Phi}{\Delta t}">ΔΦ/Δt</span> geometrisch von der <strong>Sekantensteigung</strong> in die <strong>Tangentensteigung</strong> über. Diese momentane Änderungsrate ist die Ableitung des magnetischen Flusses: <span class="eq" data-tex="\frac{\mathrm{d}\Phi}{\mathrm{d}t}=\dot{\Phi}">dΦ/dt = Φ̇</span>. Deshalb kann man für die momentane Induktionsspannung direkt mit der Ableitung arbeiten: <span class="eq" data-tex="\lvert U_{\mathrm{ind}}\rvert=N\cdot\left\lvert\frac{\mathrm{d}\Phi}{\mathrm{d}t}\right\rvert">|U<sub>ind</sub>| = N · |dΦ/dt|</span>. Dieser Zusammenhang wird hier nur als Faktum verwendet und nicht weiter hergeleitet oder geübt.
           </div>
           <div class="page-footer"><button class="ghost-btn prev-btn" type="button">← Zurück</button><div class="button-row"><button class="primary-btn next-btn" type="button">Zur Lenzschen Regel →</button></div></div>
         </section>
 
-        <section class="page" id="page-6" aria-labelledby="page-title-6">
-          <div class="page-head"><div><span class="station-tag">7 · Filmstreifen</span><h3 id="page-title-6">Die Lenzsche Regel in vier Fällen</h3></div></div>
+        <section class="page" id="page-4" aria-labelledby="page-title-4">
+          <div class="page-head"><div><span class="station-tag">5 · Filmstreifen</span><h3 id="page-title-4">Die Lenzsche Regel in vier Fällen</h3></div></div>
           <p class="page-intro">Jetzt kommt die Richtung hinzu. Wähle einen Fall aus und spiele die Gedankenfolge Schritt für Schritt ab. Die Darstellung greift die typische Versuchssituation mit einem Magneten und einer kurzgeschlossenen, beweglich aufgehängten Spule bzw. einem Aluminiumring auf.</p>
 
           <div class="card">
@@ -944,8 +860,8 @@
           <div class="page-footer"><button class="ghost-btn prev-btn" type="button">← Zurück</button><div class="button-row"><button class="primary-btn next-btn" type="button">Das Minuszeichen erklären →</button></div></div>
         </section>
 
-        <section class="page" id="page-7" aria-labelledby="page-title-7">
-          <div class="page-head"><div><span class="station-tag">8 · Vorzeichen</span><h3 id="page-title-7">Das Minuszeichen und die Energie</h3></div></div>
+        <section class="page" id="page-5" aria-labelledby="page-title-5">
+          <div class="page-head"><div><span class="station-tag">6 · Vorzeichen</span><h3 id="page-title-5">Das Minuszeichen und die Energie</h3></div></div>
           <p class="page-intro">Mit einer festgelegten positiven Umlaufrichtung der Spule erhält die Induktionsspannung ein Vorzeichen. Das Minuszeichen ist kein zusätzlicher Messfehler, sondern beschreibt die Richtung der induzierten Wirkung.</p>
 
           <div class="display-eq"><span class="eq" data-tex="U_{\mathrm{ind}}=-N\cdot\frac{\mathrm{d}\Phi}{\mathrm{d}t}=-N\cdot\dot{\Phi}">U<sub>ind</sub> = −N · <span class="frac"><span>dΦ</span><span>dt</span></span> = −N · Φ̇</span></div>
@@ -973,7 +889,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
-      const pageCount = 8;
+      const pageCount = 6;
       const state = {
         current: 0,
         visited: [],
@@ -1090,7 +1006,7 @@
         updateProgress();
         saveState();
         window.scrollTo({ top: 0, behavior: "smooth" });
-        if (safeIndex === 6) renderFilm();
+        if (safeIndex === 4) renderFilm();
       }
 
       function showFeedback(id, message, kind = "info") {
