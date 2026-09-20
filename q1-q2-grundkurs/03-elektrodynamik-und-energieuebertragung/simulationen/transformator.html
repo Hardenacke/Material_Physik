@@ -1,0 +1,2667 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<title>Idealer Transformator – Simulation</title>
+<style>
+:root{
+  --bg:#f4f7fb;
+  --panel:#ffffff;
+  --card:#ffffff;
+  --card-soft:#fbfcfe;
+
+  --ink:#1f2937;
+  --text:#1f2937;
+  --muted:#64748b;
+  --line:#d8dee9;
+
+  --blue:#2563eb;
+  --blue2:#60a5fa;
+  --orange:#f59e0b;
+  --orange2:#fbbf24;
+
+  --primary:#3b6ea8;
+  --primary-soft:#eaf2fb;
+
+  --secondary:#b7793f;
+  --secondary-soft:#fbf1e8;
+
+  --accent:#5f7f74;
+  --accent-soft:#eaf2ef;
+
+  --violet:#7868a8;
+  --violet-soft:#f0edfa;
+
+  --rose:#b56f87;
+  --rose-soft:#faeef3;
+
+  --aqua:#5f91a0;
+  --aqua-soft:#eaf5f7;
+
+  --core:#9aa0a6;
+  --shadow:0 10px 28px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+body{
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(59,110,168,.16) 0, rgba(59,110,168,0) 27%),
+    radial-gradient(circle at 91% 12%, rgba(181,111,135,.14) 0, rgba(181,111,135,0) 24%),
+    radial-gradient(circle at 82% 84%, rgba(183,121,63,.14) 0, rgba(183,121,63,0) 28%),
+    radial-gradient(circle at 14% 84%, rgba(95,145,160,.15) 0, rgba(95,145,160,0) 27%),
+    linear-gradient(135deg,#f8fbff 0%,#f6f4fb 48%,#fff8f2 100%);
+  background-attachment:fixed;
+}
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  z-index:-1;
+  pointer-events:none;
+  border-radius:50%;
+}
+body::before{
+  width:340px;
+  height:340px;
+  left:-120px;
+  top:26%;
+  background:radial-gradient(circle at 35% 35%,
+    rgba(95,145,160,.24),
+    rgba(120,104,168,.11) 54%,
+    transparent 73%);
+  animation:bgFloatOne 18s ease-in-out infinite alternate;
+}
+body::after{
+  width:390px;
+  height:390px;
+  right:-145px;
+  bottom:5%;
+  background:radial-gradient(circle at 45% 45%,
+    rgba(183,121,63,.19),
+    rgba(181,111,135,.11) 54%,
+    transparent 73%);
+  animation:bgFloatTwo 22s ease-in-out infinite alternate;
+}
+@keyframes bgFloatOne{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(42px,-28px,0) scale(1.08)}
+}
+@keyframes bgFloatTwo{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(-38px,26px,0) scale(1.07)}
+}
+.app{max-width:1180px;margin:0 auto;padding:18px}
+
+header{
+  position:relative;
+  margin-bottom:18px;
+  padding:8px 2px 14px;
+}
+header::after{
+  content:"";
+  display:block;
+  width:210px;
+  height:4px;
+  margin-top:14px;
+  border-radius:999px;
+  background:linear-gradient(
+    90deg,
+    rgba(59,110,168,.78),
+    rgba(95,145,160,.70),
+    rgba(120,104,168,.62),
+    rgba(181,111,135,.58),
+    rgba(183,121,63,.66)
+  );
+  box-shadow:0 3px 12px rgba(95,127,116,.11);
+}
+
+.intro-card{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.9fr);
+  gap:12px;
+  padding:14px;
+  border:1px solid rgba(216,222,233,.92);
+  border-radius:18px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.90),rgba(240,245,252,.84));
+  backdrop-filter:blur(12px) saturate(125%);
+  -webkit-backdrop-filter:blur(12px) saturate(125%);
+  box-shadow:0 10px 28px rgba(15,23,42,.08);
+}
+
+.intro-section{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  min-width:0;
+}
+
+.intro-icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 42px;
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--primary-soft),var(--violet-soft));
+  box-shadow:inset 0 0 0 1px rgba(59,110,168,.12);
+  font-size:1.15rem;
+}
+
+.intro-section h2{
+  margin:0 0 5px;
+  font-size:.84rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#45617f;
+}
+
+.intro-section p,
+.task-box p{
+  margin:0;
+  font-size:.93rem;
+  line-height:1.5;
+  color:#475569;
+}
+
+.task-box{
+  position:relative;
+  padding:12px 13px;
+  border-radius:14px;
+  border:1px solid rgba(183,121,63,.20);
+  background:linear-gradient(135deg,rgba(251,241,232,.84),rgba(250,238,243,.74));
+}
+
+.task-label{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  margin-bottom:7px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(183,121,63,.12);
+  color:#8a5d35;
+  font-size:.72rem;
+  font-weight:850;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.inline-math{
+  display:inline-block;
+  min-width:1.35em;
+  text-align:center;
+  color:inherit;
+}
+
+.intro-card .katex{
+  font-size:1em;
+  color:inherit;
+}
+
+@media(max-width:820px){
+  .intro-card{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .title-wrap{
+    gap:11px;
+  }
+  .title-badge{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    font-size:1.12rem;
+  }
+  .title-kicker{
+    font-size:.62rem;
+  }
+
+  .intro-card{
+    padding:12px;
+    border-radius:16px;
+  }
+  .intro-section{
+    gap:10px;
+  }
+  .intro-icon{
+    width:38px;
+    height:38px;
+    flex-basis:38px;
+  }
+  .intro-section p,
+  .task-box p{
+    font-size:.89rem;
+  }
+}
+
+h1{
+  margin:0;
+  font-size:clamp(2rem,4vw,3.05rem);
+  line-height:.95;
+  letter-spacing:-.055em;
+  font-weight:900;
+  color:#213147;
+  background:linear-gradient(90deg,#2f5f96 0%,#4f7e8b 48%,#7a658f 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.title-wrap{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.title-badge{
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  font-size:1.35rem;
+  background:linear-gradient(135deg,rgba(234,242,251,.98),rgba(240,237,250,.95));
+  border:1px solid rgba(59,110,168,.16);
+  box-shadow:
+    0 8px 22px rgba(15,23,42,.10),
+    inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.title-kicker{
+  margin-bottom:5px;
+  font-size:.7rem;
+  font-weight:850;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#738196;
+}
+.subtitle{margin:0;color:var(--muted);line-height:1.45}
+.sim{
+  display:grid;
+  grid-template-columns:240px minmax(0,1fr) 240px;
+  gap:14px;
+  align-items:stretch;
+}
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(15,23,42,.08);
+}
+.controls{padding:16px}
+.controls h2{font-size:1.05rem;margin:0 0 14px}
+.control{margin:16px 0 20px}
+.control label{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  font-weight:700;margin-bottom:7px
+}
+.value{
+  min-width:82px;text-align:center;background:#f8fafc;border:1px solid var(--line);
+  border-radius:999px;padding:5px 9px;font-variant-numeric:tabular-nums
+}
+input[type=range]{width:100%;min-height:44px;accent-color:var(--blue)}
+.secondary input[type=range]{accent-color:var(--orange)}
+.scale{
+  display:none;
+}
+.output{
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(248,250,252,.96),rgba(240,244,250,.90));
+  border:1px solid var(--line)
+}
+.primary .output{
+  background:linear-gradient(135deg,rgba(234,242,251,.78),rgba(248,250,252,.96));
+}
+.secondary .output{
+  background:linear-gradient(135deg,rgba(251,241,232,.80),rgba(248,250,252,.96));
+}
+.output .label{font-size:.85rem;color:var(--muted)}
+.output .big{font-size:2.25rem;font-weight:800;line-height:1.05;margin-top:4px;font-variant-numeric:tabular-nums}
+.canvas-card{padding:16px;display:flex;flex-direction:column}
+.canvas-wrap{
+  position:relative;min-height:550px;display:flex;align-items:center;justify-content:center
+}
+canvas{width:100%;height:auto;display:block;touch-action:none}
+.canvas-stage{
+  position:relative;
+  width:100%;
+  line-height:1;
+}
+.canvas-math-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:3;
+}
+.canvas-math{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+  font-weight:750;
+  text-shadow:0 1px 0 rgba(255,255,255,.88);
+  pointer-events:none;
+}
+.canvas-math .katex{
+  font-size:1em;
+  color:inherit;
+}
+.primary-math{
+  color:#2563eb;
+}
+.secondary-math{
+  color:#b45309;
+}
+.canvas-number{
+  font-size:19px;
+  font-weight:800;
+}
+.canvas-windings{
+  font-size:22px;
+  font-weight:800;
+}
+#canvasU1Label{left:18.2%;top:34.8%;font-size:20px}
+#canvasU1Value{left:18.2%;top:25.0%;font-size:18px}
+#canvasN1Value{left:29.1%;top:86.6%}
+#canvasU2Label{left:83.1%;top:34.8%;font-size:20px}
+#canvasU2Value{left:83.1%;top:25.0%;font-size:18px}
+#canvasN2Value{left:70.5%;top:86.6%}
+
+.top-chip{
+  position:absolute;
+  left:14px;
+  top:14px;
+  transform:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:150px;
+  padding:9px 12px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(255,255,255,.84),rgba(240,237,250,.68));
+  backdrop-filter:blur(14px) saturate(145%);
+  -webkit-backdrop-filter:blur(14px) saturate(145%);
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.12),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  color:#334155;
+  white-space:nowrap;
+  z-index:4;
+}
+.overlay-dot{
+  width:10px;
+  height:10px;
+  flex:0 0 10px;
+  border-radius:50%;
+  background:#0f766e;
+  box-shadow:0 0 0 5px rgba(15,118,110,.10);
+  transition:background .2s ease, box-shadow .2s ease;
+}
+.overlay-copy{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  line-height:1.05;
+}
+.overlay-label{
+  font-size:.68rem;
+  font-weight:750;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#64748b;
+}
+.overlay-value{
+  font-size:1.08rem;
+  font-weight:850;
+  letter-spacing:-.02em;
+  color:var(--text);
+  font-variant-numeric:tabular-nums;
+}
+.math-value .katex{
+  font-size:1em;
+}
+.value.math-value .katex{
+  font-size:.98em;
+}
+.big.math-value .katex{
+  font-size:1em;
+}
+.overlay-value .katex{
+  font-size:1.05em;
+}
+.top-chip.step-up .overlay-dot{
+  background:#f59e0b;
+  box-shadow:0 0 0 5px rgba(245,158,11,.12);
+}
+.top-chip.step-down .overlay-dot{
+  background:#2563eb;
+  box-shadow:0 0 0 5px rgba(37,99,235,.12);
+}
+.top-chip.equal .overlay-dot{
+  background:#0f766e;
+  box-shadow:0 0 0 5px rgba(15,118,110,.10);
+}
+
+.mode-switch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+  padding:4px;
+  margin-bottom:16px;
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f3f6f9,#f5f2fa);
+}
+.mode-btn{
+  min-height:42px;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  color:#64748b;
+  font:inherit;
+  font-weight:750;
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.mode-btn:hover{color:var(--text)}
+.mode-btn:active{transform:scale(.98)}
+.mode-btn.active{
+  color:var(--text);
+  background:#fff;
+  box-shadow:0 2px 8px rgba(15,23,42,.10);
+}
+.control.disabled{
+  opacity:.42;
+}
+.control.disabled input{
+  pointer-events:none;
+}
+.nail-hint{
+  display:none;
+  margin:-4px 0 14px;
+  padding:9px 11px;
+  border:1px solid #fed7aa;
+  border-radius:12px;
+  background:#fff7ed;
+  color:#9a3412;
+  font-size:.8rem;
+}
+.nail-hint.show{display:block}
+
+.note{
+  margin-top:9px;color:var(--muted);font-size:.84rem;line-height:1.4;padding:0 4px 4px
+}
+
+.model-info{
+  margin-top:12px;
+  padding:14px 15px;
+  border:1px solid rgba(216,222,233,.94);
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.90),rgba(240,245,252,.80));
+  box-shadow:0 8px 22px rgba(15,23,42,.06);
+}
+
+.model-info-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:8px;
+}
+
+.model-kicker{
+  margin-bottom:2px;
+  font-size:.68rem;
+  font-weight:850;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:#64748b;
+}
+
+.model-info h3{
+  margin:0;
+  font-size:1rem;
+  color:#334155;
+}
+
+.model-info p{
+  margin:0;
+  font-size:.86rem;
+  line-height:1.5;
+  color:#596579;
+}
+
+.model-switch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+  padding:4px;
+  min-width:190px;
+  border:1px solid #dde4eb;
+  border-radius:12px;
+  background:#f2f5f8;
+}
+
+.model-btn{
+  min-height:34px;
+  padding:5px 10px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#6b7789;
+  font:inherit;
+  font-size:.78rem;
+  font-weight:800;
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+
+.model-btn:active{transform:scale(.98)}
+.model-btn.active{
+  background:#fff;
+  color:#31465d;
+  box-shadow:0 2px 8px rgba(15,23,42,.10);
+}
+
+#realModelBtn.active{
+  background:linear-gradient(135deg,var(--accent-soft),var(--violet-soft));
+  color:#3f5e55;
+}
+
+.real-hint{
+  display:none;
+  margin-top:10px;
+  padding:10px 11px;
+  border:1px solid rgba(95,127,116,.22);
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(234,242,239,.82),rgba(240,237,250,.72));
+  color:#50645e;
+  font-size:.82rem;
+  line-height:1.48;
+}
+
+.real-hint.show{
+  display:block;
+  animation:realHintIn .28s ease;
+}
+
+@keyframes realHintIn{
+  from{opacity:0;transform:translateY(4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:650px){
+  .model-info-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .model-switch{
+    width:100%;
+    min-width:0;
+  }
+}
+
+.reset{
+  width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;
+  min-height:44px;font-weight:700;color:var(--ink);cursor:pointer
+}
+.reset:hover{background:#f8fafc}
+.meterbox{
+  margin:10px 0 0;border-top:1px solid var(--line);padding-top:12px;
+  color:var(--muted);font-size:.84rem;line-height:1.4
+}
+@media(max-width:920px){
+  .sim{grid-template-columns:1fr 1fr}
+  .canvas-card{grid-column:1 / -1;grid-row:1}
+}
+
+/* ---------- ruhiges, modernes Interaktionsdesign ---------- */
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(251,252,254,.90) 100%);
+  backdrop-filter:blur(10px) saturate(118%);
+  -webkit-backdrop-filter:blur(10px) saturate(118%);
+  border:1px solid rgba(216,222,233,.92);
+  box-shadow:var(--shadow);
+  transition:box-shadow .22s ease,transform .22s ease,border-color .22s ease;
+}
+.card:hover{
+  box-shadow:0 14px 34px rgba(15,23,42,.10);
+}
+
+.controls.primary{
+  border-top:3px solid rgba(59,110,168,.52);
+  background:
+    linear-gradient(180deg,rgba(234,242,251,.72) 0%,rgba(255,255,255,.94) 29%,rgba(251,252,254,.91) 100%);
+}
+.controls.secondary{
+  border-top:3px solid rgba(183,121,63,.52);
+  background:
+    linear-gradient(180deg,rgba(251,241,232,.76) 0%,rgba(255,255,255,.94) 29%,rgba(251,252,254,.91) 100%);
+}
+.canvas-card{
+  border-top:3px solid rgba(95,127,116,.48);
+  background:
+    linear-gradient(180deg,rgba(234,242,239,.62) 0%,rgba(255,255,255,.95) 25%,rgba(251,252,254,.92) 100%);
+}
+
+input[type="range"]{
+  --range-color:var(--primary);
+  --range-soft:rgba(59,110,168,.16);
+  --range-progress:50%;
+
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  height:30px;
+  margin:8px 0 4px;
+  padding:0;
+  background:transparent;
+  cursor:pointer;
+  outline:none;
+}
+
+.secondary input[type="range"]{
+  --range-color:var(--secondary);
+  --range-soft:rgba(183,121,63,.18);
+}
+
+/* Spur */
+input[type="range"]::-webkit-slider-runnable-track{
+  height:8px;
+  border-radius:999px;
+  background:
+    linear-gradient(
+      to right,
+      var(--range-color) 0%,
+      var(--range-color) var(--range-progress),
+      #e6ebf1 var(--range-progress),
+      #e6ebf1 100%
+    );
+  box-shadow:
+    inset 0 1px 2px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.82);
+}
+
+input[type="range"]::-moz-range-track{
+  height:8px;
+  border:0;
+  border-radius:999px;
+  background:
+    linear-gradient(
+      to right,
+      var(--range-color) 0%,
+      var(--range-color) var(--range-progress),
+      #e6ebf1 var(--range-progress),
+      #e6ebf1 100%
+    );
+  box-shadow:
+    inset 0 1px 2px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.82);
+}
+
+/* Schiebeknopf */
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:22px;
+  height:22px;
+  margin-top:-7px;
+  border:4px solid #fff;
+  border-radius:50%;
+  background:var(--range-color);
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 4px 10px rgba(15,23,42,.17),
+    0 0 0 0 var(--range-soft);
+  transition:
+    transform .16s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+input[type="range"]::-moz-range-thumb{
+  width:14px;
+  height:14px;
+  border:4px solid #fff;
+  border-radius:50%;
+  background:var(--range-color);
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 4px 10px rgba(15,23,42,.17),
+    0 0 0 0 var(--range-soft);
+  transition:
+    transform .16s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb{
+  transform:scale(1.08);
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 5px 12px rgba(15,23,42,.18),
+    0 0 0 5px var(--range-soft);
+}
+input[type="range"]:hover::-moz-range-thumb{
+  transform:scale(1.08);
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 5px 12px rgba(15,23,42,.18),
+    0 0 0 5px var(--range-soft);
+}
+
+input[type="range"]:active::-webkit-slider-thumb{
+  transform:scale(.96);
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 3px 8px rgba(15,23,42,.16),
+    0 0 0 8px var(--range-soft);
+}
+input[type="range"]:active::-moz-range-thumb{
+  transform:scale(.96);
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 3px 8px rgba(15,23,42,.16),
+    0 0 0 8px var(--range-soft);
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb{
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 0 0 4px #fff,
+    0 0 0 7px var(--range-color);
+}
+input[type="range"]:focus-visible::-moz-range-thumb{
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,.10),
+    0 0 0 4px #fff,
+    0 0 0 7px var(--range-color);
+}
+
+input[type="range"]:disabled{
+  cursor:not-allowed;
+  opacity:.48;
+  filter:saturate(.45);
+}
+input[type="range"]:disabled::-webkit-slider-runnable-track{
+  background:#e6ebf1;
+}
+input[type="range"]:disabled::-moz-range-track{
+  background:#e6ebf1;
+}
+input[type="range"]:disabled::-webkit-slider-thumb{
+  background:#94a3b8;
+  box-shadow:0 0 0 1px rgba(15,23,42,.08),0 3px 8px rgba(15,23,42,.12);
+}
+input[type="range"]:disabled::-moz-range-thumb{
+  background:#94a3b8;
+  box-shadow:0 0 0 1px rgba(15,23,42,.08),0 3px 8px rgba(15,23,42,.12);
+}
+
+.value,
+.big,
+.overlay-value,
+.canvas-math{
+  font-variant-numeric:tabular-nums;
+}
+
+.value{
+  display:inline-flex;
+  justify-content:flex-end;
+  min-width:5.6em;
+  white-space:nowrap;
+}
+.big{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:2.3em;
+  white-space:nowrap;
+}
+.overlay-value{
+  display:inline-block;
+  min-width:6.4em;
+  text-align:center;
+  white-space:nowrap;
+}
+.canvas-number{
+  min-width:5.8em;
+  text-align:center;
+}
+.canvas-windings{
+  min-width:6.3em;
+  text-align:center;
+}
+
+.card-soft-flash{
+  animation:cardSoftFlash .55s ease;
+}
+@keyframes cardSoftFlash{
+  0%{box-shadow:var(--shadow)}
+  38%{box-shadow:0 0 0 4px rgba(95,127,116,.12),0 16px 34px rgba(15,23,42,.11)}
+  100%{box-shadow:var(--shadow)}
+}
+
+.mode-btn,
+.reset{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .16s ease,
+    box-shadow .20s ease,
+    background .20s ease,
+    color .20s ease,
+    border-color .20s ease;
+}
+.mode-btn:hover,
+.reset:hover{
+  transform:translateY(-1px);
+}
+.mode-btn:active,
+.reset:active{
+  transform:translateY(0) scale(.98);
+}
+
+.mode-btn.active{
+  background:#fff;
+  color:var(--text);
+  box-shadow:0 3px 10px rgba(15,23,42,.10);
+}
+
+.action-flash{
+  animation:actionFlash .58s ease;
+}
+@keyframes actionFlash{
+  0%{box-shadow:0 0 0 0 rgba(95,127,116,0)}
+  35%{
+    box-shadow:
+      0 0 0 6px rgba(95,127,116,.16),
+      0 0 22px rgba(95,127,116,.24);
+    filter:brightness(1.06);
+  }
+  100%{box-shadow:0 0 0 0 rgba(95,127,116,0)}
+}
+
+.mode-btn.action-flash{
+  background:var(--accent-soft);
+  color:#35574d;
+}
+#nailModeBtn.action-flash{
+  background:linear-gradient(135deg,var(--secondary-soft),var(--rose-soft));
+  color:#84562e;
+}
+#coilModeBtn.action-flash{
+  background:linear-gradient(135deg,var(--primary-soft),var(--violet-soft));
+  color:#315e8c;
+}
+.reset.action-flash{
+  background:var(--accent-soft);
+  border-color:#b8cec6;
+  color:#35574d;
+}
+
+.range-active{
+  animation:rangeHalo .36s ease;
+}
+@keyframes rangeHalo{
+  0%{filter:none}
+  45%{filter:drop-shadow(0 0 7px rgba(59,110,168,.30))}
+  100%{filter:none}
+}
+
+.secondary .range-active{
+  animation-name:rangeHaloSecondary;
+}
+@keyframes rangeHaloSecondary{
+  0%{filter:none}
+  45%{filter:drop-shadow(0 0 7px rgba(183,121,63,.30))}
+  100%{filter:none}
+}
+
+.feedback-toast{
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%) translateY(8px);
+  z-index:10;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:999px;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(12px) saturate(140%);
+  -webkit-backdrop-filter:blur(12px) saturate(140%);
+  box-shadow:0 8px 24px rgba(15,23,42,.10);
+  color:#475569;
+  font-size:.78rem;
+  font-weight:750;
+  opacity:0;
+  pointer-events:none;
+}
+.feedback-toast.show{
+  animation:toastInOut 1.15s ease forwards;
+}
+@keyframes toastInOut{
+  0%{opacity:0;transform:translateX(-50%) translateY(8px) scale(.98)}
+  18%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+  72%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+  100%{opacity:0;transform:translateX(-50%) translateY(-4px) scale(.99)}
+}
+
+
+/* ----------------------------------------------------------
+   Kurzquiz: Vom Experiment zum Trafo-Gesetz
+   ---------------------------------------------------------- */
+.quiz-section{
+  margin-top:18px;
+  padding:18px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 7% 0%,rgba(59,110,168,.08),transparent 30%),
+    radial-gradient(circle at 96% 8%,rgba(183,121,63,.08),transparent 26%),
+    rgba(255,255,255,.88);
+}
+
+.quiz-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:16px;
+}
+
+.quiz-kicker{
+  margin-bottom:4px;
+  font-size:.7rem;
+  font-weight:850;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#718096;
+}
+
+.quiz-head h2{
+  margin:0;
+  font-size:clamp(1.2rem,2.4vw,1.65rem);
+  letter-spacing:-.025em;
+  color:#2f3d52;
+}
+
+.quiz-head p{
+  max-width:760px;
+  margin:7px 0 0;
+  color:#64748b;
+  line-height:1.5;
+  font-size:.9rem;
+}
+
+.quiz-reset-all{
+  flex:0 0 auto;
+  min-height:38px;
+  padding:7px 12px;
+  border:1px solid #dbe3eb;
+  border-radius:11px;
+  background:#fff;
+  color:#5d6a7c;
+  font:inherit;
+  font-size:.8rem;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.quiz-reset-all:hover{background:#f8fafc}
+
+.quiz-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.quiz-question{
+  padding:14px;
+  border:1px solid #e2e8f0;
+  border-radius:15px;
+  background:rgba(255,255,255,.82);
+}
+
+.quiz-number{
+  display:inline-grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  margin-bottom:8px;
+  border-radius:8px;
+  background:linear-gradient(135deg,var(--primary-soft),var(--violet-soft));
+  color:#3d6289;
+  font-size:.76rem;
+  font-weight:900;
+}
+
+.quiz-question h3{
+  margin:0 0 10px;
+  color:#3a4658;
+  font-size:.94rem;
+  line-height:1.42;
+}
+
+.quiz-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  min-height:41px;
+  margin-bottom:9px;
+}
+
+.quiz-option,
+.formula-tile{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:36px;
+  padding:7px 11px;
+  border:1px solid #d7e0e8;
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(15,23,42,.05);
+  color:#435166;
+  font:inherit;
+  font-size:.84rem;
+  font-weight:800;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:manipulation;
+}
+
+.quiz-option:active,
+.formula-tile:active{cursor:grabbing}
+
+.quiz-option:hover,
+.formula-tile:hover{
+  border-color:#bcc9d6;
+  background:#f8fafc;
+}
+
+.quiz-dropzone{
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5px;
+  border:2px dashed #cbd5e1;
+  border-radius:12px;
+  background:#f8fafc;
+  color:#8a96a7;
+  font-size:.8rem;
+  text-align:center;
+  transition:border-color .18s ease,background .18s ease;
+}
+
+.quiz-dropzone.drag-over,
+.formula-slot.drag-over{
+  border-color:#6c8daf;
+  background:#edf4fb;
+}
+
+.quiz-dropzone .quiz-option{
+  width:100%;
+  min-height:34px;
+  cursor:pointer;
+}
+
+.quiz-actions{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:9px;
+}
+
+.quiz-check,
+.quiz-clear,
+.formula-check,
+.formula-reset{
+  min-height:34px;
+  padding:6px 10px;
+  border-radius:9px;
+  font:inherit;
+  font-size:.76rem;
+  font-weight:850;
+  cursor:pointer;
+}
+
+.quiz-check,
+.formula-check{
+  border:1px solid rgba(59,110,168,.22);
+  background:var(--primary-soft);
+  color:#365f8a;
+}
+
+.quiz-clear,
+.formula-reset{
+  border:1px solid #dfe5eb;
+  background:#fff;
+  color:#6b7788;
+}
+
+.quiz-feedback{
+  min-height:20px;
+  margin-top:7px;
+  font-size:.78rem;
+  font-weight:750;
+  line-height:1.4;
+}
+
+.quiz-feedback.correct{color:#2f765f}
+.quiz-feedback.wrong{color:#a45151}
+.quiz-feedback.neutral{color:#718096}
+
+.formula-builder{
+  margin-top:14px;
+  padding:16px;
+  border:1px solid rgba(95,127,116,.20);
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(234,242,239,.70),rgba(240,237,250,.58));
+}
+
+.formula-builder-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:12px;
+}
+
+.formula-builder h3{
+  margin:0 0 4px;
+  font-size:1rem;
+  color:#37475a;
+}
+
+.formula-builder p{
+  margin:0;
+  color:#687689;
+  font-size:.83rem;
+  line-height:1.45;
+}
+
+.formula-workspace{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:10px 0 12px;
+}
+
+.fraction-drop{
+  display:grid;
+  grid-template-rows:46px 3px 46px;
+  width:112px;
+  align-items:center;
+}
+
+.fraction-line{
+  height:3px;
+  border-radius:999px;
+  background:#46566b;
+}
+
+.formula-slot{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px dashed #bfcbd6;
+  border-radius:10px;
+  background:rgba(255,255,255,.72);
+  color:#9aa5b2;
+  font-weight:800;
+}
+
+.formula-slot .formula-tile{
+  width:100%;
+  min-height:38px;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.formula-equals{
+  color:#48586d;
+  font-size:1.55rem;
+  font-weight:900;
+}
+
+.formula-pool{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  min-height:46px;
+  margin-top:3px;
+  padding:8px;
+  border-radius:12px;
+  background:rgba(255,255,255,.58);
+}
+
+.formula-pool .formula-tile{
+  min-width:58px;
+  font-size:1rem;
+}
+
+.formula-feedback{
+  min-height:22px;
+  margin-top:8px;
+  text-align:center;
+  font-size:.82rem;
+  font-weight:800;
+}
+
+.formula-feedback.correct{color:#2f765f}
+.formula-feedback.wrong{color:#a45151}
+.formula-feedback.neutral{color:#718096}
+
+.quiz-note{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#f8fafc;
+  color:#69778a;
+  font-size:.8rem;
+  line-height:1.45;
+}
+
+@media(max-width:760px){
+  .quiz-head,
+  .formula-builder-head{
+    flex-direction:column;
+  }
+  .quiz-reset-all{
+    width:100%;
+  }
+  .quiz-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+@media(max-width:650px){
+  .app{padding:10px}
+  .sim{grid-template-columns:1fr}
+  .canvas-card{grid-column:auto;grid-row:auto}
+  .canvas-wrap{min-height:420px}
+  .top-chip{
+    left:10px;
+    top:10px;
+    min-width:136px;
+    padding:8px 10px;
+    border-radius:14px;
+  }
+  .overlay-value{font-size:1rem}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="title-wrap">
+      <div class="title-badge" aria-hidden="true">⚡</div>
+      <div>
+        <div class="title-kicker">Physik · Simulation</div>
+        <h1>Transformator</h1>
+      </div>
+    </div>
+
+    <div class="intro-card">
+      <div class="intro-section">
+        <div class="intro-icon" aria-hidden="true">⚡</div>
+        <div>
+          <h2>Aufbau</h2>
+          <p>
+            Ein Transformator besteht aus einer <strong>Primärspule</strong> und einer
+            <strong>Sekundärspule</strong>. Beide Spulen sind über einen
+            <strong>Eisenkern</strong> miteinander gekoppelt. An der Primärspule liegt
+            eine Wechselspannung <span class="inline-math" id="introU1">U₁</span> an.
+          </p>
+        </div>
+      </div>
+
+      <div class="task-box">
+        <div class="task-label">Arbeitsauftrag</div>
+        <p>
+          Verändere <span class="inline-math" id="taskU1">U₁</span> und beobachte,
+          wie sich die anderen Werte ändern. Wiederhole dies mit verschiedenen
+          Windungszahlen <span class="inline-math" id="taskN1">N₁</span> und
+          <span class="inline-math" id="taskN2">N₂</span>.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="sim">
+    <section class="card controls primary">
+      <h2>Primärseite</h2>
+
+      <div class="control">
+        <label for="n1">Windungen <span id="n1LabelMath">N₁</span> <span class="value math-value" id="n1v">50</span></label>
+        <input type="range" id="n1" min="5" max="100" step="1" value="50">
+        <div class="scale"><span id="n1MinLabel">5</span><span id="n1MaxLabel">100</span></div>
+      </div>
+
+      <div class="control">
+        <label for="u1"><span id="u1LabelMath">U₁</span> <span class="value math-value" id="u1v">6,0 V</span></label>
+        <input type="range" id="u1" min="0" max="12" step="0.5" value="6">
+        <div class="scale"><span id="u1MinLabel">0 V</span><span id="u1MaxLabel">12 V</span></div>
+      </div>
+
+      <div class="output">
+        <div class="label">U₁</div>
+        <div class="big math-value" id="u1out">6,0 V</div>
+      </div>
+
+      <div class="meterbox">
+        Wechselspannung
+      </div>
+    </section>
+
+    <section class="card canvas-card">
+      <div class="canvas-wrap">
+        <div class="top-chip equal" id="ratioChip" aria-label="Übersetzungsverhältnis">
+          <span class="overlay-dot" aria-hidden="true"></span>
+          <span class="overlay-copy">
+            <span class="overlay-label">Übersetzung</span>
+            <strong class="overlay-value math-value" id="ratioValue">N₂/N₁ = 1,00</strong>
+          </span>
+        </div>
+        <div class="canvas-stage">
+          <canvas id="trafo" width="860" height="540" aria-label="Transformator mit veränderbaren Windungszahlen"></canvas>
+
+          <div class="canvas-math-layer" aria-hidden="true">
+            <span class="canvas-math primary-math" id="canvasU1Label"></span>
+            <span class="canvas-math primary-math canvas-number" id="canvasU1Value"></span>
+
+            <span class="canvas-math secondary-math" id="canvasU2Label"></span>
+            <span class="canvas-math secondary-math canvas-number" id="canvasU2Value"></span>
+
+            <span class="canvas-math primary-math canvas-windings" id="canvasN1Value"></span>
+            <span class="canvas-math secondary-math canvas-windings" id="canvasN2Value"></span>
+          </div>
+        </div>
+        <div class="feedback-toast" id="feedbackToast">Geändert</div>
+      </div>
+      <div class="model-info">
+        <div class="model-info-head">
+          <div>
+            <div class="model-kicker">Modell</div>
+            <h3 id="modelTitle">Idealer Transformator</h3>
+          </div>
+
+          <div class="model-switch" role="group" aria-label="Transformator-Modell">
+            <button class="model-btn active" id="idealModelBtn" type="button">Ideal</button>
+            <button class="model-btn" id="realModelBtn" type="button">Realistisch</button>
+          </div>
+        </div>
+
+        <p id="modelText">
+          Hier wird zunächst ein <strong>idealer Transformator</strong> gezeigt:
+          Der gesamte magnetische Fluss wird durch den Eisenkern geführt und es treten
+          keine Verluste auf. Deshalb gilt die Transformatorgleichung exakt.
+        </p>
+
+        <div class="real-hint" id="realHint">
+          Beim realistischen Transformator verlaufen einige Magnetfeldlinien außerhalb
+          des Eisenkerns. Dieser <strong>Streufluss</strong> trägt nicht vollständig zur
+          Induktion in der Sekundärspule bei. Deshalb ist die Sekundärspannung etwas
+          kleiner als beim idealen Transformator.
+        </div>
+      </div>
+    </section>
+
+    <section class="card controls secondary">
+      <h2>Sekundärseite</h2>
+
+      <div class="mode-switch" role="group" aria-label="Sekundärmodus">
+        <button class="mode-btn active" id="coilModeBtn" type="button">Spule</button>
+        <button class="mode-btn" id="nailModeBtn" type="button">Nagel</button>
+      </div>
+
+      <div class="control" id="n2Control">
+        <label for="n2">Windungen <span id="n2LabelMath">N₂</span> <span class="value math-value" id="n2v">50</span></label>
+        <input type="range" id="n2" min="5" max="100" step="1" value="50">
+        <div class="scale"><span id="n2MinLabel">5</span><span id="n2MaxLabel">100</span></div>
+      </div>
+
+      <div class="nail-hint" id="nailHint">
+        Nagel: <strong id="nailHintMath">N₂ = 6</strong>
+      </div>
+
+      <div class="output">
+        <div class="label">U₂</div>
+        <div class="big math-value" id="u2out">6,0 V</div>
+      </div>
+
+      <div class="meterbox" id="secondaryInfo">
+        Lies U₂ ab.
+      </div>
+
+      <div style="margin-top:16px">
+        <button class="reset" id="reset">Zurücksetzen</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="card quiz-section" id="trafoQuiz">
+    <div class="quiz-head">
+      <div>
+        <div class="quiz-kicker">Kurzquiz</div>
+        <h2>Vom Experiment zum Trafo-Gesetz</h2>
+        <p>
+          Beginne mit einfachen Beobachtungen aus der Simulation: Welche Spannung gehört zu welcher
+          Spule und wie verändert sich die Spannung, wenn du Einstellungen veränderst? Ziehe eine Antwort
+          in das Feld oder tippe sie an. Erst danach setzt du das Trafo-Gesetz aus Bausteinen zusammen.
+        </p>
+      </div>
+      <button class="quiz-reset-all" id="quizResetAll" type="button">Alles zurücksetzen</button>
+    </div>
+
+    <div class="quiz-grid">
+      <article class="quiz-question" data-correct="primary">
+        <div class="quiz-number">1</div>
+        <h3>Zu welcher Seite des Transformators gehört die Spannung <strong>U₁</strong>?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" draggable="true" data-value="primary" type="button">zur Primärspule</button>
+          <button class="quiz-option" draggable="true" data-value="secondary" type="button">zur Sekundärspule</button>
+          <button class="quiz-option" draggable="true" data-value="both" type="button">zu beiden Spulen gleichzeitig</button>
+        </div>
+        <div class="quiz-dropzone" tabindex="0">Antwort hier ablegen</div>
+        <div class="quiz-actions">
+          <button class="quiz-check" type="button">Prüfen</button>
+          <button class="quiz-clear" type="button">Löschen</button>
+        </div>
+        <div class="quiz-feedback neutral" aria-live="polite"></div>
+      </article>
+
+      <article class="quiz-question" data-correct="secondary">
+        <div class="quiz-number">2</div>
+        <h3>Zu welcher Seite des Transformators gehört die Spannung <strong>U₂</strong>?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" draggable="true" data-value="primary" type="button">zur Primärspule</button>
+          <button class="quiz-option" draggable="true" data-value="secondary" type="button">zur Sekundärspule</button>
+          <button class="quiz-option" draggable="true" data-value="source" type="button">nur zur Spannungsquelle</button>
+        </div>
+        <div class="quiz-dropzone" tabindex="0">Antwort hier ablegen</div>
+        <div class="quiz-actions">
+          <button class="quiz-check" type="button">Prüfen</button>
+          <button class="quiz-clear" type="button">Löschen</button>
+        </div>
+        <div class="quiz-feedback neutral" aria-live="polite"></div>
+      </article>
+
+      <article class="quiz-question" data-correct="u2-rises">
+        <div class="quiz-number">3</div>
+        <h3>Die Windungszahlen bleiben unverändert. Du erhöhst die Spannung an der Primärspule. Was beobachtest du an der Sekundärspule?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" draggable="true" data-value="u2-rises" type="button">Die Spannung an der Sekundärspule wird größer.</button>
+          <button class="quiz-option" draggable="true" data-value="u2-same" type="button">Die Spannung an der Sekundärspule bleibt gleich.</button>
+          <button class="quiz-option" draggable="true" data-value="u2-falls" type="button">Die Spannung an der Sekundärspule wird kleiner.</button>
+        </div>
+        <div class="quiz-dropzone" tabindex="0">Antwort hier ablegen</div>
+        <div class="quiz-actions">
+          <button class="quiz-check" type="button">Prüfen</button>
+          <button class="quiz-clear" type="button">Löschen</button>
+        </div>
+        <div class="quiz-feedback neutral" aria-live="polite"></div>
+      </article>
+
+      <article class="quiz-question" data-correct="secondary-lower">
+        <div class="quiz-number">4</div>
+        <h3>Die Primärspule hat mehr Windungen als die Sekundärspule. Wie ist dann die Spannung auf der Sekundärseite im Vergleich zur Primärseite?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" draggable="true" data-value="secondary-lower" type="button">Sie ist kleiner.</button>
+          <button class="quiz-option" draggable="true" data-value="secondary-equal" type="button">Sie ist gleich groß.</button>
+          <button class="quiz-option" draggable="true" data-value="secondary-higher" type="button">Sie ist größer.</button>
+        </div>
+        <div class="quiz-dropzone" tabindex="0">Antwort hier ablegen</div>
+        <div class="quiz-actions">
+          <button class="quiz-check" type="button">Prüfen</button>
+          <button class="quiz-clear" type="button">Löschen</button>
+        </div>
+        <div class="quiz-feedback neutral" aria-live="polite"></div>
+      </article>
+
+      <article class="quiz-question" data-correct="secondary-equal">
+        <div class="quiz-number">5</div>
+        <h3>Primärspule und Sekundärspule haben gleich viele Windungen. Was beobachtest du bei den beiden Spannungen?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" draggable="true" data-value="secondary-lower" type="button">Die Spannung auf der Sekundärseite ist kleiner.</button>
+          <button class="quiz-option" draggable="true" data-value="secondary-equal" type="button">Beide Spannungen sind gleich groß.</button>
+          <button class="quiz-option" draggable="true" data-value="secondary-higher" type="button">Die Spannung auf der Sekundärseite ist größer.</button>
+        </div>
+        <div class="quiz-dropzone" tabindex="0">Antwort hier ablegen</div>
+        <div class="quiz-actions">
+          <button class="quiz-check" type="button">Prüfen</button>
+          <button class="quiz-clear" type="button">Löschen</button>
+        </div>
+        <div class="quiz-feedback neutral" aria-live="polite"></div>
+      </article>
+
+      <article class="quiz-question" data-correct="secondary-higher">
+        <div class="quiz-number">6</div>
+        <h3>Die Sekundärspule hat mehr Windungen als die Primärspule. Wie verändert sich dadurch die Spannung auf der Sekundärseite?</h3>
+        <div class="quiz-options">
+          <button class="quiz-option" draggable="true" data-value="secondary-lower" type="button">Sie wird kleiner als auf der Primärseite.</button>
+          <button class="quiz-option" draggable="true" data-value="secondary-equal" type="button">Sie bleibt gleich groß.</button>
+          <button class="quiz-option" draggable="true" data-value="secondary-higher" type="button">Sie wird größer als auf der Primärseite.</button>
+        </div>
+        <div class="quiz-dropzone" tabindex="0">Antwort hier ablegen</div>
+        <div class="quiz-actions">
+          <button class="quiz-check" type="button">Prüfen</button>
+          <button class="quiz-clear" type="button">Löschen</button>
+        </div>
+        <div class="quiz-feedback neutral" aria-live="polite"></div>
+      </article>
+    </div>
+
+    <div class="formula-builder">
+      <div class="formula-builder-head">
+        <div>
+          <h3>Baue jetzt das Trafo-Gesetz</h3>
+          <p>
+            Ziehe <strong>U₁, U₂, N₁ und N₂</strong> in die vier Felder. Die beiden Verhältnisse
+            müssen dieselben Seiten des Transformators miteinander vergleichen.
+          </p>
+        </div>
+        <button class="formula-reset" id="formulaReset" type="button">Formel leeren</button>
+      </div>
+
+      <div class="formula-workspace" aria-label="Formelbaukasten">
+        <div class="fraction-drop">
+          <div class="formula-slot" data-slot="0" tabindex="0">?</div>
+          <div class="fraction-line"></div>
+          <div class="formula-slot" data-slot="1" tabindex="0">?</div>
+        </div>
+
+        <div class="formula-equals">=</div>
+
+        <div class="fraction-drop">
+          <div class="formula-slot" data-slot="2" tabindex="0">?</div>
+          <div class="fraction-line"></div>
+          <div class="formula-slot" data-slot="3" tabindex="0">?</div>
+        </div>
+      </div>
+
+      <div class="formula-pool" id="formulaPool">
+        <button class="formula-tile" draggable="true" data-token="U2" type="button">U₂</button>
+        <button class="formula-tile" draggable="true" data-token="U1" type="button">U₁</button>
+        <button class="formula-tile" draggable="true" data-token="N2" type="button">N₂</button>
+        <button class="formula-tile" draggable="true" data-token="N1" type="button">N₁</button>
+      </div>
+
+      <div class="quiz-actions" style="justify-content:center">
+        <button class="formula-check" id="formulaCheck" type="button">Formel prüfen</button>
+      </div>
+      <div class="formula-feedback neutral" id="formulaFeedback" aria-live="polite"></div>
+    </div>
+
+    <div class="quiz-note">
+      <span aria-hidden="true">💡</span>
+      <span>
+        Beziehe dich im Quiz auf den <strong>idealen Transformator</strong>. Beim realistischen Modell
+        können Verluste dazu führen, dass die gemessene Sekundärspannung etwas kleiner ist.
+      </span>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const c = document.getElementById('trafo');
+  const ctx = c.getContext('2d');
+
+  const n1 = document.getElementById('n1');
+  const n2 = document.getElementById('n2');
+  const u1 = document.getElementById('u1');
+
+  const n1v = document.getElementById('n1v');
+  const n2v = document.getElementById('n2v');
+  const u1v = document.getElementById('u1v');
+  const u1out = document.getElementById('u1out');
+  const u2out = document.getElementById('u2out');
+  const ratioChip = document.getElementById('ratioChip');
+  const ratioValue = document.getElementById('ratioValue');
+  const n1LabelMath = document.getElementById('n1LabelMath');
+  const n2LabelMath = document.getElementById('n2LabelMath');
+  const u1LabelMath = document.getElementById('u1LabelMath');
+  const introU1 = document.getElementById('introU1');
+  const taskU1 = document.getElementById('taskU1');
+  const taskN1 = document.getElementById('taskN1');
+  const taskN2 = document.getElementById('taskN2');
+  const nailHintMath = document.getElementById('nailHintMath');
+
+  const canvasU1Label = document.getElementById('canvasU1Label');
+  const canvasU1Value = document.getElementById('canvasU1Value');
+  const canvasU2Label = document.getElementById('canvasU2Label');
+  const canvasU2Value = document.getElementById('canvasU2Value');
+  const canvasN1Value = document.getElementById('canvasN1Value');
+  const canvasN2Value = document.getElementById('canvasN2Value');
+
+  const coilModeBtn = document.getElementById('coilModeBtn');
+  const nailModeBtn = document.getElementById('nailModeBtn');
+  const n2Control = document.getElementById('n2Control');
+  const nailHint = document.getElementById('nailHint');
+  const secondaryInfo = document.getElementById('secondaryInfo');
+
+  const idealModelBtn = document.getElementById('idealModelBtn');
+  const realModelBtn = document.getElementById('realModelBtn');
+  const modelTitle = document.getElementById('modelTitle');
+  const modelText = document.getElementById('modelText');
+  const realHint = document.getElementById('realHint');
+
+  let transformerModel = 'ideal';
+  const n1MinLabel = document.getElementById('n1MinLabel');
+  const n1MaxLabel = document.getElementById('n1MaxLabel');
+  const u1MinLabel = document.getElementById('u1MinLabel');
+  const u1MaxLabel = document.getElementById('u1MaxLabel');
+  const n2MinLabel = document.getElementById('n2MinLabel');
+  const n2MaxLabel = document.getElementById('n2MaxLabel');
+
+  let secondaryMode = 'coil';
+
+  // Die beiden Modi behalten ihre zuletzt gewählten Werte getrennt voneinander.
+  let coilState = {
+    n1: Number(n1.value),
+    n2: Number(n2.value),
+    u1: Number(u1.value)
+  };
+
+  let nailState = {
+    n1: 500,
+    n2: 6,
+    u1: 30
+  };
+
+  function de(x, d=1){
+    return Number(x).toLocaleString('de-DE',{
+      minimumFractionDigits:d, maximumFractionDigits:d
+    });
+  }
+
+  function deAdaptive(x){
+    const value = Number(x);
+    if(!Number.isFinite(value)) return '–';
+
+    const a = Math.abs(value);
+    let digits = 2;
+
+    if(a === 0){
+      digits = 1;
+    }else if(a >= 100){
+      digits = 2;
+    }else if(a >= 10){
+      digits = 3;
+    }else if(a >= 1){
+      digits = 4;
+    }else if(a >= 0.1){
+      digits = 5;
+    }else{
+      digits = 6;
+    }
+
+    return value.toLocaleString('de-DE',{
+      minimumFractionDigits:0,
+      maximumFractionDigits:digits
+    });
+  }
+
+  function renderMath(el, tex, fallback=''){
+    if(window.katex){
+      katex.render(tex, el, {
+        throwOnError:false,
+        displayMode:false,
+        strict:false
+      });
+    }else{
+      el.textContent = fallback || tex;
+    }
+  }
+
+  function updateRangeVisual(el){
+    const min = Number(el.min);
+    const max = Number(el.max);
+    const value = Number(el.value);
+    const progress = max === min ? 100 : ((value-min)/(max-min))*100;
+    el.style.setProperty('--range-progress', `${Math.max(0,Math.min(100,progress))}%`);
+  }
+
+  function updateAllRangeVisuals(){
+    [n1,n2,u1].forEach(updateRangeVisual);
+  }
+
+  const feedbackToast = document.getElementById('feedbackToast');
+
+  function replayClass(el, className){
+    if(!el) return;
+    el.classList.remove(className);
+    void el.offsetWidth;
+    el.classList.add(className);
+  }
+
+  function showFeedback(message){
+    if(!feedbackToast) return;
+    feedbackToast.textContent = message;
+    feedbackToast.classList.remove('show');
+    void feedbackToast.offsetWidth;
+    feedbackToast.classList.add('show');
+  }
+
+
+  function flashCard(cardSelector){
+    replayClass(document.querySelector(cardSelector),'card-soft-flash');
+  }
+
+  function renderStaticMath(){
+    renderMath(n1LabelMath, 'N_1', 'N₁');
+    renderMath(n2LabelMath, 'N_2', 'N₂');
+    renderMath(u1LabelMath, 'U_1', 'U₁');
+    renderMath(introU1, 'U_1', 'U₁');
+    renderMath(taskU1, 'U_1', 'U₁');
+    renderMath(taskN1, 'N_1', 'N₁');
+    renderMath(taskN2, 'N_2', 'N₂');
+    renderMath(nailHintMath, 'N_2=6', 'N₂ = 6');
+
+  }
+
+  function line(x1,y1,x2,y2,color,w=2,cap='round'){
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    ctx.lineWidth=w;
+    ctx.lineCap=cap;
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+  }
+
+  function roundRect(x,y,w,h,r,fill,stroke=null,sw=1){
+    ctx.beginPath();
+    ctx.roundRect(x,y,w,h,r);
+    if(fill){ctx.fillStyle=fill;ctx.fill();}
+    if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=sw;ctx.stroke();}
+  }
+
+  function text(t,x,y,size=18,color='#111827',align='center',weight='600'){
+    ctx.fillStyle=color;
+    ctx.font=`${weight} ${size}px system-ui, sans-serif`;
+    ctx.textAlign=align;
+    ctx.textBaseline='middle';
+    ctx.fillText(t,x,y);
+  }
+
+  function drawCore(){
+    // geschlossener Eisenkern
+    const grad = ctx.createLinearGradient(220,70,540,395);
+    grad.addColorStop(0,'#c7ccd2');
+    grad.addColorStop(.55,'#9aa0a6');
+    grad.addColorStop(1,'#6b7280');
+
+    roundRect(220,70,320,325,24,grad,'#555b63',2);
+    roundRect(290,132,180,200,15,'#f4f7fb');
+
+    // Lamellenandeutung
+    ctx.save();
+    ctx.globalAlpha=.32;
+    for(let y=84;y<=112;y+=7) line(235,y,525,y,'#4b5563',1,'butt');
+    for(let y=353;y<=381;y+=7) line(235,y,525,y,'#4b5563',1,'butt');
+    ctx.restore();
+
+    text('Eisenkern',380,48,21,'#4b5563','center','700');
+  }
+
+  function drawStrayFlux(){
+    if(transformerModel !== 'real') return;
+
+    ctx.save();
+    ctx.globalAlpha = .65;
+    ctx.strokeStyle = '#7c83b6';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([7,6]);
+
+    // Einige Feldlinien verlaufen bewusst außerhalb des Eisenkerns.
+    const curves = [
+      [250,145,335,92,425,92,510,145],
+      [250,175,320,112,440,112,510,175],
+      [250,285,330,350,430,350,510,285],
+      [250,315,335,380,425,380,510,315]
+    ];
+
+    curves.forEach(([x1,y1,c1x,c1y,c2x,c2y,x2,y2])=>{
+      ctx.beginPath();
+      ctx.moveTo(x1,y1);
+      ctx.bezierCurveTo(c1x,c1y,c2x,c2y,x2,y2);
+      ctx.stroke();
+    });
+
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  function drawCoil(side,N,color,highlight){
+    const y0=135, y1=330;
+    const h=y1-y0;
+
+    // Bis 100 Windungen wird jede Windung einzeln gezeigt.
+    // Bei größeren realen Windungszahlen wird die Wicklung für die Grafik verdichtet,
+    // damit die Simulation auf dem iPad flüssig bleibt.
+    const displayN = N <= 100
+      ? N
+      : Math.round(55 + (Math.min(N,6000)-100) / 5900 * 45);
+
+    const spacing=h/displayN;
+    const lw=Math.max(1.25,Math.min(8,spacing*0.62));
+
+    // LEIFI-inspirierte direkte Darstellung:
+    // Jede Windung wird einzeln als schräger Wicklungsabschnitt gezeichnet.
+    if(side==='left'){
+      for(let i=0;i<displayN;i++){
+        const y=y0+i*spacing;
+        line(217,y,293,y+spacing*0.48,color,lw,'round');
+        if(lw>3) line(220,y-0.7,290,y+spacing*0.48-0.7,highlight,Math.max(1,lw*.24),'round');
+      }
+    }else{
+      for(let i=0;i<displayN;i++){
+        const y=y0+i*spacing;
+        line(467,y+spacing*0.48,543,y,color,lw,'round');
+        if(lw>3) line(470,y+spacing*0.48-0.7,540,y-0.7,highlight,Math.max(1,lw*.24),'round');
+      }
+    }
+  }
+
+  function drawNail(glowLevel=0, glowPulse=1){
+    // Sekundärseite nach dem Vorbild des "heißen Nagels":
+    // wenige dicke Windungen am Kern, zwei Kupferstäbe mit Holzgriffen,
+    // Klemmstücke und ein Nagel zwischen den beiden Kontaktstellen.
+    ctx.save();
+
+    // Dicke Sekundärwicklung am rechten Kernschenkel
+    const y0 = 176, turns = 6, step = 24, lw = 8;
+    for(let i=0;i<turns;i++){
+      const y = y0 + i*step;
+      line(466,y,542,y+10,'#b45309',lw,'round');
+      line(468,y-1,540,y+9,'#fdba74',2,'round');
+    }
+
+    // Verbindungsstücke von der Wicklung zu den Kupferstäben
+    line(542,192,628,192,'#8b5a2b',6,'round');
+    line(542,320,628,320,'#8b5a2b',6,'round');
+
+    // Kupferstäbe / Zuleitungen
+    line(628,192,725,192,'#7c4a21',6,'round');
+    line(628,320,725,320,'#7c4a21',6,'round');
+
+    // Holzgriffe
+    const wood = '#d79a5b';
+    ctx.fillStyle = wood;
+    ctx.strokeStyle = '#a16207';
+    ctx.lineWidth = 1.5;
+
+    ctx.beginPath();
+    ctx.ellipse(734,192,34,13,0,0,Math.PI*2);
+    ctx.fill(); ctx.stroke();
+
+    ctx.beginPath();
+    ctx.ellipse(734,320,34,13,0,0,Math.PI*2);
+    ctx.fill(); ctx.stroke();
+
+    // Metallhülsen an den Griffen
+    roundRect(694,184,12,16,3,'#cbd5e1','#64748b',1.5);
+    roundRect(694,312,12,16,3,'#cbd5e1','#64748b',1.5);
+
+    // Klemmen links vor den Griffen
+    roundRect(638,178,34,28,4,'#d1d5db','#6b7280',2);
+    roundRect(638,306,34,28,4,'#d1d5db','#6b7280',2);
+
+    // Kleine schwarze Stellschrauben
+    ctx.beginPath(); ctx.arc(674,192,5,0,Math.PI*2); ctx.fillStyle = '#111827'; ctx.fill();
+    ctx.beginPath(); ctx.arc(674,320,5,0,Math.PI*2); ctx.fillStyle = '#111827'; ctx.fill();
+
+    // Farben des Nagels abhängig vom Glühzustand
+    const heat = Math.max(0, Math.min(1, glowLevel));
+    const pulse = 0.82 + 0.18 * glowPulse;
+    const hotAlpha = Math.max(0, Math.min(1, heat * pulse));
+
+    const coldMetal = '#6b7280';
+    const hotMetal = heat > 0.7 ? '#fb923c' : (heat > 0.35 ? '#ef4444' : '#9ca3af');
+    const shaftColor = heat > 0.12 ? hotMetal : coldMetal;
+
+    // Oberer Nagel: zeigt nach unten
+    roundRect(651,178,7,13,2,heat > 0.2 ? '#cbd5e1' : '#9ca3af','#374151',1.5);
+    line(654.5,191,654.5,250,shaftColor,3 + heat*0.8,'round');
+    line(654.5,250,650.5,258,shaftColor,2.2 + heat*0.6,'round');
+    line(654.5,250,658.5,258,shaftColor,2.2 + heat*0.6,'round');
+
+    // Unterer Nagel / Kontaktstift: zeigt nach oben
+    roundRect(649,310,11,10,2,heat > 0.2 ? '#cbd5e1' : '#9ca3af','#374151',1.5);
+    line(654.5,310,654.5,268,shaftColor,3 + heat*0.8,'round');
+    line(654.5,268,650.5,260,shaftColor,2.2 + heat*0.6,'round');
+    line(654.5,268,658.5,260,shaftColor,2.2 + heat*0.6,'round');
+
+    // Kontaktstelle glüht zuerst
+    if(heat > 0.01){
+      const glow1 = ctx.createRadialGradient(654.5,259,1,654.5,259,20 + 16*heat);
+      glow1.addColorStop(0,`rgba(255,245,220,${0.25 + 0.40*hotAlpha})`);
+      glow1.addColorStop(0.18,`rgba(251,191,36,${0.30 + 0.30*hotAlpha})`);
+      glow1.addColorStop(0.48,`rgba(239,68,68,${0.22 + 0.35*hotAlpha})`);
+      glow1.addColorStop(1,'rgba(239,68,68,0)');
+      ctx.fillStyle = glow1;
+      ctx.beginPath();
+      ctx.arc(654.5,259,20 + 16*heat,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    // Zusätzliche leichte Rotfärbung entlang der warmen Nagelbereiche
+    if(heat > 0.18){
+      ctx.strokeStyle = `rgba(239,68,68,${0.18 + 0.22*hotAlpha})`;
+      ctx.lineWidth = 5 * heat;
+      line(654.5,197,654.5,246,ctx.strokeStyle,5*heat,'round');
+      line(654.5,273,654.5,304,ctx.strokeStyle,5*heat,'round');
+    }
+
+    ctx.restore();
+  }
+
+  function drawACSource(x,y,U){
+    const sourceR = 27;
+    const meterR = 34;
+    const topRailY = 145;
+    const bottomRailY = 322;
+
+    // Primärseite: Quelle und Voltmeter liegen parallel zwischen
+    // oberem und unterem Leiter.
+    const sourceX = 52;
+    const meterX = 130;
+
+    // obere und untere Leiter
+    line(217,topRailY,sourceX,topRailY,'#1f2937',3);
+    line(217,bottomRailY,sourceX,bottomRailY,'#1f2937',3);
+
+    // Voltmeter-Zweig auf der Primärseite
+    line(meterX,topRailY,meterX,y-meterR,'#1f2937',3);
+    line(meterX,y+meterR,meterX,bottomRailY,'#1f2937',3);
+
+    // Knoten an den Abgriffen
+    ctx.beginPath(); ctx.arc(meterX,topRailY,4,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+    ctx.beginPath(); ctx.arc(meterX,bottomRailY,4,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+
+    // Wechselspannungsquelle links
+    line(sourceX,topRailY,sourceX,y-sourceR,'#1f2937',3);
+    line(sourceX,y+sourceR,sourceX,bottomRailY,'#1f2937',3);
+
+    ctx.beginPath();
+    ctx.arc(sourceX,y,sourceR,0,Math.PI*2);
+    ctx.fillStyle='#fff';
+    ctx.fill();
+    ctx.strokeStyle='#2563eb';
+    ctx.lineWidth=3;
+    ctx.stroke();
+
+    // Voltmeter U1: gleicher Stil wie U2, aber blau
+    ctx.beginPath();
+    ctx.arc(meterX,y,meterR,0,Math.PI*2);
+    ctx.fillStyle='#fff';
+    ctx.fill();
+    ctx.strokeStyle='#2563eb';
+    ctx.lineWidth=3;
+    ctx.stroke();
+
+    // Anschlussklemmen oben/unten
+    ctx.beginPath(); ctx.arc(meterX,y-meterR,3.5,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+    ctx.beginPath(); ctx.arc(meterX,y+meterR,3.5,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+
+    // kleiner Zeiger
+    const maxU = Math.max(1, Number(u1.max) || 230);
+    const frac = Math.max(0,Math.min(1,U/maxU));
+    const a = (-140 + frac*100)*Math.PI/180;
+    line(meterX,y,meterX+24*Math.cos(a),y+24*Math.sin(a),'#2563eb',2.5);
+    ctx.beginPath(); ctx.arc(meterX,y,3,0,Math.PI*2); ctx.fillStyle='#111827'; ctx.fill();
+
+    // V-Beschriftung
+    ctx.beginPath();
+    ctx.roundRect(meterX-15,y+6,30,22,6);
+    ctx.fillStyle='rgba(255,255,255,0.94)';
+    ctx.fill();
+    text('V',meterX,y+17,22,'#111827','center','900');
+
+    // Sinuszeichen in der Wechselspannungsquelle
+    ctx.beginPath();
+    ctx.strokeStyle='#2563eb';
+    ctx.lineWidth=3;
+    for(let px=-16;px<=16;px++){
+      const xx=sourceX+px;
+      const yy=y + Math.sin(px/16*Math.PI*1.25)*7;
+      if(px===-16) ctx.moveTo(xx,yy); else ctx.lineTo(xx,yy);
+    }
+    ctx.stroke();
+
+    // U₁ und Zahlenwert werden als KaTeX-DOM-Overlay gerendert.
+  }
+
+  function drawVoltmeter(x,y,U,maxU=240){
+    const r = 34;
+    const topY = y-r;
+    const bottomY = y+r;
+
+    // Anschluss wie in der Referenzschaltung:
+    // Das Voltmeter sitzt zwischen oberem und unterem Leiter.
+    if(secondaryMode === 'coil'){
+      // Spulenmodus: Voltmeter direkt an die beiden Enden der Sekundärspule.
+      line(543,145,x,145,'#1f2937',3);
+      line(x,145,x,topY,'#1f2937',3);
+
+      line(543,322,x,322,'#1f2937',3);
+      line(x,322,x,bottomY,'#1f2937',3);
+    }else{
+      // Nagelmodus: Voltmeter als paralleler Zweig zwischen den beiden Leitungen.
+      // Rechts davon bleibt der Nagel mit den Holzgriffen im Hauptzweig.
+      const tapX = x;
+      const topRailY = 192;
+      const bottomRailY = 320;
+
+      line(tapX,topRailY,tapX,topY,'#1f2937',3);
+      line(tapX,bottomY,tapX,bottomRailY,'#1f2937',3);
+
+      // Abzweigpunkte auf den beiden Leitungen
+      ctx.beginPath(); ctx.arc(tapX,topRailY,4,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+      ctx.beginPath(); ctx.arc(tapX,bottomRailY,4,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle='#fff';
+    ctx.fill();
+    ctx.strokeStyle='#f59e0b';
+    ctx.lineWidth=3;
+    ctx.stroke();
+
+    // Anschlussklemmen des Voltmeters: oben und unten
+    ctx.beginPath(); ctx.arc(x,topY,3.5,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+    ctx.beginPath(); ctx.arc(x,bottomY,3.5,0,Math.PI*2); ctx.fillStyle='#1f2937'; ctx.fill();
+
+    const frac=Math.max(0,Math.min(1,U/maxU));
+    const a=(-140 + frac*100)*Math.PI/180;
+    line(x,y,x+24*Math.cos(a),y+24*Math.sin(a),'#dc2626',2.5);
+    ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fillStyle='#111827';ctx.fill();
+
+    // Deutlich lesbares V: helle Beschriftungsfläche im unteren Bereich des Messgeräts
+    ctx.beginPath();
+    ctx.roundRect(x-15,y+6,30,22,6);
+    ctx.fillStyle='rgba(255,255,255,0.94)';
+    ctx.fill();
+
+    text('V',x,y+17,22,'#111827','center','900');
+
+    // U₂ und Zahlenwert werden als KaTeX-DOM-Overlay gerendert.
+  }
+
+  function drawLabels(Np,Ns){
+    // Primär- und Sekundärbeschriftung immer auf gleicher Höhe.
+    text('Primärspule',215,454,16,'#475467');
+    text('Sekundärspule',545,454,16,'#475467');
+  }
+
+  let animatedGlow = 0;
+
+  function render(ts=0){
+    updateAllRangeVisuals();
+
+    const Np=Number(n1.value);
+    const Ns=secondaryMode === 'coil' ? Number(n2.value) : 6;
+    const Up=Number(u1.value);
+    const idealUs=Up*Ns/Np;
+    // Vereinfachtes realistisches Modell:
+    // 8 % Verlust durch Streufluss und weitere Verluste.
+    const efficiencyFactor = transformerModel === 'real' ? 0.92 : 1;
+    const Us = idealUs * efficiencyFactor;
+
+    // einfache Glüh-Logik:
+    // Im Nagelmodus startet das sichtbare Glühen ungefähr ab U2 > 1,8 V
+    // und wird ab ca. 3,6 V deutlich.
+    let targetGlow = 0;
+    if(secondaryMode === 'nail'){
+      targetGlow = Math.max(0, Math.min(1, (Us - 1.8) / 1.8));
+    }
+    animatedGlow += (targetGlow - animatedGlow) * 0.08;
+    const glowPulse = 0.5 + 0.5 * Math.sin(ts / 180);
+
+    renderMath(n1v, `${Np}`, `${Np}`);
+    renderMath(n2v, `${Ns}`, `${Ns}`);
+    renderMath(u1v, `${deAdaptive(Up).replace(',','{,}')}\\,\\mathrm{V}`, `${deAdaptive(Up)} V`);
+    renderMath(u1out, `${deAdaptive(Up).replace(',','{,}')}\\,\\mathrm{V}`, `${deAdaptive(Up)} V`);
+    renderMath(u2out, `${deAdaptive(Us).replace(',','{,}')}\\,\\mathrm{V}`, `${deAdaptive(Us)} V`);
+
+    // U1/U2 direkt bei den Voltmetern
+    // Oberhalb der jeweiligen Leitung steht die vollständige
+    // Spannungsangabe in der zur Seite passenden Farbe.
+    renderMath(canvasU1Value,
+      `U_1=${deAdaptive(Up).replace(',','{,}')}\\,\\mathrm{V}`,
+      `U₁ = ${deAdaptive(Up)} V`
+    );
+    renderMath(canvasU2Value,
+      `U_2=${deAdaptive(Us).replace(',','{,}')}\\,\\mathrm{V}`,
+      `U₂ = ${deAdaptive(Us)} V`
+    );
+
+    renderMath(canvasN1Value, `N_1=${Np}`, `N₁ = ${Np}`);
+    renderMath(canvasN2Value, `N_2=${Ns}`, `N₂ = ${Ns}`);
+
+    canvasU1Label.textContent = '';
+    canvasU2Label.textContent = '';
+
+    canvasU1Value.style.left = '18.2%';
+    canvasU1Value.style.top = '25.0%';
+
+    // U2-Beschriftungen passend zum jeweiligen Voltmeter.
+    if(secondaryMode === 'coil'){
+      canvasU2Value.style.left = '83.1%';
+      canvasU2Value.style.top = '25.0%';
+    }else{
+      // Im Nagelmodus liegt U2 auf gleicher Höhe wie U1 und weiter rechts.
+      canvasU2Value.style.left = '84.5%';
+      canvasU2Value.style.top = '25.0%';
+    }
+
+    const ratio = Ns/Np;
+    const ratioTex = `\\frac{N_2}{N_1}=${deAdaptive(ratio).replace(',','{,}')}`;
+    renderMath(ratioValue, ratioTex, `N₂/N₁ = ${deAdaptive(ratio)}`);
+    ratioChip.classList.remove('step-up','step-down','equal');
+    ratioChip.classList.add(
+      Math.abs(ratio-1) < 0.005 ? 'equal' : (ratio > 1 ? 'step-up' : 'step-down')
+    );
+
+    ctx.clearRect(0,0,c.width,c.height);
+
+    // gesamte Zeichnung etwas größer darstellen, damit Bauteile
+    // und Zahlenwerte besser lesbar sind
+    ctx.save();
+    ctx.translate(18,14);
+    ctx.scale(1.08,1.08);
+
+    drawCore();
+    drawStrayFlux();
+    drawCoil('left',Np,'#2563eb','#93c5fd');
+
+    if(secondaryMode === 'coil'){
+      drawCoil('right',Ns,'#f59e0b','#fde68a');
+    }else{
+      drawNail(animatedGlow, glowPulse);
+    }
+
+    drawACSource(115,235,Up);
+    if(secondaryMode === 'coil'){
+      drawVoltmeter(645,235,Us,240);
+    }else{
+      drawVoltmeter(590,256,Us,24);
+    }
+    drawLabels(Np,Ns);
+    ctx.restore();
+  }
+
+  function animate(ts=0){
+    render(ts);
+    requestAnimationFrame(animate);
+  }
+
+  [n1,n2,u1].forEach(el=>{
+    el.addEventListener('input',()=>{
+      render(performance.now());
+      replayClass(el,'range-active');
+
+      if(el === n1){
+        flashCard('.controls.primary');
+      }else if(el === n2){
+        flashCard('.controls.secondary');
+      }else if(el === u1){
+        flashCard('.controls.primary');
+      }
+    });
+
+    el.addEventListener('change',()=>{
+      render(performance.now());
+    });
+  });
+
+  function configureCoilMode(){
+    n1.min = 5;
+    n1.max = 100;
+    n1.step = 1;
+
+    u1.min = 0;
+    u1.max = 12;
+    u1.step = 0.5;
+
+    n2.min = 5;
+    n2.max = 100;
+    n2.step = 1;
+
+    renderMath(n1MinLabel, '5', '5');
+    renderMath(n1MaxLabel, '100', '100');
+    renderMath(u1MinLabel, '0\\,\\mathrm{V}', '0 V');
+    renderMath(u1MaxLabel, '12\\,\\mathrm{V}', '12 V');
+    renderMath(n2MinLabel, '5', '5');
+    renderMath(n2MaxLabel, '100', '100');
+  }
+
+  function configureNailMode(){
+    // Passende Größenordnung für den Schulversuch "heißer Nagel".
+    n1.min = 100;
+    n1.max = 6000;
+    n1.step = 25;
+
+    u1.min = 0;
+    u1.max = 230;
+    u1.step = 5;
+
+    // Die dicke Sekundärwicklung ist in diesem Modus fest vorgegeben.
+    n2.min = 6;
+    n2.max = 6;
+    n2.step = 1;
+
+    renderMath(n1MinLabel, '100', '100');
+    renderMath(n1MaxLabel, '6000', '6000');
+    renderMath(u1MinLabel, '0\\,\\mathrm{V}', '0 V');
+    renderMath(u1MaxLabel, '230\\,\\mathrm{V}', '230 V');
+    renderMath(n2MinLabel, '6', '6');
+    renderMath(n2MaxLabel, '6', '6');
+  }
+
+  function setSecondaryMode(mode){
+    // Vor dem Umschalten die Werte des aktuellen Modus sichern.
+    if(secondaryMode === 'coil'){
+      coilState = {
+        n1: Number(n1.value),
+        n2: Number(n2.value),
+        u1: Number(u1.value)
+      };
+    }else{
+      nailState = {
+        n1: Number(n1.value),
+        n2: 6,
+        u1: Number(u1.value)
+      };
+    }
+
+    secondaryMode = mode;
+
+    if(mode === 'nail'){
+      configureNailMode();
+
+      n1.value = nailState.n1;
+      u1.value = 30;
+      nailState.u1 = 30;
+      n2.value = 6;
+
+      n2Control.classList.add('disabled');
+      n2.disabled = true;
+      nailHint.classList.add('show');
+      coilModeBtn.classList.remove('active');
+      nailModeBtn.classList.add('active');
+
+      secondaryInfo.textContent =
+        'Start: U₁ = 30 V. Verändere N₁ und U₁.';
+    }else{
+      configureCoilMode();
+
+      n1.value = coilState.n1;
+      n2.value = coilState.n2;
+      u1.value = coilState.u1;
+
+      n2.disabled = false;
+      n2Control.classList.remove('disabled');
+      nailHint.classList.remove('show');
+      nailModeBtn.classList.remove('active');
+      coilModeBtn.classList.add('active');
+
+      secondaryInfo.textContent =
+        'Lies U₂ ab.';
+    }
+
+    animatedGlow = 0;
+    render(performance.now());
+  }
+
+  function setTransformerModel(mode){
+    transformerModel = mode;
+
+    idealModelBtn.classList.toggle('active', mode === 'ideal');
+    realModelBtn.classList.toggle('active', mode === 'real');
+
+    if(mode === 'real'){
+      modelTitle.textContent = 'Realistischer Transformator';
+      modelText.innerHTML =
+        'Im realistischeren Modell geht nicht der gesamte magnetische Fluss durch den Eisenkern. Dadurch ist <strong>U₂ etwas kleiner</strong> als im idealen Fall.';
+      realHint.classList.add('show');
+      replayClass(realModelBtn,'action-flash');
+      showFeedback('Realistisches Modell');
+    }else{
+      modelTitle.textContent = 'Idealer Transformator';
+      modelText.innerHTML =
+        'Hier wird zunächst ein <strong>idealer Transformator</strong> gezeigt: Der gesamte magnetische Fluss wird durch den Eisenkern geführt und es treten keine Verluste auf. Deshalb gilt die Transformatorgleichung exakt.';
+      realHint.classList.remove('show');
+      replayClass(idealModelBtn,'action-flash');
+      showFeedback('Ideales Modell');
+    }
+
+    render(performance.now());
+  }
+
+  idealModelBtn.addEventListener('click',()=>setTransformerModel('ideal'));
+  realModelBtn.addEventListener('click',()=>setTransformerModel('real'));
+
+  coilModeBtn.addEventListener('click',()=>{
+    setSecondaryMode('coil');
+    replayClass(coilModeBtn,'action-flash');
+    flashCard('.controls.secondary');
+    showFeedback('Spulenmodus');
+  });
+
+  nailModeBtn.addEventListener('click',()=>{
+    setSecondaryMode('nail');
+    replayClass(nailModeBtn,'action-flash');
+    flashCard('.controls.secondary');
+    showFeedback('Nagelmodus');
+  });
+
+  document.getElementById('reset').addEventListener('click',()=>{
+    if(secondaryMode === 'nail'){
+      nailState = {n1:500, n2:6, u1:30};
+      configureNailMode();
+      n1.value = 500;
+      n2.value = 6;
+      u1.value = 30;
+      animatedGlow = 0;
+      render(performance.now());
+    }else{
+      coilState = {n1:50, n2:50, u1:6};
+      configureCoilMode();
+      n1.value = 50;
+      n2.value = 50;
+      u1.value = 6;
+      animatedGlow = 0;
+      render(performance.now());
+    }
+    const resetBtn = document.getElementById('reset');
+    replayClass(resetBtn,'action-flash');
+    flashCard('.controls.primary');
+    flashCard('.controls.secondary');
+    showFeedback('Zurückgesetzt');
+  });
+
+
+  // ----------------------------------------------------------
+  // Kurzquiz: Drag-and-Drop mit Tipp-Fallback für iPads
+  // ----------------------------------------------------------
+  function setQuizFeedback(el, text, state='neutral'){
+    el.textContent = text;
+    el.classList.remove('correct','wrong','neutral');
+    el.classList.add(state);
+  }
+
+  function resetObservationQuestion(question){
+    const options = question.querySelector('.quiz-options');
+    const dropzone = question.querySelector('.quiz-dropzone');
+    const placed = dropzone.querySelector('.quiz-option');
+
+    if(placed) options.appendChild(placed);
+
+    dropzone.textContent = 'Antwort hier ablegen';
+    setQuizFeedback(question.querySelector('.quiz-feedback'), '', 'neutral');
+  }
+
+  document.querySelectorAll('.quiz-question').forEach((question)=>{
+    const options = question.querySelector('.quiz-options');
+    const dropzone = question.querySelector('.quiz-dropzone');
+    const feedback = question.querySelector('.quiz-feedback');
+
+    function placeOption(option){
+      const previous = dropzone.querySelector('.quiz-option');
+      if(previous && previous !== option){
+        options.appendChild(previous);
+      }
+
+      dropzone.textContent = '';
+      dropzone.appendChild(option);
+      setQuizFeedback(feedback, 'Antwort gewählt – jetzt prüfen.', 'neutral');
+    }
+
+    question.querySelectorAll('.quiz-option').forEach((option)=>{
+      option.addEventListener('dragstart',(event)=>{
+        event.dataTransfer.setData('text/plain', option.dataset.value);
+        event.dataTransfer.effectAllowed = 'move';
+        option.classList.add('dragging');
+      });
+
+      option.addEventListener('dragend',()=>{
+        option.classList.remove('dragging');
+      });
+
+      // Tipp-Fallback: besonders praktisch auf dem iPad.
+      option.addEventListener('click',()=>{
+        if(option.parentElement === dropzone){
+          options.appendChild(option);
+          if(!dropzone.querySelector('.quiz-option')){
+            dropzone.textContent = 'Antwort hier ablegen';
+          }
+          setQuizFeedback(feedback, '', 'neutral');
+        }else{
+          placeOption(option);
+        }
+      });
+    });
+
+    dropzone.addEventListener('dragover',(event)=>{
+      event.preventDefault();
+      dropzone.classList.add('drag-over');
+      event.dataTransfer.dropEffect = 'move';
+    });
+
+    dropzone.addEventListener('dragleave',()=>{
+      dropzone.classList.remove('drag-over');
+    });
+
+    dropzone.addEventListener('drop',(event)=>{
+      event.preventDefault();
+      dropzone.classList.remove('drag-over');
+
+      const value = event.dataTransfer.getData('text/plain');
+      const option = Array.from(question.querySelectorAll('.quiz-option'))
+        .find(el => el.dataset.value === value);
+
+      if(option) placeOption(option);
+    });
+
+    question.querySelector('.quiz-check').addEventListener('click',()=>{
+      const selected = dropzone.querySelector('.quiz-option');
+
+      if(!selected){
+        setQuizFeedback(feedback, 'Lege zuerst eine Antwort in das Feld.', 'neutral');
+        return;
+      }
+
+      if(selected.dataset.value === question.dataset.correct){
+        setQuizFeedback(feedback, 'Richtig. Diese Beobachtung passt zum idealen Transformator.', 'correct');
+      }else{
+        setQuizFeedback(feedback, 'Noch nicht richtig. Prüfe die Simulation noch einmal.', 'wrong');
+      }
+    });
+
+    question.querySelector('.quiz-clear').addEventListener('click',()=>{
+      resetObservationQuestion(question);
+    });
+  });
+
+  const formulaPool = document.getElementById('formulaPool');
+  const formulaSlots = Array.from(document.querySelectorAll('.formula-slot'));
+  const formulaFeedback = document.getElementById('formulaFeedback');
+
+  function refreshFormulaSlot(slot){
+    if(slot.querySelector('.formula-tile')){
+      slot.classList.add('filled');
+    }else{
+      slot.classList.remove('filled');
+      slot.textContent = '?';
+    }
+  }
+
+  function clearFormula(){
+    formulaSlots.forEach((slot)=>{
+      const tile = slot.querySelector('.formula-tile');
+      if(tile) formulaPool.appendChild(tile);
+      refreshFormulaSlot(slot);
+    });
+    setQuizFeedback(formulaFeedback, '', 'neutral');
+  }
+
+  function putFormulaTile(tile, slot){
+    const current = slot.querySelector('.formula-tile');
+    if(current && current !== tile){
+      formulaPool.appendChild(current);
+    }
+
+    slot.textContent = '';
+    slot.appendChild(tile);
+    refreshFormulaSlot(slot);
+    setQuizFeedback(formulaFeedback, 'Baustein eingesetzt – vervollständige die Formel.', 'neutral');
+  }
+
+  document.querySelectorAll('.formula-tile').forEach((tile)=>{
+    tile.addEventListener('dragstart',(event)=>{
+      event.dataTransfer.setData('text/plain', tile.dataset.token);
+      event.dataTransfer.effectAllowed = 'move';
+    });
+
+    // Tipp-Fallback:
+    // - im Pool: in das erste freie Feld
+    // - in einem Feld: zurück in den Pool
+    tile.addEventListener('click',()=>{
+      if(tile.parentElement.classList.contains('formula-slot')){
+        const oldSlot = tile.parentElement;
+        formulaPool.appendChild(tile);
+        refreshFormulaSlot(oldSlot);
+        setQuizFeedback(formulaFeedback, '', 'neutral');
+        return;
+      }
+
+      const free = formulaSlots.find(slot => !slot.querySelector('.formula-tile'));
+      if(free) putFormulaTile(tile, free);
+    });
+  });
+
+  formulaSlots.forEach((slot)=>{
+    slot.addEventListener('dragover',(event)=>{
+      event.preventDefault();
+      slot.classList.add('drag-over');
+      event.dataTransfer.dropEffect = 'move';
+    });
+
+    slot.addEventListener('dragleave',()=>{
+      slot.classList.remove('drag-over');
+    });
+
+    slot.addEventListener('drop',(event)=>{
+      event.preventDefault();
+      slot.classList.remove('drag-over');
+
+      const token = event.dataTransfer.getData('text/plain');
+      const tile = Array.from(document.querySelectorAll('.formula-tile'))
+        .find(el => el.dataset.token === token);
+
+      if(tile){
+        const oldSlot = tile.parentElement.classList.contains('formula-slot')
+          ? tile.parentElement
+          : null;
+
+        putFormulaTile(tile, slot);
+
+        if(oldSlot && oldSlot !== slot) refreshFormulaSlot(oldSlot);
+      }
+    });
+  });
+
+  document.getElementById('formulaCheck').addEventListener('click',()=>{
+    const tokens = formulaSlots.map(slot=>{
+      const tile = slot.querySelector('.formula-tile');
+      return tile ? tile.dataset.token : null;
+    });
+
+    if(tokens.some(token => !token)){
+      setQuizFeedback(formulaFeedback, 'Setze zuerst alle vier Bausteine ein.', 'neutral');
+      return;
+    }
+
+    // Beide äquivalenten Schreibweisen werden akzeptiert:
+    // U2/U1 = N2/N1 oder U1/U2 = N1/N2.
+    const direct =
+      tokens[0] === 'U2' && tokens[1] === 'U1' &&
+      tokens[2] === 'N2' && tokens[3] === 'N1';
+
+    const reciprocal =
+      tokens[0] === 'U1' && tokens[1] === 'U2' &&
+      tokens[2] === 'N1' && tokens[3] === 'N2';
+
+    if(direct || reciprocal){
+      setQuizFeedback(
+        formulaFeedback,
+        'Richtig! Spannungsverhältnis und Windungsverhältnis sind beim idealen Transformator gleich.',
+        'correct'
+      );
+    }else{
+      setQuizFeedback(
+        formulaFeedback,
+        'Noch nicht richtig. Achte darauf: U₁ gehört zu N₁ und U₂ gehört zu N₂.',
+        'wrong'
+      );
+    }
+  });
+
+  document.getElementById('formulaReset').addEventListener('click', clearFormula);
+
+  document.getElementById('quizResetAll').addEventListener('click',()=>{
+    document.querySelectorAll('.quiz-question').forEach(resetObservationQuestion);
+    clearFormula();
+  });
+
+  renderStaticMath();
+  updateAllRangeVisuals();
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
