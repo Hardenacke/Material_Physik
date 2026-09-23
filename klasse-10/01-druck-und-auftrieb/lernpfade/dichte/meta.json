@@ -1,0 +1,7 @@
+{
+  "title": "Dichte",
+  "description": "Interaktiver Lernpfad zu Masse, Volumen, Dichte, Stoffvergleich und Schwimmvorhersage.",
+  "type": "lernpfad",
+  "visible": true,
+  "order": 10
+}

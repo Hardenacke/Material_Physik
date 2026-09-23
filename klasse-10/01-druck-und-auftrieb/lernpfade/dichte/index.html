@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12364a">
+<title>Dichte &middot; Klasse 10</title>
+<style>
+:root{--ink:#12364a;--deep:#0d2635;--teal:#168f8b;--amber:#f0ad3d;--rose:#d85f61;--bg:#eef5f6;--card:#fff;--muted:#5d6c75;--line:#d8e5e8;--ok:#13795b;--bad:#b33a3a;--shadow:0 14px 38px rgba(18,54,74,.1)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#182832;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}button,input{font:inherit}a{color:inherit}.shell{width:min(1080px,calc(100% - 28px));margin:auto}
+header{background:linear-gradient(135deg,#12364a,#176c78 58%,#2aa876);color:white;padding:18px 0 62px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-weight:850}.home{text-decoration:none;padding:9px 12px;border:1px solid rgba(255,255,255,.26);border-radius:12px;background:rgba(255,255,255,.08)}
+.hero{display:grid;grid-template-columns:1.18fr .82fr;gap:28px;align-items:center;padding-top:46px}.kicker{font-weight:850;color:#d7fff1;font-size:.94rem;text-transform:uppercase;letter-spacing:.08em}h1{font-size:clamp(2.25rem,5.4vw,4.55rem);line-height:1.02;margin:.18em 0 .16em}.subtitle{font-size:clamp(1.05rem,2vw,1.32rem);max-width:730px;color:#edfaff}.level{display:inline-block;margin-top:16px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.13);font-size:.9rem}
+.hero-art{min-height:250px;border-radius:24px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;padding:18px}.balance{width:min(340px,100%);aspect-ratio:1.28;position:relative}.beam{position:absolute;left:9%;right:9%;top:31%;height:9px;background:#e8fbff;border-radius:99px}.stand{position:absolute;left:48%;top:31%;width:4%;height:48%;background:#e8fbff;border-radius:99px}.pan{position:absolute;top:37%;width:34%;height:18%;border:5px solid #e8fbff;border-top:0;border-radius:0 0 60px 60px}.pan.left{left:6%}.pan.right{right:6%}.cube,.sphere{position:absolute;top:18%;background:#ffd166}.cube{left:18%;width:46px;height:46px;border-radius:8px}.sphere{right:20%;width:50px;height:50px;border-radius:50%;background:#7bdff2}.rho{position:absolute;left:0;right:0;bottom:3%;text-align:center;font-size:2.3rem;font-weight:900}
+main{margin-top:-32px;padding-bottom:72px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);box-shadow:var(--shadow);margin-bottom:22px}.card h2{margin:.1em 0 .45em;font-size:clamp(1.42rem,3vw,2rem);color:var(--ink)}.badge{display:inline-flex;align-items:center;gap:8px;font-weight:850;color:#0f625f;background:#e2f7f4;padding:6px 10px;border-radius:999px;font-size:.88rem}.lead{font-size:1.12rem}.question{margin-top:18px;padding:16px 18px;border-left:5px solid var(--amber);background:#fff8e8;border-radius:14px;font-weight:750}
+.idea-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.idea-card{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:17px;border:1px solid #e1eaee;border-radius:18px;background:linear-gradient(180deg,#fff,#f8fbfc)}.idea-no{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#168f8b,#2aa876);color:white;font-weight:900}.idea-card h3{margin:0 0 4px;color:var(--ink)}.idea-card p{margin:0;color:#31434c}.formula{display:inline-block;margin-top:8px;padding:8px 10px;border-radius:10px;background:#edf7f8;font-weight:850;color:#103d50}
+.lab{display:grid;grid-template-columns:1fr 315px;gap:18px;align-items:start}.canvas-wrap{background:#081724;border-radius:18px;overflow:hidden;border:1px solid #213a4a}canvas{display:block;width:100%;aspect-ratio:16/9;height:auto}.controls{padding:16px;background:#f6fafb;border:1px solid var(--line);border-radius:18px}.control{margin:0 0 16px}.control label{display:flex;justify-content:space-between;font-weight:820;margin-bottom:6px}input[type=range]{width:100%;accent-color:var(--teal)}.meter{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.value{padding:12px;border-radius:14px;background:white;border:1px solid var(--line)}.value strong{display:block;color:var(--muted);font-size:.82rem}.value span{font-weight:900;color:var(--ink)}.prediction{padding:13px;border-radius:14px;background:#eaf7f2;border:1px solid #cfeade;font-weight:800;color:#0d5d46}
+.tasks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.task{padding:16px;border-radius:16px;background:#f7fbfc;border:1px solid var(--line)}.task h3{margin:.1em 0 .4em;color:var(--ink);font-size:1.05rem}.task input{width:100%;padding:10px;border:1px solid #cbd9de;border-radius:10px}.smallbtn,.answer{border:1px solid #cad9de;background:white;border-radius:12px;padding:10px 12px;cursor:pointer;font-weight:760}.smallbtn{margin-top:9px}.smallbtn.primary{background:var(--ink);color:white;border-color:var(--ink)}.feedback{min-height:24px;font-weight:800;margin-top:8px}.hint,.solution{display:none;margin-top:8px;color:#465a64}.show{display:block}.quiz{display:grid;gap:16px}.qbox{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fbfdff}.qbox h3{margin:0 0 12px}.answers{display:grid;gap:9px}.answer{text-align:left}.answer.ok{background:#e6f7ef;border-color:#4ba982}.answer.bad{background:#fff0f0;border-color:#d58a8a}.check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-weight:760}.check input{width:22px;height:22px;accent-color:var(--teal)}.takeaway{background:linear-gradient(135deg,#e5f8f4,#fff6df)}.progress{position:sticky;bottom:12px;z-index:20;margin:0 auto;width:min(680px,calc(100% - 24px));background:rgba(13,38,53,.95);color:white;border-radius:18px;padding:10px 14px;box-shadow:0 12px 35px rgba(0,0,0,.25);display:flex;gap:12px;align-items:center}.progressbar{height:10px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;flex:1}.progressbar span{display:block;height:100%;background:linear-gradient(90deg,#45d3b5,#ffd166);width:0;transition:.3s}footer{color:#607181;text-align:center;padding:10px 0 35px}
+@media(max-width:840px){.hero,.lab,.idea-grid,.tasks{grid-template-columns:1fr}.hero-art{min-height:180px}.top{align-items:flex-start}header{padding-bottom:54px}}@media print{.progress,.home,.controls{display:none!important}body{background:white}header{padding-bottom:28px}main{margin-top:0}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <div class="shell top"><div class="brand">Physik &middot; Klasse 10</div><a class="home" href="../../../../index.html">&larr; &Uuml;bersicht</a></div>
+  <div class="shell hero">
+    <div>
+      <div class="kicker">Interaktiver Lernpfad</div>
+      <h1>Dichte</h1>
+      <div class="subtitle">Warum gleich gro&szlig;e K&ouml;rper unterschiedlich schwer sein k&ouml;nnen und wie man Stoffe &uuml;ber Masse und Volumen vergleicht.</div>
+      <div class="level">Sekundarstufe I &middot; Messen &middot; Rechnen &middot; Stoffeigenschaften</div>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="balance"><div class="beam"></div><div class="stand"></div><div class="pan left"></div><div class="pan right"></div><div class="cube"></div><div class="sphere"></div><div class="rho">&rho; = m / V</div></div></div>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="card module">
+    <span class="badge">1 &middot; Einstieg</span>
+    <h2>Ein kleiner W&uuml;rfel kann schwerer wirken als ein gro&szlig;er Block</h2>
+    <p class="lead">Ein St&uuml;ck Aluminium und ein St&uuml;ck Holz k&ouml;nnen das gleiche Volumen haben. Trotzdem zeigt die Waage unterschiedliche Massen. Die Dichte beschreibt genau diesen Unterschied.</p>
+    <div class="question">Leitfrage: Wie kann man aus Masse und Volumen vorhersagen, aus welchem Stoff ein K&ouml;rper bestehen k&ouml;nnte und ob er in Wasser schwimmt?</div>
+    <label class="check"><input type="checkbox" data-done><span>Ich kann die Leitfrage in eigenen Worten wiedergeben.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">2 &middot; Kernideen</span>
+    <h2>Was du &uuml;ber Dichte wissen musst</h2>
+    <div class="idea-grid">
+      <article class="idea-card"><div class="idea-no">1</div><div><h3>Masse</h3><p>Die Masse gibt an, wie viel Materie in einem K&ouml;rper steckt. Sie wird oft in g oder kg gemessen.</p></div></article>
+      <article class="idea-card"><div class="idea-no">2</div><div><h3>Volumen</h3><p>Das Volumen gibt an, wie viel Raum ein K&ouml;rper einnimmt. Bei unregelm&auml;&szlig;igen K&ouml;rpern hilft die Wasserverdr&auml;ngung.</p></div></article>
+      <article class="idea-card"><div class="idea-no">3</div><div><h3>Dichte</h3><p>Die Dichte ist Masse pro Volumen.</p><div class="formula">&rho; = m / V</div></div></article>
+      <article class="idea-card"><div class="idea-no">4</div><div><h3>Stoffeigenschaft</h3><p>Reine Stoffe haben bei gleicher Temperatur eine typische Dichte. Deshalb kann Dichte beim Identifizieren helfen.</p></div></article>
+      <article class="idea-card"><div class="idea-no">5</div><div><h3>Schwimmen und Sinken</h3><p>Ist die mittlere Dichte eines K&ouml;rpers kleiner als die Dichte der Fl&uuml;ssigkeit, kann er schwimmen.</p></div></article>
+      <article class="idea-card"><div class="idea-no">6</div><div><h3>Einheiten</h3><p>H&auml;ufig nutzt man g/cm&sup3; oder kg/m&sup3;. Wasser hat ungef&auml;hr 1 g/cm&sup3; beziehungsweise 1000 kg/m&sup3;.</p></div></article>
+    </div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe die Formel und die Bedeutung der drei Gr&ouml;&szlig;en notiert.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">3 &middot; Dichte-Werkstatt</span>
+    <h2>Masse, Volumen und Dichte ver&auml;ndern</h2>
+    <p>Ver&auml;ndere Masse und Volumen. Beobachte, wie sich die berechnete Dichte, die Stoffvermutung und die Schwimmvorhersage &auml;ndern.</p>
+    <div class="lab">
+      <div class="canvas-wrap"><canvas id="sim" width="900" height="506" aria-label="Dichte-Werkstatt"></canvas></div>
+      <div class="controls">
+        <div class="control"><label>Masse <span id="massLabel">270 g</span></label><input id="mass" type="range" min="20" max="900" value="270"></div>
+        <div class="control"><label>Volumen <span id="volumeLabel">100 cm&sup3;</span></label><input id="volume" type="range" min="20" max="320" value="100"></div>
+        <div class="meter"><div class="value"><strong>Dichte</strong><span id="rhoLabel">2,70 g/cm&sup3;</span></div><div class="value"><strong>Stoffspur</strong><span id="materialLabel">Aluminium</span></div></div>
+        <div class="prediction" id="floatLabel">Sinkt in Wasser.</div>
+      </div>
+    </div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe je einen Fall f&uuml;r Schwimmen und Sinken gefunden.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">4 &middot; Rechnen</span>
+    <h2>Drei kurze &Uuml;bungen</h2>
+    <div class="tasks">
+      <article class="task" data-answer="2.7" data-tol="0.05"><h3>1. Dichte berechnen</h3><p>m = 270 g, V = 100 cm&sup3;</p><input inputmode="decimal" placeholder="Ergebnis in g/cm3"><button class="smallbtn primary check-answer">pr&uuml;fen</button><button class="smallbtn hintbtn">Tipp</button><div class="feedback"></div><div class="hint">Setze in &rho; = m / V ein.</div><div class="solution">L&ouml;sung: &rho; = 2,7 g/cm&sup3;.</div></article>
+      <article class="task" data-answer="70" data-tol="1"><h3>2. Masse berechnen</h3><p>&rho; = 0,70 g/cm&sup3;, V = 100 cm&sup3;</p><input inputmode="decimal" placeholder="Ergebnis in g"><button class="smallbtn primary check-answer">pr&uuml;fen</button><button class="smallbtn hintbtn">Tipp</button><div class="feedback"></div><div class="hint">Stelle um: m = &rho; &middot; V.</div><div class="solution">L&ouml;sung: m = 70 g.</div></article>
+      <article class="task" data-answer="50" data-tol="1"><h3>3. Volumen berechnen</h3><p>m = 390 g, &rho; = 7,8 g/cm&sup3;</p><input inputmode="decimal" placeholder="Ergebnis in cm3"><button class="smallbtn primary check-answer">pr&uuml;fen</button><button class="smallbtn hintbtn">Tipp</button><div class="feedback"></div><div class="hint">Stelle um: V = m / &rho;.</div><div class="solution">L&ouml;sung: V = 50 cm&sup3;.</div></article>
+    </div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe mindestens zwei Rechenaufgaben richtig gel&ouml;st.</span></label>
+  </section>
+
+  <section class="card module">
+    <span class="badge">5 &middot; Wissen pr&uuml;fen</span>
+    <h2>Kontrollfragen</h2>
+    <div class="quiz" id="quiz"></div>
+    <label class="check"><input type="checkbox" data-done><span>Ich habe die Kontrollfragen bearbeitet.</span></label>
+  </section>
+
+  <section class="card takeaway module">
+    <span class="badge">6 &middot; Sicherung</span>
+    <h2>Merksatz</h2>
+    <p><strong>Die Dichte &rho; gibt an, welche Masse ein Stoff pro Volumen besitzt: &rho; = m / V.</strong> Bei gleicher Stoffart bleibt die Dichte gleich, auch wenn das St&uuml;ck gr&ouml;&szlig;er oder kleiner ist.</p>
+    <ul><li>Gro&szlig;e Masse bei kleinem Volumen bedeutet gro&szlig;e Dichte.</li><li>Kleine Dichte gegen&uuml;ber Wasser spricht f&uuml;r Schwimmen.</li><li>Dichtewerte sind ein Werkzeug zum Vergleichen und Identifizieren von Stoffen.</li></ul>
+    <label class="check"><input type="checkbox" data-done><span>Ich kann den Merksatz ohne Nachlesen erkl&auml;ren.</span></label>
+  </section>
+</main>
+<div class="progress"><strong id="ptxt">0 / 6</strong><div class="progressbar"><span id="pbar"></span></div></div>
+<footer class="shell">Offline-f&auml;higer Lernpfad &middot; Fortschritt wird nur lokal im Browser gespeichert</footer>
+
+<script>
+const KEY="physik-dichte:"+location.pathname;
+const materials=[["Kork",0.24],["Holz",0.70],["Wasser",1.00],["Aluminium",2.70],["Eisen",7.80],["Kupfer",8.90]];
+const mass=document.getElementById("mass"),volume=document.getElementById("volume"),canvas=document.getElementById("sim"),ctx=canvas.getContext("2d");
+function fmt(n,d=2){return n.toLocaleString("de-DE",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function nearest(rho){return materials.reduce((best,item)=>Math.abs(item[1]-rho)<Math.abs(best[1]-rho)?item:best,materials[0])}
+function line(x1,y1,x2,y2,col="#fff",w=3){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=col;ctx.lineWidth=w;ctx.stroke()}
+function txt(s,x,y,size=18,col="#e8f2ff",align="left"){ctx.font="750 "+size+"px system-ui";ctx.fillStyle=col;ctx.textAlign=align;ctx.fillText(s,x,y)}
+function draw(){
+  const m=+mass.value,V=+volume.value,rho=m/V,mat=nearest(rho),floats=rho<1;
+  massLabel.textContent=m+" g";volumeLabel.innerHTML=V+" cm&sup3;";rhoLabel.textContent=fmt(rho)+" g/cm&sup3;";materialLabel.textContent=mat[0];floatLabel.textContent=floats?"Schwimmt in Wasser.":"Sinkt in Wasser.";
+  ctx.fillStyle="#081724";ctx.fillRect(0,0,900,506);for(let x=0;x<900;x+=60)line(x,0,x,506,"rgba(255,255,255,.04)",1);for(let y=0;y<506;y+=60)line(0,y,900,y,"rgba(255,255,255,.04)",1);
+  ctx.fillStyle="#1b6f96";ctx.fillRect(85,185,315,235);ctx.fillStyle="rgba(91,216,232,.55)";ctx.fillRect(85,185,315,235);txt("Wasser: 1,00 g/cm3",242,456,18,"#d8fbff","center");
+  const size=Math.sqrt(V/320)*132+34,blockX=242-size/2,blockY=floats?215-size*.2:385-size;ctx.fillStyle=floats?"#ffd166":"#d85f61";ctx.fillRect(blockX,blockY,size,size);ctx.strokeStyle="#fff";ctx.lineWidth=3;ctx.strokeRect(blockX,blockY,size,size);txt(floats?"schwimmt":"sinkt",242,160,24,"#fff","center");
+  line(510,408,810,408,"#dbe9ef",5);line(660,150,660,408,"#dbe9ef",5);line(565,176,755,176,"#dbe9ef",6);ctx.fillStyle="#dbe9ef";ctx.fillRect(545,220,80,36);ctx.fillStyle="#ffd166";ctx.fillRect(560,196,50,24);txt(m+" g",585,246,17,"#102a35","center");
+  const bar=Math.min(250,rho/9*250);ctx.fillStyle="#263b4a";ctx.fillRect(560,330,250,28);ctx.fillStyle="#45d3b5";ctx.fillRect(560,330,bar,28);txt("Dichte "+fmt(rho)+" g/cm3",685,316,20,"#fff","center");txt("nahe bei: "+mat[0]+" ("+fmt(mat[1])+" g/cm3)",685,386,18,"#ffd166","center");
+}
+mass.addEventListener("input",draw);volume.addEventListener("input",draw);draw();
+
+function parse(v){const n=Number(String(v).trim().replace(",",".").replace(/\s/g,""));return Number.isFinite(n)?n:NaN}
+document.querySelectorAll(".task").forEach(task=>{
+  const input=task.querySelector("input"),fb=task.querySelector(".feedback"),hint=task.querySelector(".hint"),sol=task.querySelector(".solution");
+  task.querySelector(".hintbtn").addEventListener("click",()=>hint.classList.toggle("show"));
+  task.querySelector(".check-answer").addEventListener("click",()=>{
+    const ok=Math.abs(parse(input.value)-Number(task.dataset.answer))<=Number(task.dataset.tol);
+    fb.textContent=ok?"Richtig.":"Noch nicht. Pruefe Formel und Einheit.";fb.style.color=ok?"#13795b":"#b33a3a";sol.classList.toggle("show",ok);
+  });
+});
+const QUIZ=[
+  {q:"Was beschreibt die Dichte?",a:["Masse pro Volumen","Volumen pro Zeit","Kraft pro Flaeche"],correct:0},
+  {q:"Ein Koerper hat 80 g Masse und 100 cm3 Volumen. Was gilt fuer Wasser?",a:["Er schwimmt wahrscheinlich.","Er sinkt sicher, weil 80 g schwer ist.","Die Dichte kann man nicht berechnen."],correct:0},
+  {q:"Warum ist Dichte eine Stoffeigenschaft?",a:["Weil gleichartige Stoffproben bei gleicher Temperatur denselben Dichtewert haben.","Weil sie immer mit der Masse waechst.","Weil sie keine Einheit hat."],correct:0}
+];
+const quiz=document.getElementById("quiz");
+QUIZ.forEach((item,qi)=>{
+  const box=document.createElement("div");box.className="qbox";box.innerHTML=`<h3>${qi+1}. ${item.q}</h3><div class="answers"></div><div class="feedback"></div>`;
+  const ans=box.querySelector(".answers"),fb=box.querySelector(".feedback");
+  item.a.forEach((a,i)=>{const btn=document.createElement("button");btn.className="answer";btn.textContent=a;btn.addEventListener("click",()=>{[...ans.children].forEach(x=>x.classList.remove("ok","bad"));const ok=i===item.correct;btn.classList.add(ok?"ok":"bad");fb.textContent=ok?"Richtig.":"Noch nicht. Lies die passende Kernidee noch einmal.";fb.style.color=ok?"#13795b":"#b33a3a"});ans.appendChild(btn)});
+  quiz.appendChild(box);
+});
+let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const checks=[...document.querySelectorAll("[data-done]")];
+checks.forEach((ch,i)=>{ch.checked=!!saved[i];ch.addEventListener("change",()=>{saved[i]=ch.checked;localStorage.setItem(KEY,JSON.stringify(saved));progress()})});
+function progress(){const n=checks.filter(x=>x.checked).length;ptxt.textContent=n+" / "+checks.length;pbar.style.width=(100*n/checks.length)+"%"}progress();
+</script>
+</body>
+</html>
