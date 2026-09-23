@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Druckwaage – Versuchsaufbau</title>
+<style>
+:root {
+  color-scheme: light;
+  --ink: #153b4f;
+  --muted: #536a74;
+  --line: #c9dbe3;
+  --blue: #006783;
+  --blue-soft: #e7f3f7;
+  --orange: #a54e17;
+  --orange-soft: #fff0e3;
+  --paper: #fff;
+  --background: #f1f6f8;
+  --green: #17694f;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--background);
+  line-height: 1.45;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid #be5d19; outline-offset: 3px; }
+.wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+header { background: var(--ink); color: white; padding: 18px 0; }
+header .wrap { display: block; }
+h1 { margin: 0; font-size: clamp(1.35rem, 3vw, 1.8rem); letter-spacing: -.03em; }
+main { padding: 26px 0 34px; }
+.intro { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 18px; }
+.intro h2 { margin: 0 0 5px; font-size: 1.2rem; }
+.intro p { margin: 0; max-width: 690px; color: var(--muted); }
+.controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; }
+.scenarios { display: flex; gap: 7px; flex-wrap: wrap; }
+.btn { min-height: 44px; padding: 9px 13px; border: 1px solid #a8c2cc; border-radius: 8px; color: var(--ink); background: var(--paper); font-weight: 650; }
+.btn:hover { filter: brightness(.96); }
+.btn[aria-pressed="true"], .btn.primary { color: white; background: var(--blue); border-color: var(--blue); }
+.toggle { min-width: 185px; }
+.slider-note { color: var(--muted); font-size: .9rem; }
+.slider-field { margin-top: 12px; }
+.slider-field label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: .9rem; color: var(--muted); }
+.slider-field output { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+input[type="range"] { display: block; width: 100%; height: 34px; margin: 3px 0 0; accent-color: var(--blue); touch-action: pan-y; }
+.readout.right input[type="range"] { accent-color: var(--orange); }
+.reset { margin-left: auto; }
+.task { margin: 0 0 16px; padding: 14px 18px; border-left: 4px solid var(--blue); border-radius: 10px; background: var(--blue-soft); }
+.task h2 { margin: 0 0 5px; font-size: 1rem; }
+.task p { margin: 0; color: var(--ink); }
+.task p + p { margin-top: 5px; color: var(--muted); font-size: .9rem; }
+
+.lab { background: var(--paper); border: 1px solid var(--line); border-radius: 15px; overflow: hidden; }
+.lab-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 15px 20px 12px; border-bottom: 1px solid var(--line); }
+.lab-head h3 { margin: 0; font-size: 1rem; }
+.figure { padding: 8px 12px 0; background: linear-gradient(#fff, #f9fcfd); }
+svg { display: block; width: 100%; height: auto; }
+svg text { font-family: inherit; fill: var(--ink); }
+.svg-muted { fill: var(--muted); font-size: 14px; }
+.svg-label { font-size: 16px; font-weight: 650; }
+.svg-value { font-size: 15px; }
+.piston-label { font-size: 14px; font-weight: 650; }
+.pressure-label { font-size: 15px; font-weight: 700; fill: var(--green); }
+.caption { margin: 0; padding: 8px 20px 15px; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+.readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 16px 20px 20px; border-top: 1px solid var(--line); }
+.readout { padding: 13px 15px; border-radius: 10px; background: var(--blue-soft); }
+.readout.right { background: var(--orange-soft); }
+.readout h4 { margin: 0 0 8px; font-size: .96rem; }
+.readout dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 15px; margin: 0; font-variant-numeric: tabular-nums; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-weight: 700; text-align: right; }
+.pressure-note { min-height: 1.4em; margin: 10px 0 0; color: var(--green); font-weight: 650; }
+.legend { display: flex; gap: 17px; flex-wrap: wrap; padding: 0 20px 18px; color: var(--muted); font-size: .84rem; }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 7px; border-radius: 2px; background: var(--blue); }
+.legend span:nth-child(2)::before { background: var(--orange); }
+.legend span:nth-child(3)::before { border-radius: 50%; background: var(--green); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 700px) {
+  .wrap { width: min(100% - 22px, 620px); }
+  .intro { display: block; }
+  .controls { align-items: stretch; }
+  .toggle { width: 100%; }
+  .scenarios { width: 100%; }
+  .scenarios .btn { flex: 1; min-width: 0; padding-inline: 8px; }
+  .figure { padding-inline: 0; }
+  .readouts { grid-template-columns: 1fr; padding-inline: 13px; }
+  .caption, .legend, .lab-head { padding-inline: 13px; }
+  svg text { font-size: 13px; }
+  .svg-muted { font-size: 11px; }
+}
+@media (max-width: 390px) {
+  .scenarios .btn { font-size: .82rem; }
+  .lab-head { align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Druckwaage</h1>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro" aria-labelledby="title">
+    <div>
+      <h2 id="title">Zwei verbundene Kolben mit unterschiedlichen Flächen</h2>
+      <p>Verändere Masse und Querschnittsfläche mit den Schiebereglern. Der Druck wird auf Wunsch direkt am Aufbau eingeblendet.</p>
+    </div>
+  </section>
+
+  <section class="task" aria-labelledby="task-title">
+    <h2 id="task-title">Arbeitsauftrag</h2>
+    <p>Untersuche, für welche Kombinationen von Gewichtskraft <strong>F</strong> und Querschnittsfläche <strong>A</strong> die Druckwaage im Gleichgewicht bleibt. Verändere dazu die vier Schieberegler und notiere passende Wertepaare.</p>
+    <p>Beobachte dabei besonders die Stellung der Kolben und die angezeigten Druckwerte.</p>
+    <p><strong>Hinweis:</strong> Berechne aus der eingestellten Masse selbst die Gewichtskraft mit <em>F = m · g</em> und <em>g ≈ 10 N/kg</em>. Die Gewichtskraft wird nicht automatisch angezeigt.</p>
+  </section>
+
+  <div class="controls">
+    <span class="slider-note">Masse und Querschnittsfläche beider Kolben können unabhängig verändert werden.</span>
+    <button class="btn toggle" id="pressure-toggle" type="button" aria-pressed="false">○ Druckwerte einblenden</button>
+    <button class="btn reset" id="reset" type="button">Startwerte</button>
+  </div>
+
+  <section class="lab" aria-labelledby="setup-title">
+    <div class="lab-head">
+      <h3 id="setup-title">Versuchsaufbau</h3>
+    </div>
+    <div class="figure">
+      <svg id="apparatus" viewBox="0 0 820 475" role="img" aria-labelledby="apparatus-title apparatus-desc">
+        <title id="apparatus-title">Druckwaage mit einem kleinen und einem großen Kolben</title>
+        <desc id="apparatus-desc">Zwei oben offene, senkrechte Zylinder sind unten mit einem Schlauch verbunden. In beiden offenen Kolbenmulden liegen zunächst 20 Gramm in kleinen Massestücken. Die Flächen betragen 1,0 und 2,0 Quadratzentimeter.</desc>
+        <defs>
+          <linearGradient id="gas" x1="0" x2="1">
+            <stop offset="0" stop-color="#d4edf5"/>
+            <stop offset=".5" stop-color="#f4fbfd"/>
+            <stop offset="1" stop-color="#c4e6ef"/>
+          </linearGradient>
+          <pattern id="bench" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 12L12 0" stroke="#d2e0e6" stroke-width="1"/></pattern>
+        </defs>
+        <rect x="20" y="427" width="780" height="14" fill="url(#bench)"/>
+        <path d="M20 426H800" stroke="#7e9aa7" stroke-width="2"/>
+        <path d="M205 360V389Q205 407 223 407H597Q615 407 615 389V360" fill="none" stroke="#78a1b3" stroke-width="14"/>
+        <path d="M205 360V389Q205 399 220 399H600Q615 399 615 389V360" fill="none" stroke="#e1f4fa" stroke-width="8"/>
+        <text x="410" y="395" text-anchor="middle" class="svg-muted">eingeschlossene Luft · luftdichte Verbindung</text>
+
+        <g id="left-cylinder-shape"></g>
+        <g id="right-cylinder-shape"></g>
+        <g id="left-moving"></g>
+        <g id="right-moving"></g>
+
+        <g id="pressure-overlay" hidden aria-hidden="true"></g>
+        <text x="205" y="37" text-anchor="middle" class="svg-label">Kolben 1</text>
+        <text id="area-label-one" x="205" y="60" text-anchor="middle" class="svg-value">A₁ = 1,0 cm²</text>
+        <text x="610" y="37" text-anchor="middle" class="svg-label">Kolben 2</text>
+        <text id="area-label-two" x="610" y="60" text-anchor="middle" class="svg-value">A₂ = 2,0 cm²</text>
+      </svg>
+    </div>
+    <p class="caption">Die Zylinder passen ihre Breite an die gewählte Querschnittsfläche an. Die offenen Kolben nehmen die kleinen Massestücke auf; jedes Quadrat entspricht 5 g. Die Gewichtskraft wirkt nach unten, der Druck der eingeschlossenen Luft auf die Kolbenflächen nach oben.</p>
+    <div class="readouts" aria-label="Werte des Versuchsaufbaus">
+      <article class="readout">
+        <h4>Kolben 1 · linke Fläche</h4>
+        <div class="slider-field">
+          <label for="mass-one-slider">Masse m₁ <output id="mass-one-slider-value">20 g</output></label>
+          <input id="mass-one-slider" type="range" min="0" max="300" step="5" value="20" data-kind="mass" data-index="0">
+        </div>
+        <div class="slider-field">
+          <label for="area-one-slider">Querschnittsfläche A₁ <output id="area-one-slider-value">1,0 cm²</output></label>
+          <input id="area-one-slider" type="range" min="0.5" max="10" step="0.1" value="1" data-kind="area" data-index="0">
+        </div>
+        <p class="pressure-note" id="pressure-one" aria-live="polite"></p>
+      </article>
+      <article class="readout right">
+        <h4>Kolben 2 · rechte Fläche</h4>
+        <div class="slider-field">
+          <label for="mass-two-slider">Masse m₂ <output id="mass-two-slider-value">20 g</output></label>
+          <input id="mass-two-slider" type="range" min="0" max="300" step="5" value="20" data-kind="mass" data-index="1">
+        </div>
+        <div class="slider-field">
+          <label for="area-two-slider">Querschnittsfläche A₂ <output id="area-two-slider-value">2,0 cm²</output></label>
+          <input id="area-two-slider" type="range" min="0.5" max="10" step="0.1" value="2" data-kind="area" data-index="1">
+        </div>
+        <p class="pressure-note" id="pressure-two" aria-live="polite"></p>
+      </article>
+    </div>
+    <div class="legend" aria-label="Legende"><span>Kolben 1</span><span>Kolben 2</span><span>Druckanzeige</span></div>
+  </section>
+  <p class="sr-only" id="live-description" aria-live="polite"></p>
+</main>
+
+<script>
+'use strict';
+(() => {
+  const G = 10;
+  const state = { masses: [20, 20], areas: [1, 2] };
+  let pressureVisible = false;
+  const $ = id => document.getElementById(id);
+  const fmt = (value, digits = 2) => Number(value).toLocaleString('de-DE', { maximumFractionDigits: digits, minimumFractionDigits: digits });
+  const pressure = (massGrams, areaCm2) => massGrams * G * 0.001 / (areaCm2 * 0.0001);
+  const geometry = (side, area) => {
+    const cx = side === 'left' ? 205 : 610;
+    const width = Math.min(270, Math.max(48, 94 * Math.sqrt(area)));
+    return { cx, width, x: cx - width / 2 };
+  };
+  const movement = () => {
+    const p1 = pressure(state.masses[0], state.areas[0]);
+    const p2 = pressure(state.masses[1], state.areas[1]);
+    const difference = p2 - p1;
+    if (Math.abs(difference) < 25) return { shift: [0, 0] };
+    if (difference > 0) return { shift: [-20, 22] };
+    return { shift: [20, -22] };
+  };
+  const cylinderGroup = (side, area) => {
+    const { x, width } = geometry(side, area);
+    const legLeft = x + width * .24;
+    const legRight = x + width * .76;
+    return `<path d="M${x} 100V365H${x + width}V100" fill="url(#gas)" stroke="#5f8798" stroke-width="3" stroke-linejoin="round"/><path d="M${x} 114V350M${x + width} 114V350" stroke="#a2bbc6" stroke-width="2"/><path d="M${x - 8} 365H${x + width + 8}" stroke="#557789" stroke-width="6"/><path d="M${legLeft} 365V420M${legRight} 365V420" stroke="#9ab2bd" stroke-width="4"/>`;
+  };
+  const movingGroup = (side, mass, area, dy, color, soft) => {
+    const { cx, width, x } = geometry(side, area);
+    const square = 6;
+    const gap = 1;
+    const columns = Math.max(2, Math.floor((width - 18) / (square + gap)));
+    const count = Math.round(mass / 5);
+    const rows = Math.ceil(count / columns);
+    let blocks = '';
+    for (let index = 0; index < count; index += 1) {
+      const row = Math.floor(index / columns);
+      const column = index % columns;
+      const rowCount = Math.min(columns, count - row * columns);
+      const rowWidth = rowCount * square + (rowCount - 1) * gap;
+      const blockX = cx - rowWidth / 2 + column * (square + gap);
+      const blockY = 177 - (row + 1) * (square + gap);
+      blocks += `<rect x="${blockX}" y="${blockY}" width="${square}" height="${square}" rx="1" fill="${soft}" stroke="${color}" stroke-width="1.2"/>`;
+    }
+    const labelY = Math.max(78, 177 - rows * (square + gap) - 7);
+    return `<g transform="translate(0 ${dy})"><rect x="${x - 7}" y="177" width="${width + 14}" height="12" rx="3" fill="${color}"/><rect x="${cx - 5}" y="189" width="10" height="58" fill="#9eb7c2"/>${blocks}<text x="${cx}" y="${labelY}" text-anchor="middle" class="piston-label">m = ${fmt(mass, 0)} g</text></g>`;
+  };
+  const renderPressureOverlay = (move) => {
+    const p1 = pressure(state.masses[0], state.areas[0]);
+    const p2 = pressure(state.masses[1], state.areas[1]);
+    if (!pressureVisible) {
+      $('pressure-overlay').innerHTML = '';
+      $('pressure-overlay').hidden = true;
+      $('pressure-overlay').setAttribute('aria-hidden', 'true');
+      $('pressure-one').textContent = '';
+      $('pressure-two').textContent = '';
+      return;
+    }
+    $('pressure-overlay').hidden = false;
+    $('pressure-overlay').setAttribute('aria-hidden', 'false');
+    const pressureLabel = (cx, dy, label, value) => {
+      const y = 262 + dy;
+      return `<text x="${cx}" y="${y}" text-anchor="middle" class="pressure-label">${label} = ${fmt(value, 0)} Pa</text>`;
+    };
+    $('pressure-overlay').innerHTML = `${pressureLabel(205, move.shift[0], 'p₁', p1)}${pressureLabel(610, move.shift[1], 'p₂', p2)}`;
+    $('pressure-one').textContent = `Druck p₁ = ${fmt(p1, 0)} Pa`;
+    $('pressure-two').textContent = `Druck p₂ = ${fmt(p2, 0)} Pa`;
+  };
+  const render = () => {
+    const move = movement();
+    const [m1, m2] = state.masses;
+    const [a1, a2] = state.areas;
+    $('left-cylinder-shape').innerHTML = cylinderGroup('left', a1);
+    $('right-cylinder-shape').innerHTML = cylinderGroup('right', a2);
+    $('left-moving').innerHTML = movingGroup('left', m1, a1, move.shift[0], '#006783', '#d6ebf2');
+    $('right-moving').innerHTML = movingGroup('right', m2, a2, move.shift[1], '#a54e17', '#f6dfc9');
+    $('mass-one-slider').value = m1;
+    $('mass-two-slider').value = m2;
+    $('area-one-slider').value = a1;
+    $('area-two-slider').value = a2;
+    $('mass-one-slider-value').textContent = `${fmt(m1, 0)} g`;
+    $('mass-two-slider-value').textContent = `${fmt(m2, 0)} g`;
+    $('area-one-slider-value').textContent = `${fmt(a1, 1)} cm²`;
+    $('area-two-slider-value').textContent = `${fmt(a2, 1)} cm²`;
+    $('area-label-one').textContent = `A₁ = ${fmt(a1, 1)} cm²`;
+    $('area-label-two').textContent = `A₂ = ${fmt(a2, 1)} cm²`;
+    $('apparatus-desc').textContent = `Zwei verbundene Zylinder. Kolben 1 trägt ${fmt(m1, 0)} Gramm bei einer Fläche von ${fmt(a1, 1)} Quadratzentimetern. Kolben 2 trägt ${fmt(m2, 0)} Gramm bei einer Fläche von ${fmt(a2, 1)} Quadratzentimetern.`;
+    $('live-description').textContent = 'Die Kolbenstellung wird an die eingestellten Werte angepasst.';
+    renderPressureOverlay(move);
+  };
+  document.querySelectorAll('input[type="range"]').forEach(input => input.addEventListener('input', () => {
+    const index = Number(input.dataset.index);
+    state[input.dataset.kind === 'mass' ? 'masses' : 'areas'][index] = Number(input.value);
+    render();
+  }));
+  $('pressure-toggle').addEventListener('click', () => {
+    pressureVisible = !pressureVisible;
+    $('pressure-toggle').setAttribute('aria-pressed', String(pressureVisible));
+    $('pressure-toggle').textContent = pressureVisible ? '● Druckwerte ausblenden' : '○ Druckwerte einblenden';
+    render();
+  });
+  $('reset').addEventListener('click', () => {
+    state.masses = [20, 20];
+    state.areas = [1, 2];
+    render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

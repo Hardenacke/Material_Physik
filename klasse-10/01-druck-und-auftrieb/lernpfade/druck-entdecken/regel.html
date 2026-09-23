@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Druck entdecken · 4 Regel</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@hyperframes/player/dist/hyperframes-player.global.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<div class="topline"><div><h1>Druck entdecken</h1><p>Aus deinen Messwerten entsteht jetzt die physikalische Regel.</p></div><span class="step-pill">Schritt 4 von 5</span></div>
+</div></header>
+<div class="pathbar"><nav class="wrap pathnav" aria-label="Lernpfad"><a href="index.html" data-step-link="0" class="">1 · Wiederholen</a><a href="erkundung.html" data-step-link="1" class="">2 · Erkunden</a><a href="auswertung.html" data-step-link="2" class="">3 · Auswerten</a><a href="regel.html" data-step-link="3" class="current">4 · Regel</a><a href="uebungen.html" data-step-link="4" class="">5 · Üben</a></nav></div>
+<main class="wrap">
+<section class="hero">
+  <span class="badge">Begriffsbildung</span>
+  <h2>Druck beschreibt, wie eine Kraft auf eine Fläche verteilt ist.</h2>
+  <p>Wähle die Formel, die zu deinem Muster aus der Tabelle passt.</p>
+</section>
+
+<section class="card">
+  <h3>1. Welche Formel beschreibt den Zusammenhang?</h3>
+  <div class="rule-grid" id="rules">
+    <button data-rule="wrong">p = F · A</button>
+    <button data-rule="correct">p = F / A</button>
+    <button data-rule="wrong">p = A / F</button>
+  </div>
+  <div class="feedback" id="rule-fb" aria-live="polite"></div>
+  <div class="reveal" id="reveal">
+    <div class="merksatz">Der Druck ist die senkrecht wirkende Kraft geteilt durch die belastete Fläche.</div>
+    <div class="formula">p = F / A</div>
+    <div class="unit-grid"><strong>p</strong><span>Druck</span><strong>F</strong><span>Kraft</span><strong>A</strong><span>Fläche</span><strong>1 Pa</strong><span>1 N/m²</span></div>
+    <p><strong>Je größer F bei gleicher Fläche, desto größer p.</strong><br><strong>Je größer A bei gleicher Kraft, desto kleiner p.</strong></p>
+  </div>
+
+  <div class="hf-card">
+    <div class="hf-head"><strong>HyperFrame · gleicher Druck</strong><span>Zusammenhang sichtbar machen</span></div>
+    <div class="hf-shell" data-hf-src="hyperframes/druckvergleich.html"><div class="hf-loading">Interaktiver HyperFrame wird geladen …</div></div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>2. Kurzer Transfer</h3>
+  <div class="question">
+    <p>Auf Kolben 1 wirken 2 N auf 2 cm². Welche Kraft muss auf einen Kolben mit 5 cm² wirken, damit der Druck gleich ist?</p>
+    <div class="choice-row">
+      <button class="choice" data-correct="false">2 N</button>
+      <button class="choice" data-correct="true">5 N</button>
+      <button class="choice" data-correct="false">10 N</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+  <div class="notice"><strong>Vergleiche zum Schluss:</strong> Passt die gefundene Regel zu deiner Vermutung aus der Erkundung?</div>
+  <div class="page-actions">
+    <a class="btn secondary" href="auswertung.html">← Zurück</a>
+    <span class="unlock-note" id="unlock-note">Wähle die richtige Formel und löse die Transferfrage.</span>
+    <button class="btn" id="finish" disabled>Weiter zu den Übungen →</button>
+  </div>
+</section>
+</main>
+<footer class="wrap"><button class="btn secondary" data-reset>Fortschritt zurücksetzen</button></footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  LP.guardPage(3);
+  const fb=document.getElementById('rule-fb'), reveal=document.getElementById('reveal'), finish=document.getElementById('finish'),note=document.getElementById('unlock-note');
+  let ruleOK=LP.state.rule;
+  if(ruleOK) reveal.classList.add('show');
+
+  function refresh(){
+    const transfer=LP.allQuestionsCorrect(document.querySelectorAll('.card')[1]);
+    LP.enableWhen(finish,ruleOK&&transfer,note,'Wähle die richtige Formel und löse die Transferfrage.');
+  }
+  document.querySelectorAll('#rules button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#rules button').forEach(x=>x.classList.remove('correct','wrong'));
+    if(b.dataset.rule==='correct'){
+      b.classList.add('correct');fb.textContent='✓ Genau. Bei Gleichgewicht war F/A auf beiden Seiten gleich.';fb.className='feedback ok';
+      reveal.classList.add('show');ruleOK=true;LP.state.rule=true;LP.save();
+    }else{
+      b.classList.add('wrong');fb.textContent='Vergleiche noch einmal die beiden Spalten F/A aus deiner Auswertung.';fb.className='feedback no';
+    }
+    refresh();
+  }));
+  document.addEventListener('lp:changed',refresh); refresh();
+  finish.addEventListener('click',()=>{
+    LP.markDone(3,true);
+    location.href='uebungen.html';
+  });
+});
+</script>
+</body></html>

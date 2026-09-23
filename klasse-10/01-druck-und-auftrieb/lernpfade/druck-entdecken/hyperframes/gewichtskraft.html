@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071e29;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#ecf7fa}
+.stage{width:1600px;height:900px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 25%,#124d62 0,#071e29 58%,#04141c 100%)}
+.title{position:absolute;left:95px;top:70px;font-size:58px;font-weight:850;letter-spacing:-.03em}
+.sub{position:absolute;left:100px;top:150px;font-size:30px;color:#b8d9e3}
+.piston{position:absolute;left:555px;top:340px;width:490px;height:80px;background:#dcebf0;border-radius:12px 12px 6px 6px;box-shadow:0 16px 40px #0005}
+.rod{position:absolute;left:775px;top:180px;width:50px;height:170px;background:#9bbbc7;border-radius:14px 14px 0 0}
+.mass{position:absolute;left:645px;top:210px;width:310px;height:110px;background:#f09b55;border:8px solid #ffc38f;border-radius:18px;display:grid;place-items:center;font-size:38px;font-weight:850;color:#352113}
+.surface{position:absolute;left:490px;top:420px;width:620px;height:300px;border-left:7px solid #397c93;border-right:7px solid #397c93;border-bottom:7px solid #397c93;border-radius:0 0 28px 28px;background:linear-gradient(#0b708a88,#0a5f7788)}
+.arrow{position:absolute;left:782px;top:325px;width:14px;height:180px;background:#f2d55b;border-radius:10px;transform-origin:50% 0;animation:pulse 1.8s ease-in-out infinite}
+.arrow:after{content:"";position:absolute;left:-21px;bottom:-4px;border-left:28px solid transparent;border-right:28px solid transparent;border-top:40px solid #f2d55b}
+.label{position:absolute;left:850px;top:500px;font-size:34px;font-weight:800;color:#ffe889}
+.note{position:absolute;left:102px;bottom:80px;font-size:30px;color:#d9edf3;max-width:1200px}
+@keyframes pulse{0%,100%{transform:scaleY(.78)}50%{transform:scaleY(1.05)}}
+</style>
+</head>
+<body>
+<div data-composition-id="gewichtskraft" data-start="0" data-duration="8" data-label="Gewichtskraft am Kolben" data-width="1600" data-height="900" class="stage">
+  <div class="title">Das Massestück belastet den Kolben.</div>
+  <div class="sub">Welche Kraft wirkt dabei nach unten?</div>
+  <div class="rod"></div><div class="mass">Massestück</div>
+  <div class="piston"></div><div class="surface"></div>
+  <div class="arrow"></div><div class="label">Kraft nach unten</div>
+  <div class="note">Beobachte nur die Wirkung. Die genaue Regel für den Druck entwickelst du später selbst.</div>
+</div>
+</body>
+</html>

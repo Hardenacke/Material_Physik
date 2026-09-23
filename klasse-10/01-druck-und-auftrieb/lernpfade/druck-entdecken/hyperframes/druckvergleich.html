@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071e29;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#eef8fb}
+.stage{width:1600px;height:900px;position:relative;overflow:hidden;background:linear-gradient(135deg,#071e29,#0c4357)}
+.title{position:absolute;left:90px;top:62px;font-size:56px;font-weight:850;letter-spacing:-.03em}
+.sub{position:absolute;left:95px;top:145px;font-size:28px;color:#b9d9e2}
+.panel{position:absolute;top:245px;width:590px;height:470px;border:2px solid #5d8fa0;border-radius:28px;background:#0a2936cc;padding:35px}
+.p1{left:120px}.p2{right:120px}
+.read{font-size:36px;font-weight:820;margin-bottom:22px}
+.bar{height:70px;border-radius:14px;background:#dcebf0;position:relative;margin:28px auto 16px}
+.bar.small{width:220px}.bar.large{width:440px}
+.down{width:12px;height:125px;background:#f2d55b;border-radius:10px;margin:0 auto;position:relative}
+.down:after{content:"";position:absolute;left:-18px;bottom:-5px;border-left:24px solid transparent;border-right:24px solid transparent;border-top:34px solid #f2d55b}
+.eq{position:absolute;left:50%;top:460px;transform:translate(-50%,-50%);font-size:90px;font-weight:900;color:#76d1ac}
+.caption{font-size:31px;color:#d5eaf0;text-align:center;margin-top:25px}
+.highlight{color:#78d8b0;font-weight:850}
+</style>
+</head>
+<body>
+<div data-composition-id="druckvergleich" data-start="0" data-duration="8" data-label="Gleicher Druck bei passender Kraft und Fläche" data-width="1600" data-height="900" class="stage">
+  <div class="title">Gleichgewicht bedeutet: derselbe Druck auf beiden Seiten.</div>
+  <div class="sub">Kraft und Fläche können verschieden sein – entscheidend ist ihr Verhältnis.</div>
+  <div class="panel p1">
+    <div class="read">2 N auf 2 cm²</div>
+    <div class="down"></div><div class="bar small"></div>
+    <div class="caption"><span class="highlight">1 N/cm²</span></div>
+  </div>
+  <div class="eq">=</div>
+  <div class="panel p2">
+    <div class="read">5 N auf 5 cm²</div>
+    <div class="down"></div><div class="bar large"></div>
+    <div class="caption"><span class="highlight">1 N/cm²</span></div>
+  </div>
+</div>
+</body>
+</html>

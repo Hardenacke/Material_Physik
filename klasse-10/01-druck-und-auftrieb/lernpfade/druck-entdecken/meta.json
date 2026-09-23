@@ -1,0 +1,7 @@
+{
+  "title": "Druck entdecken",
+  "description": "Mehrseitiger Lernpfad zur Druckformel mit Vorwissen, Druckwaagen-Simulation, Auswertung, Regelbildung und Übungen.",
+  "type": "lernpfad",
+  "visible": true,
+  "order": 12
+}

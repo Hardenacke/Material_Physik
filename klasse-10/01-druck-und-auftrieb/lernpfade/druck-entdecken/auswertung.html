@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Druck entdecken · 3 Auswerten</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<div class="topline"><div><h1>Druck entdecken</h1><p>Ordne deine Messwerte und suche ein gemeinsames Muster.</p></div><span class="step-pill">Schritt 3 von 5</span></div>
+</div></header>
+<div class="pathbar"><nav class="wrap pathnav" aria-label="Lernpfad"><a href="index.html" data-step-link="0" class="">1 · Wiederholen</a><a href="erkundung.html" data-step-link="1" class="">2 · Erkunden</a><a href="auswertung.html" data-step-link="2" class="current">3 · Auswerten</a><a href="regel.html" data-step-link="3" class="">4 · Regel</a><a href="uebungen.html" data-step-link="4" class="">5 · Üben</a></nav></div>
+<main class="wrap">
+<section class="hero">
+  <span class="badge">Auswertung</span>
+  <h2>Welche Größe ist bei Gleichgewicht auf beiden Seiten gleich?</h2>
+  <p>Trage deine Werte ein. Die Tabelle berechnet den Quotienten aus Kraft und Fläche.</p>
+</section>
+
+<section class="card">
+  <h3>1. Messwerte eintragen</h3>
+  <div class="table-wrap">
+    <table><thead>
+      <tr><th rowspan="2">Versuch</th><th colspan="4">Kolben 1</th><th colspan="4">Kolben 2</th><th rowspan="2">Prüfung</th></tr>
+      <tr><th>m₁ [g]</th><th>A₁ [cm²]</th><th>F₁ [N]</th><th>F₁/A₁ [N/cm²]</th><th>m₂ [g]</th><th>A₂ [cm²]</th><th>F₂ [N]</th><th>F₂/A₂ [N/cm²]</th></tr>
+    </thead><tbody id="tbody">
+
+<tr data-row="0">
+<td>1</td>
+<td><input inputmode="decimal" data-k="m1"></td><td><input inputmode="decimal" data-k="a1"></td><td><input inputmode="decimal" data-k="f1"></td><td class="out" data-o="q1">–</td>
+<td><input inputmode="decimal" data-k="m2"></td><td><input inputmode="decimal" data-k="a2"></td><td><input inputmode="decimal" data-k="f2"></td><td class="out" data-o="q2">–</td>
+<td><button class="rowcheck">prüfen</button><div class="rowstatus"></div></td>
+</tr>
+<tr data-row="1">
+<td>2</td>
+<td><input inputmode="decimal" data-k="m1"></td><td><input inputmode="decimal" data-k="a1"></td><td><input inputmode="decimal" data-k="f1"></td><td class="out" data-o="q1">–</td>
+<td><input inputmode="decimal" data-k="m2"></td><td><input inputmode="decimal" data-k="a2"></td><td><input inputmode="decimal" data-k="f2"></td><td class="out" data-o="q2">–</td>
+<td><button class="rowcheck">prüfen</button><div class="rowstatus"></div></td>
+</tr>
+<tr data-row="2">
+<td>3</td>
+<td><input inputmode="decimal" data-k="m1"></td><td><input inputmode="decimal" data-k="a1"></td><td><input inputmode="decimal" data-k="f1"></td><td class="out" data-o="q1">–</td>
+<td><input inputmode="decimal" data-k="m2"></td><td><input inputmode="decimal" data-k="a2"></td><td><input inputmode="decimal" data-k="f2"></td><td class="out" data-o="q2">–</td>
+<td><button class="rowcheck">prüfen</button><div class="rowstatus"></div></td>
+</tr>
+<tr data-row="3">
+<td>4</td>
+<td><input inputmode="decimal" data-k="m1"></td><td><input inputmode="decimal" data-k="a1"></td><td><input inputmode="decimal" data-k="f1"></td><td class="out" data-o="q1">–</td>
+<td><input inputmode="decimal" data-k="m2"></td><td><input inputmode="decimal" data-k="a2"></td><td><input inputmode="decimal" data-k="f2"></td><td class="out" data-o="q2">–</td>
+<td><button class="rowcheck">prüfen</button><div class="rowstatus"></div></td>
+</tr>
+    </tbody></table>
+  </div>
+  <div class="actions"><button class="btn" id="calc">F/A berechnen</button><button class="btn secondary" id="clear">Tabelle leeren</button></div>
+
+  <h4>2. Formuliere das Muster</h4>
+  <input type="text" id="pattern" placeholder="Bei Gleichgewicht ist …">
+  <div class="page-actions">
+    <a class="btn secondary" href="erkundung.html">← Zurück</a>
+    <span class="unlock-note" id="unlock-note">Mindestens drei vollständige Gleichgewichtszeilen und eine Beobachtung sind nötig.</span>
+    <button class="btn" id="next" disabled>Weiter zur Regel →</button>
+  </div>
+</section>
+</main>
+<footer class="wrap"><button class="btn secondary" data-reset>Fortschritt zurücksetzen</button></footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  LP.guardPage(2);
+  const rows=[...document.querySelectorAll('#tbody tr')];
+  const pattern=document.getElementById('pattern'), next=document.getElementById('next'), note=document.getElementById('unlock-note');
+
+  function loadRows(){
+    rows.forEach((tr,i)=>{
+      const data=LP.state.rows[i]||{};
+      tr.querySelectorAll('input[data-k]').forEach(inp=>inp.value=data[inp.dataset.k]||'');
+    });
+    pattern.value=LP.state.pattern||'';
+  }
+  function saveRows(){
+    LP.state.rows=rows.map(tr=>{
+      const o={}; tr.querySelectorAll('input[data-k]').forEach(inp=>o[inp.dataset.k]=inp.value); return o;
+    });
+    LP.state.pattern=pattern.value; LP.save();
+  }
+  function calcRow(tr){
+    const g=k=>LP.parseDE(tr.querySelector(`[data-k="${k}"]`).value);
+    const f1=g('f1'),a1=g('a1'),f2=g('f2'),a2=g('a2');
+    const q1=Number.isFinite(f1)&&Number.isFinite(a1)&&a1>0?f1/a1:NaN;
+    const q2=Number.isFinite(f2)&&Number.isFinite(a2)&&a2>0?f2/a2:NaN;
+    tr.querySelector('[data-o="q1"]').textContent=Number.isFinite(q1)?LP.fmt(q1):'–';
+    tr.querySelector('[data-o="q2"]').textContent=Number.isFinite(q2)?LP.fmt(q2):'–';
+    return {q1,q2};
+  }
+  function checkRow(tr){
+    const s=tr.querySelector('.rowstatus'),{q1,q2}=calcRow(tr);
+    if(!Number.isFinite(q1)||!Number.isFinite(q2)){s.textContent='Werte fehlen';s.style.color='var(--red)';return;}
+    const rel=Math.abs(q1-q2)/Math.max(Math.abs(q1),Math.abs(q2),.001);
+    s.textContent=rel<=.03?'✓ gleich':'verschieden';
+    s.style.color=rel<=.03?'var(--green)':'var(--red)';
+  }
+  function completeRows(){
+    return rows.filter(tr=>[...tr.querySelectorAll('input[data-k]')].every(inp=>inp.value.trim()!=='')).length;
+  }
+  function refresh(){
+    saveRows();
+    LP.enableWhen(next,completeRows()>=3 && pattern.value.trim().length>=10,note,'Mindestens drei vollständige Zeilen und eine Beobachtung sind nötig.');
+  }
+
+  rows.forEach(tr=>{
+    tr.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',refresh));
+    tr.querySelector('.rowcheck').addEventListener('click',()=>{checkRow(tr);refresh();});
+  });
+  document.getElementById('calc').addEventListener('click',()=>{rows.forEach(calcRow);refresh();});
+  document.getElementById('clear').addEventListener('click',()=>{
+    rows.forEach(tr=>{tr.querySelectorAll('input').forEach(i=>i.value='');tr.querySelectorAll('.out').forEach(x=>x.textContent='–');tr.querySelector('.rowstatus').textContent='';});
+    refresh();
+  });
+  pattern.addEventListener('input',refresh);
+  loadRows(); rows.forEach(calcRow); refresh();
+  next.addEventListener('click',()=>{LP.markDone(2,true);location.href='regel.html';});
+});
+</script>
+</body></html>

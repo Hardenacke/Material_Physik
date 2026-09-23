@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Druck entdecken · 1 Wiederholen</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@hyperframes/player/dist/hyperframes-player.global.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <div class="topline"><div><h1>Druck entdecken</h1><p>Vom bekannten Kraftbegriff zur neuen physikalischen Größe.</p></div><span class="step-pill">Schritt 1 von 5</span></div>
+</div></header>
+<div class="pathbar"><nav class="wrap pathnav" aria-label="Lernpfad"><a href="index.html" data-step-link="0" class="current">1 · Wiederholen</a><a href="erkundung.html" data-step-link="1" class="">2 · Erkunden</a><a href="auswertung.html" data-step-link="2" class="">3 · Auswerten</a><a href="regel.html" data-step-link="3" class="">4 · Regel</a><a href="uebungen.html" data-step-link="4" class="">5 · Üben</a></nav></div>
+<main class="wrap">
+<section class="hero">
+  <span class="badge">Vorwissen aktivieren</span>
+  <h2>Bevor wir Druck untersuchen, brauchen wir Kraft und Fläche.</h2>
+  <p>Bearbeite die beiden kurzen Fragen. Erst danach wird der nächste Abschnitt freigeschaltet.</p>
+</section>
+
+<section class="card">
+  <h3>1. Kraft und Fläche wiederholen</h3>
+  <div class="grid2">
+    <div class="knowledge"><strong>Kraft F</strong>Eine Kraft kann die Bewegung oder die Form eines Körpers verändern.<div class="formula">Einheit: 1 N</div></div>
+    <div class="knowledge"><strong>Fläche A</strong>Die Fläche beschreibt, wie groß die belastete Oberfläche ist.<div class="formula">z. B. cm² oder m²</div></div>
+  </div>
+
+  <div class="hf-card">
+    <div class="hf-head"><strong>HyperFrame · Kraft am Kolben</strong><span>visuelle Wiederholung</span></div>
+    <div class="hf-shell" data-hf-src="hyperframes/gewichtskraft.html"><div class="hf-loading">Interaktiver HyperFrame wird geladen …</div></div>
+  </div>
+
+  <div class="question">
+    <p>Welche Kraft wirkt durch ein aufgelegtes Massestück nach unten auf den Kolben?</p>
+    <div class="choice-row">
+      <button class="choice" data-correct="false">Magnetkraft</button>
+      <button class="choice" data-correct="true">Gewichtskraft</button>
+      <button class="choice" data-correct="false">Reibungskraft</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+
+  <div class="question">
+    <p>Wie berechnest du die Gewichtskraft aus der Masse?</p>
+    <div class="choice-row">
+      <button class="choice" data-correct="true">F<sub>G</sub> = m · g</button>
+      <button class="choice" data-correct="false">F<sub>G</sub> = m / g</button>
+      <button class="choice" data-correct="false">F<sub>G</sub> = A · g</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+
+  <div class="taskbox">Für diesen Lernpfad darfst du mit <strong>g ≈ 10 N/kg</strong> rechnen. Beispiel: 100 g = 0,100 kg → F<sub>G</sub> ≈ 1,0 N.</div>
+
+  <div class="page-actions">
+    <span class="unlock-note" id="unlock-note">Bearbeite beide Fragen richtig.</span>
+    <button class="btn" id="next" disabled>Weiter zur Erkundung →</button>
+  </div>
+</section>
+</main>
+<footer class="wrap"><button class="btn secondary" data-reset>Fortschritt zurücksetzen</button></footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const next=document.getElementById('next'), note=document.getElementById('unlock-note');
+  const refresh=()=>LP.enableWhen(next,LP.allQuestionsCorrect(document),note,'Bearbeite beide Fragen richtig.');
+  document.addEventListener('lp:changed',refresh); refresh();
+  next.addEventListener('click',()=>{ LP.markDone(0,true); location.href='erkundung.html'; });
+});
+</script>
+</body></html>

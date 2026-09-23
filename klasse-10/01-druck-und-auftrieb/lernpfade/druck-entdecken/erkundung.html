@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Druck entdecken · 2 Erkunden</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<div class="topline"><div><h1>Druck entdecken</h1><p>Jetzt untersuchst du die Druckwaage selbst.</p></div><span class="step-pill">Schritt 2 von 5</span></div>
+</div></header>
+<div class="pathbar"><nav class="wrap pathnav" aria-label="Lernpfad"><a href="index.html" data-step-link="0" class="">1 · Wiederholen</a><a href="erkundung.html" data-step-link="1" class="current">2 · Erkunden</a><a href="auswertung.html" data-step-link="2" class="">3 · Auswerten</a><a href="regel.html" data-step-link="3" class="">4 · Regel</a><a href="uebungen.html" data-step-link="4" class="">5 · Üben</a></nav></div>
+<main class="wrap">
+<section class="hero">
+  <span class="badge">Erkundung</span>
+  <h2>Wann bleibt die Druckwaage im Gleichgewicht?</h2>
+  <p>Vermute zuerst, experimentiere anschließend und suche verschiedene Gleichgewichtseinstellungen.</p>
+</section>
+
+<section class="card">
+  <h3>1. Vermutung</h3>
+  <label for="hyp"><strong>Ich vermute, dass Gleichgewicht entsteht, wenn …</strong></label>
+  <textarea id="hyp" placeholder="Formuliere deine Vermutung in einem vollständigen Satz."></textarea>
+</section>
+
+<section class="card">
+  <h3>2. Erkunde die Druckwaage</h3>
+  <div class="taskbox"><strong>Arbeitsauftrag</strong>
+  <ol>
+    <li>Verändere Masse und Fläche beider Kolben.</li>
+    <li>Finde mindestens <strong>drei unterschiedliche Einstellungen</strong>, bei denen die Kolben im Gleichgewicht sind.</li>
+    <li>Notiere die Werte auf einem Blatt oder direkt im nächsten Schritt.</li>
+    <li>Berechne aus jeder Masse später die Gewichtskraft mit F = m · g.</li>
+  </ol></div>
+
+  <div class="sim-wrap"><iframe src="Druckwaage_Simulation.html" title="Simulation Druckwaage"></iframe></div>
+
+  <label class="checkline"><input type="checkbox" id="three"><span>Ich habe mindestens drei verschiedene Gleichgewichtseinstellungen gefunden.</span></label>
+
+  <div class="page-actions">
+    <a class="btn secondary" href="index.html">← Zurück</a>
+    <span class="unlock-note" id="unlock-note">Formuliere eine Vermutung und finde drei Gleichgewichte.</span>
+    <button class="btn" id="next" disabled>Weiter zur Auswertung →</button>
+  </div>
+</section>
+</main>
+<footer class="wrap"><button class="btn secondary" data-reset>Fortschritt zurücksetzen</button></footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  LP.guardPage(1);
+  const hyp=document.getElementById('hyp'), three=document.getElementById('three');
+  const next=document.getElementById('next'), note=document.getElementById('unlock-note');
+  hyp.value=LP.state.hyp||'';
+  const refresh=()=>{
+    LP.state.hyp=hyp.value; LP.save();
+    LP.enableWhen(next,hyp.value.trim().length>=12 && three.checked,note,'Formuliere eine Vermutung und bestätige drei Gleichgewichtseinstellungen.');
+  };
+  hyp.addEventListener('input',refresh); three.addEventListener('change',refresh); refresh();
+  next.addEventListener('click',()=>{ LP.markDone(1,true); location.href='auswertung.html'; });
+});
+</script>
+</body></html>
