@@ -75,6 +75,60 @@ const LP = (() => {
   function fmt(n){
     return Number(n).toLocaleString('de-DE',{maximumFractionDigits:3});
   }
+  function texNumber(n, digits=3){
+    const value = Number(n).toLocaleString('de-DE', {
+      maximumFractionDigits:digits,
+      useGrouping:false
+    });
+    return value.replace(',', '{,}');
+  }
+
+  function loadKatex(){
+    if(window.katex) return Promise.resolve(window.katex);
+
+    if(!document.querySelector('link[data-katex-css]')){
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css';
+      link.dataset.katexCss = 'true';
+      document.head.appendChild(link);
+    }
+
+    const existing = document.querySelector('script[data-katex-js]');
+    if(existing){
+      return new Promise(resolve => {
+        existing.addEventListener('load', () => resolve(window.katex), { once:true });
+        existing.addEventListener('error', () => resolve(null), { once:true });
+      });
+    }
+
+    return new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';
+      script.defer = true;
+      script.dataset.katexJs = 'true';
+      script.onload = () => resolve(window.katex);
+      script.onerror = () => resolve(null);
+      document.head.appendChild(script);
+    });
+  }
+
+  function renderKatex(){
+    loadKatex().then(katex => {
+      if(!katex) return;
+      document.querySelectorAll('[data-katex]').forEach(el => {
+        if(el.dataset.katexReady) return;
+        try{
+          katex.render(el.dataset.katex, el, {
+            throwOnError:false,
+            displayMode: el.dataset.katexMode === 'display',
+            output:'html'
+          });
+          el.dataset.katexReady = 'true';
+        }catch(e){}
+      });
+    });
+  }
 
   function initChoices(scope=document){
     scope.querySelectorAll('.question').forEach(q => {
@@ -196,6 +250,7 @@ const LP = (() => {
     updateNav();
     initChoices();
     initHyperFrames();
+    renderKatex();
     initTeacherAccess();
     document.querySelectorAll('[data-reset]').forEach(b=>b.addEventListener('click',resetAll));
     document.querySelectorAll('a[data-step-link]').forEach(a=>{
@@ -208,6 +263,6 @@ const LP = (() => {
 
   return {
     state,save,markDone,unlocked,updateNav,guardPage,enableWhen,
-    parseDE,fmt,initChoices,allQuestionsCorrect,resetAll,unlockAll
+    parseDE,fmt,texNumber,initChoices,allQuestionsCorrect,resetAll,unlockAll,renderKatex
   };
 })();

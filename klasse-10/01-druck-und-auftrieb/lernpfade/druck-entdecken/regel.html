@@ -22,16 +22,16 @@
 <section class="card">
   <h3>1. Welche Formel beschreibt den Zusammenhang?</h3>
   <div class="rule-grid" id="rules">
-    <button data-rule="wrong">p = F · A</button>
-    <button data-rule="correct">p = F / A</button>
-    <button data-rule="wrong">p = A / F</button>
+    <button data-rule="wrong"><span data-katex="p=F\cdot A">p = F · A</span></button>
+    <button data-rule="correct"><span data-katex="p=\frac{F}{A}">p = F / A</span></button>
+    <button data-rule="wrong"><span data-katex="p=\frac{A}{F}">p = A / F</span></button>
   </div>
   <div class="feedback" id="rule-fb" aria-live="polite"></div>
   <div class="reveal" id="reveal">
     <div class="merksatz">Der Druck ist die senkrecht wirkende Kraft geteilt durch die belastete Fläche.</div>
-    <div class="formula">p = F / A</div>
-    <div class="unit-grid"><strong>p</strong><span>Druck</span><strong>F</strong><span>Kraft</span><strong>A</strong><span>Fläche</span><strong>1 Pa</strong><span>1 N/m²</span></div>
-    <p><strong>Je größer F bei gleicher Fläche, desto größer p.</strong><br><strong>Je größer A bei gleicher Kraft, desto kleiner p.</strong></p>
+    <div class="formula" data-katex="p=\frac{F}{A}">p = F / A</div>
+    <div class="unit-grid"><strong data-katex="p">p</strong><span>Druck</span><strong data-katex="F">F</strong><span>Kraft</span><strong data-katex="A">A</strong><span>Fläche</span><strong data-katex="1\,\mathrm{Pa}">1 Pa</strong><span data-katex="1\,\mathrm{N/m^2}">1 N/m²</span></div>
+    <p><strong>Je größer <span data-katex="F">F</span> bei gleicher Fläche, desto größer <span data-katex="p">p</span>.</strong><br><strong>Je größer <span data-katex="A">A</span> bei gleicher Kraft, desto kleiner <span data-katex="p">p</span>.</strong></p>
   </div>
 
   <div class="hf-card">
@@ -43,11 +43,11 @@
 <section class="card">
   <h3>2. Kurzer Transfer</h3>
   <div class="question">
-    <p>Auf Kolben 1 wirken 2 N auf 2 cm². Welche Kraft muss auf einen Kolben mit 5 cm² wirken, damit der Druck gleich ist?</p>
+    <p>Auf Kolben <span data-katex="1">1</span> wirken <span data-katex="2\,\mathrm{N}">2 N</span> auf <span data-katex="2\,\mathrm{cm^2}">2 cm²</span>. Welche Kraft muss auf einen Kolben mit <span data-katex="5\,\mathrm{cm^2}">5 cm²</span> wirken, damit der Druck gleich ist?</p>
     <div class="choice-row">
-      <button class="choice" data-correct="false">2 N</button>
-      <button class="choice" data-correct="true">5 N</button>
-      <button class="choice" data-correct="false">10 N</button>
+      <button class="choice" data-correct="false"><span data-katex="2\,\mathrm{N}">2 N</span></button>
+      <button class="choice" data-correct="true"><span data-katex="5\,\mathrm{N}">5 N</span></button>
+      <button class="choice" data-correct="false"><span data-katex="10\,\mathrm{N}">10 N</span></button>
     </div><div class="feedback" aria-live="polite"></div>
   </div>
   <div class="notice"><strong>Vergleiche zum Schluss:</strong> Passt die gefundene Regel zu deinen Gleichgewichtseinstellungen aus der Erkundung?</div>

@@ -3,22 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" defer></script>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071e29;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#eef8fb}
-.stage{width:1600px;height:900px;position:relative;overflow:hidden;background:linear-gradient(135deg,#071e29,#0c4357)}
-.title{position:absolute;left:90px;top:62px;font-size:56px;font-weight:850;letter-spacing:-.03em}
-.sub{position:absolute;left:95px;top:145px;font-size:28px;color:#b9d9e2}
-.panel{position:absolute;top:245px;width:590px;height:470px;border:2px solid #5d8fa0;border-radius:28px;background:#0a2936cc;padding:35px}
+.stage{width:1600px;height:900px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 10%,rgba(42,183,196,.34),transparent 450px),linear-gradient(135deg,#081b25,#0c4357 58%,#0b594f)}
+.stage:before{content:"";position:absolute;inset:44px;border:1px solid rgba(255,255,255,.12);border-radius:34px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.title{position:absolute;left:90px;top:62px;font-size:56px;font-weight:850;letter-spacing:0}
+.sub{position:absolute;left:95px;top:145px;font-size:28px;color:#c5e4eb}
+.panel{position:absolute;top:245px;width:590px;height:470px;border:1px solid rgba(255,255,255,.18);border-radius:32px;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.06));padding:35px;box-shadow:0 24px 70px rgba(0,0,0,.32);backdrop-filter:blur(8px)}
 .p1{left:120px}.p2{right:120px}
 .read{font-size:36px;font-weight:820;margin-bottom:22px}
-.bar{height:70px;border-radius:14px;background:#dcebf0;position:relative;margin:28px auto 16px}
+.bar{height:70px;border-radius:18px;background:linear-gradient(180deg,#f5fbfd,#cfe3e9);position:relative;margin:28px auto 16px;box-shadow:0 18px 36px #0004}
 .bar.small{width:220px}.bar.large{width:440px}
-.down{width:12px;height:125px;background:#f2d55b;border-radius:10px;margin:0 auto;position:relative}
-.down:after{content:"";position:absolute;left:-18px;bottom:-5px;border-left:24px solid transparent;border-right:24px solid transparent;border-top:34px solid #f2d55b}
-.eq{position:absolute;left:50%;top:460px;transform:translate(-50%,-50%);font-size:90px;font-weight:900;color:#76d1ac}
+.down{width:12px;height:125px;background:linear-gradient(180deg,#ffe995,#f2b84b);border-radius:10px;margin:0 auto;position:relative;box-shadow:0 0 24px #f2b84b99}
+.down:after{content:"";position:absolute;left:-18px;bottom:-5px;border-left:24px solid transparent;border-right:24px solid transparent;border-top:34px solid #f2b84b}
+.eq{position:absolute;left:50%;top:460px;transform:translate(-50%,-50%);font-size:90px;font-weight:900;color:#90e4bf;text-shadow:0 0 30px rgba(144,228,191,.55)}
 .caption{font-size:31px;color:#d5eaf0;text-align:center;margin-top:25px}
-.highlight{color:#78d8b0;font-weight:850}
+.highlight{display:inline-block;color:#90e4bf;font-weight:850;background:rgba(144,228,191,.10);border:1px solid rgba(144,228,191,.22);border-radius:16px;padding:9px 14px}
 </style>
 </head>
 <body>
@@ -26,16 +29,25 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071e29;fon
   <div class="title">Gleichgewicht bedeutet: derselbe Druck auf beiden Seiten.</div>
   <div class="sub">Kraft und Fläche können verschieden sein – entscheidend ist ihr Verhältnis.</div>
   <div class="panel p1">
-    <div class="read">2 N auf 2 cm²</div>
+    <div class="read" data-katex="2\,\mathrm{N}\ \text{auf}\ 2\,\mathrm{cm^2}">2 N auf 2 cm²</div>
     <div class="down"></div><div class="bar small"></div>
-    <div class="caption"><span class="highlight">1 N/cm²</span></div>
+    <div class="caption"><span class="highlight" data-katex="1\,\mathrm{N/cm^2}">1 N/cm²</span></div>
   </div>
-  <div class="eq">=</div>
+  <div class="eq" data-katex="=">=</div>
   <div class="panel p2">
-    <div class="read">5 N auf 5 cm²</div>
+    <div class="read" data-katex="5\,\mathrm{N}\ \text{auf}\ 5\,\mathrm{cm^2}">5 N auf 5 cm²</div>
     <div class="down"></div><div class="bar large"></div>
-    <div class="caption"><span class="highlight">1 N/cm²</span></div>
+    <div class="caption"><span class="highlight" data-katex="1\,\mathrm{N/cm^2}">1 N/cm²</span></div>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const render=()=>document.querySelectorAll('[data-katex]').forEach(el=>{
+    if(!window.katex) return;
+    katex.render(el.dataset.katex,el,{throwOnError:false});
+  });
+  if(window.katex) render(); else window.addEventListener('load',render,{once:true});
+});
+</script>
 </body>
 </html>

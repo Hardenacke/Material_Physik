@@ -6,17 +6,18 @@
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071e29;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#ecf7fa}
-.stage{width:1600px;height:900px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 25%,#124d62 0,#071e29 58%,#04141c 100%)}
-.title{position:absolute;left:95px;top:70px;font-size:58px;font-weight:850;letter-spacing:-.03em}
-.sub{position:absolute;left:100px;top:150px;font-size:30px;color:#b8d9e3}
-.piston{position:absolute;left:555px;top:340px;width:490px;height:80px;background:#dcebf0;border-radius:12px 12px 6px 6px;box-shadow:0 16px 40px #0005}
-.rod{position:absolute;left:775px;top:180px;width:50px;height:170px;background:#9bbbc7;border-radius:14px 14px 0 0}
-.mass{position:absolute;left:645px;top:210px;width:310px;height:110px;background:#f09b55;border:8px solid #ffc38f;border-radius:18px;display:grid;place-items:center;font-size:38px;font-weight:850;color:#352113}
-.surface{position:absolute;left:490px;top:420px;width:620px;height:300px;border-left:7px solid #397c93;border-right:7px solid #397c93;border-bottom:7px solid #397c93;border-radius:0 0 28px 28px;background:linear-gradient(#0b708a88,#0a5f7788)}
-.arrow{position:absolute;left:782px;top:325px;width:14px;height:180px;background:#f2d55b;border-radius:10px;transform-origin:50% 0;animation:pulse 1.8s ease-in-out infinite}
-.arrow:after{content:"";position:absolute;left:-21px;bottom:-4px;border-left:28px solid transparent;border-right:28px solid transparent;border-top:40px solid #f2d55b}
-.label{position:absolute;left:850px;top:500px;font-size:34px;font-weight:800;color:#ffe889}
-.note{position:absolute;left:102px;bottom:80px;font-size:30px;color:#d9edf3;max-width:1200px}
+.stage{width:1600px;height:900px;position:relative;overflow:hidden;background:radial-gradient(circle at 78% 18%,rgba(42,183,196,.38),transparent 420px),linear-gradient(135deg,#081b25,#0b3b4a 58%,#0b594f)}
+.stage:before{content:"";position:absolute;inset:44px;border:1px solid rgba(255,255,255,.12);border-radius:34px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.title{position:absolute;left:95px;top:70px;font-size:58px;font-weight:850;letter-spacing:0;max-width:820px}
+.sub{position:absolute;left:100px;top:154px;font-size:30px;color:#c5e4eb}
+.piston{position:absolute;left:555px;top:340px;width:490px;height:80px;background:linear-gradient(180deg,#f5fbfd,#cfe3e9);border:2px solid #ffffff88;border-radius:18px 18px 8px 8px;box-shadow:0 24px 58px #0007}
+.rod{position:absolute;left:775px;top:180px;width:50px;height:170px;background:linear-gradient(90deg,#86aebb,#d4e8ed,#86aebb);border-radius:16px 16px 0 0}
+.mass{position:absolute;left:645px;top:210px;width:310px;height:110px;background:linear-gradient(135deg,#f2b04c,#e5793c);border:2px solid #ffd9a9;border-radius:22px;display:grid;place-items:center;font-size:38px;font-weight:850;color:#33210f;box-shadow:0 18px 40px #0005}
+.surface{position:absolute;left:490px;top:420px;width:620px;height:300px;border-left:8px solid #5fb7c8;border-right:8px solid #5fb7c8;border-bottom:8px solid #5fb7c8;border-radius:0 0 32px 32px;background:linear-gradient(#1b9bb766,#0d6f8666)}
+.arrow{position:absolute;left:782px;top:325px;width:14px;height:180px;background:linear-gradient(180deg,#ffe995,#f2b84b);border-radius:10px;transform-origin:50% 0;animation:pulse 1.8s ease-in-out infinite;box-shadow:0 0 24px #f2b84b99}
+.arrow:after{content:"";position:absolute;left:-21px;bottom:-4px;border-left:28px solid transparent;border-right:28px solid transparent;border-top:40px solid #f2b84b}
+.label{position:absolute;left:850px;top:500px;font-size:34px;font-weight:800;color:#ffe995}
+.note{position:absolute;left:102px;bottom:80px;font-size:30px;color:#d9edf3;max-width:1200px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px 22px;backdrop-filter:blur(8px)}
 @keyframes pulse{0%,100%{transform:scaleY(.78)}50%{transform:scaleY(1.05)}}
 </style>
 </head>

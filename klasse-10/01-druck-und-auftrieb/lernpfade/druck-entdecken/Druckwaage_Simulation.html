@@ -95,6 +95,92 @@ svg text { font-family: inherit; fill: var(--ink); }
   .lab-head { align-items: start; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+/* Modern lab surface */
+:root {
+  --ink: #12313d;
+  --muted: #617986;
+  --line: #d7e6ea;
+  --blue: #006f88;
+  --blue-soft: #e8f7f9;
+  --orange: #9a5b20;
+  --orange-soft: #fff4e6;
+  --paper: #ffffff;
+  --background: #eef5f6;
+  --green: #127052;
+}
+body {
+  background:
+    radial-gradient(circle at 18% 0, rgba(0,111,136,.15), transparent 30rem),
+    radial-gradient(circle at 82% 4%, rgba(242,176,76,.15), transparent 24rem),
+    linear-gradient(180deg,#f9fcfd,#eef5f6);
+}
+header {
+  background: linear-gradient(135deg,#12313d,#006f88);
+  box-shadow: 0 14px 36px rgba(18,49,61,.22);
+}
+h1 { letter-spacing: 0; }
+.intro h2 { font-size: clamp(1.2rem, 3vw, 1.55rem); }
+.task,.lab,.readout {
+  box-shadow: 0 16px 42px rgba(18,49,61,.09);
+}
+.task {
+  border: 1px solid #cbe9ee;
+  border-left: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#e8f7f9,#f8fcfd);
+}
+.btn {
+  border-radius: 999px;
+  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(18,49,61,.12);
+}
+.btn[aria-pressed="true"], .btn.primary {
+  background: linear-gradient(135deg,#006f88,#1597a8);
+  box-shadow: 0 10px 24px rgba(0,111,136,.24);
+}
+.lab {
+  border-radius: 20px;
+  border-color: rgba(215,230,234,.96);
+  background: rgba(255,255,255,.92);
+}
+.lab-head {
+  background: linear-gradient(180deg,#fff,#f6fbfc);
+}
+.figure {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(21,151,168,.13), transparent 24rem),
+    linear-gradient(180deg,#fafdfe,#eef7f8);
+}
+.caption {
+  background: #fbfefe;
+}
+.readouts {
+  background: linear-gradient(180deg,#fff,#f8fbfc);
+}
+.readout {
+  border: 1px solid #cbe9ee;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#e8f7f9,#f9fdfd);
+}
+.readout.right {
+  border-color: #f0d7ba;
+  background: linear-gradient(135deg,#fff4e6,#fffdf8);
+}
+input[type="range"] {
+  accent-color: #1597a8;
+}
+.readout.right input[type="range"] {
+  accent-color: #c97926;
+}
+.pressure-note {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(18,112,82,.08);
+}
 </style>
 </head>
 <body>
