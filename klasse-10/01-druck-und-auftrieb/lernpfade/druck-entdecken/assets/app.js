@@ -5,6 +5,7 @@ const LP = (() => {
   const key = 'druck-lernpfad-v2';
   const state = {
     done: [false,false,false,false,false],
+    teacher: false,
     pattern: '',
     rows: [],
     rule: false
@@ -14,6 +15,7 @@ const LP = (() => {
     try{
       const saved = JSON.parse(localStorage.getItem(key) || '{}');
       if(Array.isArray(saved.done)) state.done = saved.done.slice(0,5);
+      if(typeof saved.teacher === 'boolean') state.teacher = saved.teacher;
       if(typeof saved.pattern === 'string') state.pattern = saved.pattern;
       if(Array.isArray(saved.rows)) state.rows = saved.rows;
       if(typeof saved.rule === 'boolean') state.rule = saved.rule;
@@ -32,6 +34,7 @@ const LP = (() => {
   }
 
   function unlocked(i){
+    if(state.teacher) return true;
     if(i === 0) return true;
     return !!state.done[i-1];
   }
@@ -59,10 +62,10 @@ const LP = (() => {
   }
 
   function enableWhen(btn, condition, note, text='Bearbeite zuerst die Aufgabe oben.'){
-    const ok = !!condition;
+    const ok = state.teacher || !!condition;
     btn.disabled = !ok;
     btn.classList.toggle('disabled', !ok);
-    if(note) note.textContent = ok ? '✓ Dieser Schritt ist bereit.' : text;
+    if(note) note.textContent = ok ? (state.teacher ? '✓ Durch Lehrerzugang freigeschaltet.' : '✓ Dieser Schritt ist bereit.') : text;
   }
 
   function parseDE(v){
@@ -90,6 +93,7 @@ const LP = (() => {
   }
 
   function allQuestionsCorrect(scope=document){
+    if(state.teacher) return true;
     return [...scope.querySelectorAll('.question')].every(q =>
       [...q.querySelectorAll('.choice.selected')].some(b=>b.dataset.correct==='true')
     );
@@ -130,9 +134,18 @@ const LP = (() => {
   }
 
   function unlockAll(){
+    state.teacher = true;
     state.done = [true,true,true,true,true];
     save();
     updateNav();
+    document.dispatchEvent(new CustomEvent('lp:changed'));
+    document.querySelectorAll('#next,#finish').forEach(btn => {
+      btn.disabled = false;
+      btn.classList.remove('disabled');
+    });
+    document.querySelectorAll('.unlock-note').forEach(note => {
+      note.textContent = '✓ Durch Lehrerzugang freigeschaltet.';
+    });
   }
 
   function initTeacherAccess(){

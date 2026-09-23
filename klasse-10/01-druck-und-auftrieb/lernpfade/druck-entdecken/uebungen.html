@@ -143,10 +143,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     let correct=0;
     exercises.forEach(ex=>{ if(ex.dataset.solved==='true') correct++; });
     score.textContent=`${correct} von ${exercises.length} Aufgaben richtig gelöst.`;
-    const ok=correct>=5;
+    const ok=LP.state.teacher || correct>=5;
     finish.disabled=!ok;
     finish.classList.toggle('disabled',!ok);
-    note.textContent=ok?'✓ Du kannst den Lernpfad abschließen.':'Löse mindestens 5 Aufgaben richtig, um den Lernpfad abzuschließen.';
+    note.textContent=ok?(LP.state.teacher?'✓ Durch Lehrerzugang freigeschaltet.':'✓ Du kannst den Lernpfad abschließen.'):'Löse mindestens 5 Aufgaben richtig, um den Lernpfad abzuschließen.';
   }
 
   exercises.filter(ex=>!ex.dataset.choice).forEach(ex=>{
