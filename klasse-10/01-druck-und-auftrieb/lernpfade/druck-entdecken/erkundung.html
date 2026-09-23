@@ -15,17 +15,11 @@
 <section class="hero">
   <span class="badge">Erkundung</span>
   <h2>Wann bleibt die Druckwaage im Gleichgewicht?</h2>
-  <p>Vermute zuerst, experimentiere anschließend und suche verschiedene Gleichgewichtseinstellungen.</p>
+  <p>Experimentiere mit Masse und Fläche und suche verschiedene Gleichgewichtseinstellungen.</p>
 </section>
 
 <section class="card">
-  <h3>1. Vermutung</h3>
-  <label for="hyp"><strong>Ich vermute, dass Gleichgewicht entsteht, wenn …</strong></label>
-  <textarea id="hyp" placeholder="Formuliere deine Vermutung in einem vollständigen Satz."></textarea>
-</section>
-
-<section class="card">
-  <h3>2. Erkunde die Druckwaage</h3>
+  <h3>1. Erkunde die Druckwaage</h3>
   <div class="taskbox"><strong>Arbeitsauftrag</strong>
   <ol>
     <li>Verändere Masse und Fläche beider Kolben.</li>
@@ -40,7 +34,7 @@
 
   <div class="page-actions">
     <a class="btn secondary" href="index.html">← Zurück</a>
-    <span class="unlock-note" id="unlock-note">Formuliere eine Vermutung und finde drei Gleichgewichte.</span>
+    <span class="unlock-note" id="unlock-note">Finde drei Gleichgewichte.</span>
     <button class="btn" id="next" disabled>Weiter zur Auswertung →</button>
   </div>
 </section>
@@ -49,14 +43,12 @@
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
   LP.guardPage(1);
-  const hyp=document.getElementById('hyp'), three=document.getElementById('three');
+  const three=document.getElementById('three');
   const next=document.getElementById('next'), note=document.getElementById('unlock-note');
-  hyp.value=LP.state.hyp||'';
   const refresh=()=>{
-    LP.state.hyp=hyp.value; LP.save();
-    LP.enableWhen(next,hyp.value.trim().length>=12 && three.checked,note,'Formuliere eine Vermutung und bestätige drei Gleichgewichtseinstellungen.');
+    LP.enableWhen(next,three.checked,note,'Bestätige drei Gleichgewichtseinstellungen.');
   };
-  hyp.addEventListener('input',refresh); three.addEventListener('change',refresh); refresh();
+  three.addEventListener('change',refresh); refresh();
   next.addEventListener('click',()=>{ LP.markDone(1,true); location.href='auswertung.html'; });
 });
 </script>

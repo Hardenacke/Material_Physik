@@ -42,7 +42,7 @@ a{color:inherit}
   position:sticky;top:0;z-index:20;background:rgba(243,247,249,.96);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line)
 }
-.pathnav{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:10px 0}
+.pathnav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;padding:10px 0}
 .pathnav a{
   position:relative;text-decoration:none;text-align:center;padding:9px 6px;border-radius:10px;
   border:1px solid var(--line);background:#fff;font-size:.86rem;font-weight:750;color:var(--muted)
@@ -162,6 +162,58 @@ td.out{font-weight:800;background:#f9fcfd}
   padding:12px 14px;border-radius:10px;background:var(--orange-soft);border:1px solid #efd0ba;color:#70401f
 }
 footer{padding:0 0 26px;color:var(--muted);font-size:.84rem}
+.teacher-access{
+  position:fixed;
+  top:12px;
+  right:12px;
+  z-index:60;
+  display:grid;
+  justify-items:end;
+  gap:7px;
+  font-size:.86rem
+}
+.teacher-toggle{
+  min-height:38px;
+  padding:7px 10px;
+  border:1px solid rgba(255,255,255,.36);
+  border-radius:10px;
+  background:rgba(23,57,74,.9);
+  color:#fff;
+  box-shadow:0 8px 24px rgba(23,57,74,.18);
+  font-weight:800
+}
+.teacher-panel{
+  width:min(260px,calc(100vw - 24px));
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 12px 32px rgba(23,57,74,.18)
+}
+.teacher-panel label{
+  display:block;
+  margin-bottom:6px;
+  color:var(--muted);
+  font-weight:750
+}
+.teacher-row{display:grid;grid-template-columns:1fr auto;gap:7px}
+.teacher-row input{
+  min-width:0;
+  border:1px solid #b5cad3;
+  border-radius:9px;
+  padding:8px 9px
+}
+.teacher-row button{
+  border:1px solid var(--blue);
+  border-radius:9px;
+  background:var(--blue);
+  color:#fff;
+  padding:8px 10px;
+  font-weight:800
+}
+.teacher-feedback{min-height:1.3em;margin:7px 0 0;font-size:.82rem;font-weight:750}
+.teacher-feedback.ok{color:var(--green)}
+.teacher-feedback.no{color:var(--red)}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){
   .grid2{grid-template-columns:1fr}

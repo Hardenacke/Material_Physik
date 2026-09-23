@@ -5,7 +5,6 @@ const LP = (() => {
   const key = 'druck-lernpfad-v2';
   const state = {
     done: [false,false,false,false,false],
-    hyp: '',
     pattern: '',
     rows: [],
     rule: false
@@ -15,7 +14,6 @@ const LP = (() => {
     try{
       const saved = JSON.parse(localStorage.getItem(key) || '{}');
       if(Array.isArray(saved.done)) state.done = saved.done.slice(0,5);
-      if(typeof saved.hyp === 'string') state.hyp = saved.hyp;
       if(typeof saved.pattern === 'string') state.pattern = saved.pattern;
       if(Array.isArray(saved.rows)) state.rows = saved.rows;
       if(typeof saved.rule === 'boolean') state.rule = saved.rule;
@@ -131,11 +129,61 @@ const LP = (() => {
     location.href='index.html';
   }
 
+  function unlockAll(){
+    state.done = [true,true,true,true,true];
+    save();
+    updateNav();
+  }
+
+  function initTeacherAccess(){
+    const box = document.createElement('aside');
+    box.className = 'teacher-access';
+    box.setAttribute('aria-label', 'Lehrerzugang');
+    box.innerHTML = `
+      <button class="teacher-toggle" type="button" aria-expanded="false">Lehrerzugang</button>
+      <form class="teacher-panel" hidden>
+        <label for="teacher-code">Passwort</label>
+        <div class="teacher-row">
+          <input id="teacher-code" type="password" inputmode="numeric" autocomplete="off">
+          <button type="submit">OK</button>
+        </div>
+        <p class="teacher-feedback" aria-live="polite"></p>
+      </form>`;
+    document.body.appendChild(box);
+
+    const toggle = box.querySelector('.teacher-toggle');
+    const panel = box.querySelector('.teacher-panel');
+    const input = box.querySelector('#teacher-code');
+    const feedback = box.querySelector('.teacher-feedback');
+
+    toggle.addEventListener('click', () => {
+      const open = panel.hidden;
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      if(open) input.focus();
+    });
+
+    panel.addEventListener('submit', event => {
+      event.preventDefault();
+      if(input.value === '1607'){
+        unlockAll();
+        feedback.textContent = 'Alle Schritte sind freigeschaltet.';
+        feedback.className = 'teacher-feedback ok';
+        input.value = '';
+      }else{
+        feedback.textContent = 'Passwort nicht korrekt.';
+        feedback.className = 'teacher-feedback no';
+        input.select();
+      }
+    });
+  }
+
   load();
   document.addEventListener('DOMContentLoaded',()=>{
     updateNav();
     initChoices();
     initHyperFrames();
+    initTeacherAccess();
     document.querySelectorAll('[data-reset]').forEach(b=>b.addEventListener('click',resetAll));
     document.querySelectorAll('a[data-step-link]').forEach(a=>{
       a.addEventListener('click',e=>{
@@ -147,6 +195,6 @@ const LP = (() => {
 
   return {
     state,save,markDone,unlocked,updateNav,guardPage,enableWhen,
-    parseDE,fmt,initChoices,allQuestionsCorrect,resetAll
+    parseDE,fmt,initChoices,allQuestionsCorrect,resetAll,unlockAll
   };
 })();
