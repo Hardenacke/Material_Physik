@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Der cartesische Taucher · Klasse 5</title>
+<style>
+:root{color-scheme:light;--ink:#18324a;--muted:#536779;--blue:#146c94;--cyan:#e7f6fa;--orange:#f1a24a;--paper:#fff;--line:#d7e1e8;--bg:#f2f6f8}
+*{box-sizing:border-box}html{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}body{margin:0;min-height:100vh}
+header{background:var(--ink);color:white;padding:1.2rem max(1rem,calc((100vw - 940px)/2));}
+.brand{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#bde7ef;font-weight:700}
+h1{font-size:clamp(1.55rem,4vw,2.5rem);line-height:1.15;margin:.35rem 0 .8rem}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem}.badge{display:inline-flex;border:1px solid #6d899e;border-radius:999px;padding:.25rem .65rem;font-size:.82rem;color:#f5fbff}
+main{max-width:900px;margin:1.5rem auto;padding:0 1rem 2rem}
+.progress-wrap{display:flex;align-items:center;gap:.8rem;color:var(--muted);font-size:.9rem;margin:0 0 .8rem}
+.track{height:8px;background:#dce6eb;border-radius:9px;flex:1;overflow:hidden}.fill{height:100%;width:20%;background:var(--orange);transition:width .2s ease}
+.slide{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(1.2rem,4vw,2.2rem);min-height:350px;box-shadow:0 8px 24px #17334a10}
+.kicker{color:var(--blue);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em}
+h2{font-size:clamp(1.35rem,3vw,1.8rem);margin:.35rem 0 1rem}
+p{margin:.65rem 0}.lead{font-size:1.2rem;font-weight:650;line-height:1.45}
+ul,ol{padding-left:1.35rem}li{margin:.45rem 0}
+.prompt,.note{border-left:4px solid var(--orange);background:#fff7ed;padding:.8rem 1rem;border-radius:0 10px 10px 0;margin:1rem 0}
+.note{border-left-color:var(--blue);background:var(--cyan)}
+.answer{background:#eff8f3;border:1px solid #b7ddc8;border-radius:12px;padding:.8rem 1rem;margin-top:.8rem}
+button{font:inherit;border:0;border-radius:10px;padding:.7rem 1rem;cursor:pointer;font-weight:700}
+.reveal{background:var(--blue);color:white;margin-top:.5rem}.controls{display:flex;justify-content:space-between;gap:.7rem;margin:1rem 0}
+.controls button{background:var(--ink);color:white;min-width:110px}.controls button:disabled{opacity:.4;cursor:not-allowed}.controls .print{background:#e7edf1;color:var(--ink)}
+.source{font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.8rem;margin-top:1rem}.source a{color:var(--blue)}
+footer{max-width:900px;padding:0 1rem 1.5rem;margin:auto;color:var(--muted);font-size:.84rem}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+@media(max-width:560px){main{margin:1rem auto}.slide{min-height:60vh}.controls button{min-width:0;flex:1}.controls{flex-wrap:wrap}.controls .print{flex-basis:100%}}
+@media print{html{background:white}.progress-wrap,.controls,footer{display:none!important}header{background:white;color:var(--ink);padding:0 0 1rem;border-bottom:2px solid var(--ink)}.brand,.badge{color:var(--ink);border-color:var(--line)}main{margin:0 auto;padding:1rem 0}.slide{display:block!important;min-height:0;box-shadow:none;border:0;border-radius:0;padding:1rem 0;break-after:page;page-break-after:always}.answer[hidden]{display:block!important}.reveal{display:none}.source{font-size:9pt}}
+
+.procedure-visual{margin:1.2rem 0;padding:.85rem;background:#f6fafc;border:1px solid #d7e1e8;border-radius:14px}
+.visual-heading{display:flex;justify-content:space-between;gap:.5rem;align-items:center;color:#18324a;font-weight:800;margin:0 0 .7rem}
+.visual-heading span{font-size:.75rem;color:#536779;font-weight:600}
+.visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem}
+.visual-card{margin:0;background:white;border:1px solid #d7e1e8;border-radius:11px;padding:.5rem;overflow:hidden}
+.visual-stage{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:#146c94;font-weight:800}
+.visual-card svg{display:block;width:100%;height:auto;aspect-ratio:260/160}
+.visual-card p{font-size:.82rem;line-height:1.35;margin:.15rem .15rem .35rem;color:#18324a}
+.procedure-visual figcaption{font-size:.75rem;color:#536779;margin-top:.5rem}
+@media(max-width:620px){.visual-grid{grid-template-columns:1fr}.visual-card{display:grid;grid-template-columns:minmax(105px,38%) 1fr;grid-template-rows:auto 1fr;column-gap:.55rem;align-items:center}.visual-stage{grid-column:1/-1}.visual-card svg{grid-column:1;grid-row:2}.visual-card p{grid-column:2;grid-row:2;font-size:.9rem}}
+@media print{.procedure-visual{break-inside:avoid;border-color:#9eabb5}}
+
+.video-panel{margin:1.2rem 0 0;padding:1rem;background:#eef6fb;border:1px solid #d3e5ef;border-radius:18px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(260px,1fr);gap:1rem;align-items:center}
+.video-panel h3{margin:0 0 .35rem;color:#18324a;font-size:1.05rem}
+.video-panel p{margin:.35rem 0;color:#536779}
+.video-panel .video-caption{font-size:.88rem}
+.video-panel a{color:#146c94;font-weight:650}
+.video-frame{width:100%;aspect-ratio:16/9;min-width:0;overflow:hidden;border-radius:12px;background:#0d1b2a}
+.video-frame iframe{display:block;width:100%;height:100%;border:0}
+@media(max-width:720px){.video-panel{grid-template-columns:1fr}.video-frame{min-height:180px}}
+@media print{.video-panel{display:block;border:1px solid #aaa;background:#fff}.video-frame{display:none}}
+
+
+/* Unterrichtsdesign: klare Orientierung, ruhige Flächen, thematische Akzentfarben */
+:root{
+  --accent:#087d8c;
+  --accent-soft:#e5f7f8;
+  --accent-mid:#bce7ea;
+  --shadow:0 18px 48px rgba(21,47,70,.10);
+}
+body[data-theme="air"]{--accent:#087786;--accent-soft:#e4f7f8;--accent-mid:#b8e5e9}
+body[data-theme="water"]{--accent:#205fbd;--accent-soft:#eaf1ff;--accent-mid:#c6d7ff}
+body[data-theme="motion"]{--accent:#bd5414;--accent-soft:#fff0e3;--accent-mid:#f8d2b5}
+body[data-theme="magnet"]{--accent:#6849b2;--accent-soft:#f0ebff;--accent-mid:#d7cafa}
+body[data-theme="flow"]{--accent:#087b75;--accent-soft:#e3f7f4;--accent-mid:#b9e8df}
+body[data-theme="heat"]{--accent:#b94d20;--accent-soft:#fff0e6;--accent-mid:#f6d0b8}
+body[data-theme="chemistry"]{--accent:#a83b68;--accent-soft:#fff0f5;--accent-mid:#f3c6d6}
+
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 10% 14%,rgba(255,255,255,.95) 0 1.5px,transparent 2px) 0 0/22px 22px,
+    linear-gradient(180deg,#eaf1f5 0,#f7f9fb 360px,#f4f7f9 100%);
+}
+header{
+  position:relative;isolation:isolate;overflow:hidden;
+  max-width:1040px;margin:1rem auto 0;
+  padding:clamp(1.5rem,4vw,2.7rem);
+  border-radius:28px;
+  background:linear-gradient(118deg,#10283f 0%,#183b55 58%,var(--accent) 145%);
+  box-shadow:0 22px 55px rgba(15,39,61,.2);
+}
+header::after{
+  content:"";position:absolute;z-index:-1;right:-7rem;top:-11rem;
+  width:25rem;height:25rem;border:1px solid rgba(255,255,255,.19);
+  border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.045),0 0 0 58px rgba(255,255,255,.035);
+}
+header>*{position:relative;z-index:1}
+.brand{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.35rem .65rem;border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;background:rgba(255,255,255,.08);
+  letter-spacing:.12em;font-size:.74rem;
+}
+.brand::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:#ffd18d;box-shadow:0 0 0 4px rgba(255,209,141,.14)}
+header h1{max-width:18ch;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-.035em;margin:.8rem 0 1.1rem}
+.meta{gap:.55rem}
+.badge{backdrop-filter:blur(5px);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.25);padding:.32rem .72rem}
+.meta .badge:first-child{background:var(--accent);border-color:rgba(255,255,255,.34);color:#fff;font-weight:800}
+main{max-width:1040px;margin:1.35rem auto 1rem}
+.progress-wrap{margin:0 .25rem .65rem;gap:.9rem}
+.track{height:10px;background:#dce6eb}
+.fill{border-radius:9px;background:linear-gradient(90deg,#f2a34c,var(--accent));}
+.lesson-roadmap{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.5rem;
+  margin:0 0 .8rem;padding:.25rem 0 .45rem;
+}
+.road-step{
+  display:flex;align-items:center;gap:.55rem;min-width:0;min-height:3.2rem;
+  padding:.45rem .6rem;text-align:left;color:#536779;
+  border:1px solid #d8e2e8;border-radius:15px;background:rgba(255,255,255,.72);
+  box-shadow:0 4px 12px rgba(20,45,65,.035);transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.road-number{
+  flex:0 0 1.85rem;width:1.85rem;height:1.85rem;display:grid;place-items:center;
+  border-radius:10px;background:#eaf0f3;color:#52697b;font-size:.75rem;font-weight:850;
+}
+.road-label{font-size:.79rem;font-weight:750;line-height:1.15}
+.road-step.active{border-color:var(--accent);background:#fff;color:#18324a;box-shadow:0 8px 20px rgba(20,45,65,.1);transform:translateY(-1px)}
+.road-step.active .road-number,.road-step.done .road-number{background:var(--accent);color:#fff}
+.road-step.done{border-color:var(--accent-mid)}
+.road-step:disabled{cursor:default}
+.road-step:not(:disabled){cursor:pointer}
+.slide{
+  position:relative;overflow:hidden;min-height:380px;
+  border:1px solid rgba(164,184,197,.55);border-radius:26px;
+  box-shadow:var(--shadow);padding:clamp(1.4rem,4.5vw,2.65rem);
+  animation:slide-in .28s ease both;
+}
+.slide::before{content:"";position:absolute;left:0;top:0;width:100%;height:5px;background:linear-gradient(90deg,var(--accent),var(--accent-mid),transparent 78%)}
+@keyframes slide-in{from{opacity:.72;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.kicker{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.35rem .7rem;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+  font-size:.72rem;letter-spacing:.11em;
+}
+.slide h2{margin:.65rem 0 1rem;color:#17324a;letter-spacing:-.02em}
+.slide h2::after{content:"";display:block;width:3rem;height:4px;margin-top:.55rem;border-radius:5px;background:var(--accent)}
+#seite-1{background:linear-gradient(135deg,#fff 68%,var(--accent-soft) 150%)}
+#seite-1 .lead{max-width:34ch;font-size:clamp(1.25rem,2.8vw,1.75rem);font-weight:760;line-height:1.35}
+.prompt,.note{
+  position:relative;padding:1rem 1rem 1rem 3.2rem;
+  border:1px solid var(--accent-mid);border-left:0;border-radius:16px;
+  background:var(--accent-soft);box-shadow:0 6px 18px rgba(18,48,68,.045);
+}
+.prompt::before,.note::before{
+  position:absolute;left:1rem;top:1rem;width:1.45rem;height:1.45rem;
+  display:grid;place-items:center;border-radius:50%;font-weight:900;
+}
+.prompt::before{content:"?";background:var(--accent);color:#fff}
+.note::before{content:"i";background:#fff;color:var(--accent);border:1px solid var(--accent-mid);font-style:italic}
+#seite-2 ul{
+  list-style:none;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:.55rem;
+}
+#seite-2 ul li{
+  display:flex;align-items:flex-start;gap:.65rem;margin:0;
+  padding:.7rem .8rem;background:#f8fafb;border:1px solid #e1e9ed;border-radius:13px;
+}
+#seite-2 ul li::before{
+  content:"";flex:0 0 .62rem;width:.62rem;height:.62rem;margin-top:.42rem;
+  border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);
+}
+#seite-3 ol{list-style:none;counter-reset:procedure;padding:0;display:grid;gap:.5rem;margin:0 0 1rem}
+#seite-3 ol li{
+  counter-increment:procedure;display:grid;grid-template-columns:2.15rem 1fr;
+  align-items:start;gap:.7rem;margin:0;padding:.7rem .8rem;
+  border:1px solid #e0e8ed;border-radius:14px;background:#fbfcfd;
+}
+#seite-3 ol li::before{
+  content:counter(procedure,decimal-leading-zero);display:grid;place-items:center;
+  width:2rem;height:2rem;border-radius:11px;background:var(--accent-soft);
+  color:var(--accent);font-size:.74rem;font-weight:900;
+}
+.procedure-visual{background:linear-gradient(145deg,#f7fafb,var(--accent-soft));border-color:var(--accent-mid);padding:1rem}
+.visual-heading{font-size:.95rem}
+.visual-heading span{padding:.2rem .5rem;border-radius:999px;background:#fff}
+.visual-card{border-color:#dde7ec;box-shadow:0 4px 12px rgba(20,45,65,.04);transition:transform .18s ease,box-shadow .18s ease}
+.visual-card:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(20,45,65,.09)}
+.visual-stage{display:inline-block;padding:.2rem .45rem;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.visual-card svg{filter:drop-shadow(0 2px 2px rgba(20,45,65,.06))}
+.procedure-visual figcaption{font-size:.78rem}
+.video-panel{
+  border-color:var(--accent-mid);background:linear-gradient(135deg,#fff,var(--accent-soft));
+  box-shadow:0 8px 20px rgba(20,45,65,.06);border-radius:18px;padding:1rem;
+}
+.video-panel h3{display:flex;align-items:center;gap:.5rem}
+.video-panel h3::before{
+  content:"▶";display:grid;place-items:center;width:1.65rem;height:1.65rem;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:.62rem;
+}
+.video-panel p{line-height:1.45}
+.video-panel .video-caption a{display:inline-block;margin-top:.2rem;text-decoration-thickness:1px;text-underline-offset:2px}
+.video-frame{box-shadow:0 8px 22px rgba(5,20,35,.2)}
+.answer{
+  border-color:#b9dec9;background:linear-gradient(135deg,#eff9f3,#fff);
+  border-radius:16px;padding:1.1rem;box-shadow:0 6px 18px rgba(31,107,68,.06);
+}
+.answer::before{
+  content:"ERKLÄRUNG";display:block;margin-bottom:.35rem;
+  color:#287149;font-size:.7rem;font-weight:900;letter-spacing:.12em;
+}
+.reveal{background:linear-gradient(135deg,var(--accent),#123750);border-radius:12px;box-shadow:0 7px 15px rgba(15,48,70,.16)}
+.reveal:hover,.controls button:not(:disabled):hover{filter:brightness(1.08);transform:translateY(-1px)}
+.controls{
+  position:sticky;bottom:.45rem;z-index:5;max-width:640px;margin:1rem auto 0;
+  padding:.5rem;border:1px solid rgba(184,199,208,.85);border-radius:17px;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(12px);
+  box-shadow:0 12px 30px rgba(23,50,72,.14);
+}
+.controls button{transition:transform .16s ease,filter .16s ease}
+.controls .print{border:1px solid #d9e3e8}
+.source{border-top-color:#dce6eb}
+footer{max-width:1040px;margin:0 auto;padding:.2rem 1rem 1.4rem;font-size:.8rem}
+body[data-level="junior"] .slide{min-height:400px;border-radius:28px}
+body[data-level="junior"] .slide p,body[data-level="junior"] .slide li{font-size:1.04rem;line-height:1.55}
+body[data-level="junior"] .road-step{min-height:3.45rem}
+body[data-level="junior"] .road-number{border-radius:50%;width:2rem;height:2rem;flex-basis:2rem}
+body[data-level="junior"] .controls button{padding:.8rem 1rem}
+body[data-level="secondary"] .slide{border-radius:22px}
+body[data-level="upper"] .slide{
+  border-radius:18px;
+  background-image:linear-gradient(rgba(10,72,87,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(10,72,87,.025) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+body[data-level="upper"] .slide h2{letter-spacing:.005em}
+@media(max-width:700px){
+  header{margin:.45rem .45rem 0;border-radius:21px}
+  main{margin:.9rem auto;padding:0 .65rem 1.4rem}
+  .lesson-roadmap{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(5.5rem,1fr);overflow-x:auto;scroll-snap-type:x proximity}
+  .road-step{scroll-snap-align:start;justify-content:flex-start}
+  .road-label{font-size:.72rem}
+  .slide{min-height:unset}
+  .video-panel{grid-template-columns:1fr}
+  .video-frame{min-height:0}
+}
+@media(max-width:420px){
+  header{padding:1.25rem}
+  .brand{font-size:.66rem}
+  .road-step{padding:.4rem .45rem;gap:.35rem}
+  .road-number{flex-basis:1.6rem;width:1.6rem;height:1.6rem}
+  .road-label{font-size:.68rem}
+  #seite-3 ol li{grid-template-columns:1.85rem 1fr;padding:.65rem}
+  #seite-3 ol li::before{width:1.75rem;height:1.75rem}
+}
+:focus-visible{outline:3px solid #f3a34c;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+@media print{
+  body{background:#fff}
+  header{max-width:none;margin:0;border-radius:0;box-shadow:none;background:white;color:#17324a;padding:0 0 1rem;border-bottom:2px solid var(--accent)}
+  header::after{display:none}
+  .brand,.badge{color:#17324a;border-color:#cbd7de;background:#fff}
+  .meta .badge:first-child{color:#17324a;border-color:#cbd7de}
+  main{max-width:none;margin:0 auto;padding:1rem 0}
+  .lesson-roadmap{display:none}
+  .slide{border-radius:0;box-shadow:none;min-height:0}
+  .video-panel{box-shadow:none;border-radius:0;background:#fff;padding:.45rem}
+  .video-frame{display:none}
+  .controls,footer{display:none!important}
+}
+
+/* Jahrgangsspezifische Lesbarkeit und fachliche Orientierung */
+.level-task,.vocab,.mini-goal{margin:1rem 0;padding:.85rem 1rem;border-radius:15px;border:1px solid var(--accent-mid);background:var(--accent-soft)}
+.level-task{border-left:5px solid var(--accent)}.level-task strong,.vocab strong,.mini-goal strong{color:var(--accent)}
+.level-task p{margin:.3rem 0}.vocab{background:#fff;border-style:dashed}.mini-goal{padding:.65rem .85rem;background:rgba(255,255,255,.7);font-size:.9rem}
+.formula-box{display:inline-block;margin:.35rem 0;padding:.55rem .8rem;background:#fff;border:1px solid var(--accent-mid);border-radius:10px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:1rem;color:#17324a}
+.merksatz{margin-top:.8rem;padding:.7rem .85rem;background:#f0f8f2;border-radius:12px;border:1px solid #c6e4cf}.extension{border-top:1px solid #dce6eb;padding-top:.55rem;margin-top:.65rem;color:#425a6b}
+body[data-grade="5"] .slide{min-height:410px;border-radius:29px}
+body[data-grade="5"] .slide p,body[data-grade="5"] .slide li{font-size:1.12rem;line-height:1.7}
+body[data-grade="5"] .slide h2{font-size:clamp(1.5rem,3.5vw,2rem)}
+body[data-grade="5"] .road-step{min-height:3.65rem}
+body[data-grade="6"] .slide p,body[data-grade="6"] .slide li,body[data-grade="7"] .slide p,body[data-grade="7"] .slide li{font-size:1.08rem;line-height:1.65}
+body[data-grade="8"] .level-task,body[data-grade="9"] .level-task,body[data-grade="10"] .level-task{background:linear-gradient(135deg,#fff,var(--accent-soft))}
+body[data-grade="9"] .slide,body[data-grade="10"] .slide{border-radius:22px}
+body[data-grade="10"] .slide p,body[data-grade="10"] .slide li{font-size:1rem;line-height:1.62}
+body[data-grade="sek-ii"] .slide{border-radius:18px}
+body[data-grade="sek-ii"] .slide p,body[data-grade="sek-ii"] .slide li{font-size:1rem;line-height:1.65}
+body[data-grade="sek-ii"] .formula-box{font-size:1.08rem;padding:.7rem 1rem}
+@media(max-width:700px){.level-task,.vocab,.mini-goal{padding:.7rem .8rem}.formula-box{max-width:100%;overflow-wrap:anywhere}}
+
+</style>
+</head>
+<body data-theme="water" data-level="junior" data-grade="5">
+<header><div class="brand">Physik · Freihandversuch 02</div><h1>Der cartesische Taucher</h1><div class="meta"><span class="badge">Klasse 5</span><span class="badge">Druck · Auftrieb · Gase</span><span class="badge">3–5 Minuten · Vertiefung optional</span></div></header>
+<main>
+<div class="progress-wrap"><span id="page-count" aria-live="polite">Seite 1 von 5</span><div class="track" role="progressbar" aria-label="Fortschritt" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><div class="fill" id="progress"></div></div></div>
+<nav class="lesson-roadmap" aria-label="Versuchsablauf">
+<button class="road-step" type="button" data-road-step="0" aria-label="Zu Seite 1: Einstieg"><span class="road-number">01</span><span class="road-label">Einstieg</span></button>
+<button class="road-step" type="button" data-road-step="1" aria-label="Zu Seite 2: Material"><span class="road-number">02</span><span class="road-label">Material</span></button>
+<button class="road-step" type="button" data-road-step="2" aria-label="Zu Seite 3: Durchführung"><span class="road-number">03</span><span class="road-label">Durchführung</span></button>
+<button class="road-step" type="button" data-road-step="3" aria-label="Zu Seite 4: Kurzbeobachtung"><span class="road-number">04</span><span class="road-label">Beobachtung</span></button>
+<button class="road-step" type="button" data-road-step="4" aria-label="Zu Seite 5: Ergebnissicherung"><span class="road-number">05</span><span class="road-label">Erklärung</span></button>
+</nav>
+<section class="slide" id="seite-1" aria-hidden="false"><div class="kicker">Seite 1 von 5 · Klasse 5</div><h2>Einstieg</h2><p class="lead">Ein kleiner Taucher schwimmt in einer Flasche. Deine Hand kann ihn scheinbar steuern.</p><p><strong>Forscherfrage:</strong> Was passiert mit dem Taucher, wenn die Flasche gedrückt und wieder losgelassen wird?</p><div class="prompt"><strong>Deine Vermutung</strong><br>Sage vorher, was du vermutest. Nach dem Versuch kannst du deine Idee überprüfen.</div><div class="mini-goal"><strong>Dein Ziel:</strong> Beobachte, was sich verändert, und vergleiche es mit deiner Vermutung.</div></section>
+<section class="slide" id="seite-2" aria-hidden="true"><div class="kicker">Seite 2 von 5 · Klasse 5</div><h2>Material</h2><ul><li>durchsichtige, flexible PET-Flasche mit Schraubverschluss</li><li>Wasser</li><li>kleines, offenes Fläschchen, z. B. ein Backaroma-Fläschchen</li></ul><div class="vocab"><strong>Wichtige Begriffe:</strong> Luftblase · schwerer · leichter</div><div class='note'>Stelle die Wassermenge im kleinen Fläschchen so ein, dass es eine Luftblase einschließt und gerade eben schwimmt.</div></section>
+<section class="slide" id="seite-3" aria-hidden="true"><div class="kicker">Seite 3 von 5 · Klasse 5</div><h2>Durchführung</h2><ol><li>Fülle die große Flasche bis zum Rand mit Wasser.</li><li>Fülle das kleine Fläschchen teilweise mit Wasser. Drehe es mit der Öffnung nach unten und prüfe, ob es knapp schwimmt.</li><li>Setze es mit der Öffnung nach unten in die große Flasche und verschließe diese fest.</li><li>Drücke die PET-Flasche zusammen und lass wieder los.</li></ol><div class="level-task"><strong>Forscherauftrag · Klasse 5</strong><p>Drücke ganz vorsichtig: Kannst du den Taucher auf halber Höhe halten?</p></div><figure class="procedure-visual" aria-label="Schematische Ablaufbilder zur Durchführung"><div class="visual-heading">Durchführung in Bildern <span>Schemazeichnungen</span></div><div class="visual-grid"><div class="visual-card"><div class="visual-stage">Schritt 1</div><svg viewBox="0 0 260 160" role="img" aria-label="Luftblase so einstellen, dass der Taucher knapp schwimmt"><title>Luftblase so einstellen, dass der Taucher knapp schwimmt</title><defs><marker id="arrow2_1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#2999b8" stroke-width="1.6"/></marker></defs><path d="M105 22h50v18l16 17v76q0 8-9 8H82q-9 0-9-8V57l32-17z" fill="#f8fcfe" stroke="#18324a" stroke-width="3"/><path d="M76 91h92v40q0 7-8 7H84q-8 0-8-7z" fill="#8bd5e5"/><rect x="112" y="68" width="31" height="34" rx="5" fill="white" stroke="#146c94" stroke-width="2"/><path d="M112 91h31v11h-31z" fill="#8bd5e5"/></svg><p>Luftblase so einstellen, dass der Taucher knapp schwimmt</p></div><div class="visual-card"><div class="visual-stage">Schritt 2</div><svg viewBox="0 0 260 160" role="img" aria-label="Flasche zusammendrücken: Taucher sinkt"><title>Flasche zusammendrücken: Taucher sinkt</title><defs><marker id="arrow2_2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#2999b8" stroke-width="1.6"/></marker></defs><path d="M105 22h50v18l16 17v76q0 8-9 8H82q-9 0-9-8V57l32-17z" fill="#f8fcfe" stroke="#18324a" stroke-width="3"/><path d="M76 91h92v40q0 7-8 7H84q-8 0-8-7z" fill="#8bd5e5"/><rect x="112" y="95" width="31" height="34" rx="5" fill="white" stroke="#146c94" stroke-width="2"/><path d="M112 107h31v11h-31z" fill="#8bd5e5"/><path d="M55 79h20M205 79h-20" stroke="#f1a24a" stroke-width="4" marker-end="url(#arrow2_2)"/></svg><p>Flasche zusammendrücken: Taucher sinkt</p></div><div class="visual-card"><div class="visual-stage">Schritt 3</div><svg viewBox="0 0 260 160" role="img" aria-label="Loslassen: Taucher steigt wieder"><title>Loslassen: Taucher steigt wieder</title><defs><marker id="arrow2_3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#2999b8" stroke-width="1.6"/></marker></defs><path d="M105 22h50v18l16 17v76q0 8-9 8H82q-9 0-9-8V57l32-17z" fill="#f8fcfe" stroke="#18324a" stroke-width="3"/><path d="M76 91h92v40q0 7-8 7H84q-8 0-8-7z" fill="#8bd5e5"/><rect x="112" y="68" width="31" height="34" rx="5" fill="white" stroke="#146c94" stroke-width="2"/><path d="M112 91h31v11h-31z" fill="#8bd5e5"/><path d="M177 121V67" stroke="#146c94" stroke-width="4" marker-end="url(#arrow2_3)"/></svg><p>Loslassen: Taucher steigt wieder</p></div></div><figcaption>Schematische Darstellung des Aufbaus und der wesentlichen Handgriffe.</figcaption></figure>
+<aside class="video-panel" aria-label="Video zur Durchführung">
+  <div>
+    <h3>Video zur Durchführung</h3>
+    <p>Der klassische Taucher sinkt beim Zusammendrücken der Wasserflasche und steigt beim Loslassen wieder auf.</p>
+    <p class="video-caption">Sprache: Englisch. <a href="https://www.youtube.com/watch?v=aYNpTomZeGM" target="_blank" rel="noopener noreferrer">Videoquelle öffnen: Bottle Diver Experiment · Air Pressure &amp; Buoyancy</a></p>
+  </div>
+  <div class="video-frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/aYNpTomZeGM?rel=0" title="The Cartesian Diver | Experiment &amp; Explain" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</aside>
+</section>
+<section class="slide" id="seite-4" aria-hidden="true"><div class="kicker">Seite 4 von 5 · Klasse 5</div><h2>Kurzbeobachtung</h2><p>Beim Drücken sinkt der Taucher. Beim Loslassen steigt er wieder nach oben.</p><div class="prompt"><strong>Beobachte und beschreibe</strong><br>Achte auf die kleine Luftblase im Taucher: Wird sie beim Drücken größer oder kleiner?</div></section>
+<section class="slide" id="seite-5" aria-hidden="true"><div class="kicker">Seite 5 von 5 · Klasse 5</div><h2>Ergebnissicherung</h2><p>Erkläre mit deinen eigenen Worten, was passiert ist. Nutze dazu deine Beobachtung.</p><button class="reveal" type="button" aria-expanded="false">Erklärung anzeigen</button><div class="answer" hidden><p>Beim Drücken wird die Luftblase kleiner und etwas Wasser gelangt in den Taucher. Dann ist er schwerer und sinkt. Beim Loslassen wird die Luftblase wieder größer; der Taucher steigt.</p><p class="merksatz"><strong>Merksatz:</strong> Der Taucher sinkt beim Drücken und steigt beim Loslassen.</p><p class="extension"><strong>Rückblick:</strong> Schau auf deine erste Vermutung zurück: Was stimmt? Was würdest du jetzt ergänzen?</p></div></section>
+<nav class="controls" aria-label="Seitennavigation"><button id="prev" type="button" disabled>← Zurück</button><button class="print" type="button" onclick="window.print()">Drucken / PDF</button><button id="next" type="button">Weiter →</button></nav>
+</main>
+<footer>Tipp: Mit den Pfeiltasten ← und → kannst du durch die Seiten navigieren. Die Versuchsschritte und Zeichnungen funktionieren offline. Die eingebetteten Videos benötigen eine Internetverbindung.</footer>
+<script>
+(()=>{
+  const pages=[...document.querySelectorAll('.slide')];
+  const prev=document.querySelector('#prev'), next=document.querySelector('#next');
+  const count=document.querySelector('#page-count'), bar=document.querySelector('#progress');
+  const track=document.querySelector('[role="progressbar"]');
+  const road=[...document.querySelectorAll('.road-step')];
+  let i=0;
+  function show(n){
+    const old=i;
+    i=Math.max(0,Math.min(pages.length-1,n));
+    pages.forEach((p,j)=>{p.hidden=j!==i;p.setAttribute('aria-hidden',String(j!==i));});
+    road.forEach((s,j)=>{
+      s.classList.toggle('active',j===i);s.classList.toggle('done',j<i);
+      if(j===i){s.setAttribute('aria-current','step');s.disabled=true;}
+      else{s.removeAttribute('aria-current');s.disabled=false;}
+    });
+    prev.disabled=i===0;next.disabled=i===pages.length-1;
+    count.textContent='Seite '+(i+1)+' von '+pages.length;
+    bar.style.width=((i+1)/pages.length*100)+'%';
+    track.setAttribute('aria-valuenow',String(i+1));
+    if(old!==i)window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  road.forEach((s,j)=>s.addEventListener('click',()=>show(j)));
+  prev.addEventListener('click',()=>show(i-1));next.addEventListener('click',()=>show(i+1));
+  document.addEventListener('keydown',e=>{
+    if(e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1);
+  });
+  document.querySelectorAll('.reveal').forEach(b=>b.addEventListener('click',()=>{
+    const a=b.nextElementSibling, aHidden=a.hidden;
+    a.hidden=!aHidden;b.setAttribute('aria-expanded',String(aHidden));
+    b.textContent=aHidden?'Erklärung ausblenden':'Erklärung anzeigen';
+  }));
+  show(0);
+})();
+</script>
+</body></html>

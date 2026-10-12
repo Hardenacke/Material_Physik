@@ -1,0 +1,9 @@
+{
+  "title": "Luft und Druck",
+  "order": 4,
+  "theme": {
+    "accent": "#2f88a2",
+    "accentDark": "#23566a",
+    "accentSoft": "#e5f3f7"
+  }
+}

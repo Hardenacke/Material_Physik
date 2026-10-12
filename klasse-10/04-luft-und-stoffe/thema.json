@@ -1,0 +1,9 @@
+{
+  "title": "Luft und Stoffe",
+  "order": 4,
+  "theme": {
+    "accent": "#5f8f3a",
+    "accentDark": "#355522",
+    "accentSoft": "#edf6e6"
+  }
+}

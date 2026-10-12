@@ -213,7 +213,12 @@ function isLearningPathHtml(filePath, topicPath) {
 }
 
 function resourceCategory(filePath, topicPath) {
-  const firstFolder = path.relative(topicPath, filePath).split(path.sep)[0];
+  const relative = path.relative(topicPath, filePath).split(path.sep);
+  if (relative[0] === "lernmaterial" && relative[1] === "freihandversuche") {
+    return "Freihandversuch";
+  }
+
+  const firstFolder = relative[0];
   return CATEGORY_BY_FOLDER[firstFolder] || "Datei";
 }
 
