@@ -1,0 +1,11 @@
+{
+  "title": "Wie viele Elektronen fließen beim Läuten der Schulglocke?",
+  "description": "Wie viele Elektronen bewegen sich während eines dreisekündigen Läutens durch den Stromkreis der Schulglocke? Ermittelt die Stromstärke am Typenschild oder verwendet eine bereitgestellte Messung. Rechnet die transportierte Ladung in eine Anzahl Elementarladungen um und erklärt, warum dabei nicht einzelne Elektronen aus der Glocke verschwinden.",
+  "type": "aufgabe",
+  "level": "Q1 GK",
+  "visible": true,
+  "order": 23,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

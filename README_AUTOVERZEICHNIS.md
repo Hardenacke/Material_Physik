@@ -60,6 +60,66 @@ Auch die bisherige Struktur mit einzelnen HTML-Dateien direkt unter `lernpfade/`
 
 Weitere sichtbare Materialien werden automatisch im Bereich **Dateien** des jeweiligen Themenfelds angezeigt, z. B. PowerPoint-Präsentationen, Markdown-Dateien, PDFs, Bilder, Simulationen und Office-Dateien. Interne JSON-Dateien wie `praesentation.json`, `meta.json`, `thema.json` oder `jahrgang.json` werden nicht angezeigt.
 
+## Fermi-Aufgaben als Zusatzaufgaben
+
+Die 31 importierten Fermi-Aufgaben liegen nach Jahrgang und Themenfeld unter
+`lernmaterial/fermi-physik/`. Auf Pages erscheinen sie im eigenen Bereich
+**Zusatzaufgaben**, jeweils mit dem Label **Aufgabe**. Sie sind auch in der
+Jahrgangsübersicht direkt erreichbar und über Titel, Aufgabenstellung,
+Jahrgang, Kategorie und Suchbegriffe wie „Fermi“ auffindbar.
+
+Beispiel für die Metadaten neben `01-wasser-im-wasserkocher.html`:
+
+```json
+{
+  "title": "Wasser im Wasserkocher",
+  "description": "Schätzt die benötigte Wärmeenergie.",
+  "type": "aufgabe",
+  "level": "Klasse 5/6",
+  "tags": ["Fermi-Aufgabe"],
+  "visible": true,
+  "order": 1
+}
+```
+
+Der Dateiname lautet `01-wasser-im-wasserkocher.meta.json`. Das Dateiformat
+bleibt im Katalog als `HTML` erhalten; `type: "aufgabe"` in den Metadaten
+bestimmt die Kategorie „Zusatzaufgabe“ und das Label „Aufgabe“.
+
+Jeder Themenordner enthält eine lokale Aufgabenübersicht `index.html` und
+die zugehörigen Aufgaben aus `Fermi-Aufgaben_Physik.md` als Download. Ihre
+jeweiligen `.meta.json`-Dateien mit `"visible": false` verhindern doppelte
+Einträge im Katalog. Rücklinks führen über die lokale Übersicht zum
+Themenfeld auf Pages, auch unter einem GitHub-Pages-Projektpfad.
+
+Die ursprünglichen Jahrgangsangaben der Aufgaben bleiben erhalten. Bei
+übergreifenden Angaben wie „Klasse 9/10“ liegt die Aufgabe einmal im
+fachlich passenden Themenfeld eines dieser Jahrgänge. Für Klasse 6 wurden
+die Themenfelder „Schall“ und „Licht“ ergänzt.
+
+Die neue Datei [Prompt_Fermi-Aufgaben_Physik.md](Prompt_Fermi-Aufgaben_Physik.md)
+enthält den mitgelieferten Fachprompt für künftige Agentenaufträge und die
+Regeln zur Einbindung weiterer Aufgaben. Sie wird nicht in die Schülerwebsite
+kopiert. Die vorhandene `AGENTS.md` bleibt unverändert.
+
+## Klausurvorbereitung
+
+Im EF-Themenfeld **Grundlagen der Mechanik** liegt das interaktive Aufgabentool
+**Zwei Fallhöhen vergleichen** unter
+`lernmaterial/klausurvorbereitung/Aufgabe_Zwei_Fallhoehen_interaktiv.html`.
+Die mitgelieferte HTML-Datei wird vollständig übernommen, einschließlich
+Tipps, Selbstchecks und schrittweiser Musterlösung.
+
+Die Kursübersicht und das Themenfeld zeigen einen eigenen Bereich mit der
+Überschrift und dem Label **Klausurvorbereitung**. Der Einführungstext verweist
+auf den Aufgabenpool zum selbstständigen Erarbeiten und Wiederholen der Inhalte.
+
+Weitere Materialien erhalten neben der HTML-Datei eine gleichnamige
+`.meta.json` mit `"type": "klausurvorbereitung"`. Titel, Beschreibung,
+Jahrgang (`level`), Suchbegriffe (`tags`), Sichtbarkeit und Reihenfolge werden
+wie bei den Zusatzaufgaben gepflegt. Der Katalog führt diese Materialien
+einmal in der Kategorie „Klausurvorbereitung“; das Dateiformat bleibt HTML.
+
 ## Lokal testen
 
 Für den automatischen GitHub-Pages-Build ist lokal kein zusätzliches npm-Paket nötig. Falls Node.js installiert ist:

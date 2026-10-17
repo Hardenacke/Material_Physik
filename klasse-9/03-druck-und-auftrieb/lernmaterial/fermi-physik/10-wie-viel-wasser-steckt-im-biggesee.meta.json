@@ -1,0 +1,11 @@
+{
+  "title": "Wie viel Wasser steckt im Biggesee?",
+  "description": "Wie viele Tonnen Wasser enthält der Biggesee ungefähr? Schätzt die Wasseroberfläche aus einer Karte und nähert die mittlere Tiefe mithilfe weniger Tiefenangaben oder einer begründeten Modellannahme an. Rechnet das Wasservolumen in eine Masse um und vergleicht euer Ergebnis mit der Masse eines großen Frachtschiffs.",
+  "type": "aufgabe",
+  "level": "Klasse 8/9",
+  "visible": true,
+  "order": 10,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Radioaktive Zerfälle im natürlichen Kalium",
+  "description": "Wie viele Zerfälle von Kalium-40 finden ungefähr an einem Tag in einer Banane statt? Schätzt die Kalium-Masse einer Banane, recherchiert den natürlichen Anteil von Kalium-40 und nutzt seine Halbwertszeit. Unterscheidet die Zahl der Zerfälle von der aufgenommenen Strahlendosis.",
+  "type": "aufgabe",
+  "level": "Q2 GK",
+  "visible": true,
+  "order": 25,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

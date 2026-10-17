@@ -1,0 +1,11 @@
+{
+  "title": "Solarstrom für einen Schultag",
+  "description": "Wie viel elektrische Energie könnte eine Photovoltaikanlage auf einem geeigneten Schuldach an einem sonnigen Schultag erzeugen? Schätzt die nutzbare Dachfläche, die eingestrahlte Sonnenenergie und den Anteil, der in elektrische Energie umgewandelt wird. Vergleicht die Schätzung mit dem Tagesverbrauch eines Klassenraums.",
+  "type": "aufgabe",
+  "level": "Klasse 9/10",
+  "visible": true,
+  "order": 14,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

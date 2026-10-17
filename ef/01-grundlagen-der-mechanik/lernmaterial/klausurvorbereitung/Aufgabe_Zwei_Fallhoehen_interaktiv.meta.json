@@ -1,0 +1,9 @@
+{
+  "title": "Zwei Fallhöhen vergleichen – interaktives Aufgabentool",
+  "description": "Erarbeite und wiederhole den freien Fall als Klausurvorbereitung: Stelle die Fallgleichung um, vergleiche Fallzeiten und begründe dein Ergebnis. Gestufte Tipps, interaktive Selbstchecks und eine schrittweise Musterlösung helfen dir dabei.",
+  "type": "klausurvorbereitung",
+  "level": "EF",
+  "tags": ["Klausurvorbereitung", "Aufgabenpool", "Kinematik", "Freier Fall", "Fallzeit", "Fallhöhe", "Formeln umstellen"],
+  "visible": true,
+  "order": 1
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Wie viel Strom verbraucht ein Tablet-Ladegerät in einer Schulwoche?",
+  "description": "Wie viel elektrische Energie nimmt ein Tablet-Ladegerät auf, wenn ein Tablet an fünf Schultagen jeweils 90 Minuten geladen wird? Ermittelt die Leistung vom Typenschild oder messt sie mit einem geeigneten Energiekostenmessgerät. Vergleicht den Verbrauch mit der Energie, die eine 10-W-Lampe in derselben Zeit nutzt.",
+  "type": "aufgabe",
+  "level": "Klasse 9/10",
+  "visible": true,
+  "order": 15,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

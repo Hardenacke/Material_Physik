@@ -1,0 +1,11 @@
+{
+  "title": "Wie viele hörbare Eigenschwingungen passen in den Frequenzbereich der Aula?",
+  "description": "Wie viele verschiedene stehende Schallwellen mit Frequenzen zwischen 20 Hz und 20 kHz können sich entlang der längsten Raumrichtung der Aula ausbilden? Messt die Länge und modelliert die Aula als Strecke mit reflektierenden Wänden. Bestimmt die erlaubten Grundfrequenz-Abstände und schätzt daraus die Anzahl möglicher Moden. Erklärt, warum das Ergebnis für einen dreidimensionalen Raum nur eine Näherung ist.",
+  "type": "aufgabe",
+  "level": "Q2 LK",
+  "visible": true,
+  "order": 31,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

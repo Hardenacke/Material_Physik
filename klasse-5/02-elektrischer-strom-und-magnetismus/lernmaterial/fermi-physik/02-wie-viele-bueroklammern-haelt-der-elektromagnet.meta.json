@@ -1,0 +1,11 @@
+{
+  "title": "Wie viele Büroklammern hält der Elektromagnet?",
+  "description": "In einem Unterrichtsversuch wird ein Elektromagnet mit einer ungefährlichen Kleinspannungsquelle betrieben. Wie viele gewöhnliche Büroklammern kann er gleichzeitig anheben? Ermittelt zunächst die Masse einiger Klammern und untersucht, wie sich Windungszahl oder Stromstärke auf die Schätzung auswirken. Schaltet den Strom nach jeder Messung wieder aus.",
+  "type": "aufgabe",
+  "level": "Klasse 5/6",
+  "visible": true,
+  "order": 2,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

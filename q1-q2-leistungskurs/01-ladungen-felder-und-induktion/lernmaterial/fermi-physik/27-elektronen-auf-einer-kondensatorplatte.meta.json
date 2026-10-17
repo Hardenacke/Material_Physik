@@ -1,0 +1,11 @@
+{
+  "title": "Elektronen auf einer Kondensatorplatte",
+  "description": "Ein kleiner Plattenkondensator wird mit 5 V geladen und hat eine Kapazität von ungefähr 1000 Mikrofarad. Wie viele Elektronen werden dabei von einer Platte zur anderen verschoben? Schätzt zunächst die gespeicherte Ladung und rechnet sie anschließend in eine Anzahl Elementarladungen um. Nutzt nur einen geeigneten Kleinspannungskondensator und beachtet die Gerätehinweise.",
+  "type": "aufgabe",
+  "level": "Q1 LK",
+  "visible": true,
+  "order": 27,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

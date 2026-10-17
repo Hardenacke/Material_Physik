@@ -1,0 +1,11 @@
+{
+  "title": "Wie viel Luft ist in Raum 351?",
+  "description": "Wie viel Luft befindet sich ungefähr in Raum 351, wenn die Türen und Fenster geschlossen sind? Schätzt oder messt Länge, Breite und Höhe des Raums. Nutzt eine passende Näherung für die Dichte von Luft und gebt das Ergebnis als Volumen und als Masse an. Erklärt, welche Möbel oder Einbauten ihr bei eurem Raummodell vernachlässigt.",
+  "type": "aufgabe",
+  "level": "Klasse 6/7",
+  "visible": true,
+  "order": 5,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

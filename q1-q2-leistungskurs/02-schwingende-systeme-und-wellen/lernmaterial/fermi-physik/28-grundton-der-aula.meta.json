@@ -1,0 +1,11 @@
+{
+  "title": "Grundton der Aula",
+  "description": "Welche tiefste stehende Schallwelle kann sich entlang der längsten Richtung der Aula ausbilden? Messt oder schätzt die Raumlänge und modelliert die gegenüberliegenden Wände als reflektierende Begrenzungen. Bestimmt die Grundfrequenz und prüft, ob sie im hörbaren Bereich liegt. Erklärt, wie andere Randbedingungen oder die übrigen Raumdimensionen das Ergebnis verändern könnten.",
+  "type": "aufgabe",
+  "level": "Q2 LK",
+  "visible": true,
+  "order": 28,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

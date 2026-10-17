@@ -1,0 +1,11 @@
+{
+  "title": "Energieverbrauch der Klassenraumbeleuchtung",
+  "description": "Wie viel elektrische Energie verbraucht die Beleuchtung in Raum 351 während einer normalen Fünf-Tage-Schulwoche? Zählt die eingeschalteten Lampen, sucht die Leistung auf einem Typenschild oder schätzt sie und ermittelt, wie viele Stunden das Licht tatsächlich eingeschaltet ist. Gebt euer Ergebnis in Kilowattstunden an und schätzt die Kosten.",
+  "type": "aufgabe",
+  "level": "Klasse 9/10",
+  "visible": true,
+  "order": 12,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

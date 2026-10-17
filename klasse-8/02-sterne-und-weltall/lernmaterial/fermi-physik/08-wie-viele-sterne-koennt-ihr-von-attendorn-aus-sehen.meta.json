@@ -1,0 +1,11 @@
+{
+  "title": "Wie viele Sterne könnt ihr von Attendorn aus sehen?",
+  "description": "Wie viele Sterne sind an einem klaren, mondlosen Abend gleichzeitig mit bloßem Auge über dem Schulhof des Rivius Gymnasiums sichtbar? Zählt Sterne in mehreren gleich großen Himmelsausschnitten, schätzt die gesamte sichtbare Himmelsfläche und berücksichtigt, dass Gebäude und Lichtverschmutzung Teile des Himmels verdecken.",
+  "type": "aufgabe",
+  "level": "Klasse 8",
+  "visible": true,
+  "order": 8,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Photonen einer roten LED",
+  "description": "Wie viele Photonen gibt eine rote LED in einer Sekunde ungefähr ab, wenn sie mit einer elektrischen Leistung von etwa einem Zehntel Watt leuchtet? Schätzt den Anteil der Leistung, der tatsächlich als rotes Licht abgegeben wird, und nutzt eine typische Wellenlänge für rotes Licht. Erklärt, welche Annahme eure Größenordnung am stärksten beeinflusst.",
+  "type": "aufgabe",
+  "level": "Q1 GK",
+  "visible": true,
+  "order": 22,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

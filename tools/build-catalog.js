@@ -40,6 +40,11 @@ const CATEGORY_BY_FOLDER = {
   unterstuetzung: "Unterstützung"
 };
 
+const RESOURCE_LABELS = {
+  aufgabe: { category: "Zusatzaufgabe", label: "Aufgabe" },
+  klausurvorbereitung: { category: "Klausurvorbereitung", label: "Klausurvorbereitung" }
+};
+
 const SUPPORT_DIR_NAME = "unterstuetzung";
 
 const DEFAULT_THEME = {
@@ -262,6 +267,10 @@ function scanFiles(topicPath) {
       if (isLearningPathHtml(entryPath, topicPath)) continue;
 
       const ext = path.extname(entryPath).toLowerCase();
+      const resourceMeta = readJson(path.join(currentPath, `${path.basename(entry.name, ext)}.meta.json`)) || {};
+      if (resourceMeta.visible === false) continue;
+      const resourceLabel = Object.hasOwn(RESOURCE_LABELS, resourceMeta.type)
+        ? RESOURCE_LABELS[resourceMeta.type] : null;
       const isVideo = ext === ".mp4" || ext === ".webm";
       const metadata = isVideo ? readJson(path.join(currentPath, "video.json")) : null;
       const video = metadata && metadata.output === entry.name ? metadata : null;
@@ -271,10 +280,17 @@ function scanFiles(topicPath) {
         ? repoRelative(posterPath) : undefined;
       results.push({
         id: repoRelative(entryPath),
-        title: video && video.title || resourceTitle(entryPath, topicPath),
-        category: isVideo ? "Erklärvideo" : resourceCategory(entryPath, topicPath),
+        title: resourceMeta.title || video && video.title || resourceTitle(entryPath, topicPath),
+        category: resourceLabel ? resourceLabel.category : isVideo ? "Erklärvideo" : resourceCategory(entryPath, topicPath),
         type: ext ? ext.slice(1).toUpperCase() : "Datei",
         url: repoRelative(entryPath),
+        ...(resourceLabel ? {
+          label: resourceLabel.label,
+          description: resourceMeta.description || "",
+          level: resourceMeta.level || "",
+          tags: Array.isArray(resourceMeta.tags) ? resourceMeta.tags : [],
+          order: toNumber(resourceMeta.order, 9999)
+        } : {}),
         ...(isVideo ? {
           description: video && video.description || "",
           durationSeconds: video && video.measured && video.measured.duration_seconds,
@@ -290,6 +306,7 @@ function scanFiles(topicPath) {
 
   return results.sort((a, b) =>
     a.category.localeCompare(b.category, "de") ||
+    (a.order ?? 9999) - (b.order ?? 9999) ||
     a.title.localeCompare(b.title, "de")
   );
 }

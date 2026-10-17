@@ -1,0 +1,11 @@
+{
+  "title": "Elektrische Energie aus einem Fahrraddynamo",
+  "description": "Wie viel elektrische Energie liefert ein Fahrraddynamo während einer 20-minütigen Fahrt zur Schule? Schätzt Fahrzeit, Geschwindigkeit, Wirkungsgrad und die Leistung der angeschlossenen Beleuchtung. Vergleicht die abgegebene Energie mit der mechanischen Arbeit, die zusätzlich beim Treten aufgebracht werden muss.",
+  "type": "aufgabe",
+  "level": "Q2 GK",
+  "visible": true,
+  "order": 24,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

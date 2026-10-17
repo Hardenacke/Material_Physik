@@ -117,13 +117,9 @@ function topicMatchesQuery(topic, query) {
   const learningPathText = (topic.learningPaths || [])
     .map((item) => `${item.title} ${item.description}`)
     .join(" ");
-  const fileText = (topic.files || [])
-    .map((item) => `${item.title} ${item.description || ""} ${item.category} ${item.type}`)
-    .join(" ");
-
   return topicOwnMatchesQuery(topic, query) ||
     normalize(learningPathText).includes(needle) ||
-    normalize(fileText).includes(needle);
+    resourcesForQuery(topic.files || [], query).length > 0;
 }
 
 function supportMatchesQuery(schoolClass, query) {
@@ -152,7 +148,7 @@ function resourcesForQuery(items, query) {
   if (!query) return items;
   const needle = normalize(query);
   return items.filter((item) =>
-    normalize(`${item.title} ${item.description || ""} ${item.category || ""} ${item.type || ""} ${item.fileName || ""}`).includes(needle)
+    normalize(`${item.title} ${item.description || ""} ${item.category || ""} ${item.label || ""} ${item.level || ""} ${(item.tags || []).join(" ")} ${item.type || ""} ${item.fileName || ""}`).includes(needle)
   );
 }
 
@@ -272,7 +268,8 @@ function renderSupportLink(item, theme) {
 
   const meta = document.createElement("span");
   meta.className = "file-meta";
-  meta.appendChild(createText("span", "badge", item.category || "Unterstützung"));
+  meta.appendChild(createText("span", "badge", item.label || item.category || "Unterstützung"));
+  if (item.level) meta.appendChild(createText("span", "badge soft", item.level));
   meta.appendChild(createText("span", "badge soft", item.type || "Datei"));
   link.appendChild(meta);
 
@@ -332,7 +329,8 @@ function renderLearningPaths(topic, query) {
 }
 
 function renderFiles(topic, query) {
-  const files = resourcesForQuery(topic.files || [], query).filter((item) => !isVideo(item));
+  const files = resourcesForQuery(topic.files || [], query)
+    .filter((item) => !isVideo(item) && !isAssignment(item) && !isExamPreparation(item));
   const section = document.createElement("section");
   section.className = "resource-section";
   section.appendChild(createText("h3", "", "Dateien"));
@@ -366,6 +364,80 @@ function renderFiles(topic, query) {
 
 function isVideo(item) {
   return item.type === "MP4" || item.type === "WEBM";
+}
+
+function isAssignment(item) {
+  return item.category === "Zusatzaufgabe";
+}
+
+function isExamPreparation(item) {
+  return item.category === "Klausurvorbereitung";
+}
+
+function renderExamPreparation(items, theme, classView = false) {
+  if (!items.length) return null;
+
+  const section = document.createElement("section");
+  section.className = `${classView ? "support-section" : "resource-section"} exam-preparation-section`;
+  section.appendChild(createText(classView ? "h2" : "h3", "", "Klausurvorbereitung"));
+  section.appendChild(createText("p", "view-copy", "Nutze diesen Aufgabenpool, um dir Inhalte selbstständig zu erarbeiten und dich auf die Klausur vorzubereiten. Bearbeite die Aufgaben zunächst selbst und nutze anschließend Tipps, Selbstchecks und Musterlösungen, um deinen Lösungsweg zu prüfen."));
+  const list = document.createElement("div");
+  list.className = classView ? "support-list" : "file-list";
+  for (const item of items) {
+    list.appendChild(renderSupportLink(item, item.theme || theme));
+  }
+  section.appendChild(list);
+  return section;
+}
+
+function renderClassExamPreparation(schoolClass, query) {
+  const materials = schoolClass.topics.flatMap((topic) => {
+    const resourceQuery = classOwnMatchesQuery(schoolClass, query) || topicOwnMatchesQuery(topic, query) ? "" : query;
+    return resourcesForQuery(topic.files || [], resourceQuery).filter(isExamPreparation).map((item) => ({
+      ...item,
+      description: `${topic.title} · ${item.description || ""}`,
+      theme: topic.theme
+    }));
+  });
+  return renderExamPreparation(materials, null, true);
+}
+
+function renderAssignments(topic, query) {
+  const assignments = resourcesForQuery(topic.files || [], query).filter(isAssignment);
+  if (!assignments.length) return null;
+
+  const section = document.createElement("section");
+  section.className = "resource-section assignment-section";
+  section.appendChild(createText("h3", "", "Zusatzaufgaben"));
+  section.appendChild(createText("p", "view-copy", "Fermi-Aufgaben zum Schätzen, Modellieren und Prüfen."));
+  const list = document.createElement("div");
+  list.className = "file-list";
+  for (const item of assignments) {
+    list.appendChild(renderSupportLink(item, topic.theme));
+  }
+  section.appendChild(list);
+  return section;
+}
+
+function renderClassAssignments(schoolClass, query) {
+  const section = document.createElement("section");
+  section.className = "support-section assignment-section";
+  section.appendChild(createText("h2", "", "Zusatzaufgaben"));
+  section.appendChild(createText("p", "view-copy", "Fermi-Aufgaben aus den Themenfeldern dieses Jahrgangs oder Kurses."));
+  const list = document.createElement("div");
+  list.className = "support-list";
+  for (const topic of schoolClass.topics) {
+    const resourceQuery = classOwnMatchesQuery(schoolClass, query) || topicOwnMatchesQuery(topic, query) ? "" : query;
+    for (const item of resourcesForQuery(topic.files || [], resourceQuery).filter(isAssignment)) {
+      list.appendChild(renderSupportLink({
+        ...item,
+        description: `${topic.title} · ${item.description || ""}`
+      }, topic.theme));
+    }
+  }
+  if (!list.childElementCount) return null;
+  section.appendChild(list);
+  return section;
 }
 
 function renderClassVideos(schoolClass, query) {
@@ -463,7 +535,11 @@ function renderTopicDetail(topic, query) {
   detail.appendChild(header);
   const videos = renderVideos(topic, resourceQuery);
   if (videos) detail.appendChild(videos);
+  const examPreparation = renderExamPreparation(files.filter(isExamPreparation), topic.theme);
+  if (examPreparation) detail.appendChild(examPreparation);
   detail.appendChild(renderLearningPaths(topic, resourceQuery));
+  const assignments = renderAssignments(topic, resourceQuery);
+  if (assignments) detail.appendChild(assignments);
   detail.appendChild(renderFiles(topic, resourceQuery));
 
   return detail;
@@ -485,7 +561,7 @@ function renderClassPage(schoolClass, query) {
   header.className = "view-header";
   header.appendChild(createText("p", "step-label", "Ausgewählter Bereich"));
   header.appendChild(createText("h2", "", schoolClass.title));
-  header.appendChild(createText("p", "view-copy", "Wähle ein Themenfeld aus. Darunter werden die zugehörigen Lernpfade und Dateien angezeigt."));
+  header.appendChild(createText("p", "view-copy", "Wähle ein Themenfeld aus. Darunter findest du Lernpfade, Zusatzaufgaben und Dateien."));
   catalogRoot.appendChild(header);
 
   if (!topics.length) {
@@ -500,8 +576,12 @@ function renderClassPage(schoolClass, query) {
   catalogRoot.appendChild(renderTopicPicker(schoolClass, topics, visibleSelectedTopic));
 
   if (!visibleSelectedTopic) {
+    const examPreparation = renderClassExamPreparation(schoolClass, query);
+    if (examPreparation) catalogRoot.appendChild(examPreparation);
     const videos = renderClassVideos(schoolClass, query);
     if (videos) catalogRoot.appendChild(videos);
+    const assignments = renderClassAssignments(schoolClass, query);
+    if (assignments) catalogRoot.appendChild(assignments);
   }
 
   const supportSection = renderClassSupport(schoolClass, query);

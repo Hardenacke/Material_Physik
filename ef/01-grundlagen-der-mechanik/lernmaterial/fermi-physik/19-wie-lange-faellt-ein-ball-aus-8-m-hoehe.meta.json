@@ -1,0 +1,11 @@
+{
+  "title": "Wie lange fällt ein Ball aus 8 m Höhe?",
+  "description": "Ein Ball wird aus einer Höhe von ungefähr 8 m über dem Boden losgelassen. Wie lange dauert es bis zum Boden und mit welcher Geschwindigkeit kommt er dort an? Modelliert den Fall zunächst ohne Luftwiderstand. Vergleicht die Fallzeit mit der Zeit, die ihr beim Zählen laut „einundzwanzig“ benötigt. Ihr müsst den Ball nicht tatsächlich aus dieser Höhe fallen lassen.",
+  "type": "aufgabe",
+  "level": "EF",
+  "visible": true,
+  "order": 19,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

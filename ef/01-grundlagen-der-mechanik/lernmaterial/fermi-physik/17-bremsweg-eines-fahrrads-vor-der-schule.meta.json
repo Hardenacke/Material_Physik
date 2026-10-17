@@ -1,0 +1,11 @@
+{
+  "title": "Bremsweg eines Fahrrads vor der Schule",
+  "description": "Ein Fahrrad fährt auf trockenem, ebenem Weg mit 20 km/h. Wie weit fährt es vom Moment, in dem die Fahrerin oder der Fahrer ein Hindernis erkennt, bis zum Stillstand? Schätzt eine Reaktionszeit und eine plausible Bremsverzögerung, berechnet Reaktions- und Bremsweg getrennt und vergleicht das Ergebnis mit der Länge des Schulhofs. Führt keinen Bremsversuch im Verkehr durch.",
+  "type": "aufgabe",
+  "level": "EF",
+  "visible": true,
+  "order": 17,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

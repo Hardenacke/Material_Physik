@@ -1,0 +1,11 @@
+{
+  "title": "Energie für den Weg in den dritten Stock",
+  "description": "Wie viel Lageenergie gewinnt eine Lerngruppe, wenn sie vom Erdgeschoss in den dritten Stock steigt? Schätzt die Höhe der Treppe und die Gesamtmasse der Gruppe, ohne einzelne Personen zu wiegen oder ihre Körpermasse offenzulegen. Vergleicht die gewonnene Energie mit der Energie eines kleinen Snacks oder einer leuchtenden Lampe.",
+  "type": "aufgabe",
+  "level": "Klasse 8/9",
+  "visible": true,
+  "order": 9,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

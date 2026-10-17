@@ -1,0 +1,11 @@
+{
+  "title": "Wie lange braucht ein Satellit für einen Umlauf?",
+  "description": "Ein Satellit bewegt sich auf einer näherungsweise kreisförmigen Bahn 400 km über der Erdoberfläche. Wie lange dauert ein Umlauf? Schätzt den Bahnradius aus dem Erdradius und der Höhe. Bestimmt die Umlaufzeit mithilfe der Kreisbewegung und der Gravitationskraft und prüft, ob eure Bahngeschwindigkeit plausibel ist.",
+  "type": "aufgabe",
+  "level": "EF",
+  "visible": true,
+  "order": 18,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

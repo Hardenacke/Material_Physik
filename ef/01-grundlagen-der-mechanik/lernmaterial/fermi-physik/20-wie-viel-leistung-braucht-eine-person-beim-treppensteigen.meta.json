@@ -1,0 +1,11 @@
+{
+  "title": "Wie viel Leistung braucht eine Person beim Treppensteigen?",
+  "description": "Wie groß ist die mittlere mechanische Leistung einer Person, die vom Erdgeschoss bis zum dritten Stock des Schulgebäudes steigt? Messt die benötigte Zeit und schätzt die Höhenänderung sowie die Masse der Person selbst oder verwendet ausdrücklich eine frei gewählte Modellmasse. Vergleicht zwei verschiedene Tempi und erklärt, warum die Lageenergie gleich bleiben kann, obwohl sich die Leistung ändert.",
+  "type": "aufgabe",
+  "level": "EF",
+  "visible": true,
+  "order": 20,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}

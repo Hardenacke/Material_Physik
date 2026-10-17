@@ -1,0 +1,11 @@
+{
+  "title": "Wie viele Lichtquanten treffen während einer Stunde durch ein Fenster?",
+  "description": "Wie viele sichtbare Photonen fallen an einem sonnigen Tag während einer Unterrichtsstunde durch ein Fenster in Raum 351? Schätzt die Fensterfläche und die einfallende Strahlungsleistung pro Fläche. Bestimmt einen plausiblen Anteil sichtbaren Lichts und nutzt eine typische mittlere Wellenlänge. Nennt die Annahme, die euer Ergebnis am stärksten verändert.",
+  "type": "aufgabe",
+  "level": "Q2 GK",
+  "visible": true,
+  "order": 26,
+  "tags": [
+    "Fermi-Aufgabe"
+  ]
+}
