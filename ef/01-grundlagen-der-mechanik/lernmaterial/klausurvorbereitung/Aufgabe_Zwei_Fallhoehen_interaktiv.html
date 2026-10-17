@@ -135,9 +135,16 @@ function renderTask(){
  app.querySelector('[data-next]').addEventListener('click',()=>{const i=topic.tasks.findIndex(t=>t.id===task.id);if(i>=0&&i<topic.tasks.length-1)goTask(topic.tasks[i+1].id);else goTopic(topic.id)});
  renderTips(task);renderKatex(app);
 }
+function answerExample(task){
+ const choices=ANSWER_CHECKS[task.id]||[];
+ let example=1;
+ // Auch innerhalb der Rundungstoleranz darf das Beispiel keine Teilaufgabe lösen.
+ while(choices.some(choice=>Math.abs(example-choice.value)<=choice.tolerance))example++;
+ return example;
+}
 function answerChecker(task){
  const choices=ANSWER_CHECKS[task.id];if(!choices)return '';
- return '<section class="panel answer-checker" id="answerChecker"><h2>Ergebnis direkt prüfen</h2><p class="answer-intro">Wähle zuerst die gesuchte Größe und gib anschließend nur den Zahlenwert ein. Die Musterlösung bleibt dabei verborgen.</p><div class="answer-controls"><label for="answerTarget">Gesuchte Größe<select id="answerTarget">'+choices.map((x,i)=>'<option value="'+i+'">'+esc(x.label)+' ('+esc(x.unit)+')</option>').join('')+'</select></label><label for="answerInput">Dein Zahlenwert<span class="answer-entry-wrap"><input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" placeholder="z. B. 14 oder 25/6" aria-describedby="answerHelp answerTolerance"><span class="answer-unit" id="answerUnit">'+esc(choices[0].unit)+'</span></span></label><button class="btn primary" id="checkAnswer" type="button">Antwort prüfen</button></div><p class="answer-help" id="answerHelp">Deutsches Komma und einfache Brüche sind möglich. Gerundete Werte innerhalb der angezeigten Toleranz werden akzeptiert. Farb- und Bewegungsfeedback funktionieren unabhängig von der Vibrationsunterstützung des Geräts.</p><p class="answer-help" id="answerTolerance"></p><div class="answer-feedback" id="answerFeedback" role="status" aria-live="polite" hidden></div></section>';
+ return '<section class="panel answer-checker" id="answerChecker"><h2>Ergebnis direkt prüfen</h2><p class="answer-intro">Wähle zuerst die gesuchte Größe und gib anschließend nur den Zahlenwert ein. Die Musterlösung bleibt dabei verborgen.</p><div class="answer-controls"><label for="answerTarget">Gesuchte Größe<select id="answerTarget">'+choices.map((x,i)=>'<option value="'+i+'">'+esc(x.label)+' ('+esc(x.unit)+')</option>').join('')+'</select></label><label for="answerInput">Dein Zahlenwert<span class="answer-entry-wrap"><input class="answer-input" id="answerInput" type="text" inputmode="decimal" autocomplete="off" placeholder="z. B. '+answerExample(task)+'" aria-describedby="answerHelp answerTolerance"><span class="answer-unit" id="answerUnit">'+esc(choices[0].unit)+'</span></span></label><button class="btn primary" id="checkAnswer" type="button">Antwort prüfen</button></div><p class="answer-help" id="answerHelp">Deutsches Komma und einfache Brüche sind möglich. Gerundete Werte innerhalb der angezeigten Toleranz werden akzeptiert. Farb- und Bewegungsfeedback funktionieren unabhängig von der Vibrationsunterstützung des Geräts.</p><p class="answer-help" id="answerTolerance"></p><div class="answer-feedback" id="answerFeedback" role="status" aria-live="polite" hidden></div></section>';
 }
 function parseNumericAnswer(raw){
  const value=String(raw).trim().replace(/[−–]/g,'-').replace(/\s+/g,'').replace(',','.');
@@ -164,7 +171,7 @@ function setupAnswerChecker(task){
  document.getElementById('checkAnswer').addEventListener('click',()=>{
   clearState();const numeric=parseNumericAnswer(input.value);
   feedback.hidden=false;void feedback.offsetWidth;
-  if(numeric===null){feedback.classList.add('is-neutral');feedback.textContent='Gib eine Zahl oder einen einfachen Bruch ein, zum Beispiel 14, 14,2 oder 25/6.';input.focus();return;}
+  if(numeric===null){feedback.classList.add('is-neutral');feedback.textContent='Gib eine Zahl oder einen einfachen Bruch ein, zum Beispiel '+answerExample(task)+'. Für Dezimalzahlen kannst du ein Komma oder einen Punkt verwenden.';input.focus();return;}
   const a=selected(),correct=Math.abs(numeric-a.value)<=a.tolerance;
   if(correct){panel.classList.add('answer-correct');input.classList.add('answer-correct');feedback.classList.add('is-correct');feedback.textContent='Richtig! Dein Wert für '+a.label+' liegt im akzeptierten Bereich.';try{navigator.vibrate?.([45,35,45]);}catch(e){}}
   else{panel.classList.add('answer-wrong');input.classList.add('answer-wrong');feedback.classList.add('is-wrong');feedback.append(document.createTextNode('Noch nicht richtig. Prüfe deinen Ansatz, das Umstellen der Formel und die Einheit. Ein Tipp kann dich weiterführen. '));const jump=document.createElement('button');jump.type='button';jump.className='tip-jump';jump.textContent='Zu den Tipps';jump.addEventListener('click',()=>{const section=document.getElementById('tipSection');section?.scrollIntoView({behavior:'smooth',block:'start'});section?.focus({preventScroll:true});document.getElementById('nextTip')?.focus({preventScroll:true});});feedback.append(jump);try{navigator.vibrate?.([110,45,110]);}catch(e){}}
