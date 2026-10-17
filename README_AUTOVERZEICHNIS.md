@@ -104,11 +104,13 @@ kopiert. Die vorhandene `AGENTS.md` bleibt unverändert.
 
 ## Klausurvorbereitung
 
-Im EF-Themenfeld **Grundlagen der Mechanik** liegt das interaktive Aufgabentool
-**Zwei Fallhöhen vergleichen** unter
+Im EF-Themenfeld **Grundlagen der Mechanik** liegt der interaktive
+**Aufgabenpool Kinematik – Physik EF** unter dem bestehenden Pfad
 `lernmaterial/klausurvorbereitung/Aufgabe_Zwei_Fallhoehen_interaktiv.html`.
-Die mitgelieferte HTML-Datei wird vollständig übernommen, einschließlich
-Tipps, Selbstchecks und schrittweiser Musterlösung.
+Er ersetzt das bisherige Tool „Zwei Fallhöhen vergleichen“ und enthält
+51 Aufgaben in sieben Themenbereichen mit direkter Ergebnisprüfung,
+gestuften Tipps und Musterlösungen. Die Formeln bleiben auch ohne
+CDN-Verbindung als MathML lesbar.
 
 Die Kursübersicht und das Themenfeld zeigen einen eigenen Bereich mit der
 Überschrift und dem Label **Klausurvorbereitung**. Der Einführungstext verweist

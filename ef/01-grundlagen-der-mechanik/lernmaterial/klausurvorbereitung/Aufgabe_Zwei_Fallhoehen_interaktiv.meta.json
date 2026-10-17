@@ -1,9 +1,9 @@
 {
-  "title": "Zwei Fallhöhen vergleichen – interaktives Aufgabentool",
-  "description": "Erarbeite und wiederhole den freien Fall als Klausurvorbereitung: Stelle die Fallgleichung um, vergleiche Fallzeiten und begründe dein Ergebnis. Gestufte Tipps, interaktive Selbstchecks und eine schrittweise Musterlösung helfen dir dabei.",
+  "title": "Aufgabenpool Kinematik – Physik EF",
+  "description": "Erarbeite und wiederhole die Kinematik mit 51 Aufgaben aus sieben Themenbereichen: gleichförmige und beschleunigte Bewegung, Bewegungsdiagramme, Linearisierung und Regression, freier Fall, senkrechter Wurf sowie Diagnose- und Denkaufgaben. Direkte Ergebnisprüfung, gestufte Tipps und Musterlösungen unterstützen deine Klausurvorbereitung.",
   "type": "klausurvorbereitung",
   "level": "EF",
-  "tags": ["Klausurvorbereitung", "Aufgabenpool", "Kinematik", "Freier Fall", "Fallzeit", "Fallhöhe", "Formeln umstellen"],
+  "tags": ["Klausurvorbereitung", "Aufgabenpool", "Kinematik", "Gleichförmige Bewegung", "Beschleunigung", "Bewegungsdiagramme", "Linearisierung", "Regression", "Freier Fall", "Fallzeit", "Fallhöhe", "Senkrechter Wurf", "Diagnoseaufgaben", "Formeln umstellen"],
   "visible": true,
   "order": 1
 }
