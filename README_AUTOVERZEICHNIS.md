@@ -109,8 +109,10 @@ Im EF-Themenfeld **Grundlagen der Mechanik** liegt der interaktive
 `lernmaterial/klausurvorbereitung/Aufgabe_Zwei_Fallhoehen_interaktiv.html`.
 Er ersetzt das bisherige Tool „Zwei Fallhöhen vergleichen“ und enthält
 51 Aufgaben in sieben Themenbereichen mit direkter Ergebnisprüfung,
-gestuften Tipps und Musterlösungen. Die Formeln bleiben auch ohne
-CDN-Verbindung als MathML lesbar.
+gestuften Tipps und Musterlösungen. Die Formeln sind vollständig als
+MathML vorgerendert und benötigen keine CDN-Verbindung. Die Diagramme
+enthalten beschriftete SVG-Achsen mit Einheiten und Zahlenmaßstäben;
+Lösungskurven werden erst mit der Musterlösung eingeblendet.
 
 Die Kursübersicht und das Themenfeld zeigen einen eigenen Bereich mit der
 Überschrift und dem Label **Klausurvorbereitung**. Der Einführungstext verweist
