@@ -22,14 +22,31 @@ _site wird gebaut
 GitHub Pages wird veröffentlicht
 ```
 
-Die Website zeigt die Struktur in zwei Schritten:
+Die Website zeigt die Struktur auf vier getrennten Ansichten:
 
 ```text
 1. Klasse oder Kurs auswählen
-2. Themenfeld auswählen
-   ├── Lernpfade
-   └── Dateien
+2. Themenbereich auswählen
+3. Materialart auswählen (z. B. Lernpfade, Simulationen, Prüfungsvorbereitung)
+4. Material in der eigenen Übersicht auswählen und öffnen
 ```
+
+Jede Unterseite hat oben und unten einen Zurück-Button zur vorherigen Ebene.
+Der Navigationspfad erlaubt direkte Sprünge zu den übergeordneten Übersichten.
+Die Browsernavigation und direkte Links funktionieren auf allen Ebenen, etwa
+`#/ef/01-grundlagen-der-mechanik/simulationen`. Bestehende Kurs-, Themen- und
+Materiallinks bleiben gültig. Die Suche filtert die Auswahl auf jeder Ebene;
+Materialarten ohne Inhalte erscheinen nicht. Kursbezogene Question Shells sind
+über eine eigene Kachel und Materialseite in der Kursübersicht erreichbar.
+Der Ordner `unterstuetzung/` erscheint dabei nicht zusätzlich als Themenbereich.
+
+Das helle Farbkonzept verbindet Mint, Lavendel, Rosé und Apricot. Materialarten
+haben feste Akzentfarben, die auf ihrer Materialseite wiederkehren. Kacheln
+und Navigationsbuttons bestätigen die Auswahl durch Aufleuchten, eine Farbwelle
+und eine kurze Wackelbewegung. Dies funktioniert auch mit Touch und Tastatur.
+Die Systemeinstellung für reduzierte Bewegung unterbindet Animationen und
+öffnet die nächste Übersicht ohne die kurze Animationspause. Materialdownloads
+und das Öffnen von Links in neuen Tabs behalten ihr gewohntes Verhalten.
 
 ## Neue Lernpfade
 
@@ -58,14 +75,14 @@ Beispiel `meta.json`:
 
 Auch die bisherige Struktur mit einzelnen HTML-Dateien direkt unter `lernpfade/` wird automatisch erkannt. Der Generator liest dann den HTML-`<title>` aus. Optional kann zu `lernpfad-auftrieb.html` eine Datei `lernpfad-auftrieb.meta.json` angelegt werden.
 
-Weitere sichtbare Materialien werden automatisch im Bereich **Dateien** des jeweiligen Themenfelds angezeigt, z. B. PowerPoint-Präsentationen, Markdown-Dateien, PDFs, Bilder, Simulationen und Office-Dateien. Interne JSON-Dateien wie `praesentation.json`, `meta.json`, `thema.json` oder `jahrgang.json` werden nicht angezeigt.
+Weitere sichtbare Materialien werden automatisch der passenden Materialart im jeweiligen Themenbereich zugeordnet, z. B. Präsentationen, Bilder oder Simulationen. Sonstige Dateien erscheinen unter **Weitere Materialien**. Interne JSON-Dateien wie `praesentation.json`, `meta.json`, `thema.json` oder `jahrgang.json` werden nicht angezeigt.
 
 ## Fermi-Aufgaben als Zusatzaufgaben
 
 Die 31 importierten Fermi-Aufgaben liegen nach Jahrgang und Themenfeld unter
-`lernmaterial/fermi-physik/`. Auf Pages erscheinen sie im eigenen Bereich
-**Zusatzaufgaben**, jeweils mit dem Label **Aufgabe**. Sie sind auch in der
-Jahrgangsübersicht direkt erreichbar und über Titel, Aufgabenstellung,
+`lernmaterial/fermi-physik/`. Auf Pages erscheinen sie auf der eigenen Materialseite
+**Zusatzaufgaben**, jeweils mit dem Label **Aufgabe**. Sie sind über die
+Themenbereiche erreichbar und über Titel, Aufgabenstellung,
 Jahrgang, Kategorie und Suchbegriffe wie „Fermi“ auffindbar.
 
 Beispiel für die Metadaten neben `01-wasser-im-wasserkocher.html`:
@@ -114,9 +131,10 @@ MathML vorgerendert und benötigen keine CDN-Verbindung. Die Diagramme
 enthalten beschriftete SVG-Achsen mit Einheiten und Zahlenmaßstäben;
 Lösungskurven werden erst mit der Musterlösung eingeblendet.
 
-Die Kursübersicht und das Themenfeld zeigen einen eigenen Bereich mit der
-Überschrift und dem Label **Klausurvorbereitung**. Der Einführungstext verweist
-auf den Aufgabenpool zum selbstständigen Erarbeiten und Wiederholen der Inhalte.
+Das Themenfeld zeigt eine Kachel **Prüfungsvorbereitung**, die zur eigenen
+Materialübersicht führt. Das bestehende Label **Klausurvorbereitung** bleibt
+bei den Materialien erhalten. Der Einführungstext verweist auf Aufgaben,
+Tipps und Musterlösungen zur Vorbereitung auf Tests und Klausuren.
 
 Weitere Materialien erhalten neben der HTML-Datei eine gleichnamige
 `.meta.json` mit `"type": "klausurvorbereitung"`. Titel, Beschreibung,

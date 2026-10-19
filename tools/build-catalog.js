@@ -357,7 +357,7 @@ function isClassFolder(name) {
 
 function scanTopics(classPath) {
   return fs.readdirSync(classPath, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && !entry.name.startsWith(".") && !entry.name.startsWith("_"))
+    .filter((entry) => entry.isDirectory() && entry.name !== SUPPORT_DIR_NAME && !entry.name.startsWith(".") && !entry.name.startsWith("_"))
     .map((entry) => {
       const topicPath = path.join(classPath, entry.name);
       const meta = readJson(path.join(topicPath, "thema.json")) || {};
