@@ -6,4 +6,8 @@ An einem sonnigen Tag fällt Sonnenlicht auf den Schulhof des Rivius Gymnasiums 
 
 ![Die Sonne und die von ihr beleuchtete Erde im Weltraum; die Darstellung ist nicht maßstabsgetreu.](../../bilder/fermi-physik/fermi-04.webp)
 
-[Eigenen Lösungsweg entwickeln](04-wie-lange-braucht-sonnenlicht-bis-nach-attendorn.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](04-wie-lange-braucht-sonnenlicht-bis-nach-attendorn.html)

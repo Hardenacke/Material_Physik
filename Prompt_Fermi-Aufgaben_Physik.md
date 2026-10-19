@@ -91,12 +91,13 @@ Erfinde keine lokalen Gerätewerte, Klassenstärken, Raummaße oder Messdaten. N
 #### 1. Aufgabenkarte für Lernende
 Formuliere eine motivierende, konkret abgegrenzte Frage in direkter Schüleransprache. Benenne das betrachtete System, die Zielgröße und einen festen Ort, eine Gruppe, einen Gegenstand oder Zeitraum, soweit passend. Verrate weder Lösung noch vollständige Datengrundlage. Verwende nur Inhalte, die für Lernende relevant sind; redaktionelle oder technische Hinweise gehören nicht in die Aufgabenkarte.
 
-#### 2. Zweiter Schritt: eigener Lösungsweg
-Nach einem bewussten Wechsel in den zweiten Schritt erscheint ausschließlich
-die Aufforderung: „Findet eine mögliche Antwort und entwickelt dazu euren eigenen
-Lösungsweg.“ Die Lernenden bestimmen ihr Vorgehen selbst. Es gibt keine
+#### 2. Arbeitsauftrag direkt unter der Aufgabe
+Unter der Aufgabenstellung mit Bild steht auf derselben Seite unter der
+Überschrift „Arbeitsauftrag“: „Findet eine mögliche Antwort und entwickelt dazu
+euren eigenen Lösungsweg.“ Es gibt keinen zweiten Schritt und keine weitere
+Ansicht. Die Lernenden bestimmen ihr Vorgehen selbst. Es gibt keine
 Eingabefelder, Schrittlisten, gestuften Hilfen, Formelhinweise oder Musterlösung.
-Aufgabentext und Bild bleiben zum Nachlesen sichtbar.
+Aufgabentext, Bild und Arbeitsauftrag sind gleichzeitig sichtbar.
 
 #### 3. Passendes Bild
 Zeige zur kurzen Aufgabenstellung ein passendes, generiertes oder rechtmäßig
@@ -150,9 +151,9 @@ Bewerte das physikalische Denken und die Modellierung, nicht allein die Endzahl:
 #### 7. Unterrichtseinsatz
 Schlage kurz vor, ob sich die Aufgabe als Einstieg, Erkenntnisgewinnung, Übung, Vertiefung oder Transfer eignet. Plane Kleingruppenarbeit mit einer abschließenden Ergebnispräsentation oder Modellkonferenz. Die Lehrkraft gibt Impulse und unterstützt Messungen, schreibt aber keinen einzigen Lösungsweg vor.
 
-Wenn HTML-Dateien oder ein Aufgabenpool erstellt werden, zeigt der erste Schritt
-nur die kurze Aufgabenstellung mit genügend Hintergrund und einem passenden Bild.
-Der zweite Schritt fordert zum selbstständigen Entwickeln eines Lösungswegs auf.
+Wenn HTML-Dateien oder ein Aufgabenpool erstellt werden, zeigt eine einzige Seite
+die kurze Aufgabenstellung mit genügend Hintergrund und einem passenden Bild.
+Direkt darunter steht der offene Arbeitsauftrag zum eigenen Lösungsweg.
 Es gibt keine vorgegebenen Teilschritte, Formeln, Notizfelder, Hilfen oder
 Musterlösungen. Lehrkraftnotizen, Wettbewerbsquellen, Ablagepfade und
 Erstellungsmetadaten bleiben außerhalb der Schüleransicht.
@@ -197,8 +198,8 @@ geltenden Benutzeraufträge und die vorhandene AGENTS.md haben Vorrang.
 
 - Neue Fermi-Aufgaben im passenden Jahrgang und Themenfeld unter
   `lernmaterial/fermi-physik/` ablegen. Bestehende Dateien und Links beibehalten.
-- Eine HTML-Datei pro Aufgabe mit zwei Ansichten verwenden: Aufgabe mit Bild,
-  danach eine offene Aufforderung zum eigenen Lösungsweg. Keine Textboxen,
+- Eine HTML-Datei pro Aufgabe verwenden: Aufgabe mit Bild und direkt darunter
+  der offene Arbeitsauftrag zum eigenen Lösungsweg. Keine Textboxen,
   Anleitungen oder Musterlösungen ergänzen.
 - Die bestehenden Aufgaben werden über `tools/fermi-tasks.json` und
   `npm run build:fermi` gepflegt. `npm run build:site` erzeugt sie ebenfalls neu.

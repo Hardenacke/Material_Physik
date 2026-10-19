@@ -119,9 +119,9 @@ enthält den mitgelieferten Fachprompt für künftige Agentenaufträge und die
 Regeln zur Einbindung weiterer Aufgaben. Sie wird nicht in die Schülerwebsite
 kopiert. Die vorhandene `AGENTS.md` bleibt unverändert.
 
-Jede Fermi-Aufgabe hat zwei Ansichten: zuerst eine kurze Aufgabenstellung mit
-einem passenden Bild, danach die offene Aufforderung zum eigenen Lösungsweg.
-Aufgabentext und Bild bleiben auch im zweiten Schritt sichtbar. Es gibt keine
+Jede Fermi-Aufgabe zeigt eine kurze Aufgabenstellung mit einem passenden Bild.
+Direkt darunter steht der Arbeitsauftrag, einen eigenen Lösungsweg zu entwickeln.
+Alles ist auf einer Seite ohne weiteren Schritt sichtbar. Es gibt keine
 Eingabefelder, vorgegebenen Teilschritte, Formelhinweise oder Musterlösungen.
 Die lokalen Übersichten und Markdown-Downloads enthalten dieselben kurzen Texte.
 Die Bilder liegen im jeweiligen Themenordner unter `bilder/fermi-physik/`;

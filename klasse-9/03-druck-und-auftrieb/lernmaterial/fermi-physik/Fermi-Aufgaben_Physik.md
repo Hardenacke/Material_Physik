@@ -6,7 +6,11 @@ Der Biggesee ist ein großer Stausee im Sauerland. Wie viele Tonnen Wasser enth�
 
 ![Ein großer, von bewaldeten Hügeln umgebener Stausee aus der Vogelperspektive; eine illustrative Landschaft.](../../bilder/fermi-physik/fermi-10.webp)
 
-[Eigenen Lösungsweg entwickeln](10-wie-viel-wasser-steckt-im-biggesee.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](10-wie-viel-wasser-steckt-im-biggesee.html)
 
 ## 11. Wie stark drückt Wasser auf eine Schwimmbadwand?
 
@@ -14,4 +18,8 @@ In einer Schwimmbadwand befindet sich ein 40 cm breites und 30 cm hohes Sichtfen
 
 ![Ein vollständig unter Wasser liegendes rechteckiges Sichtfenster in der gefliesten Wand eines Schwimmbeckens.](../../bilder/fermi-physik/fermi-11.webp)
 
-[Eigenen Lösungsweg entwickeln](11-wie-stark-drueckt-wasser-auf-eine-schwimmbadwand.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](11-wie-stark-drueckt-wasser-auf-eine-schwimmbadwand.html)

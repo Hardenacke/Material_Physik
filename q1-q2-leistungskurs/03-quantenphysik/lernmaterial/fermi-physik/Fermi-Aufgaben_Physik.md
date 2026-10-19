@@ -6,4 +6,8 @@ Ein Elektron wird durch eine Spannung von 100 V beschleunigt. Wie groß ist sein
 
 ![Eine geschlossene Elektronenstrahlröhre auf einem Labortisch mit einem schwach leuchtenden Strahl im Glaskolben.](../../bilder/fermi-physik/fermi-29.webp)
 
-[Eigenen Lösungsweg entwickeln](29-materiewellen-im-elektronenstrahl.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](29-materiewellen-im-elektronenstrahl.html)

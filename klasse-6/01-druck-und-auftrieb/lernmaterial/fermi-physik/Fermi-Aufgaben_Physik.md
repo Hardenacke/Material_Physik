@@ -6,4 +6,8 @@ In Raum 351 sind Türen und Fenster geschlossen. Wie viel Luft befindet sich ung
 
 ![Ein heller Klassenraum mit Tischen, Stühlen und geschlossenen Fenstern.](../../bilder/fermi-physik/fermi-05.webp)
 
-[Eigenen Lösungsweg entwickeln](05-wie-viel-luft-ist-in-raum-351.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](05-wie-viel-luft-ist-in-raum-351.html)

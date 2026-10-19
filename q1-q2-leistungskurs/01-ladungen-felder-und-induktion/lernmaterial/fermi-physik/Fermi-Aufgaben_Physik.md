@@ -6,4 +6,8 @@ Ein Kondensator aus einem Schulversuch hat eine Kapazität von etwa 1000 µF und
 
 ![Ein kleiner Kondensator mit zwei Anschlüssen liegt neben einer schulischen Elektronikschaltung.](../../bilder/fermi-physik/fermi-27.webp)
 
-[Eigenen Lösungsweg entwickeln](27-elektronen-auf-einer-kondensatorplatte.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](27-elektronen-auf-einer-kondensatorplatte.html)

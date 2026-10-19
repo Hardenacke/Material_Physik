@@ -6,4 +6,8 @@ Eine Lerngruppe steigt im Schulgebäude vom Erdgeschoss in den dritten Stock. Wi
 
 ![Eine Lerngruppe steigt eine Treppe in einem Schulgebäude hinauf.](../../bilder/fermi-physik/fermi-09.webp)
 
-[Eigenen Lösungsweg entwickeln](09-energie-fuer-den-weg-in-den-dritten-stock.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](09-energie-fuer-den-weg-in-den-dritten-stock.html)

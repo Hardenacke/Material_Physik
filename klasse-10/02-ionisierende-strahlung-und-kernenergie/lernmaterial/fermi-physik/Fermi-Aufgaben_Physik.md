@@ -6,4 +6,8 @@ Ein Geigerzähler steht in Raum 351 und misst ausschließlich die natürliche Hi
 
 ![Ein Geigerzähler mit Messsonde liegt auf einem Tisch im Fachraum; es ist keine zusätzliche Strahlenquelle vorhanden.](../../bilder/fermi-physik/fermi-13.webp)
 
-[Eigenen Lösungsweg entwickeln](13-wie-viele-hintergrundimpulse-zaehlt-ein-geigerzaehler.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](13-wie-viele-hintergrundimpulse-zaehlt-ein-geigerzaehler.html)

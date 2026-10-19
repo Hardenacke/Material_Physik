@@ -6,4 +6,8 @@ Am gegenüberliegenden Ufer des Biggesees steht ein 30 cm breites Schild. Ihr be
 
 ![Ein Fernglas an einem Aussichtspunkt am See; ein kleines Schild steht am gegenüberliegenden Ufer.](../../bilder/fermi-physik/fermi-07.webp)
 
-[Eigenen Lösungsweg entwickeln](07-was-zeigt-das-fernglas-am-biggesee.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](07-was-zeigt-das-fernglas-am-biggesee.html)

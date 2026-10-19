@@ -15,7 +15,7 @@ function write(file, text) {
   fs.writeFileSync(file, text, "utf8");
 }
 
-function head(title, taskPage = false) {
+function head(title) {
   return `<!doctype html>
 <html lang="de">
 <head>
@@ -24,50 +24,35 @@ function head(title, taskPage = false) {
   <meta name="theme-color" content="#6752b5">
   <title>${escape(title)}</title>
   <link rel="stylesheet" href="../../../../assets/fermi.css">
-${taskPage ? '  <script src="../../../../assets/fermi.js" defer></script>' : ""}
 </head>`;
 }
 
 function taskPage(task) {
-  return `${head(task.title + " · Fermi-Aufgabe Physik", true)}
+  return `${head(task.title + " · Fermi-Aufgabe Physik")}
 <body>
 <main class="wrap">
   <nav class="page-nav" aria-label="Seitennavigation">
-    <a class="back" data-back href="index.html">← Zur Aufgabenübersicht</a>
+    <a class="back" href="index.html">← Zur Aufgabenübersicht</a>
     <a class="library-link" href="${escape(task.catalogUrl)}">Zusatzaufgaben im Themenbereich</a>
   </nav>
   <header>
     <p class="eyebrow">Fermi-Aufgabe ${task.id} · ${escape(task.level)}</p>
-    <h1 id="task-title" tabindex="-1">${escape(task.title)}</h1>
-    <nav aria-label="Aufgabenschritte">
-      <ol class="step-nav">
-        <li><a class="step-link" href="#aufgabe" aria-current="step"><span class="step-number">1</span>Aufgabe</a></li>
-        <li><a class="step-link" href="#loesungsweg"><span class="step-number">2</span>Eigener Lösungsweg</a></li>
-      </ol>
-    </nav>
-    <p class="step-label" data-step-label aria-live="polite">Schritt 1 von 2 · Aufgabe</p>
+    <h1 id="task-title">${escape(task.title)}</h1>
   </header>
-  <article class="task-card" aria-labelledby="task-title">
+  <article class="task-card" id="aufgabe" aria-labelledby="task-title">
     <p class="task-question">${escape(task.question)}</p>
     <figure class="task-image">
       <img src="${escape(task.imageUrl)}" width="1536" height="1024" alt="${escape("Illustration: " + task.imageAlt)}" decoding="async">
       <figcaption>${task.id === 4 || task.id === 18 ? "Illustration · nicht maßstabsgetreu" : "Illustration zur Aufgabensituation"}</figcaption>
     </figure>
   </article>
-  <section class="stage" id="aufgabe" aria-label="Aufgabe ansehen">
-    <nav class="stage-actions" aria-label="Weiter zum eigenen Lösungsweg">
-      <a class="button primary" href="#loesungsweg">Weiter: Eigener Lösungsweg →</a>
-    </nav>
-  </section>
-  <section class="stage" id="loesungsweg" aria-labelledby="work-title" hidden>
-    <h2 id="work-title" tabindex="-1">Euer eigener Lösungsweg</h2>
+  <section class="work-order" id="loesungsweg" aria-labelledby="work-title">
+    <h2 id="work-title">Arbeitsauftrag</h2>
     <p class="work-prompt">Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.</p>
-    <nav class="stage-actions" aria-label="Zurück oder weitere Aufgabe wählen">
-      <a class="button" href="#aufgabe">← Zurück zur Aufgabe</a>
-      <a class="button" href="index.html">Weitere Aufgabe wählen</a>
-    </nav>
   </section>
-  <noscript><p>Entwickelt einen eigenen Lösungsweg zu dieser Aufgabe.</p></noscript>
+  <nav class="task-actions" aria-label="Weitere Aufgabe wählen">
+    <a class="button" href="index.html">Weitere Aufgabe wählen</a>
+  </nav>
 </main>
 </body>
 </html>
@@ -128,8 +113,8 @@ ${cards}
   <footer class="footer"><a href="Fermi-Aufgaben_Physik.md" download>Aufgaben als Markdown herunterladen</a></footer>
 </main></body></html>
 `);
-  const markdown = `# ${title}\n\n` + entries.map((task) => `## ${task.id}. ${task.title}\n\n${task.question}\n\n![${task.imageAlt}](${task.imageUrl})\n\n[Eigenen Lösungsweg entwickeln](${task.file}#loesungsweg)`).join("\n\n") + "\n";
+  const markdown = `# ${title}\n\n` + entries.map((task) => `## ${task.id}. ${task.title}\n\n${task.question}\n\n![${task.imageAlt}](${task.imageUrl})\n\n### Arbeitsauftrag\n\nFindet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.\n\n[Aufgabe öffnen](${task.file})`).join("\n\n") + "\n";
   write(path.join(entries[0].folder, "Fermi-Aufgaben_Physik.md"), markdown);
 }
 
-console.log(`${tasks.length} Fermi-Aufgaben und ${grouped.size} Übersichten mit Bildern und zwei offenen Aufgabenschritten erzeugt.`);
+console.log(`${tasks.length} Fermi-Aufgaben und ${grouped.size} Übersichten mit Bildern und direkt sichtbarem Arbeitsauftrag erzeugt.`);

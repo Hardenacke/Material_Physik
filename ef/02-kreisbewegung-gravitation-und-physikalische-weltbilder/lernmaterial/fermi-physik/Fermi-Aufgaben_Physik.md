@@ -6,4 +6,8 @@ Ein Satellit bewegt sich auf einer annähernd kreisförmigen Bahn 400 km über d
 
 ![Ein Satellit mit Solarpaneelen über der gekrümmten Erdoberfläche; die Darstellung ist nicht maßstabsgetreu.](../../bilder/fermi-physik/fermi-18.webp)
 
-[Eigenen Lösungsweg entwickeln](18-wie-lange-braucht-ein-satellit-fuer-einen-umlauf.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](18-wie-lange-braucht-ein-satellit-fuer-einen-umlauf.html)

@@ -6,7 +6,11 @@ Die Luft in der Aula kann zu stehenden Schallwellen angeregt werden. Welche tief
 
 ![Blick entlang der längsten Richtung einer geräumigen Aula mit Bühne und Stühlen.](../../bilder/fermi-physik/fermi-28.webp)
 
-[Eigenen Lösungsweg entwickeln](28-grundton-der-aula.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](28-grundton-der-aula.html)
 
 ## 31. Wie viele hörbare Eigenschwingungen passen in den Frequenzbereich der Aula?
 
@@ -14,4 +18,8 @@ Wie viele verschiedene stehende Schallwellen mit Frequenzen zwischen 20 Hz und 2
 
 ![Eine leere Aula mit hohem Raum und Holzboden, entlang ihrer längsten Richtung betrachtet.](../../bilder/fermi-physik/fermi-31.webp)
 
-[Eigenen Lösungsweg entwickeln](31-wie-viele-hoerbare-eigenschwingungen-passen-in-den-frequenzbereich-der-aula.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](31-wie-viele-hoerbare-eigenschwingungen-passen-in-den-frequenzbereich-der-aula.html)

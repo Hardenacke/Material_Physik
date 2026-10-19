@@ -6,4 +6,8 @@ Auf einem geeigneten Schuldach wird eine Photovoltaikanlage installiert. Wie vie
 
 ![Photovoltaikmodule auf einem Schulgebäudedach an einem sonnigen Tag.](../../bilder/fermi-physik/fermi-14.webp)
 
-[Eigenen Lösungsweg entwickeln](14-solarstrom-fuer-einen-schultag.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](14-solarstrom-fuer-einen-schultag.html)

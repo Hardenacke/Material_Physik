@@ -6,4 +6,8 @@ Eine Banane enthält natürliches Kalium und damit auch einen kleinen Anteil des
 
 ![Eine gewöhnliche gelbe Banane auf einem hellen Tisch.](../../bilder/fermi-physik/fermi-25.webp)
 
-[Eigenen Lösungsweg entwickeln](25-radioaktive-zerfaelle-im-natuerlichen-kalium.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](25-radioaktive-zerfaelle-im-natuerlichen-kalium.html)

@@ -6,7 +6,11 @@ Eine rote LED leuchtet mit einer elektrischen Leistungsaufnahme von ungefähr 0,
 
 ![Eine einzelne rote LED leuchtet auf einer kleinen Schaltung mit Kleinspannungsversorgung.](../../bilder/fermi-physik/fermi-22.webp)
 
-[Eigenen Lösungsweg entwickeln](22-photonen-einer-roten-led.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](22-photonen-einer-roten-led.html)
 
 ## 26. Wie viele Lichtquanten treffen während einer Stunde durch ein Fenster?
 
@@ -14,4 +18,8 @@ An einem sonnigen Tag fällt Licht durch ein Fenster in Raum 351. Wie viele sich
 
 ![Sonnenlicht fällt durch ein großes Klassenraumfenster auf die Tische und den Boden.](../../bilder/fermi-physik/fermi-26.webp)
 
-[Eigenen Lösungsweg entwickeln](26-wie-viele-lichtquanten-treffen-waehrend-einer-stunde-durch-ein-fenster.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](26-wie-viele-lichtquanten-treffen-waehrend-einer-stunde-durch-ein-fenster.html)

@@ -6,7 +6,11 @@ Wie viel elektrische Energie benötigt die Beleuchtung in Raum 351 während eine
 
 ![Eingeschaltete Deckenleuchten über den Tischen eines Klassenraums.](../../bilder/fermi-physik/fermi-12.webp)
 
-[Eigenen Lösungsweg entwickeln](12-energieverbrauch-der-klassenraumbeleuchtung.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](12-energieverbrauch-der-klassenraumbeleuchtung.html)
 
 ## 15. Wie viel Strom verbraucht ein Tablet-Ladegerät in einer Schulwoche?
 
@@ -14,7 +18,11 @@ Ein Tablet wird an fünf Schultagen jeweils 90 Minuten lang geladen. Wie viel el
 
 ![Ein Tablet wird auf einem Schultisch über ein Kabel und ein gewöhnliches Ladegerät geladen.](../../bilder/fermi-physik/fermi-15.webp)
 
-[Eigenen Lösungsweg entwickeln](15-wie-viel-strom-verbraucht-ein-tablet-ladegeraet-in-einer-schulwoche.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](15-wie-viel-strom-verbraucht-ein-tablet-ladegeraet-in-einer-schulwoche.html)
 
 ## 16. Wie viele Elektronen fließen beim Starten eines Kleinwagens?
 
@@ -22,4 +30,8 @@ Ein Kleinwagen wird morgens auf dem Schulparkplatz gestartet. Der Anlasser läuf
 
 ![Ein kleiner Pkw steht am Morgen auf einem Schulparkplatz.](../../bilder/fermi-physik/fermi-16.webp)
 
-[Eigenen Lösungsweg entwickeln](16-wie-viele-elektronen-fliessen-beim-starten-eines-kleinwagens.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](16-wie-viele-elektronen-fliessen-beim-starten-eines-kleinwagens.html)

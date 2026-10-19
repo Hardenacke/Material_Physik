@@ -6,4 +6,8 @@ Ein Schulgong lässt zwei Sekunden lang einen gleichbleibenden Ton hören. Wie v
 
 ![Ein metallischer Schulgong mit Klöppel an einer Flurwand.](../../bilder/fermi-physik/fermi-21.webp)
 
-[Eigenen Lösungsweg entwickeln](21-schwingungen-waehrend-eines-schulgongs.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](21-schwingungen-waehrend-eines-schulgongs.html)

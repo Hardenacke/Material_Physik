@@ -6,4 +6,8 @@ Ihr beobachtet vom Schulgebäude aus einen Blitz. Den Donner hört ihr erst sech
 
 ![Ein entfernter Blitz über den Hügeln hinter einem Schulhof, durch ein geschlossenes Fenster betrachtet.](../../bilder/fermi-physik/fermi-06.webp)
 
-[Eigenen Lösungsweg entwickeln](06-wie-weit-ist-das-gewitter-vom-schulhof-entfernt.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](06-wie-weit-ist-das-gewitter-vom-schulhof-entfernt.html)

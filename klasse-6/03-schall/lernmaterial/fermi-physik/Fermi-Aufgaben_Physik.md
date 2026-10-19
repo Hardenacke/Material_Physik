@@ -6,4 +6,8 @@ Auf dem Sportplatz klatscht eine Person in die Hände. Ihre Partnerin oder ihr P
 
 ![Zwei Personen stehen weit voneinander entfernt auf einem Sportplatz; eine klatscht in die Hände.](../../bilder/fermi-physik/fermi-03.webp)
 
-[Eigenen Lösungsweg entwickeln](03-wie-weit-ist-der-klatsch-auf-dem-sportplatz-entfernt.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](03-wie-weit-ist-der-klatsch-auf-dem-sportplatz-entfernt.html)

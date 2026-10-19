@@ -6,4 +6,8 @@ Ein Elektromagnet im Fachraum wird mit einer Kleinspannungsquelle betrieben. Wie
 
 ![Ein kleiner Elektromagnet hebt mehrere Büroklammern an.](../../bilder/fermi-physik/fermi-02.webp)
 
-[Eigenen Lösungsweg entwickeln](02-wie-viele-bueroklammern-haelt-der-elektromagnet.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](02-wie-viele-bueroklammern-haelt-der-elektromagnet.html)

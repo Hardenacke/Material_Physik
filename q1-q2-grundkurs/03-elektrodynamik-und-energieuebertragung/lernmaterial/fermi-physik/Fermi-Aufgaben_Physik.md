@@ -6,7 +6,11 @@ Eine mit Gleichstrom betriebene Schulglocke läutet drei Sekunden lang. Wie viel
 
 ![Eine elektrische Schulglocke ist mit isolierten Kabeln an eine Kleinspannungsquelle angeschlossen.](../../bilder/fermi-physik/fermi-23.webp)
 
-[Eigenen Lösungsweg entwickeln](23-wie-viele-elektronen-fliessen-beim-laeuten-der-schulglocke.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](23-wie-viele-elektronen-fliessen-beim-laeuten-der-schulglocke.html)
 
 ## 24. Elektrische Energie aus einem Fahrraddynamo
 
@@ -14,4 +18,8 @@ Auf einer 20-minütigen Fahrt zur Schule versorgt ein Fahrraddynamo die eingesch
 
 ![Ein Fahrraddynamo an einem Vorderrad mit angeschlossener Fahrradlampe.](../../bilder/fermi-physik/fermi-24.webp)
 
-[Eigenen Lösungsweg entwickeln](24-elektrische-energie-aus-einem-fahrraddynamo.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](24-elektrische-energie-aus-einem-fahrraddynamo.html)

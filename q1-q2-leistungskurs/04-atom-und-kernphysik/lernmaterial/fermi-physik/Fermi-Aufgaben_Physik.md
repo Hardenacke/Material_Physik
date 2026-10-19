@@ -6,4 +6,8 @@ An einem sonnigen Schultag trifft sechs Stunden lang Sonnenstrahlung auf den Sch
 
 ![Ein sonniger Schulhof mit Bäumen und Schulgebäuden als Illustration der Aufgabensituation.](../../bilder/fermi-physik/fermi-30.webp)
 
-[Eigenen Lösungsweg entwickeln](30-fusionen-die-einen-schultag-lang-die-sonne-antreiben.html#loesungsweg)
+### Arbeitsauftrag
+
+Findet eine mögliche Antwort und entwickelt dazu euren eigenen Lösungsweg.
+
+[Aufgabe öffnen](30-fusionen-die-einen-schultag-lang-die-sonne-antreiben.html)
