@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Bewegung
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 6. Wie weit ist das Gewitter vom Schulhof entfernt?
 
-### Klasse 7/8 · 6. Wie weit ist das Gewitter vom Schulhof entfernt?
+Ihr beobachtet vom Schulgebäude aus einen Blitz. Den Donner hört ihr erst sechs Sekunden später. Wie weit ist das Gewitter ungefähr vom Schulhof entfernt?
 
-Während einer Pause seht ihr einen Blitz und hört den Donner 6 Sekunden später. Wie weit ist das Gewitter ungefähr vom Schulhof entfernt? Nutzt, dass sich Licht viel schneller ausbreitet als Schall. Schätzt die Schallgeschwindigkeit bei der aktuellen Außentemperatur und prüft, wie sich ein Messfehler von einer Sekunde auf eure Entfernung auswirkt.
+![Ein entfernter Blitz über den Hügeln hinter einem Schulhof, durch ein geschlossenes Fenster betrachtet.](../../bilder/fermi-physik/fermi-06.webp)
+
+[Eigenen Lösungsweg entwickeln](06-wie-weit-ist-das-gewitter-vom-schulhof-entfernt.html#loesungsweg)

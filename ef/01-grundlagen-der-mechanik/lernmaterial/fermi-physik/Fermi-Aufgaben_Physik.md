@@ -1,15 +1,25 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Grundlagen der Mechanik
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 17. Bremsweg eines Fahrrads vor der Schule
 
-### EF · 17. Bremsweg eines Fahrrads vor der Schule
+Ein Fahrrad fährt mit 20 km/h auf einem trockenen, ebenen Weg vor der Schule. Wie weit fährt es ungefähr vom Erkennen eines Hindernisses bis zum vollständigen Stillstand?
 
-Ein Fahrrad fährt auf trockenem, ebenem Weg mit 20 km/h. Wie weit fährt es vom Moment, in dem die Fahrerin oder der Fahrer ein Hindernis erkennt, bis zum Stillstand? Schätzt eine Reaktionszeit und eine plausible Bremsverzögerung, berechnet Reaktions- und Bremsweg getrennt und vergleicht das Ergebnis mit der Länge des Schulhofs. Führt keinen Bremsversuch im Verkehr durch.
+![Eine Person mit Fahrradhelm fährt auf einem trockenen, ebenen Weg an einem Schulgelände.](../../bilder/fermi-physik/fermi-17.webp)
 
-### EF · 19. Wie lange fällt ein Ball aus 8 m Höhe?
+[Eigenen Lösungsweg entwickeln](17-bremsweg-eines-fahrrads-vor-der-schule.html#loesungsweg)
 
-Ein Ball wird aus einer Höhe von ungefähr 8 m über dem Boden losgelassen. Wie lange dauert es bis zum Boden und mit welcher Geschwindigkeit kommt er dort an? Modelliert den Fall zunächst ohne Luftwiderstand. Vergleicht die Fallzeit mit der Zeit, die ihr beim Zählen laut „einundzwanzig“ benötigt. Ihr müsst den Ball nicht tatsächlich aus dieser Höhe fallen lassen.
+## 19. Wie lange fällt ein Ball aus 8 m Höhe?
 
-### EF · 20. Wie viel Leistung braucht eine Person beim Treppensteigen?
+Ein Ball wird aus ungefähr acht Metern Höhe über dem Boden losgelassen. Wie lange braucht er bis zum Boden und mit welcher Geschwindigkeit kommt er dort ungefähr an?
 
-Wie groß ist die mittlere mechanische Leistung einer Person, die vom Erdgeschoss bis zum dritten Stock des Schulgebäudes steigt? Messt die benötigte Zeit und schätzt die Höhenänderung sowie die Masse der Person selbst oder verwendet ausdrücklich eine frei gewählte Modellmasse. Vergleicht zwei verschiedene Tempi und erklärt, warum die Lageenergie gleich bleiben kann, obwohl sich die Leistung ändert.
+![Ein Ball in der Luft neben einem mehrstöckigen Schulgebäude; die Abbildung zeigt eine gedachte Situation.](../../bilder/fermi-physik/fermi-19.webp)
+
+[Eigenen Lösungsweg entwickeln](19-wie-lange-faellt-ein-ball-aus-8-m-hoehe.html#loesungsweg)
+
+## 20. Wie viel Leistung braucht eine Person beim Treppensteigen?
+
+Eine Person geht im Schulgebäude vom Erdgeschoss bis in den dritten Stock. Wie groß ist dabei ihre mittlere mechanische Leistung ungefähr?
+
+![Eine Person geht eine helle Treppe im Schulgebäude hinauf.](../../bilder/fermi-physik/fermi-20.webp)
+
+[Eigenen Lösungsweg entwickeln](20-wie-viel-leistung-braucht-eine-person-beim-treppensteigen.html#loesungsweg)

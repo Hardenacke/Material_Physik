@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Ladungen Felder und Induktion
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 27. Elektronen auf einer Kondensatorplatte
 
-### Q1 LK · 27. Elektronen auf einer Kondensatorplatte
+Ein Kondensator aus einem Schulversuch hat eine Kapazität von etwa 1000 µF und wird mit 5 V geladen. Wie viele zusätzliche Elektronen befinden sich dadurch ungefähr auf seiner negativ geladenen Platte?
 
-Ein kleiner Plattenkondensator wird mit 5 V geladen und hat eine Kapazität von ungefähr 1000 Mikrofarad. Wie viele Elektronen werden dabei von einer Platte zur anderen verschoben? Schätzt zunächst die gespeicherte Ladung und rechnet sie anschließend in eine Anzahl Elementarladungen um. Nutzt nur einen geeigneten Kleinspannungskondensator und beachtet die Gerätehinweise.
+![Ein kleiner Kondensator mit zwei Anschlüssen liegt neben einer schulischen Elektronikschaltung.](../../bilder/fermi-physik/fermi-27.webp)
+
+[Eigenen Lösungsweg entwickeln](27-elektronen-auf-einer-kondensatorplatte.html#loesungsweg)

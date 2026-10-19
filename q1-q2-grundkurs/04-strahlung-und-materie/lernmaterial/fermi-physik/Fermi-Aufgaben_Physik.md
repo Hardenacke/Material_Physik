@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Strahlung und Materie
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 25. Radioaktive Zerfälle im natürlichen Kalium
 
-### Q2 GK · 25. Radioaktive Zerfälle im natürlichen Kalium
+Eine Banane enthält natürliches Kalium und damit auch einen kleinen Anteil des radioaktiven Isotops Kalium-40. Wie viele Kalium-40-Zerfälle finden ungefähr an einem Tag in einer Banane statt?
 
-Wie viele Zerfälle von Kalium-40 finden ungefähr an einem Tag in einer Banane statt? Schätzt die Kalium-Masse einer Banane, recherchiert den natürlichen Anteil von Kalium-40 und nutzt seine Halbwertszeit. Unterscheidet die Zahl der Zerfälle von der aufgenommenen Strahlendosis.
+![Eine gewöhnliche gelbe Banane auf einem hellen Tisch.](../../bilder/fermi-physik/fermi-25.webp)
+
+[Eigenen Lösungsweg entwickeln](25-radioaktive-zerfaelle-im-natuerlichen-kalium.html#loesungsweg)

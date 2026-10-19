@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Ionisierende Strahlung und Kernenergie
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 13. Wie viele Hintergrundimpulse zählt ein Geigerzähler?
 
-### Klasse 9/10 · 13. Wie viele Hintergrundimpulse zählt ein Geigerzähler?
+Ein Geigerzähler steht in Raum 351 und misst ausschließlich die natürliche Hintergrundstrahlung. Wie viele Impulse registriert er ungefähr während eines sechsstündigen Schultags?
 
-Wie viele Impulse natürlichen Hintergrunds registriert ein Geigerzähler in Raum 351 während eines sechsstündigen Schultages? Messt die Zählrate über mehrere kurze Zeitabschnitte oder verwendet eine bereitgestellte Messung. Hochrechnet eure Werte und erklärt, warum zwei Messungen trotz unveränderter Umgebung unterschiedliche Ergebnisse liefern können. Verwendet keine zusätzlichen Strahlenquellen.
+![Ein Geigerzähler mit Messsonde liegt auf einem Tisch im Fachraum; es ist keine zusätzliche Strahlenquelle vorhanden.](../../bilder/fermi-physik/fermi-13.webp)
+
+[Eigenen Lösungsweg entwickeln](13-wie-viele-hintergrundimpulse-zaehlt-ein-geigerzaehler.html#loesungsweg)

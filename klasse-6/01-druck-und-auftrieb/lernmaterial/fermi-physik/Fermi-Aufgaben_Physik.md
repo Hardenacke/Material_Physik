@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Druck und Auftrieb
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 5. Wie viel Luft ist in Raum 351?
 
-### Klasse 6/7 · 5. Wie viel Luft ist in Raum 351?
+In Raum 351 sind Türen und Fenster geschlossen. Wie viel Luft befindet sich ungefähr in diesem Klassenraum – als Volumen und als Masse?
 
-Wie viel Luft befindet sich ungefähr in Raum 351, wenn die Türen und Fenster geschlossen sind? Schätzt oder messt Länge, Breite und Höhe des Raums. Nutzt eine passende Näherung für die Dichte von Luft und gebt das Ergebnis als Volumen und als Masse an. Erklärt, welche Möbel oder Einbauten ihr bei eurem Raummodell vernachlässigt.
+![Ein heller Klassenraum mit Tischen, Stühlen und geschlossenen Fenstern.](../../bilder/fermi-physik/fermi-05.webp)
+
+[Eigenen Lösungsweg entwickeln](05-wie-viel-luft-ist-in-raum-351.html#loesungsweg)

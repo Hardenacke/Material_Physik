@@ -1,15 +1,25 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Elektrizität
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 12. Energieverbrauch der Klassenraumbeleuchtung
 
-### Klasse 9/10 · 12. Energieverbrauch der Klassenraumbeleuchtung
+Wie viel elektrische Energie benötigt die Beleuchtung in Raum 351 während einer normalen Schulwoche mit fünf Schultagen? Gebt eine ungefähre Energiemenge in Kilowattstunden an.
 
-Wie viel elektrische Energie verbraucht die Beleuchtung in Raum 351 während einer normalen Fünf-Tage-Schulwoche? Zählt die eingeschalteten Lampen, sucht die Leistung auf einem Typenschild oder schätzt sie und ermittelt, wie viele Stunden das Licht tatsächlich eingeschaltet ist. Gebt euer Ergebnis in Kilowattstunden an und schätzt die Kosten.
+![Eingeschaltete Deckenleuchten über den Tischen eines Klassenraums.](../../bilder/fermi-physik/fermi-12.webp)
 
-### Klasse 9/10 · 15. Wie viel Strom verbraucht ein Tablet-Ladegerät in einer Schulwoche?
+[Eigenen Lösungsweg entwickeln](12-energieverbrauch-der-klassenraumbeleuchtung.html#loesungsweg)
 
-Wie viel elektrische Energie nimmt ein Tablet-Ladegerät auf, wenn ein Tablet an fünf Schultagen jeweils 90 Minuten geladen wird? Ermittelt die Leistung vom Typenschild oder messt sie mit einem geeigneten Energiekostenmessgerät. Vergleicht den Verbrauch mit der Energie, die eine 10-W-Lampe in derselben Zeit nutzt.
+## 15. Wie viel Strom verbraucht ein Tablet-Ladegerät in einer Schulwoche?
 
-### Klasse 9/10 · 16. Wie viele Elektronen fließen beim Starten eines Kleinwagens?
+Ein Tablet wird an fünf Schultagen jeweils 90 Minuten lang geladen. Wie viel elektrische Energie nimmt sein Ladegerät dabei insgesamt ungefähr aus der Steckdose auf?
 
-Ein Kleinwagen steht morgens auf dem Schulparkplatz. Wie viele Elektronen fließen ungefähr während eines dreisekündigen Startvorgangs durch den Anlasser? Schätzt die elektrische Leistung des Anlassers und nutzt die Spannung der Autobatterie, um Stromstärke und transportierte Ladung abzuschätzen. Wandelt die Ladung in eine Anzahl von Elementarladungen um und gebt euer Ergebnis als Größenordnung an.
+![Ein Tablet wird auf einem Schultisch über ein Kabel und ein gewöhnliches Ladegerät geladen.](../../bilder/fermi-physik/fermi-15.webp)
+
+[Eigenen Lösungsweg entwickeln](15-wie-viel-strom-verbraucht-ein-tablet-ladegeraet-in-einer-schulwoche.html#loesungsweg)
+
+## 16. Wie viele Elektronen fließen beim Starten eines Kleinwagens?
+
+Ein Kleinwagen wird morgens auf dem Schulparkplatz gestartet. Der Anlasser läuft dabei drei Sekunden lang. Welche Größenordnung hat die Anzahl der Elektronen, die in dieser Zeit durch den Anlasser fließen?
+
+![Ein kleiner Pkw steht am Morgen auf einem Schulparkplatz.](../../bilder/fermi-physik/fermi-16.webp)
+
+[Eigenen Lösungsweg entwickeln](16-wie-viele-elektronen-fliessen-beim-starten-eines-kleinwagens.html#loesungsweg)

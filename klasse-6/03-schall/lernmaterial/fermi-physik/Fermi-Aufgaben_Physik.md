@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Schall
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 3. Wie weit ist der Klatsch auf dem Sportplatz entfernt?
 
-### Klasse 6/7 · 3. Wie weit ist der Klatsch auf dem Sportplatz entfernt?
+Auf dem Sportplatz klatscht eine Person in die Hände. Ihre Partnerin oder ihr Partner hört den Klatsch eine halbe Sekunde später. Wie weit stehen die beiden ungefähr auseinander?
 
-Eine Person klatscht auf dem Sportplatz in die Hände. Wie weit muss ihre Partnerin oder ihr Partner mindestens entfernt stehen, damit der Schall ungefähr eine halbe Sekunde später ankommt? Schätzt oder messt die Schalllaufzeit und prüft, ob diese Entfernung auf dem Sportplatz praktisch erreichbar ist.
+![Zwei Personen stehen weit voneinander entfernt auf einem Sportplatz; eine klatscht in die Hände.](../../bilder/fermi-physik/fermi-03.webp)
+
+[Eigenen Lösungsweg entwickeln](03-wie-weit-ist-der-klatsch-auf-dem-sportplatz-entfernt.html#loesungsweg)

@@ -1,6 +1,6 @@
 {
   "title": "Grundton der Aula",
-  "description": "Welche tiefste stehende Schallwelle kann sich entlang der längsten Richtung der Aula ausbilden? Messt oder schätzt die Raumlänge und modelliert die gegenüberliegenden Wände als reflektierende Begrenzungen. Bestimmt die Grundfrequenz und prüft, ob sie im hörbaren Bereich liegt. Erklärt, wie andere Randbedingungen oder die übrigen Raumdimensionen das Ergebnis verändern könnten.",
+  "description": "Die Luft in der Aula kann zu stehenden Schallwellen angeregt werden. Welche tiefste Eigenfrequenz ergibt sich ungefähr, wenn ihr nur die längste Raumrichtung betrachtet?",
   "type": "aufgabe",
   "level": "Q2 LK",
   "visible": true,

@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Kraft und Energie
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 9. Energie für den Weg in den dritten Stock
 
-### Klasse 8/9 · 9. Energie für den Weg in den dritten Stock
+Eine Lerngruppe steigt im Schulgebäude vom Erdgeschoss in den dritten Stock. Wie viel Lageenergie gewinnt die Gruppe dabei insgesamt ungefähr?
 
-Wie viel Lageenergie gewinnt eine Lerngruppe, wenn sie vom Erdgeschoss in den dritten Stock steigt? Schätzt die Höhe der Treppe und die Gesamtmasse der Gruppe, ohne einzelne Personen zu wiegen oder ihre Körpermasse offenzulegen. Vergleicht die gewonnene Energie mit der Energie eines kleinen Snacks oder einer leuchtenden Lampe.
+![Eine Lerngruppe steigt eine Treppe in einem Schulgebäude hinauf.](../../bilder/fermi-physik/fermi-09.webp)
+
+[Eigenen Lösungsweg entwickeln](09-energie-fuer-den-weg-in-den-dritten-stock.html#loesungsweg)

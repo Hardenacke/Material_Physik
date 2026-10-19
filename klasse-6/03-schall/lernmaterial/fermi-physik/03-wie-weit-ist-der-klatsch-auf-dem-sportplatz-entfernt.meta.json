@@ -1,6 +1,6 @@
 {
   "title": "Wie weit ist der Klatsch auf dem Sportplatz entfernt?",
-  "description": "Eine Person klatscht auf dem Sportplatz in die Hände. Wie weit muss ihre Partnerin oder ihr Partner mindestens entfernt stehen, damit der Schall ungefähr eine halbe Sekunde später ankommt? Schätzt oder messt die Schalllaufzeit und prüft, ob diese Entfernung auf dem Sportplatz praktisch erreichbar ist.",
+  "description": "Auf dem Sportplatz klatscht eine Person in die Hände. Ihre Partnerin oder ihr Partner hört den Klatsch eine halbe Sekunde später. Wie weit stehen die beiden ungefähr auseinander?",
   "type": "aufgabe",
   "level": "Klasse 6/7",
   "visible": true,

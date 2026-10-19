@@ -119,6 +119,20 @@ enthält den mitgelieferten Fachprompt für künftige Agentenaufträge und die
 Regeln zur Einbindung weiterer Aufgaben. Sie wird nicht in die Schülerwebsite
 kopiert. Die vorhandene `AGENTS.md` bleibt unverändert.
 
+Jede Fermi-Aufgabe hat zwei Ansichten: zuerst eine kurze Aufgabenstellung mit
+einem passenden Bild, danach die offene Aufforderung zum eigenen Lösungsweg.
+Aufgabentext und Bild bleiben auch im zweiten Schritt sichtbar. Es gibt keine
+Eingabefelder, vorgegebenen Teilschritte, Formelhinweise oder Musterlösungen.
+Die lokalen Übersichten und Markdown-Downloads enthalten dieselben kurzen Texte.
+Die Bilder liegen im jeweiligen Themenordner unter `bilder/fermi-physik/`;
+ihre Metadaten verhindern zusätzliche Katalogeinträge.
+
+Die Texte und Bildbeschreibungen werden zentral in `tools/fermi-tasks.json`
+gepflegt. `npm run build:fermi` erzeugt daraus die vorhandenen HTML-Seiten,
+Metadaten, lokalen Übersichten und Markdown-Sammlungen. Dieser Schritt ist auch
+in `npm run build:site` enthalten. Die Bildprompts und ihre zugehörigen Dateien
+sind in `tools/fermi-image-prompts.json` dokumentiert.
+
 ## Klausurvorbereitung
 
 Im EF-Themenfeld **Grundlagen der Mechanik** liegt der interaktive

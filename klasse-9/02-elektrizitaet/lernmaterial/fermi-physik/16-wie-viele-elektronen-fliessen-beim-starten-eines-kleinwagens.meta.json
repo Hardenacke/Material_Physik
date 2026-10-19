@@ -1,6 +1,6 @@
 {
   "title": "Wie viele Elektronen fließen beim Starten eines Kleinwagens?",
-  "description": "Ein Kleinwagen steht morgens auf dem Schulparkplatz. Wie viele Elektronen fließen ungefähr während eines dreisekündigen Startvorgangs durch den Anlasser? Schätzt die elektrische Leistung des Anlassers und nutzt die Spannung der Autobatterie, um Stromstärke und transportierte Ladung abzuschätzen. Wandelt die Ladung in eine Anzahl von Elementarladungen um und gebt euer Ergebnis als Größenordnung an.",
+  "description": "Ein Kleinwagen wird morgens auf dem Schulparkplatz gestartet. Der Anlasser läuft dabei drei Sekunden lang. Welche Größenordnung hat die Anzahl der Elektronen, die in dieser Zeit durch den Anlasser fließen?",
   "type": "aufgabe",
   "level": "Klasse 9/10",
   "visible": true,

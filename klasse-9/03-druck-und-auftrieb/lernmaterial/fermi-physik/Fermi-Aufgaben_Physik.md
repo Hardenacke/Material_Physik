@@ -1,11 +1,17 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Druck, Auftrieb und Strömung
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 10. Wie viel Wasser steckt im Biggesee?
 
-### Klasse 8/9 · 10. Wie viel Wasser steckt im Biggesee?
+Der Biggesee ist ein großer Stausee im Sauerland. Wie viele Tonnen Wasser enthält er ungefähr bei einem üblichen Wasserstand?
 
-Wie viele Tonnen Wasser enthält der Biggesee ungefähr? Schätzt die Wasseroberfläche aus einer Karte und nähert die mittlere Tiefe mithilfe weniger Tiefenangaben oder einer begründeten Modellannahme an. Rechnet das Wasservolumen in eine Masse um und vergleicht euer Ergebnis mit der Masse eines großen Frachtschiffs.
+![Ein großer, von bewaldeten Hügeln umgebener Stausee aus der Vogelperspektive; eine illustrative Landschaft.](../../bilder/fermi-physik/fermi-10.webp)
 
-### Klasse 9 · 11. Wie stark drückt Wasser auf eine Schwimmbadwand?
+[Eigenen Lösungsweg entwickeln](10-wie-viel-wasser-steckt-im-biggesee.html#loesungsweg)
 
-Eine Schwimmbadwand hat unterhalb der Wasseroberfläche ein Sichtfenster von ungefähr 40 cm mal 30 cm. Schätzt die resultierende Druckkraft auf das Fenster, wenn seine Mitte 1,5 m unter der Wasseroberfläche liegt. Berücksichtigt, dass der Wasserdruck mit der Tiefe zunimmt, und vergleicht eure Schätzung mit der Kraft, die eine Person mit der Hand ausüben kann.
+## 11. Wie stark drückt Wasser auf eine Schwimmbadwand?
+
+In einer Schwimmbadwand befindet sich ein 40 cm breites und 30 cm hohes Sichtfenster. Seine Mitte liegt 1,5 m unter der Wasseroberfläche; dahinter ist Luft bei normalem Umgebungsdruck. Mit welcher zusätzlichen Kraft drückt das Wasser ungefähr auf das Fenster?
+
+![Ein vollständig unter Wasser liegendes rechteckiges Sichtfenster in der gefliesten Wand eines Schwimmbeckens.](../../bilder/fermi-physik/fermi-11.webp)
+
+[Eigenen Lösungsweg entwickeln](11-wie-stark-drueckt-wasser-auf-eine-schwimmbadwand.html#loesungsweg)

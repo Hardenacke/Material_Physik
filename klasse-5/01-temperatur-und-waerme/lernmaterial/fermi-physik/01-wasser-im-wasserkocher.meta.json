@@ -1,6 +1,6 @@
 {
   "title": "Wasser im Wasserkocher",
-  "description": "Wie viel Wärmeenergie benötigt der Wasserkocher im Fachraum, um 0,5 Liter Wasser von 20 °C auf 80 °C zu erwärmen? Schätzt oder messt, wie lange das Erhitzen dauert. Vergleicht die benötigte Wärmeenergie mit der elektrischen Energie, die der Wasserkocher laut Typenschild während dieser Zeit aufnimmt.",
+  "description": "Im Fachraum sollen 0,5 Liter Wasser im Wasserkocher von 20 °C auf 80 °C erwärmt werden. Wie viel Wärmeenergie benötigt das Wasser dafür ungefähr?",
   "type": "aufgabe",
   "level": "Klasse 5/6",
   "visible": true,

@@ -91,24 +91,19 @@ Erfinde keine lokalen Gerätewerte, Klassenstärken, Raummaße oder Messdaten. N
 #### 1. Aufgabenkarte für Lernende
 Formuliere eine motivierende, konkret abgegrenzte Frage in direkter Schüleransprache. Benenne das betrachtete System, die Zielgröße und einen festen Ort, eine Gruppe, einen Gegenstand oder Zeitraum, soweit passend. Verrate weder Lösung noch vollständige Datengrundlage. Verwende nur Inhalte, die für Lernende relevant sind; redaktionelle oder technische Hinweise gehören nicht in die Aufgabenkarte.
 
-#### 2. Arbeitsauftrag
-Gib diese Arbeitsschritte knapp und passend zur Aufgabe aus:
+#### 2. Zweiter Schritt: eigener Lösungsweg
+Nach einem bewussten Wechsel in den zweiten Schritt erscheint ausschließlich
+die Aufforderung: „Findet eine mögliche Antwort und entwickelt dazu euren eigenen
+Lösungsweg.“ Die Lernenden bestimmen ihr Vorgehen selbst. Es gibt keine
+Eingabefelder, Schrittlisten, gestuften Hilfen, Formelhinweise oder Musterlösung.
+Aufgabentext und Bild bleiben zum Nachlesen sichtbar.
 
-1. Beschreibt das physikalische System und klärt, was gesucht ist.
-2. Zeichnet eine Skizze und markiert relevante Größen.
-3. Sammelt benötigte Größen und zerlegt die Frage in Teilprobleme.
-4. Haltet Annahmen fest und entscheidet, was gemessen, geschätzt oder recherchiert werden muss.
-5. Wählt ein geeignetes physikalisches Modell.
-6. Berechnet eine Näherung mit Einheiten.
-7. Prüft Größenordnung, Plausibilität und Grenzen des Modells.
-8. Vergleicht euren Ansatz mit einer anderen Gruppe oder einem alternativen Modell.
-
-#### 3. Gestufte Hilfen
-Erstelle drei Hilfen, die die Lösung nicht vorwegnehmen:
-
-- **Tipp 1 – System:** Worauf sollte man die Situation begrenzen oder was könnte man messen?
-- **Tipp 2 – Größen:** Welche physikalischen Größen könnten entscheidend sein?
-- **Tipp 3 – Modell:** Welche Beziehung, Formel oder Darstellung könnte passen?
+#### 3. Passendes Bild
+Zeige zur kurzen Aufgabenstellung ein passendes, generiertes oder rechtmäßig
+nutzbares recherchiertes Bild der Situation. Es enthält keine Formeln,
+Lösungshinweise oder ausgerechneten Ergebnisse. Generierte Ortsdarstellungen
+sind Illustrationen und keine vermeintlichen Fotos oder Messdaten der Schule.
+Speichere das Bild lokal im jeweiligen Themenordner unter `bilder/fermi-physik/`.
 
 #### 4. Lehrkraftnotizen
 Nenne:
@@ -123,8 +118,10 @@ Nenne:
 - Impulsfragen, die zum Weiterdenken führen, ohne den Lösungsweg vorzugeben.
 - verwendete Wettbewerbsimpulse und geprüfte Quellen, falls welche genutzt wurden; kennzeichne klar, dass die neue Aufgabe eigenständig formuliert ist.
 
-#### 5. Lösungsskizze
-Zeige eine mögliche physikalische Modellierung in dieser Reihenfolge:
+#### 5. Lösungsskizze nur auf ausdrücklichen Auftrag
+Erstelle standardmäßig keine Musterlösung. Nur wenn die Lehrkraft ausdrücklich
+eine separate Lösungsskizze anfordert, bleibt sie außerhalb der Schüleransicht.
+Für eine solche gesondert beauftragte Skizze ist diese Reihenfolge möglich:
 
 - Zielgröße und Systemgrenze
 - Skizze bzw. verbale Beschreibung des Modells
@@ -153,7 +150,12 @@ Bewerte das physikalische Denken und die Modellierung, nicht allein die Endzahl:
 #### 7. Unterrichtseinsatz
 Schlage kurz vor, ob sich die Aufgabe als Einstieg, Erkenntnisgewinnung, Übung, Vertiefung oder Transfer eignet. Plane Kleingruppenarbeit mit einer abschließenden Ergebnispräsentation oder Modellkonferenz. Die Lehrkraft gibt Impulse und unterstützt Messungen, schreibt aber keinen einzigen Lösungsweg vor.
 
-Wenn HTML-Dateien oder ein Aufgabenpool erstellt werden, zeige dort ausschließlich die schülerrelevante Aufgabenstellung, den Arbeitsauftrag und passende Hilfen. Lehrkraftnotizen, Musterlösungen, Wettbewerbsquellen, Ablagepfade und Erstellungsmetadaten bleiben außerhalb der Schüleransicht.
+Wenn HTML-Dateien oder ein Aufgabenpool erstellt werden, zeigt der erste Schritt
+nur die kurze Aufgabenstellung mit genügend Hintergrund und einem passenden Bild.
+Der zweite Schritt fordert zum selbstständigen Entwickeln eines Lösungswegs auf.
+Es gibt keine vorgegebenen Teilschritte, Formeln, Notizfelder, Hilfen oder
+Musterlösungen. Lehrkraftnotizen, Wettbewerbsquellen, Ablagepfade und
+Erstellungsmetadaten bleiben außerhalb der Schüleransicht.
 
 ### Selbstprüfung vor der Ausgabe
 
@@ -195,8 +197,11 @@ geltenden Benutzeraufträge und die vorhandene AGENTS.md haben Vorrang.
 
 - Neue Fermi-Aufgaben im passenden Jahrgang und Themenfeld unter
   `lernmaterial/fermi-physik/` ablegen. Bestehende Dateien und Links beibehalten.
-- Eine HTML-Datei pro Aufgabe verwenden. Aufgabenstellung, Arbeitsauftrag und
-  Notizfelder bleiben in der Schüleransicht; Lösungen gehören nach `loesungen/`.
+- Eine HTML-Datei pro Aufgabe mit zwei Ansichten verwenden: Aufgabe mit Bild,
+  danach eine offene Aufforderung zum eigenen Lösungsweg. Keine Textboxen,
+  Anleitungen oder Musterlösungen ergänzen.
+- Die bestehenden Aufgaben werden über `tools/fermi-tasks.json` und
+  `npm run build:fermi` gepflegt. `npm run build:site` erzeugt sie ebenfalls neu.
 - Neben `<dateiname>.html` eine `<dateiname>.meta.json` anlegen:
 
 ```json
@@ -205,7 +210,6 @@ geltenden Benutzeraufträge und die vorhandene AGENTS.md haben Vorrang.
   "description": "Kurze Aufgabenstellung",
   "type": "aufgabe",
   "level": "Klasse 8",
-  "tags": ["Fermi-Aufgabe"],
   "tags": ["Fermi-Aufgabe"],
   "visible": true,
   "order": 1
@@ -219,6 +223,8 @@ geltenden Benutzeraufträge und die vorhandene AGENTS.md haben Vorrang.
 - Thematische Markdown-Sammlungen ebenfalls mit einer gleichnamigen
   `.meta.json` und `{"visible": false}` von der automatischen Liste ausnehmen.
   Sie können in der lokalen Aufgabenübersicht zum Download verlinkt werden.
+- Zu Aufgabenbildern eine gleichnamige `.meta.json` mit `{"visible": false}`
+  verwenden, damit sie nicht als zusätzliche Materialien im Katalog erscheinen.
 - Anschließend `npm run build:pptx` und `npm run build:site` ausführen. Kategorie,
   Label, Suche, Rücklinks und die Dateien unter `_site/` prüfen.
 - Ohne ausdrücklichen Auftrag keine Commits, Pushes oder Veröffentlichungen.

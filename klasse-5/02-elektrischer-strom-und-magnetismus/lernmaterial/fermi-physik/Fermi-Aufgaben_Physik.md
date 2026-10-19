@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Elektrischer Strom und Magnetismus
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 2. Wie viele Büroklammern hält der Elektromagnet?
 
-### Klasse 5/6 · 2. Wie viele Büroklammern hält der Elektromagnet?
+Ein Elektromagnet im Fachraum wird mit einer Kleinspannungsquelle betrieben. Wie viele gewöhnliche Büroklammern kann er ungefähr gleichzeitig anheben?
 
-In einem Unterrichtsversuch wird ein Elektromagnet mit einer ungefährlichen Kleinspannungsquelle betrieben. Wie viele gewöhnliche Büroklammern kann er gleichzeitig anheben? Ermittelt zunächst die Masse einiger Klammern und untersucht, wie sich Windungszahl oder Stromstärke auf die Schätzung auswirken. Schaltet den Strom nach jeder Messung wieder aus.
+![Ein kleiner Elektromagnet hebt mehrere Büroklammern an.](../../bilder/fermi-physik/fermi-02.webp)
+
+[Eigenen Lösungsweg entwickeln](02-wie-viele-bueroklammern-haelt-der-elektromagnet.html#loesungsweg)

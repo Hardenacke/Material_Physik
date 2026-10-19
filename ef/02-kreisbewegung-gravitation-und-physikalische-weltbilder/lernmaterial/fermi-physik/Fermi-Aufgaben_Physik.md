@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Kreisbewegung Gravitation und Physikalische Weltbilder
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 18. Wie lange braucht ein Satellit für einen Umlauf?
 
-### EF · 18. Wie lange braucht ein Satellit für einen Umlauf?
+Ein Satellit bewegt sich auf einer annähernd kreisförmigen Bahn 400 km über der Erdoberfläche. Wie lange benötigt er ungefähr für einen vollständigen Umlauf um die Erde?
 
-Ein Satellit bewegt sich auf einer näherungsweise kreisförmigen Bahn 400 km über der Erdoberfläche. Wie lange dauert ein Umlauf? Schätzt den Bahnradius aus dem Erdradius und der Höhe. Bestimmt die Umlaufzeit mithilfe der Kreisbewegung und der Gravitationskraft und prüft, ob eure Bahngeschwindigkeit plausibel ist.
+![Ein Satellit mit Solarpaneelen über der gekrümmten Erdoberfläche; die Darstellung ist nicht maßstabsgetreu.](../../bilder/fermi-physik/fermi-18.webp)
+
+[Eigenen Lösungsweg entwickeln](18-wie-lange-braucht-ein-satellit-fuer-einen-umlauf.html#loesungsweg)

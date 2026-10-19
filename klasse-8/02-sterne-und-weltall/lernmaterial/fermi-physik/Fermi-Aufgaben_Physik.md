@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Sterne und Weltall
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 8. Wie viele Sterne könnt ihr von Attendorn aus sehen?
 
-### Klasse 8 · 8. Wie viele Sterne könnt ihr von Attendorn aus sehen?
+Ihr steht an einem klaren, mondlosen Abend auf dem Schulhof des Rivius Gymnasiums. Wie viele Sterne könntet ihr dort gleichzeitig mit bloßem Auge sehen?
 
-Wie viele Sterne sind an einem klaren, mondlosen Abend gleichzeitig mit bloßem Auge über dem Schulhof des Rivius Gymnasiums sichtbar? Zählt Sterne in mehreren gleich großen Himmelsausschnitten, schätzt die gesamte sichtbare Himmelsfläche und berücksichtigt, dass Gebäude und Lichtverschmutzung Teile des Himmels verdecken.
+![Ein natürlicher Sternenhimmel über den Silhouetten eines Schulhofs und benachbarter Gebäude.](../../bilder/fermi-physik/fermi-08.webp)
+
+[Eigenen Lösungsweg entwickeln](08-wie-viele-sterne-koennt-ihr-von-attendorn-aus-sehen.html#loesungsweg)

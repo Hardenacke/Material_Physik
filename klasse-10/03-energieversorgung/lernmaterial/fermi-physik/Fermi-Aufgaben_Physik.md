@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Energieversorgung
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 14. Solarstrom für einen Schultag
 
-### Klasse 9/10 · 14. Solarstrom für einen Schultag
+Auf einem geeigneten Schuldach wird eine Photovoltaikanlage installiert. Wie viel elektrische Energie könnte sie an einem sonnigen Schultag innerhalb von sechs Stunden ungefähr erzeugen?
 
-Wie viel elektrische Energie könnte eine Photovoltaikanlage auf einem geeigneten Schuldach an einem sonnigen Schultag erzeugen? Schätzt die nutzbare Dachfläche, die eingestrahlte Sonnenenergie und den Anteil, der in elektrische Energie umgewandelt wird. Vergleicht die Schätzung mit dem Tagesverbrauch eines Klassenraums.
+![Photovoltaikmodule auf einem Schulgebäudedach an einem sonnigen Tag.](../../bilder/fermi-physik/fermi-14.webp)
+
+[Eigenen Lösungsweg entwickeln](14-solarstrom-fuer-einen-schultag.html#loesungsweg)

@@ -1,6 +1,6 @@
 {
   "title": "Schwingungen während eines Schulgongs",
-  "description": "Wie viele vollständige Schwingungen führt der Ton eines Schulgongs während der ersten zwei Sekunden aus? Bestimmt oder recherchiert eine typische Frequenz des Gongs und schätzt, wie lange ein klarer Ton anhält. Unterscheidet die Zahl der Schwingungen von der Dauer, in der der Ton hörbar bleibt.",
+  "description": "Ein Schulgong lässt zwei Sekunden lang einen gleichbleibenden Ton hören. Wie viele vollständige Schwingungen führt der Ton in dieser Zeit ungefähr aus?",
   "type": "aufgabe",
   "level": "Q1 GK",
   "visible": true,

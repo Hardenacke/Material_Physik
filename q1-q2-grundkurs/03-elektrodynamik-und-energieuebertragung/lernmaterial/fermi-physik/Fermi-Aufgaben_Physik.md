@@ -1,11 +1,17 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Elektrodynamik und Energieübertragung
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 23. Wie viele Elektronen fließen beim Läuten der Schulglocke?
 
-### Q1 GK · 23. Wie viele Elektronen fließen beim Läuten der Schulglocke?
+Eine mit Gleichstrom betriebene Schulglocke läutet drei Sekunden lang. Wie viele Elektronen passieren in dieser Zeit ungefähr einen Querschnitt ihrer Zuleitung?
 
-Wie viele Elektronen bewegen sich während eines dreisekündigen Läutens durch den Stromkreis der Schulglocke? Ermittelt die Stromstärke am Typenschild oder verwendet eine bereitgestellte Messung. Rechnet die transportierte Ladung in eine Anzahl Elementarladungen um und erklärt, warum dabei nicht einzelne Elektronen aus der Glocke verschwinden.
+![Eine elektrische Schulglocke ist mit isolierten Kabeln an eine Kleinspannungsquelle angeschlossen.](../../bilder/fermi-physik/fermi-23.webp)
 
-### Q2 GK · 24. Elektrische Energie aus einem Fahrraddynamo
+[Eigenen Lösungsweg entwickeln](23-wie-viele-elektronen-fliessen-beim-laeuten-der-schulglocke.html#loesungsweg)
 
-Wie viel elektrische Energie liefert ein Fahrraddynamo während einer 20-minütigen Fahrt zur Schule? Schätzt Fahrzeit, Geschwindigkeit, Wirkungsgrad und die Leistung der angeschlossenen Beleuchtung. Vergleicht die abgegebene Energie mit der mechanischen Arbeit, die zusätzlich beim Treten aufgebracht werden muss.
+## 24. Elektrische Energie aus einem Fahrraddynamo
+
+Auf einer 20-minütigen Fahrt zur Schule versorgt ein Fahrraddynamo die eingeschaltete Fahrradbeleuchtung. Wie viel elektrische Energie liefert er in dieser Zeit ungefähr?
+
+![Ein Fahrraddynamo an einem Vorderrad mit angeschlossener Fahrradlampe.](../../bilder/fermi-physik/fermi-24.webp)
+
+[Eigenen Lösungsweg entwickeln](24-elektrische-energie-aus-einem-fahrraddynamo.html#loesungsweg)

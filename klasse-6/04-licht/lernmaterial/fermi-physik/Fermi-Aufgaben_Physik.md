@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Licht
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 4. Wie lange braucht Sonnenlicht bis nach Attendorn?
 
-### Klasse 6/7 · 4. Wie lange braucht Sonnenlicht bis nach Attendorn?
+An einem sonnigen Tag fällt Sonnenlicht auf den Schulhof des Rivius Gymnasiums in Attendorn. Wie lange war dieses Licht von der Sonne bis zum Schulhof unterwegs?
 
-Wie lange ist ein Lichtstrahl von der Sonne bis zum Schulhof des Rivius Gymnasiums unterwegs? Schätzt oder recherchiert die mittlere Entfernung Erde–Sonne und nutzt die Lichtgeschwindigkeit. Vergleicht eure Zeitangabe mit der Zeit, die Licht für eine Strecke durch die Aula benötigt.
+![Die Sonne und die von ihr beleuchtete Erde im Weltraum; die Darstellung ist nicht maßstabsgetreu.](../../bilder/fermi-physik/fermi-04.webp)
+
+[Eigenen Lösungsweg entwickeln](04-wie-lange-braucht-sonnenlicht-bis-nach-attendorn.html#loesungsweg)

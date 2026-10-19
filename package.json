@@ -3,11 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "build:fermi": "node tools/build-fermi.js",
     "build:videos": "node tools/render-videos.js",
     "build:pptx": "node tools/build-presentations.js",
     "watch:pptx": "node tools/watch-presentations.js",
     "build:catalog": "node tools/build-catalog.js",
-    "build:site": "node tools/build-catalog.js && node tools/prepare-site.js"
+    "build:site": "node tools/build-fermi.js && node tools/build-catalog.js && node tools/prepare-site.js"
   },
   "dependencies": {
     "pptxgenjs": "^3.12.0"

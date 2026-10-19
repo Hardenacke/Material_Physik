@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Klassische Wellen und Geladene Teilchen in Feldern
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 21. Schwingungen während eines Schulgongs
 
-### Q1 GK · 21. Schwingungen während eines Schulgongs
+Ein Schulgong lässt zwei Sekunden lang einen gleichbleibenden Ton hören. Wie viele vollständige Schwingungen führt der Ton in dieser Zeit ungefähr aus?
 
-Wie viele vollständige Schwingungen führt der Ton eines Schulgongs während der ersten zwei Sekunden aus? Bestimmt oder recherchiert eine typische Frequenz des Gongs und schätzt, wie lange ein klarer Ton anhält. Unterscheidet die Zahl der Schwingungen von der Dauer, in der der Ton hörbar bleibt.
+![Ein metallischer Schulgong mit Klöppel an einer Flurwand.](../../bilder/fermi-physik/fermi-21.webp)
+
+[Eigenen Lösungsweg entwickeln](21-schwingungen-waehrend-eines-schulgongs.html#loesungsweg)

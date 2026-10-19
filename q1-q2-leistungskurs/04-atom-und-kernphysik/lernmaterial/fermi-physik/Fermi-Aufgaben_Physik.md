@@ -1,7 +1,9 @@
-# Fermi-Aufgaben Physik
+# Fermi-Aufgaben · Atom und Kernphysik
 
-Bearbeitet die Aufgaben in Gruppen. Trefft begründete Annahmen, notiert Messwerte und Schätzungen mit Einheiten und prüft, ob eure Größenordnung plausibel ist. Vergleicht euren Lösungsweg mit einer zweiten möglichen Modellierung.
+## 30. Fusionen, die einen Schultag lang die Sonne antreiben
 
-### Q2 LK · 30. Fusionen, die einen Schultag lang die Sonne antreiben
+An einem sonnigen Schultag trifft sechs Stunden lang Sonnenstrahlung auf den Schulhof des Rivius Gymnasiums. Wie vielen abgeschlossenen Proton-Proton-Fusionsketten entspricht die dort ankommende Energie ungefähr?
 
-Wie viele Proton-Proton-Fusionsketten müssten während eines Schultags ablaufen, damit auf den Schulhof des Rivius Gymnasiums die dort eintreffende Sonnenenergie fällt? Schätzt die Schulhoffläche und die Dauer des Schultags. Nutzt die solare Strahlungsleistung pro Fläche an der Erde und die Energieabgabe einer Fusionskette. Unterscheidet die Energie, die die Sonne insgesamt freisetzt, von dem kleinen Anteil, der auf den Schulhof trifft.
+![Ein sonniger Schulhof mit Bäumen und Schulgebäuden als Illustration der Aufgabensituation.](../../bilder/fermi-physik/fermi-30.webp)
+
+[Eigenen Lösungsweg entwickeln](30-fusionen-die-einen-schultag-lang-die-sonne-antreiben.html#loesungsweg)

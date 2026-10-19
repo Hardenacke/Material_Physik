@@ -1,6 +1,6 @@
 {
   "title": "Fusionen, die einen Schultag lang die Sonne antreiben",
-  "description": "Wie viele Proton-Proton-Fusionsketten müssten während eines Schultags ablaufen, damit auf den Schulhof des Rivius Gymnasiums die dort eintreffende Sonnenenergie fällt? Schätzt die Schulhoffläche und die Dauer des Schultags. Nutzt die solare Strahlungsleistung pro Fläche an der Erde und die Energieabgabe einer Fusionskette. Unterscheidet die Energie, die die Sonne insgesamt freisetzt, von dem kleinen Anteil, der auf den Schulhof trifft.",
+  "description": "An einem sonnigen Schultag trifft sechs Stunden lang Sonnenstrahlung auf den Schulhof des Rivius Gymnasiums. Wie vielen abgeschlossenen Proton-Proton-Fusionsketten entspricht die dort ankommende Energie ungefähr?",
   "type": "aufgabe",
   "level": "Q2 LK",
   "visible": true,

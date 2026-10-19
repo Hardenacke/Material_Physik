@@ -1,0 +1,312 @@
+[
+  {
+    "id": 1,
+    "asset": "klasse-5/01-temperatur-und-waerme/bilder/fermi-physik/fermi-01.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: a single landscape illustration for a German secondary-school Fermi estimation problem, no infographic. Scene: a modern unbranded electric kettle partly filled with water on a clean school science-room counter, unplugged-looking tidy setting, a window and softly blurred classroom background. Main subject must be clearly recognizable and fully framed. Style: polished editorial gouache and colored-pencil illustration with realistic proportions, soft daylight, warm inviting pale mint, lavender and apricot accents, age-appropriate for ages 10–18, not childish clip art. Landscape 3:2 composition. Absolutely no text, numbers, labels, formulas, arrows, measurements, visible digital readouts, calculation aids, answer clues, logos or watermark. Depict the real-world situation only, not a solution."
+  },
+  {
+    "id": 2,
+    "asset": "klasse-5/02-elektrischer-strom-und-magnetismus/bilder/fermi-physik/fermi-02.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A tabletop school electromagnet experiment: a coil of insulated copper wire around an iron nail suspended from a small stand, lifting a small loose cluster of ordinary paper clips; safe low-voltage battery supply in background. Plausible closed circuit and ordinary real objects."
+  },
+  {
+    "id": 3,
+    "asset": "klasse-6/03-schall/bilder/fermi-physik/fermi-03.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: Two students on a broad school sports field, one visibly clapping their hands in the foreground while the partner stands far away across the field. Natural poses and open green space."
+  },
+  {
+    "id": 4,
+    "asset": "klasse-6/04-licht/bilder/fermi-physik/fermi-04.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: The Sun and Earth in a deep-blue space scene with a subtle sunlit atmospheric rim around Earth. An evocative astronomical illustration, not a diagram, no rays, lines, arrows or scale aids."
+  },
+  {
+    "id": 5,
+    "asset": "klasse-6/01-druck-und-auftrieb/bilder/fermi-physik/fermi-05.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: An airy ordinary German school classroom with desks, chairs and closed windows, empty of people, softly lit, clearly showing a real enclosed room. No floorplan or measurements."
+  },
+  {
+    "id": 6,
+    "asset": "klasse-8/03-bewegung/bilder/fermi-physik/fermi-06.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A distant lightning bolt over the hills beyond a German school courtyard, viewed safely from inside through a closed classroom window. No people outdoors in the storm and no clocks."
+  },
+  {
+    "id": 7,
+    "asset": "klasse-8/01-optische-instrumente/bilder/fermi-physik/fermi-07.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: Binoculars resting on the wooden railing of a lakeside viewing point at a wooded German reservoir, with a small illegible blank sign visible across the water. No inset magnified view and no scale clues."
+  },
+  {
+    "id": 8,
+    "asset": "klasse-8/02-sterne-und-weltall/bilder/fermi-physik/fermi-08.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A realistic clear moonless starry evening above the silhouette of a German school courtyard and surrounding rooftops, a few gently glowing windows and streetlights, subtle natural star field, no star chart."
+  },
+  {
+    "id": 9,
+    "asset": "klasse-9/01-kraft-und-energie/bilder/fermi-physik/fermi-09.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A small group of fully clothed secondary-school students walking upward on an ordinary indoor school staircase, seen from behind, airy daylight, relaxed natural poses. No floor numbers or height markers."
+  },
+  {
+    "id": 10,
+    "asset": "klasse-9/03-druck-und-auftrieb/bilder/fermi-physik/fermi-10.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A broad aerial landscape of a wooded German reservoir in rolling hills, intricate shoreline and calm blue-green water, evocative of Biggesee but not a surveyed map. No labels or depth information."
+  },
+  {
+    "id": 11,
+    "asset": "klasse-9/03-druck-und-auftrieb/bilder/fermi-physik/fermi-11.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A small rectangular underwater viewing window set into the tiled wall of a swimming pool, seen from below the water surface, rippling blue light, window clearly completely underwater. No diver, pressure arrows, labels or ruler."
+  },
+  {
+    "id": 12,
+    "asset": "klasse-9/02-elektrizitaet/bilder/fermi-physik/fermi-12.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: An empty school classroom with its ceiling LED panel lights switched on above rows of desks, daylight at the windows, clear view of the real room and lighting fixtures. No specifications or electricity meters."
+  },
+  {
+    "id": 13,
+    "asset": "klasse-10/02-ionisierende-strahlung-und-kernenergie/bilder/fermi-physik/fermi-13.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A realistic handheld Geiger counter with its cylindrical probe on a clean school science classroom desk, screen softly blurred and unreadable, ordinary room background. No radioactive source, warning spectacle or radiation rays."
+  },
+  {
+    "id": 14,
+    "asset": "klasse-10/03-energieversorgung/bilder/fermi-physik/fermi-14.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: Sunlit photovoltaic panels installed across a suitable school roof, realistic rooftop geometry, leafy school grounds and pale-blue summer sky. No arrows, wattage labels or performance graphs."
+  },
+  {
+    "id": 15,
+    "asset": "klasse-9/02-elektrizitaet/bilder/fermi-physik/fermi-15.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: An unbranded tablet charging with a tidy USB cable connected to a small ordinary wall charger at a school desk; no readable screen content, no exposed wiring, soft daylight."
+  },
+  {
+    "id": 16,
+    "asset": "klasse-9/02-elektrizitaet/bilder/fermi-physik/fermi-16.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A small ordinary unbranded compact car parked in a school parking area in the morning, three-quarter front view, calm school building and trees behind. Hood closed, no cutaway, no visible electrical diagram."
+  },
+  {
+    "id": 17,
+    "asset": "ef/01-grundlagen-der-mechanik/bilder/fermi-physik/fermi-17.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A teenager wearing a bicycle helmet rides an ordinary bicycle along a dry flat paved school access path, hands naturally on the handlebars and brakes, school courtyard beyond, clear safe setting without traffic or danger. No skid marks or distance markers."
+  },
+  {
+    "id": 18,
+    "asset": "ef/02-kreisbewegung-gravitation-und-physikalische-weltbilder/bilder/fermi-physik/fermi-18.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A small realistic unbranded artificial satellite with solar panels in low Earth orbit, the curved blue Earth with clouds and a thin atmosphere below, evocative space illustration. No orbital tracks, arrows, labels, height markers or scale aids."
+  },
+  {
+    "id": 19,
+    "asset": "ef/01-grundlagen-der-mechanik/bilder/fermi-physik/fermi-19.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A colorful ball depicted in mid-air next to the exterior of a school building, viewed from the ground with the upper building visible; no one leaning out, no person beneath the ball, no motion trail or height labels."
+  },
+  {
+    "id": 20,
+    "asset": "ef/01-grundlagen-der-mechanik/bilder/fermi-physik/fermi-20.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A single teenager walking briskly up a bright indoor school staircase, seen from the side and behind, full natural body pose, no smartwatch or timing display, calm realistic school interior."
+  },
+  {
+    "id": 21,
+    "asset": "q1-q2-grundkurs/01-klassische-wellen-und-geladene-teilchen-in-feldern/bilder/fermi-physik/fermi-21.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: An ordinary school bell or metal school gong mounted high on a corridor wall, with a small striker beside the circular metal bell, pale hallway walls and soft daylight. No musical notation or waveforms."
+  },
+  {
+    "id": 22,
+    "asset": "q1-q2-grundkurs/02-quantenobjekte/bilder/fermi-physik/fermi-22.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A single red LED glowing softly on a small safe battery-powered breadboard circuit on a school laboratory desk, clearly visible tiny red LED body with two leads. No oversized glowing beams, photons, labels or numerical component values."
+  },
+  {
+    "id": 23,
+    "asset": "q1-q2-grundkurs/03-elektrodynamik-und-energieuebertragung/bilder/fermi-physik/fermi-23.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A realistic electric school bell mounted on a small wooden classroom demonstration board, connected by neat insulated wires to a safe low-voltage battery. No field lines, electron particles, arrows or labels."
+  },
+  {
+    "id": 24,
+    "asset": "q1-q2-grundkurs/03-elektrodynamik-und-energieuebertragung/bilder/fermi-physik/fermi-24.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A close view of an ordinary bicycle front wheel with a small bottle dynamo touching the tire sidewall and an attached front light, bicycle parked on a quiet path, natural proportions and plausible hardware."
+  },
+  {
+    "id": 25,
+    "asset": "q1-q2-grundkurs/04-strahlung-und-materie/bilder/fermi-physik/fermi-25.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A ripe yellow banana resting on a clean kitchen or school snack-table surface, subtle daylight and neutral background. Ordinary food illustration, absolutely no radiation symbols, particles or ominous glow."
+  },
+  {
+    "id": 26,
+    "asset": "q1-q2-grundkurs/02-quantenobjekte/bilder/fermi-physik/fermi-26.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: Sunlight falling through a large classroom window across empty desks and a wooden floor, warm light and soft window shadows, realistic ordinary school interior. No drawn rays or photon particles."
+  },
+  {
+    "id": 27,
+    "asset": "q1-q2-leistungskurs/01-ladungen-felder-und-induktion/bilder/fermi-physik/fermi-27.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A small unbranded cylindrical electrolytic capacitor with two metal leads on a school electronics desk beside a safe low-voltage breadboard, realistic component proportions, no readable printed component values and no cutaway."
+  },
+  {
+    "id": 28,
+    "asset": "q1-q2-leistungskurs/02-schwingende-systeme-und-wellen/bilder/fermi-physik/fermi-28.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A large empty school assembly hall with a stage and rows of chairs, viewed along the longest room direction, realistic quiet architecture and pleasant soft daylight. No sound waves or marked lengths."
+  },
+  {
+    "id": 29,
+    "asset": "q1-q2-leistungskurs/03-quantenphysik/bilder/fermi-physik/fermi-29.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A school electron-beam demonstration tube inside a clear glass bulb on a dark laboratory bench, a subtle narrow green-blue glowing beam visible inside the bulb, realistic safe enclosed apparatus. No de Broglie wave drawing, formulas or numerical displays."
+  },
+  {
+    "id": 30,
+    "asset": "q1-q2-leistungskurs/04-atom-und-kernphysik/bilder/fermi-physik/fermi-30.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A sunny school courtyard with a few trees, school buildings and a bright sun in a clear sky, wide grounded architectural illustration emphasizing the sunny courtyard. No nuclear reaction diagrams, atoms, arrows or energy labels."
+  },
+  {
+    "id": 31,
+    "asset": "q1-q2-leistungskurs/02-schwingende-systeme-und-wellen/bilder/fermi-physik/fermi-31.webp",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: illustration-story. Asset type: one landscape image for a German secondary-school Fermi estimation task. Style: polished editorial gouache and colored-pencil illustration, convincing realistic proportions and gentle material textures, soft daylight when appropriate, warm inviting pale mint, lavender and apricot accents, suitable for ages 10–18, not childish clip art. Landscape 3:2 composition; main subject fully framed and clearly recognizable. Constraints: show the real-world situation only; absolutely no text, letters, numbers, labels, formulas, arrows, measurements, digital readouts, calculation aids, answer clues, brands or watermark.\nScene: A spacious empty school assembly hall viewed lengthwise, wooden floor, high ceiling, quiet stage and chairs arranged along the sides, natural acoustic setting. No wave patterns, axes, frequency charts, diagrams or labels."
+  }
+]

@@ -1,6 +1,6 @@
 {
   "title": "Wie stark drückt Wasser auf eine Schwimmbadwand?",
-  "description": "Eine Schwimmbadwand hat unterhalb der Wasseroberfläche ein Sichtfenster von ungefähr 40 cm mal 30 cm. Schätzt die resultierende Druckkraft auf das Fenster, wenn seine Mitte 1,5 m unter der Wasseroberfläche liegt. Berücksichtigt, dass der Wasserdruck mit der Tiefe zunimmt, und vergleicht eure Schätzung mit der Kraft, die eine Person mit der Hand ausüben kann.",
+  "description": "In einer Schwimmbadwand befindet sich ein 40 cm breites und 30 cm hohes Sichtfenster. Seine Mitte liegt 1,5 m unter der Wasseroberfläche; dahinter ist Luft bei normalem Umgebungsdruck. Mit welcher zusätzlichen Kraft drückt das Wasser ungefähr auf das Fenster?",
   "type": "aufgabe",
   "level": "Klasse 9",
   "visible": true,
