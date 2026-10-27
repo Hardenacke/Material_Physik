@@ -32,3 +32,17 @@ Ein Start in einem alten Monat und Zugriffe auf zukünftige Monatswertungen werd
 Schließen ist zusätzlich zum veröffentlichten Konfigurationsstatus als dauerhafte
 Raumsteuerung wirksam. Ein geschlossenes Monatszimmer schließt nicht automatisch
 die kommenden Monate; dafür den Konfigurationsstatus auf `closed` setzen.
+
+## Optik-Quiz
+
+`Competition.interface` kann optional `optik-quiz` sein. Öffentliche Fragen erlauben
+zusätzlich `kind: "number"` und `kind: "ray"`; `interaction` enthält Kategorie,
+Eingabebeschriftung und Diagrammparameter, keine Lösung oder Toleranz. Für diese
+Fragen ist `answerId` ein endlicher numerischer Winkel von 0 bis 90 Grad statt
+einer Optionskennung. `null` überspringt die Frage weiterhin.
+
+Die gespeicherte `Attempt.review` enthält nur bearbeitete Fragen, deren Antwort und
+Feedback. Dadurch bleibt die Nachbesprechung nach erneuter Anmeldung erhalten.
+Aktive und zukünftige Fragen verraten weiterhin keine Lösungsschlüssel. Die Routen
+`/api/submit` und `/api/leaderboard` der ZIP-Vorlage werden nicht angeboten; die
+Rangliste verwendet ausschließlich serverseitig gewertete Versuche.

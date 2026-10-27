@@ -22,10 +22,11 @@
   ],
   "vars": {
     "ALLOWED_ORIGINS": "https://hardenacke.github.io,http://127.0.0.1:8787,http://localhost:8787",
-    "ARCHIVE_MODE": "disabled",
-    "ARCHIVE_REPOSITORY": "Hardenacke/Material_Physik_Ergebnisse",
+    "ARCHIVE_MODE": "github",
+    "ARCHIVE_REPOSITORY": "Hardenacke/Material_Physik",
+    "ARCHIVE_ALLOW_PUBLIC": "true",
     "ARCHIVE_BRANCH": "main",
-    "ARCHIVE_PREFIX": "architektur-v1"
+    "ARCHIVE_PREFIX": "ergebnisse"
   },
   "observability": { "enabled": false }
 }

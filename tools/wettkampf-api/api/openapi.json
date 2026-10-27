@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Physik-Wettkampf-API – Cloudflare-Umsetzung",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Implementierter Schüler- und Verwaltungsvertrag. Ausschließlich HTTPS im Produktivbetrieb."
   },
   "security": [
@@ -1211,6 +1211,9 @@
               }
             },
             "additionalProperties": false
+          },
+          "interface": {
+            "const": "optik-quiz"
           }
         },
         "required": [
@@ -1241,7 +1244,11 @@
             "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
           },
           "kind": {
-            "const": "single-choice"
+            "enum": [
+              "single-choice",
+              "number",
+              "ray"
+            ]
           },
           "difficulty": {
             "enum": [
@@ -1276,7 +1283,7 @@
           },
           "choices": {
             "type": "array",
-            "minItems": 2,
+            "minItems": 0,
             "maxItems": 6,
             "items": {
               "type": "object",
@@ -1346,6 +1353,43 @@
           "number": {
             "type": "integer",
             "minimum": 1
+          },
+          "interaction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "category"
+            ],
+            "properties": {
+              "category": {
+                "enum": [
+                  "Grundbegriffe",
+                  "Reflexion",
+                  "Brechung"
+                ]
+              },
+              "fieldLabel": {
+                "type": "string",
+                "minLength": 1
+              },
+              "diagram": {
+                "enum": [
+                  "reflection",
+                  "refractionReading",
+                  "refractionDraw"
+                ]
+              },
+              "incidence": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 90
+              },
+              "refractedAngle": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 90
+              }
+            }
           }
         },
         "required": [
@@ -1448,6 +1492,12 @@
                 "$ref": "#/components/schemas/Feedback"
               }
             ]
+          },
+          "review": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feedback"
+            }
           }
         },
         "required": [
@@ -1489,7 +1539,10 @@
             "type": "integer"
           },
           "correctAnswerId": {
-            "type": "string"
+            "type": [
+              "string",
+              "number"
+            ]
           },
           "explanation": {
             "type": "array",
@@ -1514,6 +1567,16 @@
                 }
               }
             }
+          },
+          "given": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "question": {
+            "$ref": "#/components/schemas/PublicQuestion"
           }
         },
         "required": [
@@ -1710,6 +1773,7 @@
           "answerId": {
             "type": [
               "string",
+              "number",
               "null"
             ]
           }
@@ -1717,6 +1781,159 @@
         "required": [
           "questionId",
           "answerId"
+        ]
+      },
+      "PublicQuestion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "kind": {
+            "enum": [
+              "single-choice",
+              "number",
+              "ray"
+            ]
+          },
+          "difficulty": {
+            "enum": [
+              "basis",
+              "aufbau",
+              "knifflig"
+            ]
+          },
+          "prompt": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "text",
+                    "math"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "choices": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "content"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "content": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "type",
+                      "value"
+                    ],
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "text",
+                          "math"
+                        ]
+                      },
+                      "value": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "figure": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "src",
+              "alt"
+            ],
+            "properties": {
+              "src": {
+                "type": "string",
+                "pattern": "^assets/[a-zA-Z0-9/_-]+\\.svg$"
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "interaction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "category"
+            ],
+            "properties": {
+              "category": {
+                "enum": [
+                  "Grundbegriffe",
+                  "Reflexion",
+                  "Brechung"
+                ]
+              },
+              "fieldLabel": {
+                "type": "string",
+                "minLength": 1
+              },
+              "diagram": {
+                "enum": [
+                  "reflection",
+                  "refractionReading",
+                  "refractionDraw"
+                ]
+              },
+              "incidence": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 90
+              },
+              "refractedAngle": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 90
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "difficulty",
+          "prompt",
+          "choices"
         ]
       },
       "CompetitionView": {

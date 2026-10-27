@@ -56,6 +56,34 @@ async function catalog() {
 }
 async function select(c) {
   state.generation++; state.competition = c; state.attempt = null; state.pending = null;
+  clearTimeout(state.poll); clearTimeout(state.frameTimer);
+  if (state.frame) { state.frame.src = 'about:blank'; state.frame.remove(); state.frame = null; }
+  if (c.interface === 'optik-quiz') {
+    $('arena').hidden = true;
+    const frame = document.createElement('iframe'); state.frame = frame;
+    frame.title = 'Mission Optik – Wettbewerb Klasse 8';
+    frame.className = 'quiz-frame';
+    frame.src = 'optik-quiz/competition.html?embedded=1';
+    const generation = state.generation;
+    frame.addEventListener('load', () => {
+      if (generation !== state.generation || !frame.contentWindow.OptikQuizCompetition) return;
+      frame.contentWindow.OptikQuizCompetition.mount({
+        competition:c,
+        request: async (...args) => { if (generation !== state.generation) throw new Error('Bitte erneut anmelden.'); return api(...args); },
+        mutate: async (...args) => { if (generation !== state.generation) throw new Error('Bitte erneut anmelden.'); return mutate(...args); },
+        onExit: () => {
+          state.generation++; state.competition = null;
+          frame.src = 'about:blank'; frame.remove(); state.frame = null; clearTimeout(state.frameTimer);
+          document.querySelectorAll('.competition').forEach(b => b.setAttribute('aria-pressed', 'false'));
+        }
+      });
+      const resize = () => { if (state.frame !== frame) return; frame.style.height = Math.ceil(frame.contentDocument.documentElement.scrollHeight) + 'px'; state.frameTimer = setTimeout(resize, 400); };
+      resize();
+    });
+    $('portal').append(frame);
+    document.querySelectorAll('.competition').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.key === `${c.id}/${c.version}`)));
+    return;
+  }
   $('arena').hidden = false; $('scope').textContent = `KLASSE ${c.grade} · ${c.period.id === 'gesamt' ? 'GESAMTWERTUNG' : c.period.id}`;
   $('game-title').textContent = c.title;
   $('rules').textContent = `${c.totalQuestions} Fragen · ${c.rules.questionTimeSeconds} Sekunden pro Frage · ${c.rules.lives} Leben. ${c.availability === 'pending' ? `Beginn: ${formatDate(c.schedule.startsAt)}.` : c.availability === 'closed' ? 'Dieser Wettbewerb ist geschlossen.' : 'Dein bester beendeter Versuch zählt.'}`;
@@ -112,11 +140,13 @@ function tick() {
   }
 }
 function logout() {
+  clearTimeout(state.frameTimer);
+  if (state.frame) { state.frame.src = 'about:blank'; state.frame.remove(); state.frame = null; }
   state.generation++; state.code = ''; state.group = ''; state.competition = null; state.attempt = null; state.pending = null;
   clearTimeout(state.poll); $('portal').hidden = true; $('login-panel').hidden = false; $('logout').hidden = true; $('login').elements.code.value = '';
 }
 async function poll() {
-  if (document.hidden || !state.competition) return;
+  if (document.hidden || !state.competition || state.competition.interface === 'optik-quiz') return;
   try {
     if (!state.busy) {
       const generation = state.generation;
@@ -143,3 +173,5 @@ $('next').onclick = () => run(async () => { render(await mutate(`${base()}/attem
 $('skip').onclick = () => respond(null);
 document.addEventListener('visibilitychange', () => { clearTimeout(state.poll); if (!document.hidden && state.code) poll(); });
 state.timer = setInterval(tick, 250);
+const linkedGroup = new URL(location.href).searchParams.get('group');
+if (linkedGroup && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(linkedGroup)) $('login').elements.group.value = linkedGroup;

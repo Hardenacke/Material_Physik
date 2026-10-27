@@ -10,7 +10,7 @@ flowchart LR
   Room --> SQL[SQLite: Versuche / Bestwerte / Requestbelege]
   Alarm[Dauerhafte Fristenalarme] --> Room
   Room --> Writer[ArchiveWriter für Physik]
-  Writer -. optional .-> GitHub[Privates GitHub-Ergebnisarchiv]
+  Writer -. optional .-> GitHub[Material_Physik / ergebnisse]
   Admin[Lokales Verwaltungswerkzeug] --> Worker
 ```
 
@@ -75,12 +75,16 @@ Frist nicht zurück.
 - Ein Worker liefert Portal und API gemeinsam aus. Externe Pages-Nutzung bleibt möglich.
 - Das Portal liegt entsprechend der Repositoryregeln im Themenfeld Optik unter `lernpfade/`.
 - SQLite-Tabellen enthalten JSON-Schnappschüsse pro Versuch, statt die Entwurfs-SQL-Dateien unverändert zu übernehmen.
-- Das GitHub-Archiv ist optional und standardmäßig aus. Bestwerte liegen bereits dauerhaft in Cloudflare.
+- Das GitHub-Archiv ist optional. Diese Arbeitskopie verwendet `Material_Physik/ergebnisse`
+  und erlaubt öffentliche Ranglisten ausdrücklich mit `ARCHIVE_ALLOW_PUBLIC: "true"`.
+  Ohne diese Freigabe werden öffentliche Repositories abgewiesen. Öffentliche Dateien
+  enthalten ausschließlich eine Positivliste der Ranglisten- und Raumdaten.
+  Bestwerte liegen auch bei deaktiviertem Archiv dauerhaft in Cloudflare.
 - Formeln werden als Text ausgegeben. Ein Übungsmodus mit separater Fragenbank und KaTeX gehört nicht zu dieser ersten Umsetzung.
 - Der Archivschreiber sammelt den ersten Auftrag 15 Sekunden; weitere noch offene Revisionen
   folgen frühestens 60 Sekunden nach Bestätigung. Schreibfehler werden nach mindestens
   15 Minuten erneut versucht; längere `Retry-After`-Vorgaben werden berücksichtigt.
 
-Kein synchrones Live-Duell, keine Konten für Klarnamen, kein öffentlicher Ergebnisexport
-und kein automatisches Importieren alter Punktestände. Die vorhandenen Materialien
+Kein synchrones Live-Duell, keine Konten für Klarnamen und kein automatisches Importieren
+alter Punktestände. Die vorhandenen Materialien
 werden über die üblichen Repository-Builds eingebunden.

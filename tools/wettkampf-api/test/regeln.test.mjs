@@ -17,8 +17,11 @@ function respond(g, correct=true, elapsed=1000, time=now){openQuestion(g,time);c
 
 test('alle Fachkonfigurationen und Fragenpools passen zusammen',()=>{
   validateBank(bank);
-  for(const file of readdirSync(resolve(root,'wettkaempfe')).filter(x=>x.endsWith('.json')))
-    assert.equal(validateConfig(JSON.parse(readFileSync(resolve(root,'wettkaempfe',file),'utf8')),bank),true);
+  const banks=readdirSync(resolve(root,'fragenpools')).filter(x=>x.endsWith('.json')).map(file=>JSON.parse(readFileSync(resolve(root,'fragenpools',file),'utf8')));
+  for(const file of readdirSync(resolve(root,'wettkaempfe')).filter(x=>x.endsWith('.json'))) {
+    const c=JSON.parse(readFileSync(resolve(root,'wettkaempfe',file),'utf8'));
+    assert.equal(validateConfig(c,banks.find(b=>b.id===c.bank.id&&b.version===c.bank.version)),true);
+  }
 });
 test('kein Pool des anderen Fachs zulässig',()=>{
   const b=structuredClone(bank);b.subject=SUBJECT==='mathematik'?'physik':'mathematik';

@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'ergebnisse/**'
   workflow_dispatch:
 
 permissions:

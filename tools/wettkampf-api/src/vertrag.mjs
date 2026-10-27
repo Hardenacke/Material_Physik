@@ -22,18 +22,30 @@ export function validateBank(bank) {
   const ids=new Set(), families=new Map();
   for(const q of bank.questions) {
     const required=['id','kind','difficulty','family','prompt','choices','correct','explanation'];
-    exact(q,q.figure?[...required,'figure']:required,'Frage');
+    const optional = ['figure','interaction','tolerance'].filter(k=>Object.hasOwn(q,k));
+    exact(q,[...required,...optional],'Frage');
     requireThat(isSlug(q.id)&&!ids.has(q.id),'Fragen-ID fehlt oder ist doppelt.');ids.add(q.id);
-    requireThat(q.kind==='single-choice' && levels.includes(q.difficulty)&&isSlug(q.family),'Fragentyp oder Stufe ungültig.');
+    requireThat(['single-choice','number','ray'].includes(q.kind) && levels.includes(q.difficulty)&&isSlug(q.family),'Fragentyp oder Stufe ungültig.');
     requireThat(!families.has(q.family)||families.get(q.family)===q.difficulty,'Eine Fragenfamilie muss zu genau einer Stufe gehören.');families.set(q.family,q.difficulty);
     rich(q.prompt);rich(q.explanation);
-    requireThat(Array.isArray(q.choices)&&q.choices.length>=2&&q.choices.length<=6,'2–6 Optionen erforderlich.');
+    requireThat(Array.isArray(q.choices)&&(q.kind==='single-choice' ? q.choices.length>=2&&q.choices.length<=6 : q.choices.length===0),'Antwortoptionen passen nicht zum Fragentyp.');
     const choices=new Set();
     for(const choice of q.choices) {
       exact(choice,['id','content'],'Option');
       requireThat(isSlug(choice.id)&&!choices.has(choice.id),'Options-ID fehlt oder ist doppelt.');choices.add(choice.id);rich(choice.content);
     }
-    requireThat(choices.has(q.correct),'Die richtige Option fehlt.');
+    if(q.kind==='single-choice') requireThat(choices.has(q.correct)&&!Object.hasOwn(q,'tolerance'),'Die richtige Option fehlt.');
+    else requireThat(Number.isFinite(q.correct)&&q.correct>=0&&q.correct<=90&&Number.isFinite(q.tolerance)&&q.tolerance>=0&&q.tolerance<=5,'Ungültiger Lösungswinkel oder Toleranz.');
+    if(q.interaction) {
+      const allowed=['category','fieldLabel','diagram','incidence','refractedAngle'];
+      requireThat(typeof q.interaction==='object'&&!Array.isArray(q.interaction)&&Object.keys(q.interaction).every(k=>allowed.includes(k)),'Ungültige Interaktionsdaten.');
+      requireThat(['Grundbegriffe','Reflexion','Brechung'].includes(q.interaction.category),'Kategorie fehlt.');
+      for(const key of ['incidence','refractedAngle']) if(Object.hasOwn(q.interaction,key)) requireThat(Number.isFinite(q.interaction[key])&&q.interaction[key]>0&&q.interaction[key]<90,'Ungültiger Diagrammwinkel.');
+      if(Object.hasOwn(q.interaction,'diagram')) requireThat(['reflection','refractionReading','refractionDraw'].includes(q.interaction.diagram),'Unbekanntes Diagramm.');
+      if(Object.hasOwn(q.interaction,'fieldLabel')) requireThat(typeof q.interaction.fieldLabel==='string'&&q.interaction.fieldLabel.length>0,'Eingabebeschriftung fehlt.');
+    }
+    if(q.kind==='number') requireThat(typeof q.interaction?.fieldLabel==='string','Beschriftung für Winkeleingabe fehlt.');
+    if(q.kind==='ray') requireThat(['reflection','refractionDraw'].includes(q.interaction?.diagram)&&Number.isFinite(q.interaction.incidence),'Strahlendiagramm fehlt.');
     if(q.figure) {
       exact(q.figure,['src','alt'],'Abbildung');
       requireThat(typeof q.figure.src==='string' && /^assets\/[a-zA-Z0-9/_-]+\.svg$/.test(q.figure.src) && !q.figure.src.includes('..'),'Unsicherer Bildpfad.');
@@ -45,7 +57,10 @@ export function validateBank(bank) {
 
 export function validateConfig(c, bank) {
   validateBank(bank);
-  exact(c,['schemaVersion','id','version','subject','title','grade','groupId','status','bank','schedule','season','attempts','rules','selection','ranking'],'Wettkampf');
+  exact(c,['schemaVersion','id','version','subject','title','grade','groupId','status','bank','schedule','season','attempts','rules','selection','ranking',...(Object.hasOwn(c,'interface')?['interface']:[])],'Wettkampf');
+  if(Object.hasOwn(c,'interface')) requireThat(c.interface==='optik-quiz','Unbekannte Spieloberfläche.');
+  if(c.interface==='optik-quiz') requireThat(bank.questions.every(q=>q.interaction),'Die Optik-Oberfläche benötigt Darstellungsdaten für jede Frage.');
+  requireThat(c.interface==='optik-quiz'||bank.questions.every(q=>q.kind==='single-choice'),'Interaktive Fragen benötigen die Optik-Oberfläche.');
   requireThat(c.schemaVersion===1&&c.subject===SUBJECT&&isSlug(c.id)&&c.id.length<=64&&integer(c.version,1,100000),'Ungültige Wettkampfkennung.');
   requireThat(typeof c.title==='string'&&c.title.length>0&&c.grade===bank.grade&&isSlug(c.groupId),'Titel, Gruppe oder Jahrgang passt nicht.');
   requireThat(['draft','published','closed','archived'].includes(c.status),'Ungültiger Status.');

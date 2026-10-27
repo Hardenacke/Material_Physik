@@ -1,0 +1,1350 @@
+{
+  "schemaVersion": 1,
+  "id": "optik-quiz-klasse-8",
+  "version": 1,
+  "subject": "physik",
+  "title": "Optik-Quiz Klasse 8: Licht, Reflexion und Brechung",
+  "grade": "8",
+  "demo": true,
+  "questions": [
+    {
+      "id": "lichtquelle",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "lichtquelle",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Was unterscheidet eine selbstleuchtende Lichtquelle von einem beleuchteten Gegenstand?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine Lichtquelle sendet selbst Licht aus; ein beleuchteter Gegenstand wirft Licht zurück."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein beleuchteter Gegenstand sendet immer mehr Licht aus als eine Lichtquelle."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Beide Begriffe bedeuten dasselbe."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Nur Gegenstände aus Glas können Licht zurückwerfen."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Eine Lampe ist selbst eine Lichtquelle. Ein beleuchtetes Buch leuchtet nicht selbst: Es wird sichtbar, weil Licht auf das Buch trifft und von dort in deine Augen gelangt."
+        }
+      ],
+      "interaction": {
+        "category": "Grundbegriffe"
+      }
+    },
+    {
+      "id": "ebener-spiegel",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "ebener-spiegel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Welche Aussage passt zum Bild in einem ebenen Spiegel?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Bild ist gleich groß und erscheint gleich weit hinter dem Spiegel, wie der Gegenstand davor steht."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Bild entsteht auf der Spiegeloberfläche und ist immer kleiner."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Bild ist nur sichtbar, wenn es selbst Licht aussendet."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Bild erscheint immer näher am Spiegel als der Gegenstand."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel sind Gegenstand und Bild gleich groß und gleich weit von der Spiegelebene entfernt. Das Spiegelbild ist virtuell: Licht tritt nicht von seinem scheinbaren Ort hinter dem Spiegel aus."
+        }
+      ],
+      "interaction": {
+        "category": "Grundbegriffe"
+      }
+    },
+    {
+      "id": "lichtstrahl",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "lichtstrahl",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Was beschreibt ein Lichtstrahl im Strahlenmodell?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine gedachte Linie für Ausbreitungsrichtung und Weg des Lichts; in einem gleichförmigen Stoff verläuft sie geradlinig."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein sehr dünner Faden, aus dem Licht besteht."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Die sichtbare Spur, die Licht immer in der Luft hinterlässt."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine Linie, die angibt, in welche Richtung das Auge Licht aussendet."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl ist ein Modell. Er zeigt, in welche Richtung sich Licht ausbreitet. In einem gleichförmigen, durchsichtigen Stoff zeichnet man ihn geradlinig."
+        }
+      ],
+      "interaction": {
+        "category": "Grundbegriffe"
+      }
+    },
+    {
+      "id": "halbschatten",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "halbschatten",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Hinter einem undurchsichtigen Gegenstand ist bei einer ausgedehnten Lichtquelle ein Bereich dunkler als die Umgebung, aber nicht völlig lichtfrei. Wie heißt dieser Bereich?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Halbschatten"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Spiegelbild"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Einfallslot"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Brechungswinkel"
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Im Halbschatten erreicht noch Licht von einem Teil der ausgedehnten Lichtquelle den Schirm. Im Kernschatten ist die Lichtquelle vollständig verdeckt."
+        }
+      ],
+      "interaction": {
+        "category": "Grundbegriffe"
+      }
+    },
+    {
+      "id": "lichtbuendel",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "lichtbuendel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Was ist ein Lichtbündel?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine Zusammenfassung vieler Lichtstrahlen. Die Strahlen können parallel, auseinanderlaufend oder zusammenlaufend verlaufen."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein einzelner Lichtstrahl, der immer gekrümmt ist."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine Stelle, an der ein Spiegel Licht schluckt."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein Schatten, der heller als die Umgebung ist."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Ein Lichtbündel besteht aus mehreren Lichtstrahlen. Im Strahlenmodell unterscheidet man zum Beispiel parallele, auseinanderlaufende und zusammenlaufende Bündel."
+        }
+      ],
+      "interaction": {
+        "category": "Grundbegriffe"
+      }
+    },
+    {
+      "id": "durchsichtig-durchscheinend",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "durchsichtig-durchscheinend",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Milchglas lässt Licht hindurch, aber Gegenstände dahinter sind nur unscharf zu erkennen. Wie wird es beschrieben?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Durchscheinend: Licht gelangt hindurch, aber ein klares Bild entsteht nicht."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Undurchsichtig: Kein Licht gelangt hindurch."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Selbstleuchtend: Das Material erzeugt eigenes Licht."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Spiegelnd: Das Material lässt Licht nur geradlinig hindurch."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Durchscheinende Stoffe lassen Licht durch, streuen es aber. Deshalb kann man Gegenstände dahinter nicht klar erkennen. Klare Fensterscheiben sind durchsichtig; Karton ist undurchsichtig."
+        }
+      ],
+      "interaction": {
+        "category": "Grundbegriffe"
+      }
+    },
+    {
+      "id": "einfallslot",
+      "kind": "single-choice",
+      "difficulty": "aufbau",
+      "family": "einfallslot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft auf einen ebenen Spiegel. Wie verläuft das Einfallslot am Auftreffpunkt?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Senkrecht zur Spiegeloberfläche durch den Auftreffpunkt."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Parallel zur Spiegeloberfläche durch den Auftreffpunkt."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Immer entlang des einfallenden Strahls."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Es wird vom Spiegel weg gekrümmt."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Oberfläche und geht durch den Punkt, an dem der Lichtstrahl auftrifft. Einfalls- und Reflexionswinkel werden von diesem Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion"
+      }
+    },
+    {
+      "id": "winkel-zum-lot-70",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(20^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 70,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "diffuse-reflexion",
+      "kind": "single-choice",
+      "difficulty": "aufbau",
+      "family": "diffuse-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Warum wird Licht an einer rauen Wand in viele Richtungen zurückgeworfen?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Die Oberfläche ist uneben. An den kleinen Teilflächen wird Licht in unterschiedliche Richtungen reflektiert."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Die Wand schluckt das Licht und erzeugt es danach neu."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "An rauen Flächen gilt das Reflexionsgesetz nicht."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Nur glatte Flächen reflektieren Licht."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Bei rauen Oberflächen zeigen die kleinen Flächennormalen in unterschiedliche Richtungen. Das Licht wird deshalb insgesamt gestreut. Auch an jeder kleinen Teilfläche gilt das Reflexionsgesetz."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion"
+      }
+    },
+    {
+      "id": "strahl-reflexion-15",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(15^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 15,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 15
+      }
+    },
+    {
+      "id": "reflexionswinkel-15",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 15^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 15,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "luft-glas",
+      "kind": "single-choice",
+      "difficulty": "knifflig",
+      "family": "luft-glas",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft schräg aus der Luft auf eine Glasplatte. Welche Richtung hat der Strahl im Glas?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er wird zum Einfallslot hin gebrochen; sein Winkel zum Lot wird kleiner."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er wird vom Einfallslot weg gebrochen; sein Winkel zum Lot wird größer."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er wird immer genau an der Grenze vollständig zurückgeworfen."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er läuft im Glas grundsätzlich nicht weiter."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim Übergang von Luft in Glas gelangt der Strahl in ein optisch dichteres Medium. Er wird zum Lot hin gebrochen. An der Grenzfläche kann außerdem ein Teil des Lichts reflektiert werden."
+        }
+      ],
+      "interaction": {
+        "category": "Brechung"
+      }
+    },
+    {
+      "id": "bleistift-wasser",
+      "kind": "single-choice",
+      "difficulty": "knifflig",
+      "family": "bleistift-wasser",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Strohhalm im Wasserglas sieht an der Wasseroberfläche geknickt aus. Was erklärt diesen Eindruck?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Licht wird beim Übergang zwischen Wasser und Luft gebrochen. Dadurch erscheint der untergetauchte Teil an einer anderen Stelle."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Der Strohhalm wird an der Wasseroberfläche tatsächlich verbogen."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Wasser erzeugt ein zweites Strohhalm-Bild durch Reflexion am Glasboden."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Licht läuft im Wasser grundsätzlich auf gekrümmten Bahnen."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Licht vom untergetauchten Teil ändert an der Wasseroberfläche seine Richtung. Das Auge verlängert den Lichtweg geradlinig zurück. Deshalb erscheint der Teil im Wasser verschoben."
+        }
+      ],
+      "interaction": {
+        "category": "Brechung"
+      }
+    },
+    {
+      "id": "brechungswinkel-ablesen-30",
+      "kind": "number",
+      "difficulty": "knifflig",
+      "family": "brechungswinkel-ablesen",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der Lichtstrahl tritt aus Luft in Glas ein. Lies an der Skala den Brechungswinkel \\(\\beta\\) zwischen gebrochenem Strahl und Einfallslot ab. Jeder Skalenabschnitt entspricht \\(10^\\circ\\)."
+        }
+      ],
+      "choices": [],
+      "correct": 30,
+      "tolerance": 1.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der Brechungswinkel wird zwischen dem gebrochenen Strahl und dem Einfallslot gemessen. Zähle die großen Skalenabschnitte vom Lot bis zum Strahl."
+        }
+      ],
+      "interaction": {
+        "category": "Brechung",
+        "fieldLabel": "\\(\\beta = ?\\)",
+        "diagram": "refractionReading",
+        "refractedAngle": 30
+      }
+    },
+    {
+      "id": "strahl-brechung-40",
+      "kind": "ray",
+      "difficulty": "knifflig",
+      "family": "strahl-brechung",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der Strahl tritt aus Luft in ein optisch dichteres Medium ein. Zeichne den gebrochenen Strahl im unteren Bereich. Achte darauf, wie sich seine Richtung zum Einfallslot verändert."
+        }
+      ],
+      "choices": [],
+      "correct": 37,
+      "tolerance": 0,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim Übergang in ein optisch dichteres Medium wird der Lichtstrahl zum Lot hin gebrochen. Der Winkel zwischen gebrochenem Strahl und Lot ist also kleiner als der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Brechung",
+        "diagram": "refractionDraw",
+        "incidence": 40
+      }
+    },
+    {
+      "id": "strahl-brechung-50",
+      "kind": "ray",
+      "difficulty": "knifflig",
+      "family": "strahl-brechung",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der Strahl tritt aus Luft in ein optisch dichteres Medium ein. Zeichne den gebrochenen Strahl im unteren Bereich. Achte darauf, wie sich seine Richtung zum Einfallslot verändert."
+        }
+      ],
+      "choices": [],
+      "correct": 47,
+      "tolerance": 0,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim Übergang in ein optisch dichteres Medium wird der Lichtstrahl zum Lot hin gebrochen. Der Winkel zwischen gebrochenem Strahl und Lot ist also kleiner als der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Brechung",
+        "diagram": "refractionDraw",
+        "incidence": 50
+      }
+    },
+    {
+      "id": "strahl-brechung-60",
+      "kind": "ray",
+      "difficulty": "knifflig",
+      "family": "strahl-brechung",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der Strahl tritt aus Luft in ein optisch dichteres Medium ein. Zeichne den gebrochenen Strahl im unteren Bereich. Achte darauf, wie sich seine Richtung zum Einfallslot verändert."
+        }
+      ],
+      "choices": [],
+      "correct": 57,
+      "tolerance": 0,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim Übergang in ein optisch dichteres Medium wird der Lichtstrahl zum Lot hin gebrochen. Der Winkel zwischen gebrochenem Strahl und Lot ist also kleiner als der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Brechung",
+        "diagram": "refractionDraw",
+        "incidence": 60
+      }
+    },
+    {
+      "id": "winkel-zum-lot-60",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(30^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 60,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "winkel-zum-lot-50",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(40^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 50,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "winkel-zum-lot-40",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(50^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 40,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "winkel-zum-lot-30",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(60^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 30,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "winkel-zum-lot-20",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(70^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 20,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "winkel-zum-lot-10",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "winkel-zum-lot",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Der einfallende Strahl bildet mit der Spiegeloberfläche den Winkel \\(80^\\circ\\). Wie groß ist der Einfallswinkel zum Einfallslot?"
+        }
+      ],
+      "choices": [],
+      "correct": 10,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Das Einfallslot steht senkrecht auf der Spiegeloberfläche. Die beiden Winkel ergänzen sich deshalb zu \\(90^\\circ\\). Der Einfallswinkel wird vom Lot aus gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-20",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(20^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 20,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 20
+      }
+    },
+    {
+      "id": "reflexionswinkel-20",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 20^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 20,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-25",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(25^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 25,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 25
+      }
+    },
+    {
+      "id": "reflexionswinkel-25",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 25^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 25,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-30",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(30^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 30,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 30
+      }
+    },
+    {
+      "id": "reflexionswinkel-30",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 30^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 30,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-35",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(35^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 35,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 35
+      }
+    },
+    {
+      "id": "reflexionswinkel-35",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 35^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 35,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-40",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(40^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 40,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 40
+      }
+    },
+    {
+      "id": "reflexionswinkel-40",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 40^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 40,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-45",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(45^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 45,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 45
+      }
+    },
+    {
+      "id": "reflexionswinkel-45",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 45^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 45,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-50",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(50^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 50,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 50
+      }
+    },
+    {
+      "id": "reflexionswinkel-50",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 50^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 50,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    },
+    {
+      "id": "strahl-reflexion-55",
+      "kind": "ray",
+      "difficulty": "aufbau",
+      "family": "strahl-reflexion",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Zeichne den reflektierten Strahl. Der Einfallswinkel beträgt \\(55^\\circ\\). Ziehe den runden Griff so, dass der Strahl am Spiegel nach oben weiterläuft."
+        }
+      ],
+      "choices": [],
+      "correct": 55,
+      "tolerance": 5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Der reflektierte Strahl liegt auf der anderen Seite des Einfallslots. Sein Winkel zum Lot ist genauso groß wie der Einfallswinkel."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "diagram": "reflection",
+        "incidence": 55
+      }
+    },
+    {
+      "id": "reflexionswinkel-55",
+      "kind": "number",
+      "difficulty": "aufbau",
+      "family": "reflexionswinkel",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft mit dem Einfallswinkel \\(\\alpha = 55^\\circ\\) auf einen ebenen Spiegel. Trage den Reflexionswinkel \\(\\alpha\\prime\\) ein."
+        }
+      ],
+      "choices": [],
+      "correct": 55,
+      "tolerance": 0.5,
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim ebenen Spiegel ist der Reflexionswinkel genauso groß wie der Einfallswinkel. Beide Winkel werden zwischen dem jeweiligen Strahl und dem Einfallslot gemessen."
+        }
+      ],
+      "interaction": {
+        "category": "Reflexion",
+        "fieldLabel": "\\(\\alpha\\prime = ?\\)"
+      }
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 # Cloudflare einrichten
 
 Stand: 27. Oktober 2026. Alle folgenden Befehle im Ordner `tools/wettkampf-api/`
-ausführen. Die tatsächliche Kontoanmeldung, Kontoauswahl und Veröffentlichung erfolgen
-mit deinem Cloudflare-Konto; es wurden noch keine Cloud-Ressourcen angelegt.
+ausführen. Der Physik-Worker dieser Arbeitskopie wurde bereits unter
+`https://physik-wettkampf-api.physik-wettkampf-api.workers.dev` bereitgestellt.
+Änderungen am Archivziel und an der Workerimplementierung werden erst mit einem
+erneuten `npm.cmd run deploy` wirksam.
 
 ## 1. Voraussetzungen
 
@@ -95,21 +97,56 @@ Eine eigene Domain ist optional: nach erfolgreichem Funktionstest über Workers 
 Settings → Domains & Routes verbinden. Dann die neue Herkunft für externe Browserzugriffe
 ergänzen und bestehende Links bewusst umstellen. Bestehende Materialpfade bleiben erhalten.
 
-## 6. Optionales privates GitHub-Archiv
+## 6. Ergebnisse im Repository Material_Physik speichern
 
 Die Grundversion bewahrt Ergebnisse in Cloudflare auf und funktioniert mit
-`ARCHIVE_MODE: "disabled"`. Ein zusätzliches Archiv aktivieren:
+`ARCHIVE_MODE: "disabled"`. Für diese Arbeitskopie ist zusätzlich das öffentliche
+Repository `Hardenacke/Material_Physik` als Archivziel vorgesehen. Die Ranglisten
+werden im Ordner `ergebnisse/` gespeichert:
 
-1. Ein **privates** Repository mit existierendem Branch `main` anlegen.
-2. Einen Fine-grained Token ausschließlich für dieses Repository mit `Contents: Read and write` erstellen.
-3. In `wrangler.jsonc` `ARCHIVE_MODE` auf `github`, `ARCHIVE_REPOSITORY` auf `BESITZER/REPOSITORY`
-   und gegebenenfalls `ARCHIVE_BRANCH`/`ARCHIVE_PREFIX` setzen.
-4. `npx wrangler secret put GITHUB_TOKEN` ausführen, dann `npm run deploy`.
-5. Einen Testversuch abschließen; danach mit `admin -- archive --url …` und `admin -- status … --url …` kontrollieren.
+1. Das bestehende Repository **Material_Physik** mit Branch `main` verwenden.
+2. Bei GitHub einen **Fine-grained personal access token** erstellen: Resource owner
+   `Hardenacke`, Repository access **Only select repositories → Material_Physik**,
+   Repository permissions **Contents → Read and write**.
+3. Die vorbereiteten Werte in `wrangler.jsonc` beibehalten:
 
-Das Aktivieren beauftragt die Anwendung, Ergebnisdateien als GitHub-Commits in dieses
-Repository zu schreiben. Es ist für den Wettbewerbsbetrieb optional. Der Writer prüft,
-dass das Repository privat ist. Ein Ausfall blockiert den Spielbetrieb nicht.
+   ```json
+   "ARCHIVE_MODE": "github",
+   "ARCHIVE_REPOSITORY": "Hardenacke/Material_Physik",
+   "ARCHIVE_ALLOW_PUBLIC": "true",
+   "ARCHIVE_BRANCH": "main",
+   "ARCHIVE_PREFIX": "ergebnisse"
+   ```
+
+4. Den neuen Token im Cloudflare-Dashboard hinterlegen: **Workers & Pages →
+   physik-wettkampf-api → Settings → Variables and Secrets → Add**, Typ **Secret**,
+   Name **GITHUB_TOKEN**, als Wert den vollständigen Token einfügen und **Deploy**
+   wählen. `ADMIN_TOKEN` bleibt bestehen. Alternativ im Backend
+   `npx.cmd wrangler secret put GITHUB_TOKEN` verwenden.
+5. Die aktualisierte Workerimplementierung aus `tools/wettkampf-api` mit
+   `npm.cmd run deploy` veröffentlichen. Eine reine Änderung der Dashboardvariablen
+   ergänzt die neue Unterstützung für öffentliche Repositories nicht.
+6. Einen Testversuch abschließen; danach mit `admin -- archive --url …` und
+   `admin -- status … --url …` kontrollieren. Neue Ranglisten werden zunächst nach
+   etwa 15 Sekunden übertragen. Bereits fehlgeschlagene Aufträge können wegen des
+   Wiederholungsintervalls bis zu 15 Minuten warten.
+
+Cloudflare schreibt nach `ergebnisse/snapshots/ID/vVERSION/ZEITRAUM/latest.json` und
+bei abgeschlossenem Zeitraum zusätzlich nach
+`ergebnisse/perioden/ID/vVERSION/ZEITRAUM/final.json`. Pseudonyme, Plätze, Punkte,
+Maximalpunkte und Abschlusszeiten sind öffentlich. Codes, Personen-IDs, Fragen,
+Lösungen und interne Definitionshashes werden aus öffentlichen Archivdateien entfernt.
+Vorbereitete Aufträge mit dem alten Archivpräfix verwenden ebenfalls den neuen Ordner.
+
+Das Archiv schreibt Ergebnis-Commits direkt in das Repository; die lokale Arbeitskopie
+erhält diese Dateien erst beim nächsten Git-Abruf. Nach Übernahme der vorbereiteten
+Workflowänderung auf GitHub lösen reine Ergebnisänderungen keinen Pages-Build aus.
+Die Materialwebsite kopiert den Ergebnisordner nicht nach `_site/`.
+Ein Archivausfall blockiert den Spielbetrieb nicht.
+
+Ein privates Ergebnisrepository bleibt alternativ möglich: dessen Namen eintragen und
+`ARCHIVE_ALLOW_PUBLIC` entfernen oder auf `false` setzen. Ohne ausdrückliches `true`
+weist der Writer öffentliche Repositories weiterhin ab.
 
 ## 7. Änderungen und Fehlerbehebung
 
@@ -124,7 +161,7 @@ Versionsnummer verwenden, sobald Regeln oder Fragen geändert werden.
 | `401` | Code gesperrt/falsch oder Admin-Secret fehlt; Schülercode ist kein Admin-Schlüssel |
 | `409` beim Start | Cooldown, Versuchslimit, Schließung, Zeitraum oder geänderte Definition prüfen |
 | Browser blockiert Anfrage | `API_BASE` und exakten CORS-Ursprung prüfen; ein Pfad ist kein Ursprung |
-| Archiv bleibt ausstehend | Token, privaten Repositoryzugriff, Branch, Instanzkonflikt und `admin -- archive` prüfen |
+| Archiv bleibt ausstehend | Tokenzugriff auf Material_Physik, Branch, `ARCHIVE_ALLOW_PUBLIC`, erfolgreiche Workeraktualisierung und `admin -- archive` prüfen |
 | Cloudflare verweigert Deployment | Konto, Workers-Berechtigungen und Durable-Object-Verfügbarkeit prüfen |
 
 Für eine gezielte Diagnose `npx wrangler tail` verwenden; keine Codes, Request-Bodys oder

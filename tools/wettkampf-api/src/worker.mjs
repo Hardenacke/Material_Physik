@@ -17,7 +17,8 @@ function publicConfig(d, now) {
   return { id: c.id, version: c.version, subject: 'physik', title: c.title, grade: c.grade, groupId: c.groupId,
     status: c.status, availability: availability(c, now), period: periodFor(c, now),
     rules: c.rules, attempts: c.attempts, schedule: c.schedule, season: c.season,
-    selectionCounts: c.selection.counts, totalQuestions: Object.values(c.selection.counts).reduce((a, b) => a + b, 0), demo: d.bank.demo };
+    selectionCounts: c.selection.counts, totalQuestions: Object.values(c.selection.counts).reduce((a, b) => a + b, 0), demo: d.bank.demo,
+    ...(c.interface ? {interface:c.interface} : {}) };
 }
 function selectedPeriod(c, id, now) {
   if (id === 'gesamt' && c.season.kind === 'continuous') return periodFor(c, now);
@@ -88,7 +89,7 @@ async function route(request, env) {
     key = request.headers.get('Idempotency-Key');
     if (!uuid(key)) throw new HttpError(400, 'UUID als Idempotency-Key erforderlich.');
     body = await readJSON(request); exact(body, action === 'answer' ? ['questionId', 'answerId'] : []);
-    if (action === 'answer' && (!slug(body.questionId) || (body.answerId !== null && !slug(body.answerId)))) throw new HttpError(400, 'Ungültige Antwortkennung.');
+    if (action === 'answer' && (!slug(body.questionId) || (body.answerId !== null && !slug(body.answerId) && !(typeof body.answerId === 'number' && Number.isFinite(body.answerId) && body.answerId >= 0 && body.answerId <= 90)))) throw new HttpError(400, 'Ungültige Antwortkennung oder Winkel.');
     requestHash = await fingerprint([path, body]);
   }
   return json(await call(env.ROOM_STATE, `physik/${id}/v${version}/${period.id}`, { ...d, period, allowCreate: period.id === periodFor(d.config, now).id, person, action, attemptId, body, key, requestHash }));

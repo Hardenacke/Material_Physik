@@ -2,7 +2,14 @@
 
 Diese Umsetzung ergänzt den Physik-Regelkern aus `Wettkampf_Architekturen_Mathe_Physik.zip`
 um eine Spieloberfläche, eine HTTP-API, drei SQLite-basierte Durable-Object-Klassen,
-Zugangsverwaltung und eine optionale private Ergebnisarchivierung. Mathematik ist nicht beteiligt.
+Zugangsverwaltung und eine optionale Ergebnisarchivierung. Mathematik ist nicht beteiligt.
+
+Die Ergebnisse dieser Arbeitskopie sollen direkt im bestehenden GitHub-Repository
+`Hardenacke/Material_Physik` unter [`ergebnisse/`](../../ergebnisse/README.md) erscheinen.
+Dazu ist die öffentliche Archivierung ausdrücklich freigegeben. Der GitHub-Token
+benötigt **Contents: Read and write** für **Material_Physik** und wird ausschließlich
+als Worker-Secret `GITHUB_TOKEN` hinterlegt. Die aktualisierte Konfiguration und der
+Worker werden gemeinsam mit `npm.cmd run deploy` veröffentlicht.
 
 **Einstieg:** [Cloudflare einrichten](docs/CLOUDFLARE.md) ·
 [Architektur](docs/ARCHITEKTUR.md) · [Betrieb](docs/BETRIEB.md) ·
@@ -13,6 +20,15 @@ Die Schüleroberfläche liegt passend zum Optikbeispiel unter
 Sie bietet nach Anmeldung alle Wettbewerbe der jeweiligen Gruppe, auch zu weiteren Themen.
 Cloudflare liefert diese Oberfläche und die API gemeinsam aus. Die vorhandene
 GitHub-Pages-Sammlung behält ihre Pfade und ihren Veröffentlichungsprozess.
+
+Neu: **[Mission Optik · Klasse 8](../../klasse-8/01-optische-instrumente/lernpfade/wettkaempfe/optik-quiz/README.md)**
+übernimmt das Quiz aus `Optik_Quiz_Klasse_8.zip` mit 15 Aufgaben, Winkeleingaben und
+zwei Strahlenzeichnungen. Es ist als `physik-optik-klasse-8`, Version 1, für die
+bestehende Gruppe `klasse-8-demo` freigegeben. Die vorhandenen Codes gelten weiter.
+Direkter Einstieg: `https://physik-wettkampf-api.physik-wettkampf-api.workers.dev/optik-quiz/competition.html`.
+Wertung, Fristen und Rangliste werden serverseitig verwaltet. Der Übungsmodus bleibt
+unter `optik-quiz/index.html` ohne Anmeldung verfügbar. Die Aufgaben sind öffentliche
+Übungsdaten; der neue Pool ergänzt die zwölf bisherigen Demofragen.
 
 ## Lokal starten
 
@@ -73,7 +89,9 @@ Alle benötigten alten Versionen ebenfalls unter `private/wettkaempfe/` belassen
 Veröffentlichte Definitionen werden beim ersten Raumzugriff per SHA-256 gebunden.
 Regel- oder Fragenänderungen benötigen eine neue Version; `status` ist separat veränderbar.
 Neue Abbildungen gehören in den öffentlichen `assets/`-Ordner und dürfen keine Lösung verraten.
-Die Formeln werden als Text dargestellt; es gibt keine KaTeX- oder CDN-Abhängigkeit.
+Die bisherige Oberfläche stellt Formeln als Text dar. Mission Optik verwendet das
+lokal mitgelieferte KaTeX ohne CDN-Abhängigkeit. Der neue Fragenpool unterstützt
+zusätzlich `number` und `ray`; diese benötigen `interface: "optik-quiz"`.
 
 Ein neuer Entwurf für einen bereits in `private/fragenpools/` angelegten Pool lässt sich erzeugen:
 

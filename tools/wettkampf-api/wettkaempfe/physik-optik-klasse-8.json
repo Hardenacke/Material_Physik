@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "physik-optik-klasse-8",
+  "version": 1,
+  "subject": "physik",
+  "title": "Mission Optik · Klasse 8",
+  "grade": "8",
+  "groupId": "klasse-8-demo",
+  "status": "published",
+  "interface": "optik-quiz",
+  "bank": {
+    "id": "optik-quiz-klasse-8",
+    "version": 1
+  },
+  "schedule": {
+    "startsAt": null,
+    "endsAt": null
+  },
+  "season": {
+    "kind": "continuous",
+    "timeZone": "Europe/Berlin"
+  },
+  "attempts": {
+    "maxPerPeriod": null,
+    "cooldownSeconds": 30,
+    "maxDurationSeconds": 1800,
+    "oneActive": true
+  },
+  "rules": {
+    "version": 1,
+    "lives": 3,
+    "questionTimeSeconds": 25,
+    "basePoints": 100,
+    "timeBonus": 100
+  },
+  "selection": {
+    "counts": {
+      "basis": 6,
+      "aufbau": 5,
+      "knifflig": 4
+    },
+    "shuffleQuestions": false,
+    "shuffleOptions": true
+  },
+  "ranking": {
+    "mode": "best-finished",
+    "tie": "shared-rank"
+  }
+}

@@ -84,13 +84,19 @@ function end(attempt, now, reason) {
 
 function resolve(attempt, answerId, now, timeout) {
   const q = attempt.questions[attempt.index];
-  const correct = !timeout && answerId === q.correct;
+  const correct = !timeout && answerId !== null && (q.kind === 'single-choice' ? answerId === q.correct :
+    q.kind === 'ray' && q.interaction.diagram === 'refractionDraw' ? answerId > 0 && answerId < q.correct : Math.abs(answerId - q.correct) <= q.tolerance);
   const awarded = correct ? pointsFor(now - attempt.current.startedAt, attempt.rules) : 0;
   attempt.score += awarded;
   if (correct) attempt.correctAnswers++; else attempt.lives--;
   attempt.index++;
   attempt.lastFeedback = {questionId: q.id, correct, timedOut: timeout, awarded,
-    correctAnswerId: q.correct, explanation: q.explanation};
+    correctAnswerId: q.correct, explanation: q.explanation,
+    ...(q.interaction ? {question:publicQuestion(q), given:answerId} : {})};
+  if(q.interaction) {
+    attempt.review ??= [];
+    attempt.review.push(structuredClone(attempt.lastFeedback));
+  }
   attempt.current = null;
   if (attempt.lives === 0) end(attempt, now, 'no-lives');
   else if (attempt.index === attempt.questions.length) end(attempt, now, 'all-questions');
@@ -124,7 +130,8 @@ export function answer(attempt, questionId, answerId, now) {
   if (attempt.phase === 'finished') throw new RuleError('FINISHED', 'Versuch ist beendet.');
   const q = attempt.questions[attempt.index];
   if (!attempt.current || q.id !== questionId) throw new RuleError('QUESTION', 'Frage ist nicht aktiv.');
-  if (answerId !== null && !q.choices.some(x => x.id === answerId))
+  if (answerId !== null && (q.kind === 'single-choice' ? !q.choices.some(x => x.id === answerId) :
+    typeof answerId !== 'number' || !Number.isFinite(answerId) || answerId < 0 || answerId > 90))
     throw new RuleError('ANSWER', 'Unbekannte Antwortoption.');
   resolve(attempt, answerId, now, false);
 }
@@ -132,7 +139,8 @@ export function answer(attempt, questionId, answerId, now) {
 export function publicQuestion(q) {
   return {id:q.id, kind:q.kind, difficulty:q.difficulty,
     prompt:structuredClone(q.prompt), choices:structuredClone(q.choices),
-    ...(q.figure ? {figure:structuredClone(q.figure)} : {})};
+    ...(q.figure ? {figure:structuredClone(q.figure)} : {}),
+    ...(q.interaction ? {interaction:structuredClone(q.interaction)} : {})};
 }
 
 export function summary(a) {
@@ -147,7 +155,8 @@ export function view(a, now) {
   const {participantId, ...own} = summary(a);
   return {serverNow:now, rules:structuredClone(a.rules), attempt:{...own, hardEnd:a.hardEnd,
     question:a.current ? {...publicQuestion(a.questions[a.index]), ...a.current, number:a.index+1} : null,
-    feedback:!a.current && a.lastFeedback ? structuredClone(a.lastFeedback) : null}};
+    feedback:!a.current && a.lastFeedback ? structuredClone(a.lastFeedback) : null,
+    ...(a.review ? {review:structuredClone(a.review)} : {})}};
 }
 
 export function bestLeaderboard(attempts) {

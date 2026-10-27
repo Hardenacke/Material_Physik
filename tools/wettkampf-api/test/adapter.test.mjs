@@ -134,3 +134,112 @@ test('öffentliche Ergebnisrepositories werden vor einem Schreibversuch abgewies
   t.mock.method(globalThis, 'fetch', async (url, init) => { if (init.method === 'PUT') puts++; return Response.json({ private: false }); });
   assert.equal((await f.send(f.payload)).status, 503); assert.equal(puts, 0);
 });
+
+test('öffentliches Archiv benötigt die ausdrückliche Freigabe und veröffentlicht nur Ranglistendaten', async t => {
+  const f = archiveFixture();
+  Object.assign(f.writer.env, { ARCHIVE_ALLOW_PUBLIC: 'true', ARCHIVE_PREFIX: 'ergebnisse' });
+  const published = [];
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    if (url === 'https://api.github.com/repos/owner/results') return Response.json({ private: false });
+    if (init.method !== 'PUT') return new Response('', { status: 404 });
+    const body = JSON.parse(init.body);
+    published.push({ url, value: JSON.parse(Buffer.from(body.content, 'base64').toString('utf8')) });
+    return Response.json({ content: { sha: 'sha' } });
+  });
+  const payload = { ...f.payload, final: true, createdAt: '2026-10-27T18:00:00Z', configHash: 'privater-hash', code: 'geheimer-code',
+    leaderboard: [{ rank: 1, alias: 'Licht 01', score: 1000, maxPoints: 12000, endedAt: 1793124000000,
+      participantId: 'interne-person', hash: 'code-hash', correct: 'loesung' }] };
+  assert.equal((await f.send(payload)).status, 200);
+  assert.equal(published.length, 2);
+  assert.ok(published.some(p => p.url.endsWith('/ergebnisse/snapshots/optik-test/v1/gesamt/latest.json')));
+  assert.ok(published.some(p => p.url.endsWith('/ergebnisse/perioden/optik-test/v1/gesamt/final.json')));
+  for (const file of published) {
+    assert.equal(file.value.instanceId, payload.instanceId);
+    assert.deepEqual(file.value.leaderboard, [{ rank: 1, alias: 'Licht 01', score: 1000, maxPoints: 12000, endedAt: 1793124000000 }]);
+    assert.equal(Object.hasOwn(file.value, 'configHash'), false);
+    for (const secret of ['privater-hash', 'geheimer-code', 'interne-person', 'code-hash', 'loesung'])
+      assert.equal(JSON.stringify(file.value).includes(secret), false);
+  }
+});
+
+test('unbekannte Repositorysichtbarkeit wird auch bei öffentlicher Freigabe abgewiesen', async t => {
+  const f = archiveFixture(); Object.assign(f.writer.env, { ARCHIVE_ALLOW_PUBLIC: 'true', ARCHIVE_PREFIX: 'ergebnisse' }); let puts = 0;
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    if (init.method === 'PUT') puts++;
+    return Response.json({});
+  });
+  assert.equal((await f.send(f.payload)).status, 503);
+  assert.equal(puts, 0);
+});
+
+test('offene Archivaufträge wechseln nach einem Neustart in den neuen Ergebnisordner', async t => {
+  const f = archiveFixture(); let offline = true; const paths = [];
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    if (offline) throw new Error('Netzwerkfehler');
+    if (url === 'https://api.github.com/repos/owner/results') return Response.json({ private: false });
+    if (init.method === 'PUT') { paths.push(url); return Response.json({ content: { sha: 'sha' } }); }
+    return new Response('', { status: 404 });
+  });
+  assert.equal((await f.send({ ...f.payload, final: true })).status, 503);
+  const recreated = new ArchiveWriter(f.ctx, { ...f.writer.env, ARCHIVE_ALLOW_PUBLIC: 'true', ARCHIVE_PREFIX: 'ergebnisse' });
+  recreated.sql.exec('UPDATE jobs SET retry = 0'); offline = false;
+  await recreated.alarm();
+  assert.equal(paths.length, 2);
+  assert.ok(paths.every(path => path.includes('/contents/ergebnisse/')));
+  assert.equal(recreated.sql.exec("SELECT COUNT(*) AS n FROM jobs WHERE state = 'done'").one().n, 2);
+});
+
+test('Archivpfade dürfen den Ergebnisordner nicht verlassen', async t => {
+  const f = archiveFixture(); let requests = 0;
+  t.mock.method(globalThis, 'fetch', async () => { requests++; return Response.json({ private: true }); });
+  for (const fields of [{ competitionId: '../index.html' }, { version: '../main' }, { period: '../../main' }]) {
+    assert.equal((await f.send({ ...f.payload, ...fields })).status, 503);
+  }
+  assert.equal(requests, 0);
+  assert.equal(f.writer.sql.exec('SELECT COUNT(*) AS n FROM jobs').one().n, 0);
+});
+
+test('Material_Physik blockiert fremde Dateien direkt vor jedem GitHub-Zugriff', async t => {
+  const f = archiveFixture();
+  Object.assign(f.writer.env, { ARCHIVE_REPOSITORY: 'Hardenacke/Material_Physik', ARCHIVE_PREFIX: 'ergebnisse', ARCHIVE_ALLOW_PUBLIC: 'true' });
+  let requests = 0;
+  t.mock.method(globalThis, 'fetch', async () => { requests++; return Response.json({ private: false }); });
+  for (const path of [
+    'README.md', '.github/workflows/pages.yml', 'tools/wettkampf-api/wrangler.jsonc',
+    'klasse-8/01-optische-instrumente/praesentation/praesentation.json', 'ergebnisse/README.md',
+    'ergebnisse/../index.html', 'ergebnisse/%2e%2e/index.html', 'ergebnisse\\..\\index.html',
+    'ergebnisse/snapshots/optik/v1/gesamt/../../../index.html',
+    'ergebnisse/snapshots/optik/v1/gesamt/final.json', 'ergebnisse/perioden/optik/v1/gesamt/latest.json',
+    'ergebnisse/snapshots/optik/v1/2026-13/latest.json'
+  ]) {
+    for (const method of ['GET', 'PUT']) {
+      await assert.rejects(() => f.writer.github(path, { method }), { status: 403 });
+    }
+    await assert.rejects(() => f.writer.write(path, f.payload), { status: 403 });
+  }
+  assert.equal(requests, 0);
+});
+
+test('Material_Physik bleibt bei geänderter Archivkonfiguration auf ergebnisse beschränkt', async t => {
+  let requests = 0;
+  t.mock.method(globalThis, 'fetch', async () => { requests++; return Response.json({ private: false }); });
+  for (const prefix of ['bilder', 'tools', 'klasse-8', 'anderer-ordner']) {
+    const f = archiveFixture();
+    Object.assign(f.writer.env, { ARCHIVE_REPOSITORY: 'hArDeNaCkE/mAtErIaL_pHySiK', ARCHIVE_PREFIX: prefix, ARCHIVE_ALLOW_PUBLIC: 'false' });
+    assert.equal((await f.send(f.payload)).status, 503);
+    assert.equal(f.writer.sql.exec('SELECT COUNT(*) AS n FROM jobs').one().n, 0);
+    await assert.rejects(() => f.writer.github('README.md', { method: 'PUT' }), { status: 403 });
+  }
+  assert.equal(requests, 0);
+});
+
+test('auch Ergebnisdateien können vom Archivschreiber nicht gelöscht werden', async t => {
+  const f = archiveFixture();
+  Object.assign(f.writer.env, { ARCHIVE_REPOSITORY: 'Hardenacke/Material_Physik', ARCHIVE_PREFIX: 'ergebnisse' });
+  let requests = 0;
+  t.mock.method(globalThis, 'fetch', async () => { requests++; return Response.json({ private: false }); });
+  for (const method of ['DELETE', 'POST', 'PATCH']) {
+    await assert.rejects(() => f.writer.github('ergebnisse/snapshots/optik-test/v1/gesamt/latest.json', { method }), { status: 403 });
+  }
+  assert.equal(requests, 0);
+});

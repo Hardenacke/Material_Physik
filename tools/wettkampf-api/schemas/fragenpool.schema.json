@@ -62,7 +62,11 @@
             "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
           },
           "kind": {
-            "const": "single-choice"
+            "enum": [
+              "single-choice",
+              "number",
+              "ray"
+            ]
           },
           "difficulty": {
             "enum": [
@@ -101,7 +105,7 @@
           },
           "choices": {
             "type": "array",
-            "minItems": 2,
+            "minItems": 0,
             "maxItems": 6,
             "items": {
               "type": "object",
@@ -143,8 +147,17 @@
             }
           },
           "correct": {
-            "type": "string",
-            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 90
+              }
+            ]
           },
           "explanation": {
             "type": "array",
@@ -187,8 +200,135 @@
                 "minLength": 1
               }
             }
+          },
+          "tolerance": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "interaction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "category"
+            ],
+            "properties": {
+              "category": {
+                "enum": [
+                  "Grundbegriffe",
+                  "Reflexion",
+                  "Brechung"
+                ]
+              },
+              "fieldLabel": {
+                "type": "string",
+                "minLength": 1
+              },
+              "diagram": {
+                "enum": [
+                  "reflection",
+                  "refractionReading",
+                  "refractionDraw"
+                ]
+              },
+              "incidence": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 90
+              },
+              "refractedAngle": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 90
+              }
+            }
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "single-choice"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "choices": {
+                  "minItems": 2
+                },
+                "correct": {
+                  "type": "string"
+                }
+              },
+              "not": {
+                "required": [
+                  "tolerance"
+                ]
+              }
+            },
+            "else": {
+              "required": [
+                "tolerance",
+                "interaction"
+              ],
+              "properties": {
+                "choices": {
+                  "maxItems": 0
+                },
+                "correct": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "number"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "interaction": {
+                  "required": [
+                    "fieldLabel"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "ray"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "interaction": {
+                  "required": [
+                    "incidence",
+                    "diagram"
+                  ],
+                  "properties": {
+                    "diagram": {
+                      "enum": [
+                        "reflection",
+                        "refractionDraw"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       }
     }
   }

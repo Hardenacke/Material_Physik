@@ -25,7 +25,8 @@ Das optionale Archiv meldet Aufträge als `pending`, `done` oder `blocked`.
 Bei Instanzkonflikten keine neuen Ergebnisse über alte Archivdateien schreiben.
 Zunächst Herkunft klären; ein bewusst neu angelegtes Testsystem benötigt ein neues
 Archivpräfix oder neue Wettbewerbskennungen. Pseudonyme sind in den Archivdateien
-sichtbar, Codes, Hashes und Einzelantworten fehlen.
+sichtbar, Codes, Hashes und Einzelantworten fehlen. In dieser Arbeitskopie liegen
+die Ergebnisse öffentlich unter `Hardenacke/Material_Physik/ergebnisse/`.
 
 ## Technische Aufbewahrung
 
@@ -51,6 +52,10 @@ Bestwertzusammenfassungen; es rekonstruiert keine Codezuordnungen, aktiven Frage
 vollständigen Versuche. Gruppen-/Codezuordnung und private Definitionsdateien deshalb
 separat geschützt sichern. Private Inhalte werden aus diesem öffentlichen Repository
 bewusst nicht mit Git synchronisiert.
+
+Die öffentliche Archivierung benötigt `ARCHIVE_ALLOW_PUBLIC: "true"`. Sie verwendet
+eine Positivliste für Raumdaten und Ranglistenzeilen; interne Definitionshashes und
+Personenkennungen werden nicht veröffentlicht. Ergebnisdateien sind kein Komplett-Restore.
 
 SQLite-basierte Durable Objects unterstützen laut Cloudflare
 [Point-in-time Recovery](https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/).

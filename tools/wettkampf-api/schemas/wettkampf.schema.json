@@ -260,6 +260,9 @@
           "const": "shared-rank"
         }
       }
+    },
+    "interface": {
+      "const": "optik-quiz"
     }
   },
   "$comment": "Zusätzlich vertrag.mjs ausführen: Versionsreferenz, Jahresstufe, eindeutige Familien, Mengen und Zeitfenster erfordern fachübergreifende Prüfungen."

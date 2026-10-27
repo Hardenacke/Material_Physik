@@ -1,0 +1,13 @@
+[hidden] { display: none !important; }
+.competition-message { min-height: 1.5em; color: var(--red); font-weight: 650; }
+.competition-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.competition-ranking { margin-top: 24px; }
+.competition-ranking ol { padding: 0; list-style: none; }
+.competition-login { display: grid; gap: 16px; max-width: 520px; }
+.competition-login label { display: grid; gap: 8px; font-weight: 700; }
+.competition-login input { width: 100%; min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; }
+.competition-status { margin: 14px 0; color: var(--muted); }
+.competition-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.competition-header .eyebrow { color: var(--blue-dark); }
+button:disabled { cursor: wait; opacity: .65; }
+body[data-embedded="true"] .app-shell { padding-top: 12px; }

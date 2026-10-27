@@ -71,3 +71,7 @@ mit persönlichem Zugang, dauerhaften Spielständen und Klassen-, Dauer- und Mon
 Die passende [Schüleroberfläche](klasse-8/01-optische-instrumente/lernpfade/wettkaempfe/index.html)
 liegt beim Optikmaterial. Die Cloudflare-Konfiguration und die Verwaltungswerkzeuge stehen
 unter `tools/wettkampf-api/`; eigene Fragen und Zugangsdaten bleiben in ignorierten privaten Ordnern.
+
+Das [Optik-Quiz für Klasse 8](klasse-8/01-optische-instrumente/lernpfade/wettkaempfe/optik-quiz/README.md)
+ist als eigener Wettbewerb mit 15 Aufgaben, drei Leben, Winkeleingaben und interaktiven
+Strahlenzeichnungen eingebunden. [Mission Optik starten](https://physik-wettkampf-api.physik-wettkampf-api.workers.dev/optik-quiz/competition.html).
