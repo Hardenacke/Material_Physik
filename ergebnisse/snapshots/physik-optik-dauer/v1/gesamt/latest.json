@@ -4,19 +4,26 @@
   "version": 1,
   "period": "gesamt",
   "instanceId": "ab78e1bd-62a6-4c9b-be70-733fc055ad2e",
-  "revision": 2,
+  "revision": 3,
   "final": false,
-  "createdAt": "2026-10-27T18:17:01.410Z",
+  "createdAt": "2026-10-27T18:21:18.106Z",
   "leaderboard": [
     {
       "rank": 1,
+      "alias": "Licht 06",
+      "score": 998,
+      "maxPoints": 12000,
+      "endedAt": 1793125263106
+    },
+    {
+      "rank": 2,
       "alias": "Licht 05",
       "score": 997,
       "maxPoints": 12000,
       "endedAt": 1793125014399
     },
     {
-      "rank": 2,
+      "rank": 3,
       "alias": "Licht 03",
       "score": 995,
       "maxPoints": 12000,
