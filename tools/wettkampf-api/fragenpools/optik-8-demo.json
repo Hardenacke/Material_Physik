@@ -1,0 +1,707 @@
+{
+  "schemaVersion": 1,
+  "id": "optik-8-demo",
+  "version": 1,
+  "subject": "physik",
+  "title": "Optik",
+  "grade": "8",
+  "demo": true,
+  "questions": [
+    {
+      "id": "q1",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "optik-8-demo-q1",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Eine Lampe beleuchtet ein Buch. Warum kannst du das Buch sehen?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Auge sendet Licht zum Buch."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Buch lässt das gesamte Licht hindurch."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Buch reflektiert Licht, das in dein Auge gelangt."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Die Lampe zieht Licht aus deinem Auge an."
+            }
+          ]
+        }
+      ],
+      "correct": "c",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Ein beleuchteter Gegenstand ist sichtbar, wenn von ihm reflektiertes oder gestreutes Licht ins Auge fällt."
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "optik-8-demo-q2",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Eine kleine, annähernd punktförmige Lichtquelle beleuchtet einen undurchsichtigen Gegenstand. Warum entsteht dahinter ein Schatten?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Licht breitet sich geradlinig aus und wird vom Gegenstand aufgehalten."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Licht bewegt sich um jeden Gegenstand herum."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Der Gegenstand kühlt das Licht ab."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Der Gegenstand zieht alle Lichtstrahlen an."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Im gleichartigen Medium läuft Licht geradlinig. Hinter dem undurchsichtigen Gegenstand fehlt das direkte Licht der Quelle."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "optik-8-demo-q3",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl trifft einen ebenen Spiegel unter einem Winkel von 30° zur Spiegeloberfläche. Wie groß ist der Reflexionswinkel zum Lot?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "30°"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "45°"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "90°"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "60°"
+            }
+          ]
+        }
+      ],
+      "correct": "d",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Zur Oberfläche gehören 30°, zum senkrechten Lot also 90° − 30° = 60°. Einfallswinkel und Reflexionswinkel werden zum Lot gemessen und sind gleich."
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "kind": "single-choice",
+      "difficulty": "basis",
+      "family": "optik-8-demo-q4",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "In der Skizze beträgt der Einfallswinkel zum Lot 35°. Wie groß ist der mit β bezeichnete Reflexionswinkel?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "55°"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "35°"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "70°"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "90°"
+            }
+          ]
+        }
+      ],
+      "correct": "b",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Nach dem Reflexionsgesetz ist β gleich dem Einfallswinkel, also 35°."
+        }
+      ],
+      "figure": {
+        "src": "assets/reflexion.svg",
+        "alt": "Horizontaler ebener Spiegel mit senkrechtem Lot. Ein Lichtstrahl kommt von links oben und bildet 35 Grad mit dem Lot. Der reflektierte Strahl geht nach rechts oben; sein Winkel zum Lot ist mit Beta bezeichnet."
+      }
+    },
+    {
+      "id": "q5",
+      "kind": "single-choice",
+      "difficulty": "aufbau",
+      "family": "optik-8-demo-q5",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl tritt schräg aus Luft in Glas ein. Welche Darstellung zeigt die richtige Richtung des gebrochenen Strahls? Die gestrichelte Linie ist das Lot."
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Darstellung A"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Darstellung B"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Darstellung C"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Darstellung D"
+            }
+          ]
+        }
+      ],
+      "correct": "b",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim schrägen Übergang von Luft in Glas wird der Lichtstrahl zum Lot hin gebrochen. Sein Winkel zum Lot wird kleiner."
+        }
+      ],
+      "figure": {
+        "src": "assets/brechung-auswahl.svg",
+        "alt": "Vier Darstellungen eines Übergangs von Luft oben zu Glas unten. Der einfallende Strahl läuft jeweils von links oben zur Grenzfläche. A: Er läuft unverändert weiter. B: Er läuft rechts vom Lot mit kleinerem Winkel zum Lot weiter. C: Er läuft rechts mit größerem Winkel zum Lot weiter. D: Er knickt unterhalb der Grenzfläche auf die linke Seite des Lots ab."
+      }
+    },
+    {
+      "id": "q6",
+      "kind": "single-choice",
+      "difficulty": "aufbau",
+      "family": "optik-8-demo-q6",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Lichtstrahl tritt schräg aus Glas in Luft aus. Der Einfallswinkel liegt unterhalb des Grenzwinkels der Totalreflexion. Wie verläuft der gebrochene Strahl?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er wird vom Lot weg gebrochen."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er wird zum Lot hin gebrochen."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er verläuft immer genau entlang des Lots."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Er bleibt bei jedem Einfallswinkel vollständig im Glas."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Beim schrägen Übergang von Glas zu Luft wird der austretende Strahl vom Lot weg gebrochen, solange ein gebrochener Strahl austritt."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "kind": "single-choice",
+      "difficulty": "aufbau",
+      "family": "optik-8-demo-q7",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Unter welcher Bedingung kann an einer Glas-Luft-Grenzfläche Totalreflexion auftreten?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Beim Übergang von Luft nach Glas, wenn der Winkel groß genug ist."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Beim Übergang von Glas nach Luft, wenn der Strahl senkrecht auftrifft."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Beim Übergang von Glas nach Luft, wenn der Einfallswinkel zum Lot größer als der Grenzwinkel ist."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Bei jeder Reflexion an einem ebenen Spiegel."
+            }
+          ]
+        }
+      ],
+      "correct": "c",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Totalreflexion erfordert den Übergang vom optisch dichteren zum optisch dünneren Medium und einen Einfallswinkel oberhalb des Grenzwinkels."
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "kind": "single-choice",
+      "difficulty": "aufbau",
+      "family": "optik-8-demo-q8",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "In einem Lichtleiter bleibt Licht auch bei einer vorsichtigen Biegung im Inneren. Welcher Effekt wird dabei genutzt?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Die Lichtquelle erzeugt überall im Kabel neues Licht."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Im Lichtleiter ist die Schwerkraft ausgeschaltet."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Licht wird von einem Magnetfeld festgehalten."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Licht wird an der Grenze zum optisch dünneren Material totalreflektiert."
+            }
+          ]
+        }
+      ],
+      "correct": "d",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Bei geeigneter Führung trifft Licht oberhalb des Grenzwinkels auf die Grenze zwischen Kern und optisch dünnerer Umgebung und wird totalreflektiert."
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "kind": "single-choice",
+      "difficulty": "knifflig",
+      "family": "optik-8-demo-q9",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Die Skizze zeigt zwei zur optischen Achse parallele Lichtstrahlen vor einer Sammellinse. Wo treffen sie sich nach der Linse im idealisierten Strahlenmodell?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Im Punkt A"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Im Punkt B"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Im Punkt C"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Im Punkt F"
+            }
+          ]
+        }
+      ],
+      "correct": "d",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Parallel zur optischen Achse einfallende Lichtstrahlen werden von einer idealen Sammellinse im bildseitigen Brennpunkt F gebündelt."
+        }
+      ],
+      "figure": {
+        "src": "assets/sammellinse.svg",
+        "alt": "Eine senkrechte Sammellinse steht mittig auf einer waagerechten optischen Achse. Zwei Lichtstrahlen laufen parallel von links zur Linse. Auf der Achse liegt A vor der Linse, F hinter der Linse und B weiter rechts. C liegt oberhalb von F. F bezeichnet den bildseitigen Brennpunkt."
+      }
+    },
+    {
+      "id": "q10",
+      "kind": "single-choice",
+      "difficulty": "knifflig",
+      "family": "optik-8-demo-q10",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Ein Gegenstand steht weiter als die doppelte Brennweite vor einer Sammellinse. Welches Bild lässt sich hinter der Linse auf einem Schirm auffangen?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein aufrechtes und vergrößertes Bild."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein aufrechtes und verkleinertes Bild."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein umgekehrtes und verkleinertes Bild."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein umgekehrtes und vergrößertes Bild."
+            }
+          ]
+        }
+      ],
+      "correct": "c",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Bei einem Gegenstandsabstand größer als 2f entsteht zwischen f und 2f ein reelles, umgekehrtes und verkleinertes Bild."
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "kind": "single-choice",
+      "difficulty": "knifflig",
+      "family": "optik-8-demo-q11",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Bei Kurzsichtigkeit werden weit entfernte Gegenstände unscharf gesehen: Ihr Bild entsteht vor der Netzhaut. Welche Brillenlinse hilft?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine Zerstreuungslinse."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine Sammellinse."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Eine ebene Glasscheibe ohne Brechwirkung."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Ein ebener Spiegel."
+            }
+          ]
+        }
+      ],
+      "correct": "a",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Eine Zerstreuungslinse verringert die Bündelung so, dass das Bild ferner Gegenstände auf der Netzhaut entsteht."
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "kind": "single-choice",
+      "difficulty": "knifflig",
+      "family": "optik-8-demo-q12",
+      "prompt": [
+        {
+          "type": "text",
+          "value": "Weißes Licht trifft schräg auf ein Glasprisma und wird in verschiedene Farben aufgeteilt. Warum?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Prisma erzeugt die Farben erst durch Erwärmung."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "content": [
+            {
+              "type": "text",
+              "value": "Die verschiedenen Farben werden im Glas unterschiedlich stark gebrochen."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "content": [
+            {
+              "type": "text",
+              "value": "Im Prisma breitet sich Licht immer geradlinig ohne Brechung aus."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "content": [
+            {
+              "type": "text",
+              "value": "Das Prisma reflektiert nur grünes Licht."
+            }
+          ]
+        }
+      ],
+      "correct": "b",
+      "explanation": [
+        {
+          "type": "text",
+          "value": "Weißes Licht enthält verschiedene sichtbare Wellenlängen. Glas bricht diese unterschiedlich stark; das wird Dispersion genannt."
+        }
+      ]
+    }
+  ]
+}

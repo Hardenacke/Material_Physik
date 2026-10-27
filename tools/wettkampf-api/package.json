@@ -1,0 +1,23 @@
+{
+  "name": "physik-wettkampf-api",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "prepare:demo": "node scripts/prepare.mjs --demo",
+    "prepare:private": "node scripts/prepare.mjs --private",
+    "check": "node scripts/pruefen.mjs",
+    "build:api": "node scripts/api-vertrag.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:integration": "node scripts/integration.mjs",
+    "dev": "wrangler dev --ip 127.0.0.1",
+    "dry-run": "wrangler deploy --dry-run --outdir .local/bundle",
+    "deploy": "wrangler deploy",
+    "admin": "node scripts/admin.mjs",
+    "neu": "node scripts/wettkampf-anlegen.mjs"
+  },
+  "devDependencies": { "wrangler": "4.153.0" }
+}

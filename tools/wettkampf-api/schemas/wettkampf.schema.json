@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Wettkampfvertrag physik",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "subject",
+    "title",
+    "grade",
+    "groupId",
+    "status",
+    "bank",
+    "schedule",
+    "season",
+    "attempts",
+    "rules",
+    "selection",
+    "ranking"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "subject": {
+      "const": "physik"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "grade": {
+      "type": "string",
+      "minLength": 1
+    },
+    "groupId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "published",
+        "closed",
+        "archived"
+      ]
+    },
+    "bank": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startsAt",
+        "endsAt"
+      ],
+      "properties": {
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            }
+          ]
+        },
+        "endsAt": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            }
+          ]
+        }
+      }
+    },
+    "season": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "timeZone"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "continuous",
+            "calendar-month"
+          ]
+        },
+        "timeZone": {
+          "const": "Europe/Berlin"
+        }
+      }
+    },
+    "attempts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maxPerPeriod",
+        "cooldownSeconds",
+        "maxDurationSeconds",
+        "oneActive"
+      ],
+      "properties": {
+        "maxPerPeriod": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          ]
+        },
+        "cooldownSeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 86400
+        },
+        "maxDurationSeconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 86400
+        },
+        "oneActive": {
+          "const": true
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "lives",
+        "questionTimeSeconds",
+        "basePoints",
+        "timeBonus"
+      ],
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "lives": {
+          "const": 3
+        },
+        "questionTimeSeconds": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 600
+        },
+        "basePoints": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "timeBonus": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "counts",
+        "shuffleQuestions",
+        "shuffleOptions"
+      ],
+      "properties": {
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "basis",
+            "aufbau",
+            "knifflig"
+          ],
+          "properties": {
+            "basis": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 50
+            },
+            "aufbau": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 50
+            },
+            "knifflig": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 50
+            }
+          }
+        },
+        "shuffleQuestions": {
+          "type": "boolean"
+        },
+        "shuffleOptions": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ranking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "tie"
+      ],
+      "properties": {
+        "mode": {
+          "const": "best-finished"
+        },
+        "tie": {
+          "const": "shared-rank"
+        }
+      }
+    }
+  },
+  "$comment": "Zusätzlich vertrag.mjs ausführen: Versionsreferenz, Jahresstufe, eindeutige Familien, Mengen und Zeitfenster erfordern fachübergreifende Prüfungen."
+}

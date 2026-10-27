@@ -1,0 +1,4 @@
+# Lokal: Kopie als .dev.vars erstellen. Kein echter Schlüssel gehört ins Git.
+ADMIN_TOKEN="HIER_EINEN_ZUFAELLIGEN_SCHLUESSEL_MIT_MINDESTENS_32_ZEICHEN_EINTRAGEN"
+# Optional, nur bei ARCHIVE_MODE=github:
+# GITHUB_TOKEN=""

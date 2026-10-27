@@ -63,3 +63,11 @@ Die Präsentation wächst damit Stunde für Stunde. Die ersten Folien bleiben al
 ## Für Codex
 
 Die Regeln für automatisierte Bearbeitung stehen zusätzlich in `AGENTS.md`.
+
+## Physik-Wettbewerbe auf Cloudflare
+
+Die [Einrichtungsanleitung](tools/wettkampf-api/README.md) beschreibt die Wettbewerbsplattform
+mit persönlichem Zugang, dauerhaften Spielständen und Klassen-, Dauer- und Monatswertung.
+Die passende [Schüleroberfläche](klasse-8/01-optische-instrumente/lernpfade/wettkaempfe/index.html)
+liegt beim Optikmaterial. Die Cloudflare-Konfiguration und die Verwaltungswerkzeuge stehen
+unter `tools/wettkampf-api/`; eigene Fragen und Zugangsdaten bleiben in ignorierten privaten Ordnern.

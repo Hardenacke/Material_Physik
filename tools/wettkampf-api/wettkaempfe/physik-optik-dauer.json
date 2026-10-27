@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "physik-optik-dauer",
+  "version": 1,
+  "subject": "physik",
+  "title": "Physik: Optik",
+  "grade": "8",
+  "groupId": "klasse-8-demo",
+  "status": "draft",
+  "bank": {
+    "id": "optik-8-demo",
+    "version": 1
+  },
+  "schedule": {
+    "startsAt": null,
+    "endsAt": null
+  },
+  "season": {
+    "kind": "continuous",
+    "timeZone": "Europe/Berlin"
+  },
+  "attempts": {
+    "maxPerPeriod": null,
+    "cooldownSeconds": 30,
+    "maxDurationSeconds": 1800,
+    "oneActive": true
+  },
+  "rules": {
+    "version": 1,
+    "lives": 3,
+    "questionTimeSeconds": 60,
+    "basePoints": 100,
+    "timeBonus": 900
+  },
+  "selection": {
+    "counts": {
+      "basis": 4,
+      "aufbau": 4,
+      "knifflig": 4
+    },
+    "shuffleQuestions": true,
+    "shuffleOptions": true
+  },
+  "ranking": {
+    "mode": "best-finished",
+    "tie": "shared-rank"
+  }
+}

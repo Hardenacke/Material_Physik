@@ -1,0 +1,53 @@
+// Gegen einen separaten, frischen lokalen Wrangler-Server ausführen; keine Produktivdaten.
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { randomBytes, createHash } from 'node:crypto';
+const url = new URL(process.env.TEST_URL || 'http://127.0.0.1:8791');
+if (!['localhost', '127.0.0.1'].includes(url.hostname)) throw new Error('Integrationstest ausschließlich lokal ausführen.');
+const admin = (await readFile(new URL('../.local/admin-token.txt', import.meta.url), 'utf8')).trim();
+const people = [1, 2].map(i => ({ id: `test-${randomBytes(8).toString('hex')}`, alias: `Test ${i}`, code: randomBytes(32).toString('base64url') }));
+const request = async (path, { token = people[0].code, method = 'GET', body, key, origin } = {}) => {
+  const res = await fetch(new URL('/api/v1/' + path, url), { method, headers: { Authorization: `Bearer ${token}`, ...(body === undefined ? {} : { 'Content-Type': 'application/json' }), ...(key ? { 'Idempotency-Key': key } : {}), ...(origin ? { Origin: origin } : {}) }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+  return { status: res.status, headers: res.headers, value: await res.json() };
+};
+assert.equal((await request('health')).status, 200);
+assert.equal((await request('admin/groups/klasse-8-demo/participants', { token: admin, method: 'POST', body: { participants: people.map(({ code, ...p }) => ({ ...p, enabled: true, hash: createHash('sha256').update(code).digest('hex') })) } })).status, 200);
+assert.equal((await request('catalog?groupId=klasse-8-demo', { token: 'x' })).status, 401);
+assert.equal((await request('catalog?groupId=klasse-8-demo', { origin: 'https://fremd.invalid' })).status, 403);
+const catalog = await request('catalog?groupId=klasse-8-demo');
+assert.equal(catalog.status, 200); assert.equal(catalog.value.competitions.length, 3);
+assert.equal(catalog.headers.get('cache-control'), 'no-store');
+assert.ok(!JSON.stringify(catalog.value).includes('correctAnswerId'));
+const c = catalog.value.competitions.find(c => c.id === 'physik-optik-dauer');
+const base = `competitions/${c.id}/versions/${c.version}/periods/${c.period.id}`;
+const key = crypto.randomUUID(); const opts = { method: 'POST', body: {}, key };
+const start = await request(`${base}/attempts`, opts); assert.equal(start.status, 200);
+assert.deepEqual((await request(`${base}/attempts`, opts)).value, start.value);
+const id = start.value.attempt.id;
+assert.equal((await request(`${base}/attempts/${id}`, { token: people[1].code })).status, 403);
+assert.equal((await request(`${base}/attempts/${id}/next`, { ...opts, body: { score: 999 } })).status, 400);
+assert.equal((await request(`${base}/attempts/${id}/next`, { ...opts, key })).status, 409);
+let current;
+for (let i = 0; i < 3; i++) {
+  const opened = await request(`${base}/attempts/${id}/next`, { ...opts, key: crypto.randomUUID() });
+  assert.equal(opened.status, 200); const question = opened.value.attempt.question;
+  assert.ok(question); assert.ok(!Object.hasOwn(question, 'correct')); assert.ok(!Object.hasOwn(question, 'explanation'));
+  const repeat = await request(`${base}/attempts/${id}`); assert.equal(repeat.value.attempt.question.deadline, question.deadline);
+  const answerOpts = { method: 'POST', key: crypto.randomUUID(), body: { questionId: question.id, answerId: null } };
+  const answer = await request(`${base}/attempts/${id}/answer`, answerOpts); assert.equal(answer.status, 200);
+  assert.deepEqual((await request(`${base}/attempts/${id}/answer`, answerOpts)).value, answer.value);
+  assert.deepEqual((await request(`${base}/attempts/${id}/answer`, { ...answerOpts, body: { answerId: null, questionId: question.id } })).value, answer.value);
+  assert.equal(answer.value.attempt.lives, 2 - i); current = answer.value.attempt;
+}
+assert.equal(current.phase, 'finished');
+const ranking = await request(`${base}/leaderboard`); assert.equal(ranking.status, 200);
+assert.ok(ranking.value.leaderboard.some(row => row.alias === people[0].alias));
+assert.ok(!JSON.stringify(ranking.value).includes(people[0].id));
+assert.equal((await request('admin/groups/klasse-8-demo/disable', { token: admin, method: 'POST', body: { id: people[0].id } })).status, 200);
+assert.equal((await request(`${base}/attempts/${id}`)).status, 401);
+assert.equal((await request(`admin/${base}/status`, { token: admin })).status, 200);
+const oversized = await request(`${base}/attempts`, { method: 'POST', key: crypto.randomUUID(), body: { text: 'x'.repeat(17000) }, token: people[1].code });
+assert.equal(oversized.status, 413);
+assert.equal((await request(`admin/${base}/close`, { token: admin, method: 'POST', body: {} })).status, 200);
+assert.equal((await request(`${base}/attempts`, { ...opts, key: crypto.randomUUID(), token: people[1].code })).status, 409);
+console.log('HTTP-Integration erfolgreich: Anmeldung, CORS, Verträge, Idempotenz, Eigentümerschaft, Leben, Rangliste, Sperre und Schließen.');

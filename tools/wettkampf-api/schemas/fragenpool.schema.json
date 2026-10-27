@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Privater Fragenpool physik",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "subject",
+    "title",
+    "grade",
+    "demo",
+    "questions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "subject": {
+      "const": "physik"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "grade": {
+      "type": "string",
+      "minLength": 1
+    },
+    "demo": {
+      "type": "boolean"
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "difficulty",
+          "family",
+          "prompt",
+          "choices",
+          "correct",
+          "explanation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "kind": {
+            "const": "single-choice"
+          },
+          "difficulty": {
+            "enum": [
+              "basis",
+              "aufbau",
+              "knifflig"
+            ]
+          },
+          "family": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "prompt": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "text",
+                    "math"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "choices": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "content"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "content": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "type",
+                      "value"
+                    ],
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "text",
+                          "math"
+                        ]
+                      },
+                      "value": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "correct": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "explanation": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "text",
+                    "math"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "figure": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "src",
+              "alt"
+            ],
+            "properties": {
+              "src": {
+                "type": "string",
+                "pattern": "^assets/[a-zA-Z0-9/_-]+\\.svg$"
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

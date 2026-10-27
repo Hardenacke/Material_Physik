@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "physik-optik-termin",
+  "version": 1,
+  "subject": "physik",
+  "title": "Physik: Optik",
+  "grade": "8",
+  "groupId": "klasse-8-demo",
+  "status": "draft",
+  "bank": {
+    "id": "optik-8-demo",
+    "version": 1
+  },
+  "schedule": {
+    "startsAt": "2026-11-03T08:00:00Z",
+    "endsAt": "2026-11-03T09:00:00Z"
+  },
+  "season": {
+    "kind": "continuous",
+    "timeZone": "Europe/Berlin"
+  },
+  "attempts": {
+    "maxPerPeriod": 1,
+    "cooldownSeconds": 30,
+    "maxDurationSeconds": 1800,
+    "oneActive": true
+  },
+  "rules": {
+    "version": 1,
+    "lives": 3,
+    "questionTimeSeconds": 60,
+    "basePoints": 100,
+    "timeBonus": 900
+  },
+  "selection": {
+    "counts": {
+      "basis": 4,
+      "aufbau": 4,
+      "knifflig": 4
+    },
+    "shuffleQuestions": true,
+    "shuffleOptions": true
+  },
+  "ranking": {
+    "mode": "best-finished",
+    "tie": "shared-rank"
+  }
+}

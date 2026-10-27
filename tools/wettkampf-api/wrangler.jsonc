@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "physik-wettkampf-api",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-10-27",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "../../klasse-8/01-optische-instrumente/lernpfade/wettkaempfe",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "durable_objects": {
+    "bindings": [
+      { "name": "GROUP_ACCESS", "class_name": "GroupAccess" },
+      { "name": "ROOM_STATE", "class_name": "RoomState" },
+      { "name": "ARCHIVE_WRITER", "class_name": "ArchiveWriter" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["GroupAccess", "RoomState", "ArchiveWriter"] }
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://hardenacke.github.io,http://127.0.0.1:8787,http://localhost:8787",
+    "ARCHIVE_MODE": "disabled",
+    "ARCHIVE_REPOSITORY": "Hardenacke/Material_Physik_Ergebnisse",
+    "ARCHIVE_BRANCH": "main",
+    "ARCHIVE_PREFIX": "architektur-v1"
+  },
+  "observability": { "enabled": false }
+}

@@ -1,0 +1,1206 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Physik: geplante Wettkampf-API",
+    "version": "1.0.0",
+    "description": "Architekturvertrag; HTTP- und Persistenzadapter sind noch umzusetzen."
+  },
+  "security": [
+    {
+      "ParticipantCode": []
+    }
+  ],
+  "paths": {
+    "/api/v1/catalog": {
+      "get": {
+        "summary": "Freigegebene Wettbewerbe der Lerngruppe",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Catalog"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/competitions/{competitionId}": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Aktuelle Wettbewerbsversion",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Competition"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Gebundene Wettbewerbsversion",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Competition"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}/periods/{periodId}/leaderboard": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "periodId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^(gesamt|[0-9]{4}-(0[1-9]|1[0-2]))$"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Bestwerte dieser Wertung",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Leaderboard"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}/periods/{periodId}/attempts": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "periodId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^(gesamt|[0-9]{4}-(0[1-9]|1[0-2]))$"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Versuch anlegen oder aktiven Versuch fortsetzen",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "An Person und Operation gebundene UUID; gleicher Schlüssel mit anderem Inhalt ergibt 409."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}/periods/{periodId}/attempts/current": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "periodId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^(gesamt|[0-9]{4}-(0[1-9]|1[0-2]))$"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Eigenen aktiven oder letzten Versuch laden",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}/periods/{periodId}/attempts/{attemptId}": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "periodId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^(gesamt|[0-9]{4}-(0[1-9]|1[0-2]))$"
+          }
+        },
+        {
+          "name": "attemptId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Eigenen Versuch laden",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}/periods/{periodId}/attempts/{attemptId}/next": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "periodId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^(gesamt|[0-9]{4}-(0[1-9]|1[0-2]))$"
+          }
+        },
+        {
+          "name": "attemptId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Eine Frage öffnen",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "An Person und Operation gebundene UUID; gleicher Schlüssel mit anderem Inhalt ergibt 409."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/competitions/{competitionId}/versions/{competitionVersion}/periods/{periodId}/attempts/{attemptId}/answer": {
+      "parameters": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "competitionVersion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "periodId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^(gesamt|[0-9]{4}-(0[1-9]|1[0-2]))$"
+          }
+        },
+        {
+          "name": "attemptId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "summary": "Aktive Frage beantworten",
+        "responses": {
+          "200": {
+            "description": "Erfolg",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Fehler nach API_VERTRAG.md",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "An Person und Operation gebundene UUID; gleicher Schlüssel mit anderem Inhalt ergibt 409."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerInput"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ParticipantCode": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Persönlicher Gruppen-Code, kein GitHub-Token."
+      }
+    },
+    "schemas": {
+      "Rules": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version",
+          "lives",
+          "questionTimeSeconds",
+          "basePoints",
+          "timeBonus"
+        ],
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100000
+          },
+          "lives": {
+            "const": 3
+          },
+          "questionTimeSeconds": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 600
+          },
+          "basePoints": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000
+          },
+          "timeBonus": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          }
+        }
+      },
+      "Competition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "subject": {
+            "const": "physik"
+          },
+          "title": {
+            "type": "string"
+          },
+          "grade": {
+            "type": "string"
+          },
+          "availability": {
+            "enum": [
+              "closed",
+              "pending",
+              "open"
+            ]
+          },
+          "period": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "startsAt": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "UTC-Millisekunden oder null"
+              },
+              "endsAt": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "UTC-Millisekunden oder null"
+              }
+            },
+            "required": [
+              "id",
+              "startsAt",
+              "endsAt"
+            ]
+          },
+          "rules": {
+            "$ref": "#/components/schemas/Rules"
+          },
+          "attempts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "maxPerPeriod",
+              "cooldownSeconds",
+              "maxDurationSeconds",
+              "oneActive"
+            ],
+            "properties": {
+              "maxPerPeriod": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  }
+                ]
+              },
+              "cooldownSeconds": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "maxDurationSeconds": {
+                "type": "integer",
+                "minimum": 60,
+                "maximum": 86400
+              },
+              "oneActive": {
+                "const": true
+              }
+            }
+          },
+          "selectionCounts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "basis",
+              "aufbau",
+              "knifflig"
+            ],
+            "properties": {
+              "basis": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 50
+              },
+              "aufbau": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 50
+              },
+              "knifflig": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 50
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "subject",
+          "title",
+          "grade",
+          "availability",
+          "period",
+          "rules",
+          "attempts",
+          "selectionCounts"
+        ]
+      },
+      "ActiveQuestion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "kind": {
+            "const": "single-choice"
+          },
+          "difficulty": {
+            "enum": [
+              "basis",
+              "aufbau",
+              "knifflig"
+            ]
+          },
+          "prompt": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "text",
+                    "math"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "choices": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "content"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "content": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "type",
+                      "value"
+                    ],
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "text",
+                          "math"
+                        ]
+                      },
+                      "value": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "figure": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "src",
+              "alt"
+            ],
+            "properties": {
+              "src": {
+                "type": "string",
+                "pattern": "^assets/[a-zA-Z0-9/_-]+\\.svg$"
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "startedAt": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          },
+          "deadline": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          },
+          "number": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "difficulty",
+          "prompt",
+          "choices",
+          "startedAt",
+          "deadline",
+          "number"
+        ]
+      },
+      "Attempt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "subject": {
+            "const": "physik"
+          },
+          "competitionId": {
+            "type": "string"
+          },
+          "competitionVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "periodId": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "maxPoints": {
+            "type": "integer"
+          },
+          "lives": {
+            "type": "integer"
+          },
+          "answered": {
+            "type": "integer"
+          },
+          "totalQuestions": {
+            "type": "integer"
+          },
+          "correctAnswers": {
+            "type": "integer"
+          },
+          "phase": {
+            "enum": [
+              "waiting",
+              "playing",
+              "finished"
+            ]
+          },
+          "startedAt": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          },
+          "endedAt": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "UTC-Millisekunden oder null"
+          },
+          "finishReason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "hardEnd": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          },
+          "question": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ActiveQuestion"
+              }
+            ]
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Feedback"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "alias",
+          "subject",
+          "competitionId",
+          "competitionVersion",
+          "periodId",
+          "score",
+          "maxPoints",
+          "lives",
+          "answered",
+          "totalQuestions",
+          "correctAnswers",
+          "phase",
+          "startedAt",
+          "endedAt",
+          "finishReason",
+          "hardEnd",
+          "question",
+          "feedback"
+        ]
+      },
+      "Feedback": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "questionId": {
+            "type": "string"
+          },
+          "correct": {
+            "type": "boolean"
+          },
+          "timedOut": {
+            "type": "boolean"
+          },
+          "awarded": {
+            "type": "integer"
+          },
+          "correctAnswerId": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "value"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "text",
+                    "math"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "questionId",
+          "correct",
+          "timedOut",
+          "awarded",
+          "correctAnswerId",
+          "explanation"
+        ]
+      },
+      "AttemptView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "serverNow": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          },
+          "rules": {
+            "$ref": "#/components/schemas/Rules"
+          },
+          "attempt": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Attempt"
+              }
+            ]
+          }
+        },
+        "required": [
+          "serverNow",
+          "rules",
+          "attempt"
+        ]
+      },
+      "Catalog": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "competitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Competition"
+            }
+          }
+        },
+        "required": [
+          "competitions"
+        ]
+      },
+      "LeaderboardEntry": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "alias": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "maxPoints": {
+            "type": "integer"
+          },
+          "endedAt": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          }
+        },
+        "required": [
+          "rank",
+          "alias",
+          "score",
+          "maxPoints",
+          "endedAt"
+        ]
+      },
+      "Leaderboard": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "serverNow": {
+            "type": "integer",
+            "description": "UTC-Millisekunden seit Unix-Epoche"
+          },
+          "subject": {
+            "const": "physik"
+          },
+          "competitionId": {
+            "type": "string"
+          },
+          "competitionVersion": {
+            "type": "integer"
+          },
+          "periodId": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer"
+          },
+          "archiveRevision": {
+            "type": "integer"
+          },
+          "archiveState": {
+            "enum": [
+              "synced",
+              "pending",
+              "blocked"
+            ]
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LeaderboardEntry"
+            }
+          }
+        },
+        "required": [
+          "serverNow",
+          "subject",
+          "competitionId",
+          "competitionVersion",
+          "periodId",
+          "revision",
+          "archiveRevision",
+          "archiveState",
+          "entries"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "error": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
+      "Empty": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "AnswerInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "questionId": {
+            "type": "string"
+          },
+          "answerId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "questionId",
+          "answerId"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Deine Physik-Challenge: Fragen lösen, Zusammenhänge entdecken und den eigenen Bestwert verbessern.">
+  <meta name="referrer" content="no-referrer">
+  <title>Physik · Die Challenge</title>
+  <link rel="stylesheet" href="style.css"><script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="top"><a href="./" class="brand">Φ <span>PHYSIK<span class="brand-sub">DIE CHALLENGE</span></span></a><span class="tag">Wissen. Anwenden. Weiterdenken.</span><button id="logout" class="quiet" hidden>Abmelden</button></header>
+  <main>
+    <section class="intro"><p class="eyebrow">DEIN WISSEN IN AKTION</p><h1>Bereit für den<br><em>Aha-Moment?</em></h1><p>Stell dich der Physik-Challenge. Jede Frage zählt.<br>Entdecke, was du schon kannst.</p><div class="pills"><span>3 Leben</span><span>Dein Tempo zwischen den Fragen</span><span>Dein persönlicher Bestwert</span></div></section>
+    <p id="message" role="status" aria-live="polite"></p>
+    <section id="login-panel" class="card login"><div><p class="eyebrow">LOS GEHT’S</p><h2>Dein Zugang zur Challenge</h2><p>Gruppenkennung und persönlichen Code erhältst du von deiner Lehrkraft.</p></div><form id="login"><label>Gruppe<input name="group" required maxlength="64" placeholder="z. B. klasse-8-demo" autocomplete="off" pattern="[a-z0-9]+(-[a-z0-9]+)*"></label><label>Persönlicher Code<input name="code" type="password" required minlength="43" maxlength="43" autocomplete="off" autocapitalize="none" spellcheck="false"></label><button type="submit">Challenge öffnen <span aria-hidden="true">↗</span></button><small>Dein Code bleibt nur für diese geöffnete Seite gespeichert. Teile ihn nicht mit anderen.</small></form></section>
+    <section id="portal" hidden>
+      <div class="section-title"><div><p class="eyebrow">DEINE WETTBEWERBE</p><h2 id="greeting">Wähle deine Challenge</h2></div><button id="refresh" class="quiet">Aktualisieren</button></div>
+      <div id="competitions" class="competitions"></div>
+      <div id="arena" class="arena" hidden>
+        <section class="card game"><p class="eyebrow" id="scope"></p><h2 id="game-title"></h2><p id="rules"></p>
+          <div class="stats"><span>Punkte <strong id="score">0</strong></span><span>Leben <strong id="lives">3</strong></span><span>Fortschritt <strong id="progress">0/12</strong></span><span>Restzeit <strong id="timer" role="timer">–</strong></span></div>
+          <div id="question"><p>Starte einen Versuch, wenn du bereit bist.</p></div>
+          <div id="feedback" aria-live="polite"></div>
+          <button id="start">Versuch starten / fortsetzen</button><button id="next" hidden>Nächste Frage →</button><button id="skip" class="quiet" hidden>Überspringen (1 Leben)</button>
+          <p class="hint">Die Zeit einer geöffneten Frage läuft auch weiter, wenn du die Seite verlässt.</p>
+        </section>
+        <aside class="card ranking"><p class="eyebrow">GEMEINSAM WEITERKOMMEN</p><h2>Rangliste</h2><p>Hier zählt dein bester beendeter Versuch.</p><p id="period-label"></p><table><caption class="sr-only">Bestwerte dieser Wertung</caption><thead><tr><th>Platz</th><th>Pseudonym</th><th>Punkte</th></tr></thead><tbody id="ranking"></tbody></table><p id="ranking-note" class="hint"></p></aside>
+      </div>
+    </section>
+  </main><footer>Physik verstehen · Eine Frage nach der anderen.</footer>
+</body></html>
