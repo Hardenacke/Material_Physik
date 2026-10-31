@@ -1,0 +1,17 @@
+{
+  "title": "LUMEN – Das Optik-Lichtlabor (Lernspiel)",
+  "description": "26 interaktive Level für Klasse 8: Lichtwege mit Spiegeln, Brechung, Totalreflexion und Linsen lösen. Mit Kontrollfragen, Winkelanzeige, Tipps und Bosskämpfen mit Zeit- oder Übungsmodus. Offline nutzbar; der Lernfortschritt wird lokal im Browser gespeichert.",
+  "type": "simulation",
+  "level": "Klasse 8",
+  "tags": [
+    "Optik",
+    "Lernspiel",
+    "Reflexion",
+    "Brechung",
+    "Totalreflexion",
+    "Linsen",
+    "Lichtlabor",
+    "LUMEN"
+  ],
+  "visible": true
+}

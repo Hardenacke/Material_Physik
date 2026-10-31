@@ -1,0 +1,19 @@
+{
+  "title": "Murmelwerk – Die Energie-Challenge (Lernspiel)",
+  "description": "Interaktives Lernspiel für Klasse 9 zu Mechanik, Energieumwandlung und Energieerhaltung: 18 Level mit fünf Bossaufgaben, sechs Wissenschecks, bewegten Hindernissen und Zielen, Massevergleich und Federenergie. Offline nutzbar, mit lokal gespeichertem Lernfortschritt.",
+  "type": "simulation",
+  "level": "Klasse 9",
+  "tags": [
+    "Murmelwerk",
+    "Lernspiel",
+    "Mechanik",
+    "Energie",
+    "Energieerhaltung",
+    "Lageenergie",
+    "Bewegungsenergie",
+    "Spannenergie",
+    "Federenergie",
+    "Murmelbahn"
+  ],
+  "visible": true
+}
