@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#08111e">
-  <meta name="description" content="Interaktives Optik-Lernspiel für Klasse 8: 26 Level mit Spiegeln, Brechung, Totalreflexion und Linsen. Vollständig offline spielbar.">
+  <meta name="description" content="Optik-Lernspiel für Klasse 8: 26 Level, automatische Bosskämpfe und ein Endlos-Modus mit zufälligen Lichtwegen, Zeitbonus und Zeitfallen. Offline spielbar.">
   <title>LUMEN – Das Optik-Lichtlabor</title>
   <style>
 /* KaTeX 0.16.22, bundled locally */
@@ -139,6 +139,18 @@
       .angleInfo strong{font-size:.67rem}
       .controlsRow .angleBtn{min-width:0}
     }
+    .modeSwitch{display:flex;gap:4px;padding:3px;border:1px solid #39556f;border-radius:13px;background:#102033}.modeSwitch button{min-height:44px;padding:7px 13px;border:0;border-radius:9px;background:transparent;color:#c6ddec;font-weight:800}.modeSwitch button[aria-pressed="true"]{background:#74efdb;color:#092b32}.modeSwitch button:disabled{opacity:1;cursor:default}.modeSwitch button:focus-visible{outline-offset:0}
+    .endlessHud{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;min-width:270px;padding:9px 14px;background:#133b43;border:2px solid #7cf4da;border-radius:13px}.endlessHud[hidden],.endlessAction[hidden],.controlCue[hidden]{display:none!important}.clockGroup{display:flex;align-items:center;gap:10px}.clockLabel{font-size:.7rem;color:#baf8e9}.endlessClock{display:block;font-size:1.9rem;font-weight:950;font-variant-numeric:tabular-nums;line-height:1.1;color:#e0fff6}.endlessClock.urgent{color:#ffacb6;animation:boss-pulse .7s ease-in-out infinite alternate}.endlessMeta{font-size:.76rem;color:#d4fff2;font-weight:750}.timeDelta{min-height:23px;font-size:1rem;font-weight:900;color:#b4ffe4}.timeDelta.loss{color:#ffc0cc}.endlessHud.timeGain{animation:time-gain 1.6s ease}.endlessHud.timeLoss{animation:time-loss 1.6s ease}.endlessStage{border-color:#57cfc3}.endlessAction{border-color:#71d4c9!important;color:#baffec}.endlessStage .stageBar .status{display:none}
+    @keyframes time-gain{0%,35%{background:#22694e;box-shadow:0 0 0 4px #8effcb66,0 0 32px #69ffc077}65%{box-shadow:0 0 0 9px #8effcb00}100%{background:#133b43;box-shadow:none}}
+    @keyframes time-loss{0%,35%{background:#6b2942;border-color:#ff93ad;box-shadow:0 0 28px #ff678d77}100%{background:#133b43;box-shadow:none}}
+    .toolCluster{position:relative;border:2px solid transparent;border-radius:12px;padding:5px 7px}.controlCue{display:flex;gap:7px;align-items:center;flex:1 0 100%;padding:6px 9px;border-radius:7px;background:#ffd17b;color:#332207;font-size:.8rem;font-weight:850}.cueArrow{font-size:1.15rem;line-height:1}.toolCluster.needsAttention{border-color:#ffd17b;box-shadow:0 0 17px #ffcc6544;animation:control-attention .65s ease-in-out 4 alternate}.needsAttention .cueArrow{animation:cue-point .65s ease-in-out 4 alternate}.controlsRow .angleBtn.discoverAngle{border-color:#ffd17b;animation:control-attention .65s ease-in-out 4 alternate}
+    @keyframes control-attention{to{box-shadow:0 0 0 4px #ffd17b44,0 0 22px #ffcc6577}}@keyframes cue-point{to{transform:translateY(3px)}}
+    @media(max-width:600px){.mast{gap:7px}.modeSwitch{order:3;width:100%}.modeSwitch button{flex:1}.endlessHud{width:100%;min-width:0;gap:8px}.endlessClock{font-size:1.7rem}.timeDelta{font-size:.88rem}.toolCluster{padding:5px}.controlCue{font-size:.74rem}.hudRight{gap:7px}.endlessStage .boardWrap canvas{width:100%}}
+    @media(orientation:landscape) and (max-height:540px) and (max-width:1024px){.modeSwitch{order:initial;width:auto;padding:1px}.modeSwitch button{min-height:36px;padding:4px 9px;font-size:.77rem}.endlessHud{width:auto;min-width:230px;padding:4px 8px;gap:8px}.endlessClock{font-size:1.35rem}.endlessMeta,.clockLabel{font-size:.65rem}.timeDelta{min-height:18px;font-size:.75rem}.toolCluster{padding:4px}.controlCue{font-size:.67rem;padding:4px 6px}}
+    @media(min-width:901px) and (min-height:541px){.stageCard .boardWrap canvas{width:min(100%,max(320px,calc((100dvh - 330px)*5/3)))}}
+    .dialog.welcomeDialog{width:min(620px,100%);border-color:#72e8d0;background:radial-gradient(ellipse at top right,#22556899,transparent 65%),#12243a}.welcomeDialog .spark{color:#8dffe6}.welcomeDialog h2{font-size:clamp(1.5rem,4vw,2rem);line-height:1.2;margin:10px 0 14px}.welcomeDialog p{font-size:.93rem;line-height:1.55}.welcomeControls{color:#c9deed;margin:12px 0}.welcomeTip{padding:11px 13px;border-left:3px solid #75edcf;border-radius:0 9px 9px 0;background:#143d44;color:#ddfff2!important}.welcomeDialog .dialogFooter{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.welcomeDialog .modeChoice{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;min-height:112px;text-align:left;padding:16px;font-size:1rem}.modeChoice small{font-size:.78rem;line-height:1.4;font-weight:550}.modeChoice .choiceLabel{font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:850}.welcomeDialog .feedback:empty{display:none}.endlessScore{font-size:.72rem;color:#ffdf96;font-weight:850;margin-top:2px;font-variant-numeric:tabular-nums}.dialog.scoreDialog h2{font-size:clamp(2rem,7vw,3rem);color:#acffe1;line-height:1.15;margin:12px 0}.scoreBreakdown{padding:14px 16px;margin-top:15px;border:1px solid #548980;border-radius:12px;background:#123b3d;color:#d8fff0;text-align:center}.scoreBreakdown strong{display:block;margin-top:4px;color:#ffdf96;font-size:1.06rem}.scoreBreakdown small{display:block;font-size:.8rem;color:#c4e1d7}
+    @media(max-width:465px){.welcomeDialog .dialogFooter{grid-template-columns:1fr;gap:9px;margin-top:15px}.welcomeDialog .modeChoice{min-height:90px;padding:12px 14px}.welcomeDialog p{font-size:.87rem}.welcomeDialog h2{margin-bottom:10px}}
+    @media(orientation:landscape) and (max-height:540px){.dialog.welcomeDialog{width:min(800px,100%);padding:13px 18px}.welcomeDialog .spark{display:none}.welcomeDialog h2{font-size:1.35rem;margin:5px 0 8px}.welcomeDialog p{font-size:.8rem;line-height:1.35}.welcomeControls{margin:7px 0}.welcomeTip{padding:7px 10px}.welcomeDialog .dialogFooter{margin-top:10px;gap:9px}.welcomeDialog .modeChoice{min-height:78px;padding:9px 12px;font-size:.9rem}}
     .collectionNav{margin:12px 4px 0;font-size:.8rem}.collectionNav a{display:inline-flex;align-items:center;min-height:44px;color:var(--teal);text-decoration:none}.collectionNav a:hover{text-decoration:underline}
   </style>
   <script>
@@ -174,12 +186,13 @@ SOFTWARE.
 <div class="shell">
   <header class="mast">
     <div class="brand"><div class="brandmark" aria-hidden="true"><svg viewBox="0 0 35 35" fill="none"><path d="M5 17.5H16" stroke="#6cf5df" stroke-width="2.5" stroke-linecap="round"/><path d="M16 5l13 24H3z" stroke="#cbddf5" stroke-width="1.7" fill="#20496755"/><path d="M18 17.5l12-8" stroke="#ffbd73" stroke-width="2"/><path d="M18 17.5l13 0" stroke="#78afff" stroke-width="2"/><path d="M18 17.5l12 8" stroke="#ff7ea8" stroke-width="2"/></svg></div><h1>LUMEN</h1></div>
+    <nav class="modeSwitch" aria-label="Spielmodus"><button id="campaignBtn" type="button" aria-pressed="true">Lernreise</button><button id="endlessBtn" type="button" aria-pressed="false">∞ Endlos</button></nav>
     <div class="hudRight"><span class="hudProgress" id="progressText" data-tex="0/26"></span><div class="progressBar" role="progressbar" aria-label="Gelöste Level" aria-valuemin="0" aria-valuemax="26" aria-valuenow="0" id="progressBar"><div class="progressFill" id="progressFill"></div></div><button class="ghost teacherBtn" id="teacherBtn" type="button" aria-label="Lehrermodus öffnen" aria-pressed="false" title="Lehrermodus">🔒</button><button class="ghost" id="rulesBtn" type="button" aria-label="Spielanleitung anzeigen">?</button></div>
   </header>
   <main class="layout">
-    <section class="panel stageCard" id="stageCard" aria-label="Interaktives Lichtlabor"><div class="stageBar"><div><div class="levelTag" id="levelTag"></div><h2 id="levelTitle"></h2><p id="missionText"></p></div><div class="bossHud" id="bossHud" hidden aria-live="off"><span class="bossClock" id="bossClock">00:40</span><span class="bossSeries" id="bossSeries">0/4 Treffer</span><span class="bossBest" id="bossBest"></span><div class="bossMeter" aria-label="Verbleibende Zeit"><div class="bossMeterFill" id="bossMeterFill"></div></div></div><div class="status"><span class="statusDot" id="statusDot"></span><span id="statusText">Finde den Lichtweg</span></div></div>
+    <section class="panel stageCard" id="stageCard" aria-label="Interaktives Lichtlabor"><div class="stageBar"><div><div class="levelTag" id="levelTag"></div><h2 id="levelTitle"></h2><p id="missionText"></p></div><div class="bossHud" id="bossHud" hidden aria-live="off"><span class="bossClock" id="bossClock">00:40</span><span class="bossSeries" id="bossSeries">0/4 Treffer</span><span class="bossBest" id="bossBest"></span><div class="bossMeter" aria-label="Verbleibende Zeit"><div class="bossMeterFill" id="bossMeterFill"></div></div></div><div class="endlessHud" id="endlessHud" hidden aria-label="Endlos-Modus: Restzeit und Zeitbonus"><div class="clockGroup"><span aria-hidden="true">⏱</span><div><span class="clockLabel">RESTZEIT</span><time class="endlessClock" id="endlessClock" role="timer" aria-live="off">01:00</time></div></div><div><div class="endlessMeta" id="endlessMeta">Level 1 · 0 geschafft</div><div class="endlessScore" id="endlessScore">0 Punkte</div><div class="timeDelta" id="timeDelta" role="status" aria-live="polite">+10 s pro Level</div></div></div><div class="status"><span class="statusDot" id="statusDot"></span><span id="statusText">Finde den Lichtweg</span></div></div>
       <div class="boardWrap" id="boardWrap"><canvas id="board" aria-label="Optik-Spielfeld: Bauteile antippen oder mit der Schaltfläche 'Bauteil wechseln' auswählen; Pfeiltasten verändern das ausgewählte Bauteil. Winkelmodus mit der Schaltfläche Winkel aktivieren." tabindex="0"></canvas><div class="canvasGlow"></div><span class="boardBadge" id="boardBadge">✦ Ziehen & drehen</span><div class="targetProgress" id="targetProgress" role="status" aria-live="polite" hidden></div><aside class="angleInfo" id="angleInfo" aria-label="Einfalls-, Reflexions- und Brechungswinkel" hidden></aside><div class="successBurst" id="successBurst" aria-hidden="true">TREFFER!</div><div class="unlockToast hidden" id="unlockToast" role="status" aria-live="polite"><strong>✦ NEU: MEHRFACHBLENDE!</strong><span>Blende auswählen · Mit + und − bis zu 3 Strahlen erzeugen</span></div><div class="hint hidden" id="hintBox" aria-live="polite"></div></div>
-      <div class="stageBottom"><div class="toolCluster"><span id="selectionInfo" class="selectInfo" aria-live="polite"></span><div class="controlBtns"><button id="rotateLeft" class="btn" type="button" aria-label="Um fünf Grad nach links drehen" title="Um fünf Grad nach links drehen">−5°</button><button id="rotateFineLeft" class="btn fineBtn" type="button" aria-label="Um ein Grad nach links drehen" title="Um ein Grad nach links drehen">−1°</button><button id="rotateFineRight" class="btn fineBtn" type="button" aria-label="Um ein Grad nach rechts drehen" title="Um ein Grad nach rechts drehen">+1°</button><button id="rotateRight" class="btn" type="button" aria-label="Um fünf Grad nach rechts drehen" title="Um fünf Grad nach rechts drehen">+5°</button><button id="moveUp" class="btn" type="button" aria-label="Nach oben bewegen" title="Nach oben bewegen">↑</button><button id="moveDown" class="btn" type="button" aria-label="Nach unten bewegen" title="Nach unten bewegen">↓</button><button id="selectNext" class="btn" type="button" aria-label="Nächstes optisches Bauteil auswählen" title="Nächstes optisches Bauteil auswählen">⇄</button></div></div><div class="controlsRow"><button id="bossAction" class="btn bossAction" type="button" hidden>▶ Start</button><button id="bossMode" class="btn bossMode" type="button" hidden aria-label="Spielmodus wählen">⏱ Zeit</button><button id="continueBtn" class="btn continueBtn" type="button" hidden>Weiter zur Frage →</button><button id="angleBtn" class="btn angleBtn" type="button" aria-pressed="false" aria-label="Winkel und Lote einblenden" title="Winkel und Lote einblenden">∠ Winkel</button><button id="resetBtn" class="btn" type="button" aria-label="Level neu starten" title="Level neu starten">↺</button><button id="hintBtn" class="btn" type="button">✦ Tipp</button></div></div>
+      <div class="stageBottom"><div class="toolCluster" id="toolCluster"><div class="controlCue" id="controlCue" role="status" aria-live="polite" hidden><span class="cueArrow" aria-hidden="true">↓</span><span id="controlCueText"></span></div><span id="selectionInfo" class="selectInfo" aria-live="polite"></span><div class="controlBtns"><button id="rotateLeft" class="btn" type="button" aria-label="Um fünf Grad nach links drehen" title="Um fünf Grad nach links drehen">−5°</button><button id="rotateFineLeft" class="btn fineBtn" type="button" aria-label="Um ein Grad nach links drehen" title="Um ein Grad nach links drehen">−1°</button><button id="rotateFineRight" class="btn fineBtn" type="button" aria-label="Um ein Grad nach rechts drehen" title="Um ein Grad nach rechts drehen">+1°</button><button id="rotateRight" class="btn" type="button" aria-label="Um fünf Grad nach rechts drehen" title="Um fünf Grad nach rechts drehen">+5°</button><button id="moveUp" class="btn" type="button" aria-label="Nach oben bewegen" title="Nach oben bewegen">↑</button><button id="moveDown" class="btn" type="button" aria-label="Nach unten bewegen" title="Nach unten bewegen">↓</button><button id="selectNext" class="btn" type="button" aria-label="Nächstes optisches Bauteil auswählen" title="Nächstes optisches Bauteil auswählen">⇄</button></div></div><div class="controlsRow"><button id="endlessAction" class="btn endlessAction" type="button" hidden>Ⅱ Pause</button><button id="bossAction" class="btn bossAction" type="button" hidden>Ⅱ Pause</button><button id="bossMode" class="btn bossMode" type="button" hidden aria-label="Spielmodus wählen">⏱ Zeit</button><button id="continueBtn" class="btn continueBtn" type="button" hidden>Weiter zur Frage →</button><button id="angleBtn" class="btn angleBtn" type="button" aria-pressed="false" aria-label="Winkel und Lote einblenden" title="Winkel und Lote einblenden">∠ Winkel</button><button id="resetBtn" class="btn" type="button" aria-label="Level neu starten" title="Level neu starten">↺</button><button id="hintBtn" class="btn" type="button">✦ Tipp</button></div></div>
     </section>
     <nav class="levelRail" aria-label="Levelauswahl"><div class="chapterList" id="chapterList"></div></nav>
   </main>
@@ -295,6 +308,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function receiverHit(o,d,g){const c={x:g.x,y:g.y},v=sub(c,o),proj=dot(v,d),perp2=dot(v,v)-proj*proj,rad=g.r||22;if(perp2>rad*rad)return null;const t=proj-Math.sqrt(Math.max(0,rad*rad-perp2));return t>EPS?t:null;}
   function colorIndex(ch){return ch==='red'?1.50:ch==='blue'?1.54:1.52;}
   function hasEnoughElements(l,pieces,visited){const used=new Set(visited),required=l.required||[];
+    if(l.strictElements)return required.every(id=>used.has(id));
     const mirrors=required.filter(id=>pieces.some(p=>p.id===id&&p.type==='mirror'));
     return required.filter(id=>!mirrors.includes(id)).every(id=>used.has(id))&&(!mirrors.length||mirrors.some(id=>used.has(id)));
   }
@@ -404,6 +418,73 @@ window.addEventListener('DOMContentLoaded', () => {
       return {x:seg.a.x+v.x*d,y:seg.a.y+v.y*d,r:20,needed:1};
     });}
   levels.forEach(l=>{if(l.boss){l.boss.targets=calculateBossTargets(l);l.goal=clone(l.boss.targets[0]);l.obstacles=clone(l.boss.gates[0]);}else l.goal=autoTarget(l);});
+  function pathTouchesBox(path,b,padding=0){const x=b.x-b.w/2-padding,y=b.y-b.h/2-padding,w=b.w+2*padding,h=b.h+2*padding;
+    const inside=p=>p.x>=x&&p.x<=x+w&&p.y>=y&&p.y<=y+h;
+    const corners=[{x,y},{x:x+w,y},{x:x+w,y:y+h},{x,y:y+h}];
+    return path.segments.some(seg=>{if(inside(seg.a)||inside(seg.b))return true;const distance=len2(seg.a,seg.b),d=unit(sub(seg.b,seg.a));
+      return corners.some((a,i)=>{const hit=segmentHit(seg.a,d,a,corners[(i+1)%4]);return hit&&hit.t<=distance;});});
+  }
+  function sceneTouchesBox(s,b,padding=0){return s.paths.some(path=>pathTouchesBox(path,b,padding));}
+  function solutionScene(l){const pieces=l.items.map(p=>({...clone(p),...p.sol})),s={...clone(l.src),a:l.src.sola};
+    if(s.aperture)s.aperture.slots=s.aperture.solutionSlots;return traceScene(l,pieces,s,l.goal);}
+  function generateEndlessLevel(round,rng=Math.random){
+    const integer=(lo,hi)=>lo+Math.floor(rng()*(hi-lo+1)),pick=list=>list[integer(0,list.length-1)],sign=()=>pick([-1,1]);
+    let l;
+    for(let attempt=0;attempt<40;attempt++){
+      const kind=round<=2?'mirror':pick(round<5?['mirror','double']:['mirror','double','water','lens']);
+      l={world:kind==='water'?1:kind==='lens'?2:0,strictElements:true,items:[],required:[],obstacles:[],timeFields:[],endlessRound:round};
+      if(kind==='mirror'){
+        const x=integer(350,510),y=integer(210,390),a=pick([-60,-55,-50,-45,-40,-35,-30,30,35,40,45,50,55,60]);
+        l.src=source(85,y);if(round>=4&&rng()<.6)l.src=withBlende(l.src,pick([2,3]),integer(24,38));
+        l.items=[m('s1',x,y,a+sign()*pick([25,35,45]),a,l.src.aperture?240:140)];l.required=['s1'];
+        l.title='Spiegel-Jagd';l.mission='Drehe den Spiegel und triff '+(l.src.aperture?'alle Sensoren. Öffne die passende Zahl an Spalten.':'den Sensor.');
+      }else if(kind==='double'){
+        const x=integer(270,360),y=integer(420,480),top=integer(140,210),a=pick([-60,-55,-50,-45,-40,-35,-30]);
+        l.src=source(80,y);if(round>=6&&rng()<.5)l.src=withBlende(l.src,2,integer(25,36));
+        l.items=[m('s1',x,y,-10,-45,210),m('s2',x,top,a+35,a,210)];l.required=['s1','s2'];
+        l.title='Zwei Spiegel';l.mission='Lenke das Licht mit beiden Spiegeln zu '+(l.src.aperture?'allen Sensoren. Nutze die Blende.':'dem Sensor.');
+      }else if(kind==='water'){
+        const boundary=integer(300,345),y=integer(430,475),aim=pick([44,46,48,50,52,54,56]);
+        l.src=source(90,100,aim-15,aim,0,true);l.medium=water(boundary);
+        const d=refract(dir(aim),{x:0,y:-1},1,1.333).v,x=90+(boundary-100)/Math.tan(aim*RAD)+(y-boundary)*d.x/d.y,a=pick([-60,-50,-40,-30,-20]);
+        l.items=[m('s1',x,y,a+35,a,190)];l.required=['grenze','s1'];
+        l.title='Wasser-Route';l.mission='Stelle den Winkel der Quelle und den Spiegel ein. Triff den Sensor hinter der Wassergrenze.';
+      }else{
+        const y=integer(230,370),x=integer(350,460),f=pick([130,150,170,190,210]),slots=pick([2,3]);
+        l.src=withBlende(source(85,y),slots,integer(30,48));l.items=[focusLens('l1',x,y,f-40,f,y+pick([-40,40]))];l.required=['l1'];
+        l.goal={x:x+f,y,r:16,needed:slots};l.title='Fokus finden';l.mission='Öffne '+slots+' Spalte. Stelle Höhe und Brennweite der Linse so ein, dass alle Strahlen den Sensor treffen.';
+      }
+      if(l.src.aperture&&kind!=='lens'){l.goalMode='separate';l.goalRadius=18;}
+      l.hint=kind==='lens'?['Wähle die Blende: + und − ändern die Zahl der Strahlen.','Wähle die Linse: ↑ und ↓ ändern die Höhe; die Zahlen ändern die Brennweite.']:kind==='water'?['Wähle die Quelle und ändere ihren Winkel. Beim Eintritt ins Wasser wird der Strahl zum Lot hin gebrochen.','Wähle danach den Spiegel. Einfallswinkel und Reflexionswinkel sind gleich groß.']:['Mit ⇄ wechselst du das Bauteil. Die Regler darunter passen sich deiner Auswahl an.','Drehe mit ±5° grob und mit ±1° fein. Bei mehreren Zielen muss die Blende mehrere Strahlen durchlassen.'];
+      l.goal=autoTarget(l);const targets=Array.isArray(l.goal)?l.goal:[l.goal],solvedScene=solutionScene(l),startScene=traceScene(l,l.items,l.src,l.goal);
+      if(!solvedScene.lit||startScene.lit||targets.some(g=>g.invalid||g.x<50||g.x>950||g.y<65||g.y>535))continue;
+      // Hindernisse und Zeitfelder lassen den berechneten Lösungsweg frei.
+      const awayFromObjects=b=>[l.src,...l.items,...targets].every(p=>Math.abs(b.x-p.x)>b.w/2+65||Math.abs(b.y-p.y)>b.h/2+65);
+      const overlap=(a,b)=>Math.abs(a.x-b.x)<(a.w+b.w)/2+14&&Math.abs(a.y-b.y)<(a.h+b.h)/2+14;
+      for(let n=0;n<Math.min(3,Math.floor(round/4));n++)for(let tries=0;tries<35;tries++){
+        const b=block(integer(240,890),integer(100,500),integer(32,55),integer(36,85));
+        if(awayFromObjects(b)&&!sceneTouchesBox(solvedScene,b,18)&&!l.obstacles.some(old=>overlap(old,b))){l.obstacles.push(b);break;}
+      }
+      if(round>=5){
+        const wanted=Math.min(3,1+Math.floor((round-5)/5));
+        for(let n=0;n<wanted;n++)for(let tries=0;tries<100;tries++){
+          // Auf einem erreichbaren Fehlweg platzieren, ohne beim Levelstart Zeit abzuziehen.
+          const pieces=l.items.map(p=>({...clone(p),...p.sol})),s={...clone(l.src),a:l.src.sola};if(s.aperture)s.aperture.slots=s.aperture.solutionSlots;
+          const p=pick(pieces);if(p.type==='mirror')p.a+=sign()*integer(8,40);else p.y+=sign()*integer(20,65);
+          const wrong=traceScene(l,pieces,s,l.goal),segments=wrong.paths.flatMap(path=>path.segments).filter(seg=>seg.visited.includes(p.id)&&len2(seg.a,seg.b)>100);
+          if(!segments.length)continue;const seg=pick(segments),t=.3+rng()*.5;
+          const b={...block(seg.a.x+(seg.b.x-seg.a.x)*t,seg.a.y+(seg.b.y-seg.a.y)*t,56,56),penalty:5,hit:false};
+          if(b.x<120||b.x>920||b.y<80||b.y>520||!awayFromObjects(b)||sceneTouchesBox(solvedScene,b,22)||sceneTouchesBox(startScene,b,8)||[...l.obstacles,...l.timeFields].some(old=>overlap(old,b)))continue;
+          l.timeFields.push(b);break;
+        }
+        if(l.timeFields.length!==wanted)continue;
+      }
+      if(solutionScene(l).lit)return l;
+    }
+    // Begrenzte Generierungszeit auch mit ungewöhnlichen Zufallsfolgen.
+    const fallback={world:0,title:'Spiegel-Route',mission:'Drehe den Spiegel zum Sensor.',src:source(85,350),items:[m('s1',450,350,0,-45,140)],required:['s1'],strictElements:true,timeFields:[],endlessRound:round,hint:['Drehe den Spiegel mit den Winkeltasten.'],goal:{x:450,y:140,r:24,needed:1}};
+    if(round>=5)fallback.timeFields=[{...block(700,430,56,56),penalty:5,hit:false}];return fallback;
+  }
   // Ältere Spielstände bleiben gültig: verschobene Bosslevel und der neue Lichtleiter
   // werden nicht automatisch als erledigt markiert.
   const remapOldLevel=n=>n<8?n:n<15?n+1:n<22?n+3:n===22?8:n===23?17:n===24?25:-1;
@@ -414,8 +495,14 @@ window.addEventListener('DOMContentLoaded', () => {
         else{const saved=JSON.parse(localStorage.getItem('lumen-optik-progress-v1')||'[]');if(Array.isArray(saved))for(const n of saved){if(!Number.isInteger(n)||n<0||n>=18)continue;oldIndices.add(n<6?n:n<12?n+2:n+3);if(n>=6){oldIndices.add(6);oldIndices.add(7);}if(n>=12)oldIndices.add(14);}}}
       for(const n of oldIndices){const newIndex=remapOldLevel(n);if(newIndex>=0)solved.add(newIndex);}
     }}catch{}
-  let ix=0,items=[],src=null,selected=null,drag=null,hintCount=0,scene=null,goalReached=false,modalOpen=false,lastFocused=null;
+  let ix=0,items=[],src=null,selected=null,drag=null,hintCount=0,scene=null,goalReached=false,modalOpen=false,welcomeOpen=false,lastFocused=null;
   let questionTimer=null,nextTimer=null,unlockTimer=null,hintTimer=null,bossTickTimer=null,bossState=null,stageSerial=0;
+  let endless=null,endlessTickTimer=null,timeChangeTimer=null,cueKey='',cueAcknowledged=false;
+  let endlessBest=0;try{const n=Number(localStorage.getItem('lumen-endless-best-v1'));if(Number.isSafeInteger(n)&&n>0)endlessBest=n;}catch{}
+  const POINTS_PER_ENDLESS_LEVEL=100;
+  const endlessPoints=completed=>completed*POINTS_PER_ENDLESS_LEVEL;
+  const pointsLabel=points=>points.toLocaleString('de-DE')+' Punkte';
+  function currentLevel(){return endless?.level||levels[ix];}
   const QUESTION_DELAY_MS=3000;
   // Nur der Hash ist Teil der Offline-Datei. Die Freigabe ist absichtlich sitzungsgebunden.
   const teacherPasswordHash='73b55206ac47ecc2dd9f0bbead945698a10026c638e956cb26ad1bfd6eed441d';
@@ -428,7 +515,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function saveProgress(){try{localStorage.setItem('lumen-optik-progress-v4',JSON.stringify([...solved]));}catch{}}
   function accessibleMax(){let n=0;while(n<levels.length&&solved.has(n))n++;return n;}
   function canOpen(i){return i>=0&&i<levels.length&&(teacherMode||i<=accessibleMax()||solved.has(i));}
-  function chapterView(){const container=$('chapterList');container.innerHTML='';chapters.forEach((ch,k)=>{const block=document.createElement('section');block.className='chapter'+(levels[ix].world===k?' selected':'');
+  function chapterView(){const container=$('chapterList');container.innerHTML='';chapters.forEach((ch,k)=>{const block=document.createElement('section');block.className='chapter'+(!endless&&currentLevel().world===k?' selected':'');
       const h=document.createElement('div');h.className='chapterHead';h.innerHTML='<span class="chapterIcon" aria-hidden="true">'+ch.icon+'</span><div><strong>'+ch.name+'</strong><small>'+ch.sub+'</small></div>';block.append(h);
       const grid=document.createElement('div');grid.className='levelGrid';levels.forEach((l,i)=>{if(l.world!==k)return;const b=document.createElement('button');b.type='button';b.className='levelTile'+(l.boss?' bossTile':'')+(i===ix?' active':'')+(solved.has(i)?' done':'')+(!canOpen(i)?' locked':'');
         b.disabled=!canOpen(i);b.setAttribute('aria-label',(l.boss?'Bosskampf ':'Level ')+(i+1)+(solved.has(i)?' abgeschlossen':!canOpen(i)?' gesperrt':''));b.setAttribute('aria-current',i===ix?'step':'false');
@@ -439,9 +526,15 @@ window.addEventListener('DOMContentLoaded', () => {
   function selectableChoices(){const choices=[];if(src?.aperture)choices.push('aperture');if(src?.canAim)choices.push('source');
     for(const p of items)if(p.type==='mirror'||p.type==='prism'||p.type==='lens'||p.canMove)choices.push(p.id);
     return choices;}
-  function nextSelection(){const choices=selectableChoices();if(choices.length<2)return;selected=choices[(choices.indexOf(selected)+1)%choices.length];refreshControls();draw();}
+  function nextSelection(){if(modalOpen||endless&&(!endless.running||endless.transitioning))return;const choices=selectableChoices();if(choices.length<2)return;selected=choices[(choices.indexOf(selected)+1)%choices.length];refreshControls();draw();}
   function isMovable(o){return o&&o!==src&&!!o.canMove;}
   function isRotatable(o){return o&&(o===src?src.canAim:o.type==='mirror'||o.type==='prism');}
+  function acknowledgeControls(){cueAcknowledged=true;$('toolCluster').classList.remove('needsAttention');$('controlCue').hidden=true;}
+  function highlightControls(o){const key=selected+':'+(o?.type||'source');
+    if(key!==cueKey){cueKey=key;cueAcknowledged=false;const box=$('toolCluster');box.classList.remove('needsAttention');void box.offsetWidth;box.classList.add('needsAttention');}
+    const message=o?.type==='aperture'?'Blende einstellen: Mit + / − die Spalte öffnen.':o?.canFocus?'Brennweite: ±5 / ±20 · Höhe: ↑ / ↓':isRotatable(o)?'Winkel einstellen: ±5° grob · ±1° fein':isMovable(o)?'Bauteil verschieben: Ziehen oder ↑ / ↓':'';
+    $('controlCueText').textContent=message;$('controlCue').hidden=cueAcknowledged||!message;
+  }
   function refreshControls(){const o=selectedObject();const name=o===src?'Lichtquelle':o?.type==='aperture'?'Blende':o?.type==='mirror'?'Spiegel':o?.type==='lens'?(o.f<0?'Zerstreuungslinse':'Sammellinse'):o?.type==='prism'?'Prisma':o?.type==='slab'?'Glas':null;
     let info=name?'<strong>'+name+'</strong>':'Bauteil wählen';
     if(name&&isRotatable(o))info+='<div>'+mhtml(fmt(o.a)+String.raw`^{\circ}`)+'</div>';
@@ -458,9 +551,59 @@ window.addEventListener('DOMContentLoaded', () => {
     $('rotateFineRight').disabled=focus?o.f>=o.fMax:!isRotatable(o);
     $('moveUp').disabled=$('moveDown').disabled=!isMovable(o);
     $('selectNext').disabled=selectableChoices().length<2;
+    highlightControls(o);
   }
   function secondsLabel(s){const n=Math.ceil(Math.max(0,s));return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
-  function updateBossHud(){const l=levels[ix],b=bossState;if(!l?.boss||!b)return;
+  function stopEndlessClock(){if(endlessTickTimer!==null){clearInterval(endlessTickTimer);endlessTickTimer=null;}}
+  function updateEndlessHud(){if(!endless)return;const e=endless;
+    $('endlessClock').textContent=secondsLabel(e.remaining);$('endlessClock').classList.toggle('urgent',e.remaining<=10&&e.running);
+    $('endlessMeta').textContent='Level '+e.round+' · '+e.completed+' geschafft'+(!e.running&&!e.ended?' · Pause':'');
+    $('endlessScore').textContent=pointsLabel(endlessPoints(e.completed));
+    $('endlessAction').hidden=e.ended;$('endlessAction').textContent=e.running?'Ⅱ Pause':'▶ Weiter';
+    $('boardBadge').textContent=e.ended?'⌛ Lauf beendet':!e.running?'Ⅱ PAUSE · Mit Weiter fortsetzen':e.round>=5?'∞ ENDLOS · Rosa Felder: −5 s':'∞ ENDLOS · +10 s pro Level';
+  }
+  function timeFeedback(delta,text){clearTimeout(timeChangeTimer);const hud=$('endlessHud');hud.classList.remove('timeGain','timeLoss');void hud.offsetWidth;
+    hud.classList.add(delta>=0?'timeGain':'timeLoss');$('timeDelta').classList.toggle('loss',delta<0);$('timeDelta').textContent=text;
+    timeChangeTimer=setTimeout(()=>{timeChangeTimer=null;hud.classList.remove('timeGain','timeLoss');$('timeDelta').classList.remove('loss');$('timeDelta').textContent='+10 s pro Level';},2200);
+  }
+  function failEndless(){const e=endless;if(!e||e.ended)return;e.remaining=0;e.running=false;e.ended=true;stopEndlessClock();clearTimeout(nextTimer);nextTimer=null;drag=null;updateEndlessHud();
+    modalShow('⌛','ENDLOS · ZEIT ABGELAUFEN',pointsLabel(endlessPoints(e.completed))+'!',e.completed+' Level geschafft × '+POINTS_PER_ENDLESS_LEVEL+' Punkte.');
+    $('dialogTitle').closest('.dialog').classList.add('scoreDialog');
+    const summary=document.createElement('div');summary.className='scoreBreakdown';
+    const label=document.createElement('small');label.textContent='DEIN BESTWERT';
+    const best=document.createElement('strong');best.textContent=pointsLabel(endlessPoints(endlessBest));summary.append(label,best);$('dialogContent').append(summary);
+    dialogButton('Zur Lernreise',()=>{closeModal();setLevel(ix);});dialogButton('↺ Neuer Endlos-Lauf',()=>{closeModal();startEndless();},true);
+  }
+  function settleEndlessTime(){const e=endless;if(!e||e.ended)return false;const now=Date.now();
+    if(e.running&&!e.transitioning)e.remaining=Math.max(0,e.remaining-Math.max(0,now-e.lastTs)/1000);e.lastTs=now;
+    if(e.remaining<=1e-6){failEndless();return false;}return true;
+  }
+  function tickEndless(){if(!endless?.running)return;if(settleEndlessTime())updateEndlessHud();}
+  function pauseEndless(){if(!endless?.running)return;if(!settleEndlessTime())return;endless.running=false;drag=null;stopEndlessClock();updateEndlessHud();}
+  function endlessAction(){const e=endless;if(!e||e.ended||modalOpen)return;if(e.running){pauseEndless();return;}
+    e.running=true;e.lastTs=Date.now();stopEndlessClock();endlessTickTimer=setInterval(tickEndless,50);updateEndlessHud();updateStage();draw();
+  }
+  function registerEndlessHit(penalty=0){const e=endless;if(!e?.running||e.transitioning||e.ended)return;
+    e.remaining+=10;e.completed++;e.transitioning=true;goalReached=true;drag=null;
+    if(!teacherMode&&e.completed>endlessBest){endlessBest=e.completed;try{localStorage.setItem('lumen-endless-best-v1',endlessBest);}catch{}}
+    timeFeedback(10-penalty,penalty?'✓ +10 s Bonus · −'+penalty+' s Feld':'✓ Level geschafft! +10 s');
+    $('stageCard').classList.add('showSuccess');updateEndlessHud();const serial=stageSerial;
+    nextTimer=setTimeout(()=>{nextTimer=null;if(!endless||serial!==stageSerial||e.ended)return;e.round++;e.transitioning=false;loadEndlessLevel();},850);
+  }
+  function updateEndlessScene(){const e=endless;if(!e?.running||e.transitioning||e.ended)return;
+    if(!settleEndlessTime())return;let penalty=0;
+    for(const field of e.level.timeFields)if(!field.hit&&sceneTouchesBox(scene,field)){field.hit=true;penalty+=field.penalty;}
+    if(penalty){e.remaining=Math.max(0,e.remaining-penalty);if(e.remaining<=0){timeFeedback(-penalty,'−'+penalty+' s · Zeitfeld getroffen');failEndless();return;}}
+    goalReached=scene.lit;if(goalReached)registerEndlessHit(penalty);else if(penalty)timeFeedback(-penalty,'−'+penalty+' s · Zeitfeld getroffen');
+    updateEndlessHud();
+  }
+  function startEndless(){clearFlowTimers();endless={round:1,completed:0,remaining:60,running:true,ended:false,transitioning:false,lastTs:Date.now(),level:null};
+    $('timeDelta').textContent='+10 s pro Level';loadEndlessLevel();
+  }
+  function loadEndlessLevel(){clearFlowTimers(true);stageSerial++;bossState=null;endless.level=generateEndlessLevel(endless.round);endless.lastTs=Date.now();prepareLevel(endless.level);
+    if(endless.running)endlessTickTimer=setInterval(tickEndless,50);updateEndlessHud();
+  }
+  function updateBossHud(){const l=currentLevel(),b=bossState;if(!l?.boss||!b)return;
     $('bossClock').textContent=b.practice?'∞':secondsLabel(b.remaining);
     $('bossClock').classList.toggle('urgent',!b.practice&&b.remaining<=10&&b.running);
     $('bossSeries').textContent=b.step+'/'+l.boss.targets.length+' TREFFER';
@@ -469,7 +612,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $('bossMeterFill').style.width=(100*Math.max(0,b.remaining)/l.boss.duration)+'%';
     $('bossAction').hidden=b.finished||b.failed;
     $('bossAction').textContent=b.running?'Ⅱ Pause':b.started?'▶ Weiter':'▶ Start';
-    $('bossMode').disabled=b.started;
+    $('bossMode').disabled=b.running||b.finished||b.failed;
     $('bossMode').textContent=b.practice?'∞ Üben':'⏱ Zeit';
     $('bossMode').setAttribute('aria-label',b.practice?'Übungsmodus ohne Zeitlimit. Antippen für Zeitmodus.':'Zeitmodus. Antippen für Übung ohne Zeitlimit.');
   }
@@ -479,7 +622,7 @@ window.addEventListener('DOMContentLoaded', () => {
     modalShow('⌛','ZEIT ABGELAUFEN','Noch ein Versuch!','Die Ziele wechseln nach jedem Treffer.');
     dialogButton('↺ Bosskampf wiederholen',()=>{closeModal();setLevel(ix);},true);
   }
-  function registerBossHit(){const l=levels[ix],b=bossState;if(!b?.running||b.finished||b.failed||Date.now()<b.moveUntil)return;
+  function registerBossHit(){const l=currentLevel(),b=bossState;if(!b?.running||b.finished||b.failed||Date.now()<b.moveUntil)return;
     const previous=clone(l.goal);b.step++;b.flashUntil=Date.now()+450;$('stageCard').classList.add('showHit');
     if(b.step===l.boss.targets.length){b.finished=true;b.running=false;stopBossClock();goalReached=true;
       b.result=b.practice?null:Number((l.boss.duration-b.remaining).toFixed(1));
@@ -503,43 +646,62 @@ window.addEventListener('DOMContentLoaded', () => {
     if(b.pausedAt){const dt=Date.now()-b.pausedAt;if(b.transitionPending){b.moveStart+=dt;b.moveUntil+=dt;}if(b.flashUntil)b.flashUntil+=dt;b.pausedAt=0;}
     b.running=true;b.started=true;b.lastTs=Date.now();stopBossClock();bossTickTimer=setInterval(tickBoss,33);updateBossHud();updateStage();draw();
   }
-  function changeBossMode(){const b=bossState;if(!b||b.started)return;b.practice=!b.practice;practicePreference=b.practice;
-    try{localStorage.setItem('lumen-boss-practice-v1',b.practice?'1':'0');}catch{}$('missionText').textContent=levels[ix].mission.replace(/\d+ Sekunden/,b.practice?'ohne Zeitdruck':String(levels[ix].boss.duration)+' Sekunden');updateBossHud();}
-  function updateStage(){const l=levels[ix];scene=traceScene(l,items,src,l.goal);
+  function changeBossMode(){const b=bossState;if(!b||b.running||b.finished||b.failed)return;practicePreference=!b.practice;
+    try{localStorage.setItem('lumen-boss-practice-v1',practicePreference?'1':'0');}catch{}setLevel(ix);}
+  function updateTargetProgress(l){if(!Array.isArray(l.goal)&&!(l.goal?.needed>1))return;const overlay=$('targetProgress');let message;
+    if(Array.isArray(l.goal)){const count=scene.counts.filter((n,j)=>n>=(l.goal[j].needed||1)).length;
+      message=scene.lit?'✓ Alle '+count+' Sensoren gleichzeitig aktiv':count===l.goal.length&&!scene.parallelOK?'⇄ Strahlen noch nicht parallel':count+' / '+l.goal.length+' Sensoren aktiv';
+      overlay.classList.toggle('align',count===l.goal.length&&!scene.parallelOK);
+    }else{message=(scene.counts[0]||0)+' / '+l.goal.needed+' Strahlen im Sensor';overlay.classList.remove('align');}
+    overlay.classList.toggle('complete',scene.lit);if(overlay.textContent!==message)overlay.textContent=message;
+  }
+  function updateStage(){const l=currentLevel();scene=traceScene(l,items,src,l.goal);updateTargetProgress(l);
+    if(endless){updateEndlessScene();$('statusDot').classList.toggle('lit',goalReached);$('statusText').textContent=goalReached?'Level geschafft! +10 s':'Finde den Lichtweg';refreshControls();updateAngleInfo();return;}
     if(l.boss){const b=bossState;if(b?.running&&scene.lit&&Date.now()>=b.moveUntil)registerBossHit();
       goalReached=!!b?.finished;$('statusDot').classList.toggle('lit',goalReached);
       $('statusText').textContent=goalReached?'Boss besiegt!':b?.running?'Treffe das Ziel!':b?.started?'Pausiert':'Bereit?';
       refreshControls();updateBossHud();updateAngleInfo();return;}
     goalReached=scene.lit;
     if(!goalReached){clearTimeout(questionTimer);questionTimer=null;$('continueBtn').hidden=true;$('stageCard').classList.remove('showSuccess');}
-    if(Array.isArray(l.goal)){
-      const count=scene.counts.filter((n,j)=>n>=(l.goal[j].needed||1)).length;
-      const message=goalReached?'✓ Alle '+count+' Sensoren gleichzeitig aktiv':count===l.goal.length&&!scene.parallelOK?'⇄ Strahlen noch nicht parallel':count+' / '+l.goal.length+' Sensoren aktiv';
-      const overlay=$('targetProgress');overlay.classList.toggle('complete',goalReached);overlay.classList.toggle('align',count===l.goal.length&&!scene.parallelOK);
-      if(overlay.textContent!==message)overlay.textContent=message;
-    }
     $('statusDot').classList.toggle('lit',goalReached);$('statusText').textContent=goalReached?'Treffer! Frage folgt automatisch.':Array.isArray(l.goal)?scene.counts.filter((n,j)=>n>=(l.goal[j].needed||1)).length+'/'+l.goal.length+' Ziele':'Finde den Lichtweg';refreshControls();updateAngleInfo();
     // Jeder gültige Treffer startet die Frage selbstständig; Pointer-up ist dafür nicht erforderlich.
     if(goalReached)scheduleQuestion();}
-  function clearFlowTimers(){clearTimeout(questionTimer);clearTimeout(nextTimer);clearTimeout(unlockTimer);clearTimeout(hintTimer);stopBossClock();questionTimer=null;nextTimer=null;unlockTimer=null;hintTimer=null;$('continueBtn').hidden=true;}
+  function clearFlowTimers(keepTimeFeedback=false){clearTimeout(questionTimer);clearTimeout(nextTimer);clearTimeout(unlockTimer);clearTimeout(hintTimer);stopBossClock();stopEndlessClock();questionTimer=null;nextTimer=null;unlockTimer=null;hintTimer=null;$('continueBtn').hidden=true;
+    if(!keepTimeFeedback){clearTimeout(timeChangeTimer);timeChangeTimer=null;$('endlessHud').classList.remove('timeGain','timeLoss');$('timeDelta').classList.remove('loss');}}
   function showBlendeUnlocked(){if(unlockShown)return;unlockShown=true;try{localStorage.setItem('lumen-blende-unlock-v1','1');}catch{}const toast=$('unlockToast');toast.classList.remove('hidden');unlockTimer=setTimeout(()=>{toast.classList.add('hidden');unlockTimer=null;},3200);}
-  function setLevel(i){if(!canOpen(i))return;clearFlowTimers();stageSerial++;ix=i;const l=levels[i];items=clone(l.items);src=clone(l.src);selected=src.aperture?'aperture':items.find(p=>p.type==='mirror'||p.type==='prism'||p.type==='lens')?.id||(src.canAim?'source':null);hintCount=0;drag=null;
+  function setLevel(i){if(!canOpen(i))return;clearFlowTimers();endless=null;stageSerial++;ix=i;const l=levels[i];
     bossState=l.boss?{step:0,remaining:l.boss.duration,practice:practicePreference,running:false,started:false,finished:false,failed:false,lastTs:0,moveStart:0,moveUntil:0,moveFrom:null,transitionPending:false,flashUntil:0,pausedAt:0}:null;
     if(l.boss){l.goal=clone(l.boss.targets[0]);l.obstacles=clone(l.boss.gates[0]);}
+    prepareLevel(l);if(l.boss)bossAction();}
+  function prepareLevel(l){items=clone(l.items);src=clone(l.src);selected=src.aperture?'aperture':items.find(p=>p.type==='mirror'||p.type==='prism'||p.type==='lens')?.id||(src.canAim?'source':null);hintCount=0;drag=null;goalReached=false;cueKey='';
     $('bossHud').hidden=!l.boss;$('bossAction').hidden=!l.boss;$('bossMode').hidden=!l.boss;
-    $('targetProgress').hidden=!!l.boss||!Array.isArray(l.goal);$('continueBtn').hidden=true;
+    $('endlessHud').hidden=!endless;$('endlessAction').hidden=!endless;$('campaignBtn').setAttribute('aria-pressed',String(!endless));$('endlessBtn').setAttribute('aria-pressed',String(!!endless));$('endlessBtn').disabled=!!endless;
+    $('chapterList').parentElement.hidden=!!endless;
+    $('resetBtn').setAttribute('aria-label',endless?'Endlos-Lauf mit 60 Sekunden neu starten':'Level neu starten');$('resetBtn').title=endless?'Neuer Endlos-Lauf · Punktestand zurücksetzen':'Level neu starten';
+    $('targetProgress').hidden=!!l.boss||!Array.isArray(l.goal)&&!(l.goal?.needed>1);$('continueBtn').hidden=true;
     $('stageCard').classList.toggle('bossStage',!!l.boss);
+    $('stageCard').classList.toggle('endlessStage',!!endless);
     $('boardBadge').textContent=l.boss?'⚡ BOSSKAMPF · Zieljagd':'✦ Ziehen & drehen';
-    $('levelTitle').textContent=l.title;$('levelTag').innerHTML='WELT '+mhtml(String(l.world+1))+' · '+(l.boss?'BOSSKAMPF':'LEVEL')+' '+mhtml(String(ix+1));renderInside($('levelTag'));
+    $('levelTitle').textContent=l.title;$('levelTag').innerHTML=endless?'∞ ENDLOS · LEVEL '+mhtml(String(endless.round)):'WELT '+mhtml(String(l.world+1))+' · '+(l.boss?'BOSSKAMPF':'LEVEL')+' '+mhtml(String(ix+1));renderInside($('levelTag'));
     $('missionText').textContent=bossState?.practice?l.mission.replace(/\d+ Sekunden/,'ohne Zeitdruck'):l.mission;$('hintBox').classList.add('hidden');$('hintBox').textContent='';$('hintBtn').disabled=false;$('hintBtn').textContent='✦ Tipp';$('stageCard').classList.remove('showSuccess','showHit');
-    $('unlockToast').classList.add('hidden');chapterView();progress();updateStage();draw();if(src.aperture&&!teacherMode)showBlendeUnlocked();}
-  function showHint(){const l=levels[ix];if(l.boss&&bossState?.running)pauseBoss();clearTimeout(hintTimer);hintCount=Math.min(hintCount+1,l.hint.length);$('hintBox').textContent=l.hint[hintCount-1];$('hintBox').classList.remove('hidden');const serial=stageSerial;hintTimer=setTimeout(()=>{hintTimer=null;if(serial!==stageSerial)return;$('hintBox').classList.add('hidden');},6500);if(hintCount===l.hint.length){$('hintBtn').textContent='Tipp gelesen';$('hintBtn').disabled=true;}else $('hintBtn').textContent='✦ Weiterer Tipp';}
+    $('angleBtn').classList.remove('discoverAngle');void $('angleBtn').offsetWidth;if(!showAngles&&!endless)$('angleBtn').classList.add('discoverAngle');
+    $('unlockToast').classList.add('hidden');chapterView();progress();updateStage();draw();if(src.aperture&&!teacherMode&&!endless)showBlendeUnlocked();}
+  function showHint(){const l=currentLevel();if(l.boss&&bossState?.running)pauseBoss();if(endless?.running)pauseEndless();clearTimeout(hintTimer);hintCount=Math.min(hintCount+1,l.hint.length);$('hintBox').textContent=l.hint[hintCount-1];$('hintBox').classList.remove('hidden');const serial=stageSerial;hintTimer=setTimeout(()=>{hintTimer=null;if(serial!==stageSerial)return;$('hintBox').classList.add('hidden');},6500);if(hintCount===l.hint.length){$('hintBtn').textContent='Tipp gelesen';$('hintBtn').disabled=true;}else $('hintBtn').textContent='✦ Weiterer Tipp';}
   function openQueuedQuestion(){if(!goalReached||drag||modalOpen)return;clearTimeout(questionTimer);questionTimer=null;$('continueBtn').hidden=true;showQuestion();}
-  function scheduleQuestion(){if(!goalReached||drag||modalOpen||questionTimer)return;const serial=stageSerial;$('stageCard').classList.add('showSuccess');$('continueBtn').hidden=false;
+  function scheduleQuestion(){if(endless||!goalReached||drag||modalOpen||questionTimer)return;const serial=stageSerial;$('stageCard').classList.add('showSuccess');$('continueBtn').hidden=false;
     questionTimer=setTimeout(()=>{questionTimer=null;if(serial!==stageSerial||!goalReached||modalOpen)return;openQueuedQuestion();},QUESTION_DELAY_MS);}
-  function modalShow(icon,eyebrow,title,description){lastFocused=document.activeElement;modalOpen=true;$('dialogIcon').textContent=icon;$('dialogEyebrow').textContent=eyebrow;$('dialogTitle').textContent=title;$('dialogText').textContent=description;$('dialogContent').innerHTML='';$('dialogFeedback').textContent='';$('dialogFeedback').classList.remove('good','bad');$('dialogActions').innerHTML='';$('modal').hidden=false;$('dialogTitle').tabIndex=-1;$('dialogTitle').focus();}
-  function closeModal(){modalOpen=false;$('modal').hidden=true;lastFocused?.focus?.();}
+  function modalShow(icon,eyebrow,title,description){if(endless?.running)pauseEndless();lastFocused=document.activeElement;modalOpen=true;welcomeOpen=false;$('dialogTitle').closest('.dialog').classList.remove('welcomeDialog','scoreDialog');$('dialogIcon').textContent=icon;$('dialogEyebrow').textContent=eyebrow;$('dialogTitle').textContent=title;$('dialogText').textContent=description;$('dialogContent').innerHTML='';$('dialogFeedback').textContent='';$('dialogFeedback').classList.remove('good','bad');$('dialogActions').innerHTML='';document.querySelector('.shell').inert=true;$('modal').hidden=false;$('dialogTitle').tabIndex=-1;$('dialogTitle').focus();}
+  function closeModal(){modalOpen=false;welcomeOpen=false;$('modal').hidden=true;document.querySelector('.shell').inert=false;lastFocused?.focus?.();}
   function dialogButton(name,fn,primary=false){const b=document.createElement('button');b.className='btn'+(primary?' primary':'');b.type='button';b.textContent=name;b.addEventListener('click',fn);$('dialogActions').append(b);return b;}
+  function showWelcome(){modalShow('✦','WILLKOMMEN BEI LUMEN','Bring das Licht ins Ziel!','Triff mit dem Strahl der Lichtquelle die leuchtenden Zielscheiben. Dafür lenkst du das Licht mit den Bauteilen auf die Ziele.');welcomeOpen=true;
+    $('dialogTitle').closest('.dialog').classList.add('welcomeDialog');
+    const controls=document.createElement('p');controls.className='welcomeControls';controls.textContent='Tippe Spiegel, Linsen oder die Lichtquelle an, um sie auszuwählen. Je nach Level kannst du sie durch Ziehen verschieben oder am Griff drehen.';
+    const tip=document.createElement('p');tip.className='welcomeTip';tip.textContent='Unser Tipp: Spiele zuerst die normalen Level und probiere danach den Endlos-Modus.';$('dialogContent').append(controls,tip);
+    const campaign=dialogButton('',()=>{closeModal();setLevel(0);},true);campaign.id='welcomeCampaign';campaign.classList.add('modeChoice');
+    campaign.innerHTML='<span class="choiceLabel">Zum Einstieg empfohlen</span><strong>Normale Level →</strong><small>Entdecke die Lichtwege Schritt für Schritt.</small>';
+    const infinite=dialogButton('',()=>{closeModal();startEndless();});infinite.id='welcomeEndless';infinite.classList.add('modeChoice');
+    infinite.innerHTML='<span class="choiceLabel">Für Geübte</span><strong>∞ Endlos-Modus</strong><small>Zufällige Level gegen die Uhr · 100 Punkte pro Level.</small>';
+  }
   // Kompakte SHA-256-Prüfung ohne externe Bibliothek; funktioniert auch offline im Dateimodus.
   function sha256hex(value){
     const k=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
@@ -585,10 +747,10 @@ window.addEventListener('DOMContentLoaded', () => {
       if(!canOpen(ix))setLevel(Math.min(accessibleMax(),levels.length-1));else chapterView();},true);
   }
   function showRules(){if(bossState?.running)pauseBoss();modalShow('◈','SO SPIELST DU','Licht ins Ziel!','');
-    const ul=document.createElement('ol');ul.className='rulesList';for(const t of ['Bauteil antippen und am Griff drehen. Mit ⇄ (oder Taste N) zum nächsten Bauteil wechseln.','Spiegel mit ±5° grob und ±1° fein drehen.','„∠ Winkel“ blendet das Lot und die Winkel am Auftreffpunkt ein. Alle Winkel werden zwischen Strahl und Lot gemessen – nicht zur Oberfläche. Gelb: Einfall; Grün: Reflexion oder Brechung.','Bei Linsen zeigt das idealisierte Modell die Brennweite und den Brennpunkt, aber keine Grenzflächenwinkel.','Linsen durch Ziehen verschieben. Brennweiten in LE (Längeneinheiten des Spielfeldrasters); bei verstellbaren Linsen mit ±5 und ±20 verändern. Das F zeigt den Brennpunkt.','Blende antippen: mit + und − bis zu drei Spalte öffnen.','Bei mehreren Sensoren müssen alle gleichzeitig leuchten.','Tipps verschwinden nach etwa 6 Sekunden.','Im Lichtleiter wird der Strahl an den Grenzen zur Luft totalreflektiert.','Nach jedem Themenbereich wartet ein rot-pinker Bosskampf.','Bosskampf: Start drücken. Ziel und Sperre wechseln nach einem Treffer; während des Zielwechsels pausiert die Uhr.','Vor dem Start: ⏱ Zeit oder ∞ Üben wählen. Im Bosskampf kannst du pausieren.','Treffer → nach kurzer Beobachtungszeit Kontrollfrage oder direkt „Weiter zur Frage“ → nächstes Level.']){const li=document.createElement('li');li.textContent=t;ul.append(li);}$('dialogContent').append(ul);dialogButton('Verstanden',closeModal,true);}
+    const ul=document.createElement('ol');ul.className='rulesList';for(const t of ['Bauteil antippen und am Griff drehen. Mit ⇄ (oder Taste N) zum nächsten Bauteil wechseln.','Spiegel mit ±5° grob und ±1° fein drehen.','„∠ Winkel“ blendet das Lot und die Winkel am Auftreffpunkt ein. Alle Winkel werden zwischen Strahl und Lot gemessen – nicht zur Oberfläche. Gelb: Einfall; Grün: Reflexion oder Brechung.','Bei Linsen zeigt das idealisierte Modell die Brennweite und den Brennpunkt, aber keine Grenzflächenwinkel.','Linsen durch Ziehen verschieben. Brennweiten in LE (Längeneinheiten des Spielfeldrasters); bei verstellbaren Linsen mit ±5 und ±20 verändern. Das F zeigt den Brennpunkt.','Blende antippen: mit + und − bis zu drei Spalte öffnen.','Bei mehreren Sensoren müssen alle gleichzeitig leuchten.','Tipps verschwinden nach etwa 6 Sekunden.','Im Lichtleiter wird der Strahl an den Grenzen zur Luft totalreflektiert.','Nach jedem Themenbereich wartet ein rot-pinker Bosskampf.','Bosskämpfe starten automatisch. Ziel und Sperre wechseln nach einem Treffer; während des Zielwechsels pausiert die Uhr.','Mit Pause hältst du den Bosskampf an. Zum Wechsel zwischen ⏱ Zeit und ∞ Üben zuerst pausieren; der Kampf beginnt dann neu.','∞ Endlos startet sofort mit 60 Sekunden. Jeder Treffer bringt +10 Sekunden Restzeit und automatisch ein neues zufälliges Level. Beim Levelwechsel pausiert die Uhr. Jedes geschaffte Level zählt 100 Punkte; bei Zeitablauf erhältst du deine Gesamtwertung.', 'Ab Endlos-Level 5 erscheinen rosa Zeitfelder: Ein Lichttreffer kostet einmalig 5 Sekunden pro Feld. Der Lösungsweg ist frei davon.', 'Pause, Anleitung und Tipps halten die Endlos-Uhr an. Mit Weiter spielst du weiter. ↺ beginnt einen neuen Lauf mit 60 Sekunden und 0 geschafften Leveln.', 'Treffer → nach kurzer Beobachtungszeit Kontrollfrage oder direkt „Weiter zur Frage“ → nächstes Level.']){const li=document.createElement('li');li.textContent=t;ul.append(li);}$('dialogContent').append(ul);dialogButton('Verstanden',closeModal,true);}
   function showVictory(){if(teacherMode){modalShow('🔓','LEHRERMODUS','Testlauf abgeschlossen','Der Testlauf hat keine Level als gelöst gespeichert.');dialogButton('Zurück zu Level 1',()=>{closeModal();setLevel(0);},true);return;}
-    modalShow('🏆','ALLE LEVEL GELÖST','Lichtprofi!','Du hast Reflexion, Brechung und Linsen mit allen drei Bosskämpfen gemeistert.');dialogButton('Erneut spielen',()=>{closeModal();setLevel(0);},true);}
-  function showQuestion(){if(!goalReached)return;$('continueBtn').hidden=true;const l=levels[ix],q=l.question;
+    modalShow('🏆','ALLE LEVEL GELÖST','Lichtprofi!','Du hast Reflexion, Brechung und Linsen mit allen drei Bosskämpfen gemeistert.');dialogButton('Erneut spielen',()=>{closeModal();setLevel(0);});dialogButton('∞ Endlos spielen',()=>{closeModal();startEndless();},true);}
+  function showQuestion(){if(!goalReached)return;$('continueBtn').hidden=true;const l=currentLevel(),q=l.question;
     const result=l.boss&&bossState?.result!==null?(bossState?.newRecord?'★ Neuer Rekord · ':'')+bossState.result.toFixed(1).replace('.',',')+' Sekunden':l.boss?'∞ Übungsmodus':'';
     modalShow('⚡','TREFFER · LEVEL '+(ix+1),'Kurze Kontrollfrage',result);const p=document.createElement('div');p.className='quest';p.textContent=q[0];$('dialogContent').append(p);let finished=false;
     const choices=q[1].map((ans,n)=>({ans,correct:n===q[2]}));for(let n=choices.length-1;n>0;n--){const k=Math.floor(Math.random()*(n+1));[choices[n],choices[k]]=[choices[k],choices[n]];}
@@ -602,7 +764,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function resize(){const r=canvas.getBoundingClientRect();if(!r.width||!r.height)return;const dpr=Math.min(window.devicePixelRatio||1,2),aw=Math.max(1,Math.round(r.width*dpr)),ah=Math.max(1,Math.round(r.height*dpr));if(canvas.width!==aw||canvas.height!==ah){canvas.width=aw;canvas.height=ah;}ctx.setTransform(aw/W,0,0,ah/H,0,0);draw();}
   function line(a,b,color,width=3,glow=0){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';if(glow){ctx.shadowColor=color;ctx.shadowBlur=glow;}ctx.stroke();ctx.shadowBlur=0;}
   function ring(x,y,r,c,width=2){ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.strokeStyle=c;ctx.lineWidth=width;ctx.stroke();}
-  function grid(){const boss=!!levels[ix]?.boss;ctx.fillStyle=boss?'#1b0d20':'#071320';ctx.fillRect(0,0,W,H);const glow=ctx.createRadialGradient(540,260,30,540,260,750);glow.addColorStop(0,boss?'#361c3c':'#10293c');glow.addColorStop(1,boss?'#120d1d':'#07101a');ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+  function grid(){const boss=!!currentLevel()?.boss;ctx.fillStyle=boss?'#1b0d20':'#071320';ctx.fillRect(0,0,W,H);const glow=ctx.createRadialGradient(540,260,30,540,260,750);glow.addColorStop(0,boss?'#361c3c':'#10293c');glow.addColorStop(1,boss?'#120d1d':'#07101a');ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
     ctx.lineWidth=.7;ctx.strokeStyle='#30496741';for(let x=0;x<W;x+=50){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}for(let y=0;y<H;y+=50){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
     ctx.strokeStyle='#415c7055';ctx.lineWidth=2;ctx.strokeRect(2,2,W-4,H-4);}
   function drawMedium(l){if(!l.medium)return;const y=l.medium.y;const g=ctx.createLinearGradient(0,y,0,H);g.addColorStop(0,'#246a8d48');g.addColorStop(1,'#0e3f6350');ctx.fillStyle=g;ctx.fillRect(0,y,W,H-y);
@@ -610,6 +772,12 @@ window.addEventListener('DOMContentLoaded', () => {
   function drawObstacles(l){for(const b of l.obstacles||[]){const x=b.x-b.w/2,y=b.y-b.h/2;ctx.save();ctx.fillStyle=l.boss?'#6b294d':'#162132';ctx.strokeStyle=l.boss?'#ff89b7':'#607189';ctx.lineWidth=l.boss?3:2;ctx.shadowColor=l.boss?'#ff4c90':'#020811';ctx.shadowBlur=l.boss?22:9;ctx.fillRect(x,y,b.w,b.h);ctx.strokeRect(x,y,b.w,b.h);ctx.shadowBlur=0;
       ctx.beginPath();ctx.rect(x+4,y+4,b.w-8,b.h-8);ctx.clip();for(let shift=-b.h;shift<b.w+b.h;shift+=18){line({x:x+shift,y:y+b.h},{x:x+shift+b.h,y},'#63809d36',2);}ctx.restore();
       const side=ctx.createLinearGradient(x,y,x+b.w,y);side.addColorStop(0,'#ff789533');side.addColorStop(.5,'#ff789500');side.addColorStop(1,'#ff789522');ctx.fillStyle=side;ctx.fillRect(x,y,b.w,b.h);}}
+  function drawTimeFields(l){const cssWidth=canvas.getBoundingClientRect().width||W;
+    for(const b of l.timeFields||[]){const x=b.x-b.w/2,y=b.y-b.h/2;ctx.save();ctx.fillStyle=b.hit?'#3d253755':'#84284b99';ctx.strokeStyle=b.hit?'#836277':'#ff8fb7';ctx.lineWidth=3;ctx.setLineDash(b.hit?[4,5]:[]);ctx.shadowColor='#ff4d9b';ctx.shadowBlur=b.hit?0:16;ctx.fillRect(x,y,b.w,b.h);ctx.strokeRect(x,y,b.w,b.h);ctx.shadowBlur=0;ctx.setLineDash([]);
+      if(!b.hit){line({x:x+8,y:y+8},{x:x+b.w-8,y:y+b.h-8},'#ff9fc344',3);line({x:x+b.w-8,y:y+8},{x:x+8,y:y+b.h-8},'#ff9fc344',3);}
+      ctx.font='900 '+clamp(12*W/cssWidth,18,28)+'px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.strokeStyle='#33172a';ctx.lineWidth=5;const text=b.hit?'✓':'−'+b.penalty+' s';ctx.strokeText(text,b.x,b.y);ctx.fillStyle=b.hit?'#b897aa':'#ffe6ef';ctx.fillText(text,b.x,b.y);ctx.restore();
+    }
+  }
   function drawGlass(p){const vs=polyFor(p);ctx.save();ctx.beginPath();vs.forEach((v,i)=>i?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.fillStyle=p.type==='prism'?'#88d3ff24':'#75c4e728';ctx.fill();ctx.strokeStyle='#a8e6ff';ctx.lineWidth=3;ctx.shadowColor='#83cffa';ctx.shadowBlur=15;ctx.stroke();ctx.shadowBlur=0;
     ctx.clip();for(let x=p.x-300;x<p.x+300;x+=23){line({x,y:p.y-180},{x:x+75,y:p.y+180},'#9de6ff0c',1);}ctx.restore();
     if(p.type==='fiber'){ctx.save();ctx.fillStyle='#c8f2ff';ctx.textAlign='center';ctx.font='800 18px system-ui';ctx.fillText('LICHTLEITER',p.x,p.y-p.h/2-16);ctx.restore();}}
@@ -647,7 +815,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $('angleInfo').hidden=!showAngles;updateAngleInfo();}
   function updateAngleInfo(){if(!showAngles)return;const list=angleEvents(),box=$('angleInfo');
     let html='<strong>∠ Winkel zum Lot gemessen</strong>';
-    if(!list.length)html+='<div class="angleLine">'+(levels[ix].world===2?'Bei idealisierten dünnen Linsen werden keine Grenzflächenwinkel bestimmt.':'Richte das Licht auf einen Spiegel oder eine Grenzfläche.')+'</div>';
+    if(!list.length)html+='<div class="angleLine">'+(currentLevel().world===2?'Bei idealisierten dünnen Linsen werden keine Grenzflächenwinkel bestimmt.':'Richte das Licht auf einen Spiegel oder eine Grenzfläche.')+'</div>';
     for(const e of list.slice(0,6)){
       const outName=e.kind==='refraction'?'Brechung':e.kind==='tir'?'Totalreflexion':'Reflexion';
       const col=e.col==='cyan'?'':e.col==='red'?' · Rot':e.col==='green'?' · Grün':' · Blau';
@@ -673,34 +841,41 @@ window.addEventListener('DOMContentLoaded', () => {
       ctx.restore();
     }
   }
-  function draw(){if(!canvas.width)return;const l=levels[ix];ctx.clearRect(0,0,W,H);grid();drawMedium(l);drawObstacles(l);drawTarget(l);items.forEach(p=>{if(p.type==='slab'||p.type==='prism'||p.type==='fiber')drawGlass(p);else if(p.type==='lens')drawLens(p);else if(p.type==='mirror')drawMirror(p);});drawRays();drawAngles();drawSource();drawSelection();}
+  function draw(){if(!canvas.width)return;const l=currentLevel();ctx.clearRect(0,0,W,H);grid();drawMedium(l);drawObstacles(l);drawTimeFields(l);drawTarget(l);items.forEach(p=>{if(p.type==='slab'||p.type==='prism'||p.type==='fiber')drawGlass(p);else if(p.type==='lens')drawLens(p);else if(p.type==='mirror')drawMirror(p);});drawRays();drawAngles();drawSource();drawSelection();}
   function toWorld(e){const r=canvas.getBoundingClientRect();return {x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height};}
   function chooseAt(p){const list=[...items];if(src.canAim)list.push(src);if(src.aperture)list.push(apertureObject());let best=null,distance=Infinity;const touchRadius=24*W/Math.max(280,canvas.getBoundingClientRect().width),handleRadius=Math.max(23,touchRadius);for(const obj of list){const h=handle(obj),dh=h?len2(p,h):Infinity,dp=len2(p,obj),radius=Math.max(touchRadius,obj.type==='aperture'?64:obj.type==='prism'?77:obj.type==='lens'?49:obj===src?51:59);
       if(isRotatable(obj)&&dh<handleRadius&&dh<distance){best={obj,mode:'rotate',dist:dh};distance=dh;}
       if(dp<radius&&dp<distance){best={obj,mode:isMovable(obj)?'move':'select',dist:dp};distance=dp;}}
     return best;}
-  function pointerDown(e){if(modalOpen||(bossState?.started&&!bossState.running))return;const p=toWorld(e),c=chooseAt(p);if(!c)return;clearTimeout(questionTimer);questionTimer=null;$('continueBtn').hidden=true;$('stageCard').classList.remove('showSuccess');selected=c.obj===src?'source':c.obj.type==='aperture'?'aperture':c.obj.id;drag={mode:c.mode,start:p,orig:{x:c.obj.x,y:c.obj.y,a:c.obj.a},offset:{x:p.x-c.obj.x,y:p.y-c.obj.y}};canvas.setPointerCapture(e.pointerId);updateStage();draw();}
-  function pointerMove(e){if(!drag)return;const o=selectedObject();if(!o)return;const p=toWorld(e);
+  function controlsBlocked(){return modalOpen||bossState?.started&&!bossState.running||endless&&(!endless.running||endless.transitioning||endless.ended);}
+  function pointerDown(e){if(controlsBlocked())return;const p=toWorld(e),c=chooseAt(p);if(!c)return;clearTimeout(questionTimer);questionTimer=null;$('continueBtn').hidden=true;$('stageCard').classList.remove('showSuccess');selected=c.obj===src?'source':c.obj.type==='aperture'?'aperture':c.obj.id;drag={mode:c.mode,start:p,orig:{x:c.obj.x,y:c.obj.y,a:c.obj.a},offset:{x:p.x-c.obj.x,y:p.y-c.obj.y}};canvas.setPointerCapture(e.pointerId);updateStage();draw();}
+  function pointerMove(e){if(!drag||controlsBlocked())return;const o=selectedObject();if(!o)return;const p=toWorld(e);if(len2(p,drag.start)>2)acknowledgeControls();
     if(drag.mode==='rotate'){const a=angle(o,p);o.a=((a-(o.type==='prism'?-90:0)+720)%360);if(o.a>180)o.a-=360;}
     if(drag.mode==='move'&&isMovable(o)){o.x=clamp(p.x-drag.offset.x,65,W-65);o.y=clamp(p.y-drag.offset.y,80,H-80);}
     updateStage();draw();}
   function pointerUp(e){if(drag){drag=null;updateStage();draw();scheduleQuestion();}}
-  function transformSelected(mode){if(bossState?.started&&!bossState.running)return;const o=selectedObject();if(!o)return;if(o.type==='aperture'&&(mode==='left'||mode==='right'))o.slots=clamp(o.slots+(mode==='right'?1:-1),1,3);else{if(o.canFocus){const delta={left:-20,right:20,fineLeft:-5,fineRight:5}[mode]||0;o.f=clamp(o.f+delta,o.fMin,o.fMax);}else if(isRotatable(o)){if(mode==='left')o.a-=5;if(mode==='right')o.a+=5;if(mode==='fineLeft')o.a-=1;if(mode==='fineRight')o.a+=1;}if(mode==='up'&&isMovable(o))o.y=clamp(o.y-7,75,H-75);if(mode==='down'&&isMovable(o))o.y=clamp(o.y+7,75,H-75);}updateStage();draw();scheduleQuestion();}
-  $('rulesBtn').addEventListener('click',showRules);$('teacherBtn').addEventListener('click',teacherAction);$('resetBtn').addEventListener('click',()=>setLevel(ix));$('hintBtn').addEventListener('click',showHint);$('bossAction').addEventListener('click',bossAction);$('bossMode').addEventListener('click',changeBossMode);
+  function transformSelected(mode){if(controlsBlocked())return;const o=selectedObject();if(!o)return;acknowledgeControls();if(o.type==='aperture'&&(mode==='left'||mode==='right'))o.slots=clamp(o.slots+(mode==='right'?1:-1),1,3);else{if(o.canFocus){const delta={left:-20,right:20,fineLeft:-5,fineRight:5}[mode]||0;o.f=clamp(o.f+delta,o.fMin,o.fMax);}else if(isRotatable(o)){if(mode==='left')o.a-=5;if(mode==='right')o.a+=5;if(mode==='fineLeft')o.a-=1;if(mode==='fineRight')o.a+=1;}if(mode==='up'&&isMovable(o))o.y=clamp(o.y-7,75,H-75);if(mode==='down'&&isMovable(o))o.y=clamp(o.y+7,75,H-75);}updateStage();draw();scheduleQuestion();}
+  $('campaignBtn').addEventListener('click',()=>{if(endless)setLevel(ix);});$('endlessBtn').addEventListener('click',startEndless);$('endlessAction').addEventListener('click',endlessAction);
+  $('rulesBtn').addEventListener('click',showRules);$('teacherBtn').addEventListener('click',teacherAction);$('resetBtn').addEventListener('click',()=>endless?startEndless():setLevel(ix));$('hintBtn').addEventListener('click',showHint);$('bossAction').addEventListener('click',bossAction);$('bossMode').addEventListener('click',changeBossMode);
   $('rotateLeft').addEventListener('click',()=>transformSelected('left'));$('rotateRight').addEventListener('click',()=>transformSelected('right'));$('rotateFineLeft').addEventListener('click',()=>transformSelected('fineLeft'));$('rotateFineRight').addEventListener('click',()=>transformSelected('fineRight'));$('moveUp').addEventListener('click',()=>transformSelected('up'));$('moveDown').addEventListener('click',()=>transformSelected('down'));
   $('selectNext').addEventListener('click',nextSelection);$('continueBtn').addEventListener('click',openQueuedQuestion);
-  $('angleBtn').addEventListener('click',()=>{showAngles=!showAngles;try{localStorage.setItem('lumen-optik-angle-mode-v1',showAngles?'1':'0');}catch{}syncAngleMode();draw();});
+  $('angleBtn').addEventListener('click',()=>{$('angleBtn').classList.remove('discoverAngle');showAngles=!showAngles;try{localStorage.setItem('lumen-optik-angle-mode-v1',showAngles?'1':'0');}catch{}syncAngleMode();draw();});
   canvas.addEventListener('pointerdown',pointerDown);canvas.addEventListener('pointermove',pointerMove);canvas.addEventListener('pointerup',pointerUp);canvas.addEventListener('pointercancel',pointerUp);
   canvas.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='n'){e.preventDefault();nextSelection();return;}if(!selected)return;const map={ArrowLeft:e.shiftKey?'fineLeft':'left',ArrowRight:e.shiftKey?'fineRight':'right',ArrowUp:'up',ArrowDown:'down'};if(map[e.key]){e.preventDefault();transformSelected(map[e.key]);}});
-  document.addEventListener('keydown',e=>{if(modalOpen&&e.key==='Escape'){if(bossState?.failed)setLevel(ix);closeModal();}});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden&&bossState?.running)pauseBoss();});window.addEventListener('resize',resize);
+  document.addEventListener('keydown',e=>{if(!modalOpen)return;
+    if(e.key==='Escape'){if(welcomeOpen){e.preventDefault();return;}if(bossState?.failed)setLevel(ix);closeModal();}
+    if(e.key==='Tab'){const choices=[...$('modal').querySelectorAll('button:not(:disabled),input:not(:disabled),a[href]')];if(!choices.length)return;const first=choices[0],last=choices[choices.length-1];
+      if(e.shiftKey&&(document.activeElement===first||!choices.includes(document.activeElement))){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&(document.activeElement===last||!choices.includes(document.activeElement))){e.preventDefault();first.focus();}}
+  });
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(bossState?.running)pauseBoss();if(endless?.running)pauseEndless();}});window.addEventListener('resize',resize);
   window.addEventListener('orientationchange',()=>requestAnimationFrame(resize));
   window.visualViewport?.addEventListener?.('resize',()=>requestAnimationFrame(resize));
   if(resizeObserver)resizeObserver.observe(canvas);
   syncAngleMode();syncTeacherUI();
-  setLevel(0);requestAnimationFrame(resize);
+  setLevel(0);showWelcome();requestAnimationFrame(resize);
   // Read-only test hook for automated validation, not used by the student UI.
-  Object.defineProperty(window,'__lumenPhysics',{value:Object.freeze({levels,traceScene,autoTarget,clone}),configurable:false});
+  Object.defineProperty(window,'__lumenPhysics',{value:Object.freeze({levels,traceScene,autoTarget,clone,generateEndlessLevel,solutionScene,sceneTouchesBox,getState:()=>clone({level:currentLevel(),items,src,selected,endless,bossState})}),configurable:false});
 });
 </script>
 </body>
