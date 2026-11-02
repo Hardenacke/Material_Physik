@@ -151,6 +151,11 @@
     .dialog.welcomeDialog{width:min(620px,100%);border-color:#72e8d0;background:radial-gradient(ellipse at top right,#22556899,transparent 65%),#12243a}.welcomeDialog .spark{color:#8dffe6}.welcomeDialog h2{font-size:clamp(1.5rem,4vw,2rem);line-height:1.2;margin:10px 0 14px}.welcomeDialog p{font-size:.93rem;line-height:1.55}.welcomeControls{color:#c9deed;margin:12px 0}.welcomeTip{padding:11px 13px;border-left:3px solid #75edcf;border-radius:0 9px 9px 0;background:#143d44;color:#ddfff2!important}.welcomeDialog .dialogFooter{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.welcomeDialog .modeChoice{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;min-height:112px;text-align:left;padding:16px;font-size:1rem}.modeChoice small{font-size:.78rem;line-height:1.4;font-weight:550}.modeChoice .choiceLabel{font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:850}.welcomeDialog .feedback:empty{display:none}.endlessScore{font-size:.72rem;color:#ffdf96;font-weight:850;margin-top:2px;font-variant-numeric:tabular-nums}.dialog.scoreDialog h2{font-size:clamp(2rem,7vw,3rem);color:#acffe1;line-height:1.15;margin:12px 0}.scoreBreakdown{padding:14px 16px;margin-top:15px;border:1px solid #548980;border-radius:12px;background:#123b3d;color:#d8fff0;text-align:center}.scoreBreakdown strong{display:block;margin-top:4px;color:#ffdf96;font-size:1.06rem}.scoreBreakdown small{display:block;font-size:.8rem;color:#c4e1d7}
     @media(max-width:465px){.welcomeDialog .dialogFooter{grid-template-columns:1fr;gap:9px;margin-top:15px}.welcomeDialog .modeChoice{min-height:90px;padding:12px 14px}.welcomeDialog p{font-size:.87rem}.welcomeDialog h2{margin-bottom:10px}}
     @media(orientation:landscape) and (max-height:540px){.dialog.welcomeDialog{width:min(800px,100%);padding:13px 18px}.welcomeDialog .spark{display:none}.welcomeDialog h2{font-size:1.35rem;margin:5px 0 8px}.welcomeDialog p{font-size:.8rem;line-height:1.35}.welcomeControls{margin:7px 0}.welcomeTip{padding:7px 10px}.welcomeDialog .dialogFooter{margin-top:10px;gap:9px}.welcomeDialog .modeChoice{min-height:78px;padding:9px 12px;font-size:.9rem}}
+    .endlessMeter{flex:1 0 100%;height:7px;overflow:hidden;border-radius:99px;background:#08272e;box-shadow:inset 0 0 0 1px #95e7d82b}.endlessMeterFill{width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#37cdb9,#b2ffe6);transition:width .08s linear}.endlessHud.timerStarting{border-color:#ffd17c;animation:countdown-start .8s ease-in-out 4 alternate}.timerStarting .endlessClock,.timeDelta.timerNotice{color:#ffe2a0}.timerStarting .endlessMeterFill{background:linear-gradient(90deg,#f0b655,#ffeab4)}
+    @keyframes countdown-start{to{background:#4e4127;box-shadow:0 0 0 4px #ffd17c44,0 0 28px #ffc46577}}
+    @media(max-width:600px) and (orientation:portrait),(orientation:landscape) and (max-height:540px) and (max-width:1024px){.toolCluster{flex-wrap:nowrap}.toolCluster .controlCue{flex:0 0 auto;width:100%;min-width:0}}
+    .rankingPanel{margin-top:16px;border-top:1px solid #355a69;padding-top:10px}.rankingStatus{color:#d3f8ec!important;font-size:.81rem!important}.lumenRanking{width:100%;border-collapse:collapse;margin:12px 0;font-size:.83rem;table-layout:fixed}.lumenRanking caption{text-align:left;color:#b8e7db;font-size:.76rem;padding:0 0 8px}.lumenRanking th,.lumenRanking td{text-align:left;padding:9px 6px;border-bottom:1px solid #355169;overflow-wrap:anywhere}.lumenRanking th{color:#9ebbd0;font-size:.73rem}.lumenRanking th:first-child,.lumenRanking td:first-child{width:48px}.lumenRanking th:last-child,.lumenRanking td:last-child{width:88px;text-align:right;font-variant-numeric:tabular-nums}.lumenRanking .ownEntry{color:#baffdf;background:#194844}.rankingOwn{color:#baffdf!important;font-weight:750}.rankingPanel .btn[hidden]{display:none}.retryScore{border-color:#ffd487;color:#ffe4b1}
+    @media(max-width:465px){.hudRight{gap:5px}.hudRight .progressBar{width:48px}}
     .collectionNav{margin:12px 4px 0;font-size:.8rem}.collectionNav a{display:inline-flex;align-items:center;min-height:44px;color:var(--teal);text-decoration:none}.collectionNav a:hover{text-decoration:underline}
   </style>
   <script>
@@ -187,10 +192,10 @@ SOFTWARE.
   <header class="mast">
     <div class="brand"><div class="brandmark" aria-hidden="true"><svg viewBox="0 0 35 35" fill="none"><path d="M5 17.5H16" stroke="#6cf5df" stroke-width="2.5" stroke-linecap="round"/><path d="M16 5l13 24H3z" stroke="#cbddf5" stroke-width="1.7" fill="#20496755"/><path d="M18 17.5l12-8" stroke="#ffbd73" stroke-width="2"/><path d="M18 17.5l13 0" stroke="#78afff" stroke-width="2"/><path d="M18 17.5l12 8" stroke="#ff7ea8" stroke-width="2"/></svg></div><h1>LUMEN</h1></div>
     <nav class="modeSwitch" aria-label="Spielmodus"><button id="campaignBtn" type="button" aria-pressed="true">Lernreise</button><button id="endlessBtn" type="button" aria-pressed="false">∞ Endlos</button></nav>
-    <div class="hudRight"><span class="hudProgress" id="progressText" data-tex="0/26"></span><div class="progressBar" role="progressbar" aria-label="Gelöste Level" aria-valuemin="0" aria-valuemax="26" aria-valuenow="0" id="progressBar"><div class="progressFill" id="progressFill"></div></div><button class="ghost teacherBtn" id="teacherBtn" type="button" aria-label="Lehrermodus öffnen" aria-pressed="false" title="Lehrermodus">🔒</button><button class="ghost" id="rulesBtn" type="button" aria-label="Spielanleitung anzeigen">?</button></div>
+    <div class="hudRight"><span class="hudProgress" id="progressText" data-tex="0/26"></span><div class="progressBar" role="progressbar" aria-label="Gelöste Level" aria-valuemin="0" aria-valuemax="26" aria-valuenow="0" id="progressBar"><div class="progressFill" id="progressFill"></div></div><button class="ghost" id="leaderboardBtn" type="button" aria-label="Endlos-Rangliste öffnen" title="Endlos-Rangliste">🏆</button><button class="ghost teacherBtn" id="teacherBtn" type="button" aria-label="Lehrermodus öffnen" aria-pressed="false" title="Lehrermodus">🔒</button><button class="ghost" id="rulesBtn" type="button" aria-label="Spielanleitung anzeigen">?</button></div>
   </header>
   <main class="layout">
-    <section class="panel stageCard" id="stageCard" aria-label="Interaktives Lichtlabor"><div class="stageBar"><div><div class="levelTag" id="levelTag"></div><h2 id="levelTitle"></h2><p id="missionText"></p></div><div class="bossHud" id="bossHud" hidden aria-live="off"><span class="bossClock" id="bossClock">00:40</span><span class="bossSeries" id="bossSeries">0/4 Treffer</span><span class="bossBest" id="bossBest"></span><div class="bossMeter" aria-label="Verbleibende Zeit"><div class="bossMeterFill" id="bossMeterFill"></div></div></div><div class="endlessHud" id="endlessHud" hidden aria-label="Endlos-Modus: Restzeit und Zeitbonus"><div class="clockGroup"><span aria-hidden="true">⏱</span><div><span class="clockLabel">RESTZEIT</span><time class="endlessClock" id="endlessClock" role="timer" aria-live="off">01:00</time></div></div><div><div class="endlessMeta" id="endlessMeta">Level 1 · 0 geschafft</div><div class="endlessScore" id="endlessScore">0 Punkte</div><div class="timeDelta" id="timeDelta" role="status" aria-live="polite">+10 s pro Level</div></div></div><div class="status"><span class="statusDot" id="statusDot"></span><span id="statusText">Finde den Lichtweg</span></div></div>
+    <section class="panel stageCard" id="stageCard" aria-label="Interaktives Lichtlabor"><div class="stageBar"><div><div class="levelTag" id="levelTag"></div><h2 id="levelTitle"></h2><p id="missionText"></p></div><div class="bossHud" id="bossHud" hidden aria-live="off"><span class="bossClock" id="bossClock">00:40</span><span class="bossSeries" id="bossSeries">0/4 Treffer</span><span class="bossBest" id="bossBest"></span><div class="bossMeter" aria-label="Verbleibende Zeit"><div class="bossMeterFill" id="bossMeterFill"></div></div></div><div class="endlessHud" id="endlessHud" hidden aria-label="Endlos-Modus: Restzeit und Zeitbonus"><div class="clockGroup"><span aria-hidden="true">⏱</span><div><span class="clockLabel">RESTZEIT</span><time class="endlessClock" id="endlessClock" role="timer" aria-live="off">00:40</time></div></div><div><div class="endlessMeta" id="endlessMeta">Level 1 · 0 geschafft</div><div class="endlessScore" id="endlessScore">0 Punkte</div><div class="timeDelta" id="timeDelta" role="status" aria-live="polite">+10 s pro Level</div></div><div class="endlessMeter" id="endlessMeter" role="progressbar" aria-label="Restzeit im Endlos-Modus" aria-valuemin="0" aria-valuemax="40" aria-valuenow="40"><div class="endlessMeterFill" id="endlessMeterFill"></div></div></div><div class="status"><span class="statusDot" id="statusDot"></span><span id="statusText">Finde den Lichtweg</span></div></div>
       <div class="boardWrap" id="boardWrap"><canvas id="board" aria-label="Optik-Spielfeld: Bauteile antippen oder mit der Schaltfläche 'Bauteil wechseln' auswählen; Pfeiltasten verändern das ausgewählte Bauteil. Winkelmodus mit der Schaltfläche Winkel aktivieren." tabindex="0"></canvas><div class="canvasGlow"></div><span class="boardBadge" id="boardBadge">✦ Ziehen & drehen</span><div class="targetProgress" id="targetProgress" role="status" aria-live="polite" hidden></div><aside class="angleInfo" id="angleInfo" aria-label="Einfalls-, Reflexions- und Brechungswinkel" hidden></aside><div class="successBurst" id="successBurst" aria-hidden="true">TREFFER!</div><div class="unlockToast hidden" id="unlockToast" role="status" aria-live="polite"><strong>✦ NEU: MEHRFACHBLENDE!</strong><span>Blende auswählen · Mit + und − bis zu 3 Strahlen erzeugen</span></div><div class="hint hidden" id="hintBox" aria-live="polite"></div></div>
       <div class="stageBottom"><div class="toolCluster" id="toolCluster"><div class="controlCue" id="controlCue" role="status" aria-live="polite" hidden><span class="cueArrow" aria-hidden="true">↓</span><span id="controlCueText"></span></div><span id="selectionInfo" class="selectInfo" aria-live="polite"></span><div class="controlBtns"><button id="rotateLeft" class="btn" type="button" aria-label="Um fünf Grad nach links drehen" title="Um fünf Grad nach links drehen">−5°</button><button id="rotateFineLeft" class="btn fineBtn" type="button" aria-label="Um ein Grad nach links drehen" title="Um ein Grad nach links drehen">−1°</button><button id="rotateFineRight" class="btn fineBtn" type="button" aria-label="Um ein Grad nach rechts drehen" title="Um ein Grad nach rechts drehen">+1°</button><button id="rotateRight" class="btn" type="button" aria-label="Um fünf Grad nach rechts drehen" title="Um fünf Grad nach rechts drehen">+5°</button><button id="moveUp" class="btn" type="button" aria-label="Nach oben bewegen" title="Nach oben bewegen">↑</button><button id="moveDown" class="btn" type="button" aria-label="Nach unten bewegen" title="Nach unten bewegen">↓</button><button id="selectNext" class="btn" type="button" aria-label="Nächstes optisches Bauteil auswählen" title="Nächstes optisches Bauteil auswählen">⇄</button></div></div><div class="controlsRow"><button id="endlessAction" class="btn endlessAction" type="button" hidden>Ⅱ Pause</button><button id="bossAction" class="btn bossAction" type="button" hidden>Ⅱ Pause</button><button id="bossMode" class="btn bossMode" type="button" hidden aria-label="Spielmodus wählen">⏱ Zeit</button><button id="continueBtn" class="btn continueBtn" type="button" hidden>Weiter zur Frage →</button><button id="angleBtn" class="btn angleBtn" type="button" aria-pressed="false" aria-label="Winkel und Lote einblenden" title="Winkel und Lote einblenden">∠ Winkel</button><button id="resetBtn" class="btn" type="button" aria-label="Level neu starten" title="Level neu starten">↺</button><button id="hintBtn" class="btn" type="button">✦ Tipp</button></div></div>
     </section>
@@ -419,14 +424,33 @@ window.addEventListener('DOMContentLoaded', () => {
     });}
   levels.forEach(l=>{if(l.boss){l.boss.targets=calculateBossTargets(l);l.goal=clone(l.boss.targets[0]);l.obstacles=clone(l.boss.gates[0]);}else l.goal=autoTarget(l);});
   function pathTouchesBox(path,b,padding=0){const x=b.x-b.w/2-padding,y=b.y-b.h/2-padding,w=b.w+2*padding,h=b.h+2*padding;
-    const inside=p=>p.x>=x&&p.x<=x+w&&p.y>=y&&p.y<=y+h;
-    const corners=[{x,y},{x:x+w,y},{x:x+w,y:y+h},{x,y:y+h}];
-    return path.segments.some(seg=>{if(inside(seg.a)||inside(seg.b))return true;const distance=len2(seg.a,seg.b),d=unit(sub(seg.b,seg.a));
-      return corners.some((a,i)=>{const hit=segmentHit(seg.a,d,a,corners[(i+1)%4]);return hit&&hit.t<=distance;});});
+    return path.segments.some(seg=>{let lo=0,hi=1;const dx=seg.b.x-seg.a.x,dy=seg.b.y-seg.a.y;
+      if(Math.abs(dx)<1e-9){if(seg.a.x<x||seg.a.x>x+w)return false;}
+      else{const a=(x-seg.a.x)/dx,c=(x+w-seg.a.x)/dx;lo=Math.max(lo,Math.min(a,c));hi=Math.min(hi,Math.max(a,c));if(lo>hi)return false;}
+      if(Math.abs(dy)<1e-9){if(seg.a.y<y||seg.a.y>y+h)return false;}
+      else{const a=(y-seg.a.y)/dy,c=(y+h-seg.a.y)/dy;lo=Math.max(lo,Math.min(a,c));hi=Math.min(hi,Math.max(a,c));}
+      return lo<=hi;});
   }
   function sceneTouchesBox(s,b,padding=0){return s.paths.some(path=>pathTouchesBox(path,b,padding));}
   function solutionScene(l){const pieces=l.items.map(p=>({...clone(p),...p.sol})),s={...clone(l.src),a:l.src.sola};
     if(s.aperture)s.aperture.slots=s.aperture.solutionSlots;return traceScene(l,pieces,s,l.goal);}
+  function adjustmentSafetyScene(l){const segments=[],seen=new Set(),angles=[-10,-8,-6,-4,-2,0,2,4,6,8,10];
+    // Kleine Änderungen um Anfang und Lösung schützen, auch bei mehreren Reglern und allen Blenden.
+    for(const solvedSetup of [false,true]){const pieces=l.items.map(p=>solvedSetup?{...clone(p),...p.sol}:clone(p)),s=clone(l.src),controls=[];
+      if(solvedSetup)s.a=s.sola;
+      const vary=(obj,key,offsets,min=-Infinity,max=Infinity)=>{const center=obj[key];controls.push({obj,key,values:[...new Set(offsets.map(delta=>clamp(center+delta,min,max)))]});};
+      if(s.canAim)vary(s,'a',angles);
+      if(s.aperture)controls.push({obj:s.aperture,key:'slots',values:[2,3]});
+      for(const p of pieces){if(p.type==='mirror')vary(p,'a',angles);
+        if(p.type==='lens'){vary(p,'x',[-14,0,14],65,W-65);vary(p,'y',[-14,-7,0,7,14],80,H-80);if(p.canFocus)vary(p,'f',[-20,-10,0,10,20],p.fMin,p.fMax);}}
+      function sample(n){if(n<controls.length){const c=controls[n],original=c.obj[c.key];for(const value of c.values){c.obj[c.key]=value;sample(n+1);}c.obj[c.key]=original;return;}
+        for(const path of traceScene(l,pieces,s,l.goal).paths)for(const seg of path.segments){const key=[seg.a.x,seg.a.y,seg.b.x,seg.b.y].map(v=>v.toFixed(2)).join(',');if(!seen.has(key)){seen.add(key);segments.push(seg);}}
+      }
+      sample(0);
+    }
+    return {paths:[{segments}]};
+  }
+  function endlessRandom(seed,round){let state=(seed^Math.imul(round,0x9e3779b9))>>>0;return ()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};}
   function generateEndlessLevel(round,rng=Math.random){
     const integer=(lo,hi)=>lo+Math.floor(rng()*(hi-lo+1)),pick=list=>list[integer(0,list.length-1)],sign=()=>pick([-1,1]);
     let l;
@@ -466,24 +490,24 @@ window.addEventListener('DOMContentLoaded', () => {
         if(awayFromObjects(b)&&!sceneTouchesBox(solvedScene,b,18)&&!l.obstacles.some(old=>overlap(old,b))){l.obstacles.push(b);break;}
       }
       if(round>=5){
-        const wanted=Math.min(3,1+Math.floor((round-5)/5));
+        const wanted=Math.min(3,1+Math.floor((round-5)/5)),safeScene=adjustmentSafetyScene(l);
         for(let n=0;n<wanted;n++)for(let tries=0;tries<100;tries++){
-          // Auf einem erreichbaren Fehlweg platzieren, ohne beim Levelstart Zeit abzuziehen.
+          // Erreichbare Fehlwege nutzen, die deutlicher von den üblichen Einstellungen abweichen.
           const pieces=l.items.map(p=>({...clone(p),...p.sol})),s={...clone(l.src),a:l.src.sola};if(s.aperture)s.aperture.slots=s.aperture.solutionSlots;
-          const p=pick(pieces);if(p.type==='mirror')p.a+=sign()*integer(8,40);else p.y+=sign()*integer(20,65);
+          const p=pick(pieces);if(p.type==='mirror')p.a+=sign()*integer(22,75);else p.y=clamp(p.y+sign()*integer(45,110),80,H-80);
           const wrong=traceScene(l,pieces,s,l.goal),segments=wrong.paths.flatMap(path=>path.segments).filter(seg=>seg.visited.includes(p.id)&&len2(seg.a,seg.b)>100);
           if(!segments.length)continue;const seg=pick(segments),t=.3+rng()*.5;
           const b={...block(seg.a.x+(seg.b.x-seg.a.x)*t,seg.a.y+(seg.b.y-seg.a.y)*t,56,56),penalty:5,hit:false};
-          if(b.x<120||b.x>920||b.y<80||b.y>520||!awayFromObjects(b)||sceneTouchesBox(solvedScene,b,22)||sceneTouchesBox(startScene,b,8)||[...l.obstacles,...l.timeFields].some(old=>overlap(old,b)))continue;
+          if(b.x<120||b.x>920||b.y<80||b.y>520||!awayFromObjects(b)||sceneTouchesBox(solvedScene,b,22)||sceneTouchesBox(safeScene,b,16)||[...l.obstacles,...l.timeFields].some(old=>overlap(old,b)))continue;
           l.timeFields.push(b);break;
         }
-        if(l.timeFields.length!==wanted)continue;
+        if(!l.timeFields.length)continue;
       }
       if(solutionScene(l).lit)return l;
     }
     // Begrenzte Generierungszeit auch mit ungewöhnlichen Zufallsfolgen.
     const fallback={world:0,title:'Spiegel-Route',mission:'Drehe den Spiegel zum Sensor.',src:source(85,350),items:[m('s1',450,350,0,-45,140)],required:['s1'],strictElements:true,timeFields:[],endlessRound:round,hint:['Drehe den Spiegel mit den Winkeltasten.'],goal:{x:450,y:140,r:24,needed:1}};
-    if(round>=5)fallback.timeFields=[{...block(700,430,56,56),penalty:5,hit:false}];return fallback;
+    if(round>=5)fallback.timeFields=[{...block(650,520,56,56),penalty:5,hit:false}];return fallback;
   }
   // Ältere Spielstände bleiben gültig: verschobene Bosslevel und der neue Lichtleiter
   // werden nicht automatisch als erledigt markiert.
@@ -498,11 +522,69 @@ window.addEventListener('DOMContentLoaded', () => {
   let ix=0,items=[],src=null,selected=null,drag=null,hintCount=0,scene=null,goalReached=false,modalOpen=false,welcomeOpen=false,lastFocused=null;
   let questionTimer=null,nextTimer=null,unlockTimer=null,hintTimer=null,bossTickTimer=null,bossState=null,stageSerial=0;
   let endless=null,endlessTickTimer=null,timeChangeTimer=null,cueKey='',cueAcknowledged=false;
+  const LUMEN_RULES='lumen-endless-40-v1';
+  const leaderboardBase=window.LumenLeaderboardConfig?.apiBaseUrl||'https://lumen-leaderboard.physik-wettkampf-api.workers.dev';
+  let leaderboardToken=null,modalSerial=0;
+  const onlineSyncs=new Map();
   let endlessBest=0;try{const n=Number(localStorage.getItem('lumen-endless-best-v1'));if(Number.isSafeInteger(n)&&n>0)endlessBest=n;}catch{}
-  const POINTS_PER_ENDLESS_LEVEL=100;
+  const ENDLESS_START_SECONDS=40,POINTS_PER_ENDLESS_LEVEL=100;
   const endlessPoints=completed=>completed*POINTS_PER_ENDLESS_LEVEL;
   const pointsLabel=points=>points.toLocaleString('de-DE')+' Punkte';
   function currentLevel(){return endless?.level||levels[ix];}
+  function offlineOnly(){return !navigator.onLine||location.protocol==='file:';}
+  function playerToken(create=false){if(leaderboardToken)return leaderboardToken;try{const saved=localStorage.getItem('lumen-leaderboard-key-v1');if(/^[A-Za-z0-9_-]{43}$/.test(saved||''))leaderboardToken=saved;}catch{}
+    if(!leaderboardToken&&create){leaderboardToken=btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32)))).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');try{localStorage.setItem('lumen-leaderboard-key-v1',leaderboardToken);}catch{}}
+    return leaderboardToken;
+  }
+  async function leaderboardAPI(path,body,key){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),8000);
+    try{const headers={};const token=playerToken();if(token)headers.Authorization='Bearer '+token;if(body!==undefined)headers['Content-Type']='application/json';if(key)headers['Idempotency-Key']=key;
+      const response=await fetch(leaderboardBase+'/api/lumen/v1'+path,{method:body===undefined?'GET':'POST',headers,body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal,cache:'no-store',credentials:'omit'});
+      const value=await response.json();if(!response.ok)throw Error(value.error||'Die Rangliste ist gerade nicht erreichbar.');return value;
+    }catch(error){if(error.name==='AbortError'||error instanceof TypeError)throw Error('Keine Verbindung zur Rangliste. Bitte versuche es erneut.');throw error;}finally{clearTimeout(timeout);}
+  }
+  function savePendingRun(e){if(!e.online)return;try{localStorage.setItem('lumen-leaderboard-pending-v1',JSON.stringify({completed:e.completed,online:{...e.online}}));}catch{}}
+  function clearPendingRun(runId){try{const pending=JSON.parse(localStorage.getItem('lumen-leaderboard-pending-v1')||'null');if(pending?.online?.runId===runId)localStorage.removeItem('lumen-leaderboard-pending-v1');}catch{}}
+  function flushOnlineRun(e){const online=e.online;if(!online)return Promise.resolve();if(onlineSyncs.has(online.runId))return onlineSyncs.get(online.runId);
+    const task=(async()=>{while(online.sent<online.proofs.length){const proof=online.proofs[online.sent];await leaderboardAPI('/runs/'+online.runId+'/level',proof);online.sent++;if(e.ended)savePendingRun(e);}})().finally(()=>onlineSyncs.delete(online.runId));
+    onlineSyncs.set(online.runId,task);return task;
+  }
+  function queueOnlineProof(e){if(!e.online)return;e.online.proofs.push({round:e.round,items:items.map(p=>({id:p.id,x:p.x,y:p.y,a:p.a,f:p.f??null})),source:{a:src.a,slots:src.aperture?.slots??null}});void flushOnlineRun(e).catch(()=>{});}
+  function rankingTable(container,data){container.replaceChildren();const rows=data.leaderboard||[];
+    if(!rows.length){const note=document.createElement('p');note.textContent='Noch kein Ergebnis. Mach den Anfang!';container.append(note);return;}
+    const table=document.createElement('table');table.className='lumenRanking';const caption=document.createElement('caption');caption.textContent='Endlos-Rangliste · die besten 20 Spielnamen';table.append(caption);
+    const head=document.createElement('thead'),header=document.createElement('tr');for(const text of ['Platz','Spielname','Punkte']){const th=document.createElement('th');th.scope='col';th.textContent=text;header.append(th);}head.append(header);table.append(head);
+    const body=document.createElement('tbody');for(const row of rows){const tr=document.createElement('tr');if(row.own)tr.className='ownEntry';for(const value of [row.rank,row.name+(row.own?' · Du':''),Number(row.score).toLocaleString('de-DE')]){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}table.append(body);container.append(table);
+    if(data.own){const own=document.createElement('p');own.className='rankingOwn';own.textContent='Dein Bestwert: '+pointsLabel(data.own.score)+' · Platz '+data.own.rank;container.append(own);}
+  }
+  function resultRanking(e){const panel=document.createElement('section');panel.className='rankingPanel';const status=document.createElement('p');status.className='rankingStatus';status.setAttribute('role','status');const rows=document.createElement('div');panel.append(status,rows);$('dialogContent').append(panel);
+    const retry=document.createElement('button');retry.type='button';retry.className='btn';retry.textContent='Erneut übertragen';retry.hidden=true;panel.append(retry);
+    async function submit(){retry.hidden=true;status.textContent='Dein Ergebnis wird in die Rangliste eingetragen …';savePendingRun(e);
+      try{await flushOnlineRun(e);const data=await leaderboardAPI('/runs/'+e.online.runId+'/finish',{});if(data.score!==endlessPoints(e.completed))throw Error('Noch nicht alle Level wurden bestätigt. Bitte erneut übertragen.');
+        clearPendingRun(e.online.runId);e.online.submitted=true;if(!panel.isConnected)return;status.textContent='✓ Ergebnis übertragen · Pro Spielname zählt dein bester Lauf.';rankingTable(rows,data);
+      }catch(error){if(!panel.isConnected)return;status.textContent=error.message+' Dein Ergebnis bleibt zum erneuten Senden gespeichert.';retry.hidden=false;}
+    }
+    retry.addEventListener('click',submit);void submit();
+  }
+  function chooseEndlessMode(){if(offlineOnly()){startEndless();return;}
+    modalShow('🏆','ENDLOS · ONLINE-RANGLISTE','Dein Spielname','Dein Spielname und dein Bestwert sind in der Rangliste öffentlich sichtbar. Du kannst ein Kürzel oder einen Fantasienamen wählen.');
+    const label=document.createElement('label');label.className='teacherLabel';label.htmlFor='lumenPlayerName';label.textContent='Spielname';const input=document.createElement('input');input.id='lumenPlayerName';input.className='teacherField';input.maxLength=24;input.minLength=2;input.autocomplete='nickname';input.placeholder='z. B. Lichtfuchs';try{input.value=localStorage.getItem('lumen-leaderboard-name-v1')||'';}catch{}$('dialogContent').append(label,input);
+    const serial=modalSerial,key=crypto.randomUUID();let busy=false;
+    const offline=dialogButton('Ohne Rangliste spielen',()=>{closeModal();startEndless();});
+    const start=dialogButton('Mit Rangliste starten',join,true);
+    async function join(){if(busy)return;const name=input.value.trim();if(name.length<2){$('dialogFeedback').textContent='Bitte gib mindestens 2 Zeichen ein.';input.focus();return;}busy=true;start.disabled=true;offline.disabled=true;$('dialogFeedback').textContent='Verbindung wird hergestellt …';
+      try{playerToken(true);const session=await leaderboardAPI('/runs',{name,rules:LUMEN_RULES},key);if(serial!==modalSerial)return;
+        try{localStorage.setItem('lumen-leaderboard-name-v1',name);}catch{}closeModal();startEndless({runId:session.runId,seed:session.seed,proofs:[],sent:0,submitted:false});
+      }catch(error){if(serial===modalSerial)$('dialogFeedback').textContent=error.message;}finally{busy=false;start.disabled=false;offline.disabled=false;}
+    }
+    input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();void join();}});input.focus();
+  }
+  function showLeaderboard(){modalShow('🏆','LUMEN · ENDLOS','Rangliste','Pro Spielname zählt der beste abgeschlossene Lauf. Jedes bestätigte Level bringt 100 Punkte.');const serial=modalSerial;
+    const status=document.createElement('p');status.className='rankingStatus';status.setAttribute('role','status');const rows=document.createElement('div');$('dialogContent').append(status,rows);
+    async function refresh(){status.textContent='Rangliste wird geladen …';try{if(offlineOnly())throw Error('Die Online-Rangliste ist über die Spielseite mit Internetverbindung verfügbar.');const data=await leaderboardAPI('/leaderboard');if(serial!==modalSerial)return;status.textContent='Aktuelle Bestwerte';rankingTable(rows,data);}catch(error){if(serial===modalSerial)status.textContent=error.message;}}
+    let pending=null;try{pending=JSON.parse(localStorage.getItem('lumen-leaderboard-pending-v1')||'null');}catch{}
+    if(pending?.online?.runId&&Array.isArray(pending.online.proofs)){const resume=dialogButton('Gespeichertes Ergebnis übertragen',()=>{closeModal();modalShow('🏆','ENDLOS · ERGEBNIS',pointsLabel(endlessPoints(pending.completed)),'Dein gespeichertes Ergebnis wird erneut übertragen.');pending.ended=true;resultRanking(pending);dialogButton('Schließen',closeModal);});resume.classList.add('retryScore');}
+    dialogButton('Aktualisieren',refresh);dialogButton('Schließen',closeModal,true);void refresh();
+  }
   const QUESTION_DELAY_MS=3000;
   // Nur der Hash ist Teil der Offline-Datei. Die Freigabe ist absichtlich sitzungsgebunden.
   const teacherPasswordHash='73b55206ac47ecc2dd9f0bbead945698a10026c638e956cb26ad1bfd6eed441d';
@@ -557,12 +639,17 @@ window.addEventListener('DOMContentLoaded', () => {
   function stopEndlessClock(){if(endlessTickTimer!==null){clearInterval(endlessTickTimer);endlessTickTimer=null;}}
   function updateEndlessHud(){if(!endless)return;const e=endless;
     $('endlessClock').textContent=secondsLabel(e.remaining);$('endlessClock').classList.toggle('urgent',e.remaining<=10&&e.running);
+    const budget=ENDLESS_START_SECONDS+e.completed*10;
+    $('endlessMeterFill').style.width=(100*Math.max(0,e.remaining)/budget)+'%';$('endlessMeter').setAttribute('aria-valuemax',budget);$('endlessMeter').setAttribute('aria-valuenow',Math.max(0,Math.ceil(e.remaining)));
     $('endlessMeta').textContent='Level '+e.round+' · '+e.completed+' geschafft'+(!e.running&&!e.ended?' · Pause':'');
     $('endlessScore').textContent=pointsLabel(endlessPoints(e.completed));
     $('endlessAction').hidden=e.ended;$('endlessAction').textContent=e.running?'Ⅱ Pause':'▶ Weiter';
     $('boardBadge').textContent=e.ended?'⌛ Lauf beendet':!e.running?'Ⅱ PAUSE · Mit Weiter fortsetzen':e.round>=5?'∞ ENDLOS · Rosa Felder: −5 s':'∞ ENDLOS · +10 s pro Level';
   }
-  function timeFeedback(delta,text){clearTimeout(timeChangeTimer);const hud=$('endlessHud');hud.classList.remove('timeGain','timeLoss');void hud.offsetWidth;
+  function showCountdownStart(){const hud=$('endlessHud');clearTimeout(timeChangeTimer);hud.classList.add('timerStarting');$('timeDelta').classList.add('timerNotice');$('timeDelta').textContent='⏳ Die Uhr läuft!';
+    timeChangeTimer=setTimeout(()=>{timeChangeTimer=null;hud.classList.remove('timerStarting');$('timeDelta').classList.remove('timerNotice');$('timeDelta').textContent='+10 s pro Level';},4000);
+  }
+  function timeFeedback(delta,text){clearTimeout(timeChangeTimer);const hud=$('endlessHud');hud.classList.remove('timeGain','timeLoss','timerStarting');$('timeDelta').classList.remove('timerNotice');void hud.offsetWidth;
     hud.classList.add(delta>=0?'timeGain':'timeLoss');$('timeDelta').classList.toggle('loss',delta<0);$('timeDelta').textContent=text;
     timeChangeTimer=setTimeout(()=>{timeChangeTimer=null;hud.classList.remove('timeGain','timeLoss');$('timeDelta').classList.remove('loss');$('timeDelta').textContent='+10 s pro Level';},2200);
   }
@@ -572,7 +659,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const summary=document.createElement('div');summary.className='scoreBreakdown';
     const label=document.createElement('small');label.textContent='DEIN BESTWERT';
     const best=document.createElement('strong');best.textContent=pointsLabel(endlessPoints(endlessBest));summary.append(label,best);$('dialogContent').append(summary);
-    dialogButton('Zur Lernreise',()=>{closeModal();setLevel(ix);});dialogButton('↺ Neuer Endlos-Lauf',()=>{closeModal();startEndless();},true);
+    if(e.online)resultRanking(e);
+    dialogButton('Zur Lernreise',()=>{closeModal();setLevel(ix);});dialogButton('↺ Neuer Endlos-Lauf',()=>{closeModal();chooseEndlessMode();},true);
   }
   function settleEndlessTime(){const e=endless;if(!e||e.ended)return false;const now=Date.now();
     if(e.running&&!e.transitioning)e.remaining=Math.max(0,e.remaining-Math.max(0,now-e.lastTs)/1000);e.lastTs=now;
@@ -585,6 +673,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   function registerEndlessHit(penalty=0){const e=endless;if(!e?.running||e.transitioning||e.ended)return;
     e.remaining+=10;e.completed++;e.transitioning=true;goalReached=true;drag=null;
+    queueOnlineProof(e);
     if(!teacherMode&&e.completed>endlessBest){endlessBest=e.completed;try{localStorage.setItem('lumen-endless-best-v1',endlessBest);}catch{}}
     timeFeedback(10-penalty,penalty?'✓ +10 s Bonus · −'+penalty+' s Feld':'✓ Level geschafft! +10 s');
     $('stageCard').classList.add('showSuccess');updateEndlessHud();const serial=stageSerial;
@@ -597,10 +686,10 @@ window.addEventListener('DOMContentLoaded', () => {
     goalReached=scene.lit;if(goalReached)registerEndlessHit(penalty);else if(penalty)timeFeedback(-penalty,'−'+penalty+' s · Zeitfeld getroffen');
     updateEndlessHud();
   }
-  function startEndless(){clearFlowTimers();endless={round:1,completed:0,remaining:60,running:true,ended:false,transitioning:false,lastTs:Date.now(),level:null};
-    $('timeDelta').textContent='+10 s pro Level';loadEndlessLevel();
+  function startEndless(online=null){clearFlowTimers();endless={round:1,completed:0,remaining:ENDLESS_START_SECONDS,running:true,ended:false,transitioning:false,lastTs:Date.now(),level:null,online};
+    loadEndlessLevel();showCountdownStart();
   }
-  function loadEndlessLevel(){clearFlowTimers(true);stageSerial++;bossState=null;endless.level=generateEndlessLevel(endless.round);endless.lastTs=Date.now();prepareLevel(endless.level);
+  function loadEndlessLevel(){clearFlowTimers(true);stageSerial++;bossState=null;endless.level=generateEndlessLevel(endless.round,endless.online?endlessRandom(endless.online.seed,endless.round):Math.random);endless.lastTs=Date.now();prepareLevel(endless.level);
     if(endless.running)endlessTickTimer=setInterval(tickEndless,50);updateEndlessHud();
   }
   function updateBossHud(){const l=currentLevel(),b=bossState;if(!l?.boss||!b)return;
@@ -667,7 +756,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Jeder gültige Treffer startet die Frage selbstständig; Pointer-up ist dafür nicht erforderlich.
     if(goalReached)scheduleQuestion();}
   function clearFlowTimers(keepTimeFeedback=false){clearTimeout(questionTimer);clearTimeout(nextTimer);clearTimeout(unlockTimer);clearTimeout(hintTimer);stopBossClock();stopEndlessClock();questionTimer=null;nextTimer=null;unlockTimer=null;hintTimer=null;$('continueBtn').hidden=true;
-    if(!keepTimeFeedback){clearTimeout(timeChangeTimer);timeChangeTimer=null;$('endlessHud').classList.remove('timeGain','timeLoss');$('timeDelta').classList.remove('loss');}}
+    if(!keepTimeFeedback){clearTimeout(timeChangeTimer);timeChangeTimer=null;$('endlessHud').classList.remove('timeGain','timeLoss','timerStarting');$('timeDelta').classList.remove('loss','timerNotice');}}
   function showBlendeUnlocked(){if(unlockShown)return;unlockShown=true;try{localStorage.setItem('lumen-blende-unlock-v1','1');}catch{}const toast=$('unlockToast');toast.classList.remove('hidden');unlockTimer=setTimeout(()=>{toast.classList.add('hidden');unlockTimer=null;},3200);}
   function setLevel(i){if(!canOpen(i))return;clearFlowTimers();endless=null;stageSerial++;ix=i;const l=levels[i];
     bossState=l.boss?{step:0,remaining:l.boss.duration,practice:practicePreference,running:false,started:false,finished:false,failed:false,lastTs:0,moveStart:0,moveUntil:0,moveFrom:null,transitionPending:false,flashUntil:0,pausedAt:0}:null;
@@ -677,7 +766,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $('bossHud').hidden=!l.boss;$('bossAction').hidden=!l.boss;$('bossMode').hidden=!l.boss;
     $('endlessHud').hidden=!endless;$('endlessAction').hidden=!endless;$('campaignBtn').setAttribute('aria-pressed',String(!endless));$('endlessBtn').setAttribute('aria-pressed',String(!!endless));$('endlessBtn').disabled=!!endless;
     $('chapterList').parentElement.hidden=!!endless;
-    $('resetBtn').setAttribute('aria-label',endless?'Endlos-Lauf mit 60 Sekunden neu starten':'Level neu starten');$('resetBtn').title=endless?'Neuer Endlos-Lauf · Punktestand zurücksetzen':'Level neu starten';
+    $('resetBtn').setAttribute('aria-label',endless?'Endlos-Lauf mit '+ENDLESS_START_SECONDS+' Sekunden neu starten':'Level neu starten');$('resetBtn').title=endless?'Neuer Endlos-Lauf · Punktestand zurücksetzen':'Level neu starten';
     $('targetProgress').hidden=!!l.boss||!Array.isArray(l.goal)&&!(l.goal?.needed>1);$('continueBtn').hidden=true;
     $('stageCard').classList.toggle('bossStage',!!l.boss);
     $('stageCard').classList.toggle('endlessStage',!!endless);
@@ -690,8 +779,8 @@ window.addEventListener('DOMContentLoaded', () => {
   function openQueuedQuestion(){if(!goalReached||drag||modalOpen)return;clearTimeout(questionTimer);questionTimer=null;$('continueBtn').hidden=true;showQuestion();}
   function scheduleQuestion(){if(endless||!goalReached||drag||modalOpen||questionTimer)return;const serial=stageSerial;$('stageCard').classList.add('showSuccess');$('continueBtn').hidden=false;
     questionTimer=setTimeout(()=>{questionTimer=null;if(serial!==stageSerial||!goalReached||modalOpen)return;openQueuedQuestion();},QUESTION_DELAY_MS);}
-  function modalShow(icon,eyebrow,title,description){if(endless?.running)pauseEndless();lastFocused=document.activeElement;modalOpen=true;welcomeOpen=false;$('dialogTitle').closest('.dialog').classList.remove('welcomeDialog','scoreDialog');$('dialogIcon').textContent=icon;$('dialogEyebrow').textContent=eyebrow;$('dialogTitle').textContent=title;$('dialogText').textContent=description;$('dialogContent').innerHTML='';$('dialogFeedback').textContent='';$('dialogFeedback').classList.remove('good','bad');$('dialogActions').innerHTML='';document.querySelector('.shell').inert=true;$('modal').hidden=false;$('dialogTitle').tabIndex=-1;$('dialogTitle').focus();}
-  function closeModal(){modalOpen=false;welcomeOpen=false;$('modal').hidden=true;document.querySelector('.shell').inert=false;lastFocused?.focus?.();}
+  function modalShow(icon,eyebrow,title,description){modalSerial++;if(endless?.running)pauseEndless();lastFocused=document.activeElement;modalOpen=true;welcomeOpen=false;$('dialogTitle').closest('.dialog').classList.remove('welcomeDialog','scoreDialog');$('dialogIcon').textContent=icon;$('dialogEyebrow').textContent=eyebrow;$('dialogTitle').textContent=title;$('dialogText').textContent=description;$('dialogContent').innerHTML='';$('dialogFeedback').textContent='';$('dialogFeedback').classList.remove('good','bad');$('dialogActions').innerHTML='';document.querySelector('.shell').inert=true;$('modal').hidden=false;$('dialogTitle').tabIndex=-1;$('dialogTitle').focus();}
+  function closeModal(){modalSerial++;modalOpen=false;welcomeOpen=false;$('modal').hidden=true;document.querySelector('.shell').inert=false;lastFocused?.focus?.();}
   function dialogButton(name,fn,primary=false){const b=document.createElement('button');b.className='btn'+(primary?' primary':'');b.type='button';b.textContent=name;b.addEventListener('click',fn);$('dialogActions').append(b);return b;}
   function showWelcome(){modalShow('✦','WILLKOMMEN BEI LUMEN','Bring das Licht ins Ziel!','Triff mit dem Strahl der Lichtquelle die leuchtenden Zielscheiben. Dafür lenkst du das Licht mit den Bauteilen auf die Ziele.');welcomeOpen=true;
     $('dialogTitle').closest('.dialog').classList.add('welcomeDialog');
@@ -699,8 +788,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const tip=document.createElement('p');tip.className='welcomeTip';tip.textContent='Unser Tipp: Spiele zuerst die normalen Level und probiere danach den Endlos-Modus.';$('dialogContent').append(controls,tip);
     const campaign=dialogButton('',()=>{closeModal();setLevel(0);},true);campaign.id='welcomeCampaign';campaign.classList.add('modeChoice');
     campaign.innerHTML='<span class="choiceLabel">Zum Einstieg empfohlen</span><strong>Normale Level →</strong><small>Entdecke die Lichtwege Schritt für Schritt.</small>';
-    const infinite=dialogButton('',()=>{closeModal();startEndless();});infinite.id='welcomeEndless';infinite.classList.add('modeChoice');
-    infinite.innerHTML='<span class="choiceLabel">Für Geübte</span><strong>∞ Endlos-Modus</strong><small>Zufällige Level gegen die Uhr · 100 Punkte pro Level.</small>';
+    const infinite=dialogButton('',()=>{closeModal();chooseEndlessMode();});infinite.id='welcomeEndless';infinite.classList.add('modeChoice');
+    infinite.innerHTML='<span class="choiceLabel">Für Geübte</span><strong>∞ Endlos-Modus</strong><small>⏱ '+ENDLESS_START_SECONDS+' Sekunden gegen die Uhr · 100 Punkte pro Level.</small>';
   }
   // Kompakte SHA-256-Prüfung ohne externe Bibliothek; funktioniert auch offline im Dateimodus.
   function sha256hex(value){
@@ -747,9 +836,9 @@ window.addEventListener('DOMContentLoaded', () => {
       if(!canOpen(ix))setLevel(Math.min(accessibleMax(),levels.length-1));else chapterView();},true);
   }
   function showRules(){if(bossState?.running)pauseBoss();modalShow('◈','SO SPIELST DU','Licht ins Ziel!','');
-    const ul=document.createElement('ol');ul.className='rulesList';for(const t of ['Bauteil antippen und am Griff drehen. Mit ⇄ (oder Taste N) zum nächsten Bauteil wechseln.','Spiegel mit ±5° grob und ±1° fein drehen.','„∠ Winkel“ blendet das Lot und die Winkel am Auftreffpunkt ein. Alle Winkel werden zwischen Strahl und Lot gemessen – nicht zur Oberfläche. Gelb: Einfall; Grün: Reflexion oder Brechung.','Bei Linsen zeigt das idealisierte Modell die Brennweite und den Brennpunkt, aber keine Grenzflächenwinkel.','Linsen durch Ziehen verschieben. Brennweiten in LE (Längeneinheiten des Spielfeldrasters); bei verstellbaren Linsen mit ±5 und ±20 verändern. Das F zeigt den Brennpunkt.','Blende antippen: mit + und − bis zu drei Spalte öffnen.','Bei mehreren Sensoren müssen alle gleichzeitig leuchten.','Tipps verschwinden nach etwa 6 Sekunden.','Im Lichtleiter wird der Strahl an den Grenzen zur Luft totalreflektiert.','Nach jedem Themenbereich wartet ein rot-pinker Bosskampf.','Bosskämpfe starten automatisch. Ziel und Sperre wechseln nach einem Treffer; während des Zielwechsels pausiert die Uhr.','Mit Pause hältst du den Bosskampf an. Zum Wechsel zwischen ⏱ Zeit und ∞ Üben zuerst pausieren; der Kampf beginnt dann neu.','∞ Endlos startet sofort mit 60 Sekunden. Jeder Treffer bringt +10 Sekunden Restzeit und automatisch ein neues zufälliges Level. Beim Levelwechsel pausiert die Uhr. Jedes geschaffte Level zählt 100 Punkte; bei Zeitablauf erhältst du deine Gesamtwertung.', 'Ab Endlos-Level 5 erscheinen rosa Zeitfelder: Ein Lichttreffer kostet einmalig 5 Sekunden pro Feld. Der Lösungsweg ist frei davon.', 'Pause, Anleitung und Tipps halten die Endlos-Uhr an. Mit Weiter spielst du weiter. ↺ beginnt einen neuen Lauf mit 60 Sekunden und 0 geschafften Leveln.', 'Treffer → nach kurzer Beobachtungszeit Kontrollfrage oder direkt „Weiter zur Frage“ → nächstes Level.']){const li=document.createElement('li');li.textContent=t;ul.append(li);}$('dialogContent').append(ul);dialogButton('Verstanden',closeModal,true);}
+    const ul=document.createElement('ol');ul.className='rulesList';for(const t of ['Bauteil antippen und am Griff drehen. Mit ⇄ (oder Taste N) zum nächsten Bauteil wechseln.','Spiegel mit ±5° grob und ±1° fein drehen.','„∠ Winkel“ blendet das Lot und die Winkel am Auftreffpunkt ein. Alle Winkel werden zwischen Strahl und Lot gemessen – nicht zur Oberfläche. Gelb: Einfall; Grün: Reflexion oder Brechung.','Bei Linsen zeigt das idealisierte Modell die Brennweite und den Brennpunkt, aber keine Grenzflächenwinkel.','Linsen durch Ziehen verschieben. Brennweiten in LE (Längeneinheiten des Spielfeldrasters); bei verstellbaren Linsen mit ±5 und ±20 verändern. Das F zeigt den Brennpunkt.','Blende antippen: mit + und − bis zu drei Spalte öffnen.','Bei mehreren Sensoren müssen alle gleichzeitig leuchten.','Tipps verschwinden nach etwa 6 Sekunden.','Im Lichtleiter wird der Strahl an den Grenzen zur Luft totalreflektiert.','Nach jedem Themenbereich wartet ein rot-pinker Bosskampf.','Bosskämpfe starten automatisch. Ziel und Sperre wechseln nach einem Treffer; während des Zielwechsels pausiert die Uhr.','Mit Pause hältst du den Bosskampf an. Zum Wechsel zwischen ⏱ Zeit und ∞ Üben zuerst pausieren; der Kampf beginnt dann neu.','∞ Endlos startet sofort mit '+ENDLESS_START_SECONDS+' Sekunden. Jeder Treffer bringt +10 Sekunden Restzeit und automatisch ein neues zufälliges Level. Beim Levelwechsel pausiert die Uhr. Jedes geschaffte Level zählt 100 Punkte; bei Zeitablauf erhältst du deine Gesamtwertung.', 'Ab Endlos-Level 5 erscheinen rosa Zeitfelder: Ein Lichttreffer kostet einmalig 5 Sekunden pro Feld. Der Lösungsweg ist frei davon.', 'Pause, Anleitung und Tipps halten die Endlos-Uhr an. Mit Weiter spielst du weiter. ↺ beginnt einen neuen Lauf mit '+ENDLESS_START_SECONDS+' Sekunden und 0 geschafften Leveln.', 'Treffer → nach kurzer Beobachtungszeit Kontrollfrage oder direkt „Weiter zur Frage“ → nächstes Level.']){const li=document.createElement('li');li.textContent=t;ul.append(li);}$('dialogContent').append(ul);dialogButton('Verstanden',closeModal,true);}
   function showVictory(){if(teacherMode){modalShow('🔓','LEHRERMODUS','Testlauf abgeschlossen','Der Testlauf hat keine Level als gelöst gespeichert.');dialogButton('Zurück zu Level 1',()=>{closeModal();setLevel(0);},true);return;}
-    modalShow('🏆','ALLE LEVEL GELÖST','Lichtprofi!','Du hast Reflexion, Brechung und Linsen mit allen drei Bosskämpfen gemeistert.');dialogButton('Erneut spielen',()=>{closeModal();setLevel(0);});dialogButton('∞ Endlos spielen',()=>{closeModal();startEndless();},true);}
+    modalShow('🏆','ALLE LEVEL GELÖST','Lichtprofi!','Du hast Reflexion, Brechung und Linsen mit allen drei Bosskämpfen gemeistert.');dialogButton('Erneut spielen',()=>{closeModal();setLevel(0);});dialogButton('∞ Endlos spielen',()=>{closeModal();chooseEndlessMode();},true);}
   function showQuestion(){if(!goalReached)return;$('continueBtn').hidden=true;const l=currentLevel(),q=l.question;
     const result=l.boss&&bossState?.result!==null?(bossState?.newRecord?'★ Neuer Rekord · ':'')+bossState.result.toFixed(1).replace('.',',')+' Sekunden':l.boss?'∞ Übungsmodus':'';
     modalShow('⚡','TREFFER · LEVEL '+(ix+1),'Kurze Kontrollfrage',result);const p=document.createElement('div');p.className='quest';p.textContent=q[0];$('dialogContent').append(p);let finished=false;
@@ -855,8 +944,8 @@ window.addEventListener('DOMContentLoaded', () => {
     updateStage();draw();}
   function pointerUp(e){if(drag){drag=null;updateStage();draw();scheduleQuestion();}}
   function transformSelected(mode){if(controlsBlocked())return;const o=selectedObject();if(!o)return;acknowledgeControls();if(o.type==='aperture'&&(mode==='left'||mode==='right'))o.slots=clamp(o.slots+(mode==='right'?1:-1),1,3);else{if(o.canFocus){const delta={left:-20,right:20,fineLeft:-5,fineRight:5}[mode]||0;o.f=clamp(o.f+delta,o.fMin,o.fMax);}else if(isRotatable(o)){if(mode==='left')o.a-=5;if(mode==='right')o.a+=5;if(mode==='fineLeft')o.a-=1;if(mode==='fineRight')o.a+=1;}if(mode==='up'&&isMovable(o))o.y=clamp(o.y-7,75,H-75);if(mode==='down'&&isMovable(o))o.y=clamp(o.y+7,75,H-75);}updateStage();draw();scheduleQuestion();}
-  $('campaignBtn').addEventListener('click',()=>{if(endless)setLevel(ix);});$('endlessBtn').addEventListener('click',startEndless);$('endlessAction').addEventListener('click',endlessAction);
-  $('rulesBtn').addEventListener('click',showRules);$('teacherBtn').addEventListener('click',teacherAction);$('resetBtn').addEventListener('click',()=>endless?startEndless():setLevel(ix));$('hintBtn').addEventListener('click',showHint);$('bossAction').addEventListener('click',bossAction);$('bossMode').addEventListener('click',changeBossMode);
+  $('campaignBtn').addEventListener('click',()=>{if(endless)setLevel(ix);});$('endlessBtn').addEventListener('click',chooseEndlessMode);$('endlessAction').addEventListener('click',endlessAction);$('leaderboardBtn').addEventListener('click',showLeaderboard);
+  $('rulesBtn').addEventListener('click',showRules);$('teacherBtn').addEventListener('click',teacherAction);$('resetBtn').addEventListener('click',()=>endless?chooseEndlessMode():setLevel(ix));$('hintBtn').addEventListener('click',showHint);$('bossAction').addEventListener('click',bossAction);$('bossMode').addEventListener('click',changeBossMode);
   $('rotateLeft').addEventListener('click',()=>transformSelected('left'));$('rotateRight').addEventListener('click',()=>transformSelected('right'));$('rotateFineLeft').addEventListener('click',()=>transformSelected('fineLeft'));$('rotateFineRight').addEventListener('click',()=>transformSelected('fineRight'));$('moveUp').addEventListener('click',()=>transformSelected('up'));$('moveDown').addEventListener('click',()=>transformSelected('down'));
   $('selectNext').addEventListener('click',nextSelection);$('continueBtn').addEventListener('click',openQueuedQuestion);
   $('angleBtn').addEventListener('click',()=>{$('angleBtn').classList.remove('discoverAngle');showAngles=!showAngles;try{localStorage.setItem('lumen-optik-angle-mode-v1',showAngles?'1':'0');}catch{}syncAngleMode();draw();});
@@ -875,7 +964,7 @@ window.addEventListener('DOMContentLoaded', () => {
   syncAngleMode();syncTeacherUI();
   setLevel(0);showWelcome();requestAnimationFrame(resize);
   // Read-only test hook for automated validation, not used by the student UI.
-  Object.defineProperty(window,'__lumenPhysics',{value:Object.freeze({levels,traceScene,autoTarget,clone,generateEndlessLevel,solutionScene,sceneTouchesBox,getState:()=>clone({level:currentLevel(),items,src,selected,endless,bossState})}),configurable:false});
+  Object.defineProperty(window,'__lumenPhysics',{value:Object.freeze({levels,traceScene,autoTarget,clone,generateEndlessLevel,endlessRandom,solutionScene,sceneTouchesBox,getState:()=>clone({level:currentLevel(),items,src,selected,endless,bossState})}),configurable:false});
 });
 </script>
 </body>
