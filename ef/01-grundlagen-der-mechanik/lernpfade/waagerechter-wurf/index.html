@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102039">
+<title>Waagerechter und schräger Wurf – Bewegung in Komponenten</title>
+<meta name="description" content="Lernpfad für Physik in der EF: Bewegungen überlagern, Kräfte untersuchen und den horizontalen Wurf mit dem freien Fall vergleichen. Mit Simulationen und einer Vertiefung zum schrägen Wurf in GeoGebra.">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="0">
+<header class="top">
+  <div class="wrap">
+    <a class="collection-back" href="../../../../index.html#/ef/01-grundlagen-der-mechanik/lernpfade">← EF · Grundlagen der Mechanik · Lernpfade</a>
+    <div class="topline">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>Physik · EF · Lernpfad</div>
+      <div class="duration"><span data-tex="\approx 35\text{–}40\,\mathrm{min}"></span></div>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Vom Ballwurf<br class="hero-break"> zur <span>Flugbahn</span></h1>
+        <p class="lead">Beobachten Sie einen Ballwurf und erklären Sie seine Flugbahn mit zwei Teilbewegungen und den Kräften am Ball.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="ball-art"></div></div>
+    </div>
+  </div>
+</header>
+  <div class="progress-card wrap" role="group" aria-label="Lernpfad-Fortschritt">
+    <div class="progress-head"><span id="progressLabel" data-tex="\text{Seite }1\text{ von }4"></span><span id="progressTime" data-tex="\text{ca. }11\,\mathrm{min}"></span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <nav class="step-nav" aria-label="Lernpfad-Seiten">
+      <button class="step-tab" aria-current="page" data-go="0"><span class="step-no" data-tex="1"></span> Beobachten und zerlegen</button>
+      <button class="step-tab" data-go="1"><span class="step-no" data-tex="2"></span> Kräfte</button>
+      <button class="step-tab" data-go="2"><span class="step-no" data-tex="3"></span> Teilbewegungen</button>
+      <button class="step-tab" data-go="3"><span class="step-no" data-tex="4"></span> Flugbahn</button>
+    </nav>
+  </div>
+
+<main class="wrap">
+  <section class="stage active" data-stage="0" aria-labelledby="stage1-title">
+    <div class="card">
+      <p class="kicker"><span class="page-index" data-tex="\text{Seite }1/4"></span><span class="page-name">Beobachten und zerlegen</span><span class="page-time" data-tex="11\,\mathrm{min}"></span></p>
+      <h2 id="stage1-title">Welche Bahn nimmt der Ball?</h2>
+      <div class="activity-grid">
+        <div class="callout"><h3>Werfen und beobachten</h3><p>Werfen Sie sich in Dreiergruppen einen weichen Ball in einem sanften Bogen zu. Eine Person beobachtet seitlich. Wechseln Sie die Rollen. Vergleichen Sie einen flachen und einen steileren Wurf.</p></div>
+        <div class="callout"><h3>Skizzieren und vermuten</h3><p>Skizzieren Sie die Flugbahn zwischen Loslassen und Fangen. Markieren Sie mehrere Ballpositionen. An welche Kurvenform erinnert Sie die Bahn? Begründen Sie Ihre Vermutung mit einer Beobachtung.</p></div>
+      </div>
+      <div class="note-box">
+        <label for="observation">Unsere Beobachtung und Vermutung</label>
+        <textarea class="response-field" id="observation" rows="2" placeholder="Wir beobachten … Die Bahn könnte … sein, weil …"></textarea>
+      </div>
+    </div>
+    <div class="card">
+      <p class="kicker source-note" data-tex="\text{Kapitel }1.9\text{ · S. }28\text{–}29"></p>
+      <h2>Bewegungen in zwei Dimensionen</h2>
+      <p>Eine Person steht auf einem breiten Laufband oder geht quer zur Laufrichtung des Bands. Beobachten Sie sie aus Sicht einer Person, die neben dem Band steht. Das Band bewegt sich in <span data-tex="x"></span>-Richtung. Die Person kann gleichzeitig in <span data-tex="y"></span>-Richtung gehen. Beide Richtungen liegen hier in der Ebene des Bands.</p>
+      <div class="callout"><strong>Ihr Auftrag.</strong> Stellen Sie zuerst eine der beiden Geschwindigkeiten auf null und lassen Sie die Bewegung ablaufen. Wiederholen Sie es für die andere Richtung. Schalten Sie dann beide Bewegungen ein. Vergleichen Sie die Teilstrecken und den Zielpunkt für denselben Zeitraum.</div>
+      <div class="sim-studio">
+        <div class="figure-card">
+          <div class="plot-frame"><svg id="beltPlot" viewBox="0 0 540 270" role="img" aria-label="Draufsicht auf das Laufband mit Ortsänderung und waagerechter und quer gerichteter Komponente"></svg><span class="axis-label axis-right" data-tex="x"></span><span class="axis-label axis-top" data-tex="y"></span></div>
+          <div class="legend"><span class="legend-item"><i class="line-swatch line-x"></i>Bandrichtung</span><span class="legend-item"><i class="line-swatch line-y"></i>Querrichtung</span><span class="legend-item"><i class="line-swatch line-path"></i>Gesamte Ortsänderung</span></div>
+          <div class="readouts triple"><div class="readout readout-x"><span>Bandrichtung</span><output class="math-value" id="beltDX"></output></div><div class="readout readout-y"><span>Querrichtung</span><output class="math-value" id="beltDY"></output></div><div class="readout"><span>Abstand vom Startpunkt</span><output class="math-value" id="beltD"></output></div></div>
+        </div>
+        <div class="sim-controls">
+          <div class="control-panel">
+            <div class="control control-x"><label for="beltX">Bandgeschwindigkeit <span data-tex="v_x"></span></label><input type="range" id="beltX" min="0" max="5" step=".5" value="4"><output class="math-output" id="beltXOut" for="beltX"></output></div>
+            <div class="control control-y"><label for="beltY">Geschwindigkeit quer zum Band <span data-tex="v_y"></span></label><input type="range" id="beltY" min="0" max="4" step=".5" value="3"><output class="math-output" id="beltYOut" for="beltY"></output></div>
+            <div class="control"><label for="beltT">Gemeinsamer Zeitraum <span data-tex="\Delta t"></span></label><input type="range" id="beltT" min="0" max="2" step=".02" value="1"><output class="math-output" id="beltTOut" for="beltT"></output></div>
+          </div>
+          <div class="inline-actions"><button class="primary-button" id="beltPlay" type="button">Abspielen</button><button class="secondary-button" id="beltReset" type="button">Buchbeispiel einstellen</button><label class="toggle"><input type="checkbox" id="beltParts" checked> Komponenten anzeigen</label></div>
+        </div>
+      </div>
+      <div class="note-box">
+        <label for="beltConclusion">Was bedeuten die beiden Teilstrecken für den gemeinsamen Zielpunkt?</label>
+        <textarea class="response-field" id="beltConclusion" rows="2" placeholder="Im selben Zeitraum …"></textarea>
+      </div>
+      <details class="reveal"><summary>Mit dem Buchbeispiel abgleichen</summary><p>Die Komponenten geben an, wie weit sich die Person entlang der jeweiligen Achse bewegt. Im Buchbeispiel führen <span data-tex="4\,\mathrm{m}"></span> in Bandrichtung und <span data-tex="3\,\mathrm{m}"></span> quer zum Band gemeinsam zu <span data-tex="P(4\mid 3)"></span>. Der Abstand zum Start beträgt <span data-tex="5\,\mathrm{m}"></span>.</p><div class="math-block" data-tex="v_x=\frac{\Delta x}{\Delta t},\quad v_y=\frac{\Delta y}{\Delta t},\quad \Delta s=\sqrt{(\Delta x)^2+(\Delta y)^2}" data-display="true"></div><p>Beim Wurf steht <span data-tex="y"></span> für die senkrechte Richtung im Raum. Auch dort beschreiben zwei Koordinaten zur selben Zeit einen gemeinsamen Ort.</p></details>
+    </div>
+  </section>
+
+  <section class="stage" data-stage="1" aria-labelledby="stage2-title">
+    <div class="card">
+      <p class="kicker"><span class="page-index" data-tex="\text{Seite }2/4"></span><span class="page-name">Kräfte untersuchen</span><span class="page-time" data-tex="8\,\mathrm{min}"></span></p>
+      <h2 id="stage2-title">Was wirkt auf den Ball im Flug?</h2>
+      <p>Betrachten Sie Ihren Ballwurf nach dem Loslassen und vor dem Fangen. Die positive <span data-tex="x"></span>-Richtung zeigt zum Fangpartner, die positive <span data-tex="y"></span>-Richtung nach oben. Im Modell vernachlässigen wir den Luftwiderstand.</p>
+      <div class="callout"><strong>Zuerst vorhersagen.</strong> Zeichnen Sie für Aufstieg, höchsten Punkt und Abstieg jeweils die Kräfte am Ball ein. Zeichnen Sie zusätzlich die momentane Geschwindigkeit in einer anderen Farbe ein. Vergleichen Sie Ihre Skizzen in der Gruppe.</div>
+      <div class="sim-studio force-studio">
+        <div class="figure-card">
+          <div class="plot-frame"><svg id="forcePlot" viewBox="0 0 540 270" role="img" aria-label="Ball in ausgewählter Flugphase"></svg><span class="axis-label axis-right" data-tex="x"></span><span class="axis-label axis-top" data-tex="y"></span></div>
+          <div class="legend hidden" id="forceLegend"><span class="legend-item"><i class="line-swatch line-force"></i>Gewichtskraft <span data-tex="\vec F_{\mathrm G}"></span></span><span class="legend-item"><i class="line-swatch line-v"></i>Geschwindigkeit <span data-tex="\vec v"></span></span></div>
+          <p class="figure-caption hidden" id="forceCaption">Die Pfeillängen werden jeweils innerhalb einer Größe verglichen. Kraft und Geschwindigkeit haben unterschiedliche Einheiten.</p>
+        </div>
+        <div class="sim-controls">
+          <div class="inline-actions" id="phaseButtons" role="group" aria-label="Flugphase auswählen">
+            <button class="secondary-button" type="button" data-phase="rise" aria-pressed="true">Aufstieg</button>
+            <button class="secondary-button" type="button" data-phase="peak" aria-pressed="false">Höchster Punkt</button>
+            <button class="secondary-button" type="button" data-phase="fall" aria-pressed="false">Abstieg</button>
+          </div>
+          <div class="inline-actions"><button class="primary-button" type="button" id="forceReveal" aria-pressed="false">Modellpfeile zum Vergleich zeigen</button></div>
+        </div>
+      </div>
+      <div class="question">
+        <h3>Was gilt am höchsten Punkt?</h3>
+        <div class="options" data-check="force">
+          <button class="option-button" type="button" data-option="zero">Die Gewichtskraft ist dort null.</button>
+          <button class="option-button" type="button" data-option="down">Die Gewichtskraft zeigt nach unten, die Geschwindigkeit nach rechts.</button>
+          <button class="option-button" type="button" data-option="right">Eine Kraft nach rechts hält den Ball in Bewegung.</button>
+        </div>
+        <p class="feedback" id="forceFeedback" aria-live="polite"></p>
+      </div>
+      <details class="reveal"><summary>Kontaktphase und Flugphase vergleichen</summary><p>Solange die Hand den Ball beim Abwurf berührt, wirken die Kontaktkraft der Hand und die Gewichtskraft. Die Kontaktkraft endet beim Loslassen. Die Gewichtskraft wirkt während der gesamten freien Flugphase nach unten und behält in diesem Modell ihren Betrag.</p><div class="math-block" data-tex="F_x=0,\quad F_y=-mg\quad\Longrightarrow\quad a_x=0,\quad a_y=-g" data-display="true"></div><p>Die waagerechte Geschwindigkeit bleibt konstant. Die senkrechte Geschwindigkeit nimmt bei nach oben gewählter positiver Richtung stetig ab. Am höchsten Punkt ist <span data-tex="v_y=0"></span>, während <span data-tex="a_y=-g"></span> gilt.</p></details>
+    </div>
+  </section>
+
+  <section class="stage" data-stage="2" aria-labelledby="stage3-title">
+    <div class="card">
+      <p class="kicker"><span class="page-index" data-tex="\text{Seite }3/4"></span><span class="page-name">Teilbewegungen vergleichen</span><span class="page-time" data-tex="8\,\mathrm{min}"></span></p>
+      <h2 id="stage3-title">Waagerecht werfen und gleichzeitig fallen</h2>
+      <p class="source-note" data-tex="\text{Kapitel }1.10\text{ · S. }30\text{–}31"></p>
+      <p>Zwei Kugeln starten gleichzeitig auf gleicher Höhe. Kugel <span data-tex="A"></span> wird fallen gelassen. Kugel <span data-tex="B"></span> wird waagerecht geworfen. Welche trifft zuerst auf dem Boden auf? Notieren Sie Ihre Vermutung mit einer Begründung. Prüfen Sie nach dem Modellvergleich Ihre Antwort mit den Tasten.</p>
+      <div class="sim-studio">
+        <div class="figure-card">
+          <div class="plot-frame"><svg id="comparePlot" viewBox="0 0 540 270" role="img" aria-label="Frei fallende Kugel A und waagerecht geworfene Kugel B mit gemeinsamem Zeitpunkt"></svg></div>
+          <div class="legend"><span class="legend-item"><i class="dot dot-v0"></i>Kugel <span data-tex="A"></span>: freier Fall</span><span class="legend-item"><i class="dot dot-a"></i>Kugel <span data-tex="B"></span>: waagerechter Wurf</span></div>
+          <div class="readouts"><div class="readout"><span>Höhe über dem Boden, Kugel A</span><output class="math-value" id="compareHA"></output></div><div class="readout"><span>Höhe über dem Boden, Kugel B</span><output class="math-value" id="compareHB"></output></div></div>
+          <p class="figure-caption">Die Modellkugeln starten in <span data-tex="5\,\mathrm{m}"></span> Höhe. Es gilt näherungsweise <span data-tex="g=10\,\frac{\mathrm{m}}{\mathrm{s}^2}"></span>.</p>
+        </div>
+        <div class="sim-controls">
+          <div class="control-panel">
+            <div class="control"><label for="compareTime">Gemeinsamer Zeitpunkt</label><input id="compareTime" type="range" min="0" max="1" step=".01" value="0"><output class="math-output" id="compareTimeOut"></output></div>
+            <div class="control"><label for="compareSpeed">Waagerechte Startgeschwindigkeit von <span data-tex="B"></span></label><input id="compareSpeed" type="range" min="1" max="5" step=".5" value="4"><output class="math-output" id="compareSpeedOut"></output></div>
+          </div>
+          <div class="inline-actions"><button class="primary-button" type="button" id="comparePlay">Abspielen</button><label class="toggle"><input type="checkbox" id="compareGuide"> Gemeinsame Höhe markieren</label></div>
+        </div>
+      </div>
+      <div class="callout"><strong>Prüfen Sie die Unabhängigkeit.</strong> Vergleichen Sie bei demselben Zeitpunkt einen langsamen und einen schnellen waagerechten Wurf. Welche Größe ändert sich? Welche bleibt gleich? Erklären Sie das mit den Kräften aus Lernseite <span data-tex="2"></span>.</div>
+      <div class="options" data-check="landing">
+        <button class="option-button" type="button" data-option="a">Kugel <span data-tex="A"></span></button>
+        <button class="option-button" type="button" data-option="b">Kugel <span data-tex="B"></span></button>
+        <button class="option-button" type="button" data-option="same">Beide gleichzeitig</button>
+      </div>
+      <p class="feedback" id="landingFeedback" aria-live="polite"></p>
+      <details class="reveal"><summary>Beobachtung mit den Bewegungsgesetzen verbinden</summary><p>Beide Kugeln starten mit <span data-tex="v_{0y}=0"></span> und haben dieselbe senkrechte Beschleunigung. Ihre Höhe und Fallzeit stimmen überein. Die waagerechte Anfangsgeschwindigkeit beeinflusst die Wurfweite von <span data-tex="B"></span>.</p><div class="math-block" data-tex="v_x=v_{0x},\quad v_y=-gt,\qquad x(t)=v_{0x}t,\quad y(t)=-\tfrac12gt^2" data-display="true"></div><p>Hier liegt der Koordinatenursprung am Abwurfpunkt von <span data-tex="B"></span>. Unterhalb dieses Punkts ist <span data-tex="y"></span> negativ. Die Höhe über dem Boden in der Simulation ist <span data-tex="h(t)=h_0+y(t)"></span>.</p></details>
+    </div>
+  </section>
+
+  <section class="stage" data-stage="3" aria-labelledby="stage4-title">
+    <div class="card">
+      <p class="kicker"><span class="page-index" data-tex="\text{Seite }4/4"></span><span class="page-name">Zur Flugbahn zurückkehren</span><span class="page-time" data-tex="9\,\mathrm{min}"></span></p>
+      <h2 id="stage4-title">Wie entsteht die Bahn Ihres Ballwurfs?</h2>
+      <p>Beim schrägen Wurf startet der Ball zusätzlich mit einer Geschwindigkeit nach oben. Vergleichen Sie beim Aufstieg, am höchsten Punkt und beim Abstieg die beiden Geschwindigkeitskomponenten. Nutzen Sie für beide denselben Zeitpunkt.</p>
+      <div class="control-panel" aria-label="Steuerung der Simulation">
+        <div class="control">
+          <label for="speedRange">Anfangsgeschwindigkeit</label>
+          <small><span data-tex="v_0"></span> in <span data-tex="\frac{\mathrm{m}}{\mathrm{s}}"></span></small>
+          <input id="speedRange" type="range" min="5" max="15" step="0.5" value="10" aria-label="Anfangsgeschwindigkeit">
+          <output class="math-output" id="speedOut" data-tex="10\,\frac{\mathrm{m}}{\mathrm{s}}"></output>
+        </div>
+        <div class="control">
+          <label for="angleRange">Abwurfwinkel</label>
+          <small><span data-tex="\alpha"></span> über der Waagerechten</small>
+          <input id="angleRange" type="range" min="15" max="75" step="1" value="30" aria-label="Abwurfwinkel in Grad">
+          <output class="math-output" id="angleOut" data-tex="30^{\circ}"></output>
+        </div>
+        <div class="control">
+          <label for="flightRange">Zeitpunkt im Flug</label>
+          <small>Schieben Sie den Punkt entlang der Bahn.</small>
+          <input id="flightRange" type="range" min="0" max="100" step="1" value="40" aria-label="Zeitpunkt im Flug">
+          <output class="math-output" id="flightTimeOut" data-tex="t=0{,}40\,\mathrm{s}"></output>
+        </div>
+      </div>
+      <div class="view-switch" role="group" aria-label="Darstellung auswählen">
+        <button type="button" aria-pressed="true" data-view="offline">Flugmodell</button>
+        <button type="button" aria-pressed="false" data-view="geogebra">GeoGebra-Modell</button>
+      </div>
+      <div class="model-view active" id="offlineView">
+        <div class="figure-card">
+          <div class="plot-frame trajectory-frame"><span class="axis-label axis-right" data-tex="x"></span><span class="axis-label axis-top" data-tex="y"></span><canvas id="trajectoryCanvas" width="900" height="500" role="img" aria-label="Flugbahn des schrägen Wurfs; am ausgewählten Zeitpunkt zerlegen ein blauer horizontaler und ein orangefarbener vertikaler Pfeil die Position in ihre x- und y-Komponenten."></canvas></div>
+          <div class="legend" aria-label="Legende der Flugbahndarstellung">
+            <span class="legend-item"><i class="line-swatch line-path"></i>Gesamtbahn</span>
+            <span class="legend-item"><i class="line-swatch line-x"></i>waagerechte Ortskomponente <span data-tex="x(t)"></span></span>
+            <span class="legend-item"><i class="line-swatch line-y"></i>senkrechte Ortskomponente <span data-tex="y(t)"></span></span>
+          </div>
+          <p class="figure-caption">Abwurf und Landung liegen in diesem Modell auf gleicher Höhe. Der blaue und der orange Pfeil zeigen am ausgewählten Zeitpunkt die Zerlegung der Ortsposition. Sie verlaufen entlang der beiden Bewegungsrichtungen.</p>
+        </div>
+        <div class="vector-grid">
+          <div class="figure-card">
+            <h3>Startgeschwindigkeit zerlegen</h3>
+            <canvas id="vectorCanvas" width="700" height="300" role="img" aria-label="Vektordreieck zur Zerlegung der Anfangsgeschwindigkeit"></canvas>
+            <div class="legend">
+              <span class="legend-item"><i class="dot dot-vx"></i> waagerecht: <span data-tex="v_{0x}"></span></span>
+              <span class="legend-item"><i class="dot dot-vy"></i> senkrecht: <span data-tex="v_{0y}"></span></span>
+              <span class="legend-item"><i class="dot dot-v0"></i>Anfangsgeschwindigkeit: <span data-tex="\vec v_0"></span></span>
+            </div>
+          </div>
+          <div class="figure-card">
+            <h3>Die Teilbewegungen zur selben Zeit</h3>
+            <p>Bewegen Sie den gemeinsamen Zeitregler. Beide Marker zeigen denselben Zeitpunkt <span data-tex="t"></span>.</p>
+            <div class="legend">
+              <span class="legend-item"><i class="line-swatch line-x"></i><span data-tex="x(t)"></span>: gleichförmige Bewegung</span>
+              <span class="legend-item"><i class="line-swatch line-y"></i><span data-tex="y(t)"></span>: senkrechter Wurf</span>
+            </div>
+            <div class="chart-labels"><span data-tex="x(t)"></span><span data-tex="y(t)"></span></div>
+            <canvas id="componentCanvas" width="900" height="360" role="img" aria-label="Zwei synchronisierte Orts-Zeit-Diagramme: x(t) verläuft linear und y(t) parabelförmig; die gestrichelten Zeitmarken zeigen denselben Zeitpunkt."></canvas>
+            <div class="chart-labels chart-times"><span data-tex="t"></span><span data-tex="t"></span></div>
+            <p class="figure-caption">In beiden Diagrammen ist die horizontale Achse die Zeit <span data-tex="t"></span> in <span data-tex="\mathrm{s}"></span>. Die vertikale Skala wird jeweils an die dargestellte Komponente angepasst; vergleichen Sie daher die Verläufe, nicht die Pfeilhöhen.</p>
+            <div class="readouts">
+              <div class="readout"><span>Waagerechte Bewegung</span><span class="math-value" id="xNow"></span></div>
+              <div class="readout"><span>Senkrechte Bewegung</span><span class="math-value" id="yNow"></span></div>
+              <div class="readout"><span>Geschwindigkeit in <span data-tex="x"></span>-Richtung</span><span class="math-value" id="vxNow"></span></div>
+              <div class="readout"><span>Geschwindigkeit in <span data-tex="y"></span>-Richtung</span><span class="math-value" id="vyNow"></span></div>
+              <div class="readout"><span>Anfangskomponente in <span data-tex="x"></span>-Richtung</span><span class="math-value" id="v0xNow"></span></div>
+              <div class="readout"><span>Anfangskomponente in <span data-tex="y"></span>-Richtung</span><span class="math-value" id="v0yNow"></span></div>
+              <div class="readout"><span>Reichweite bei gleicher Landhöhe</span><span class="math-value" id="rangeNow"></span></div>
+              <div class="readout"><span>Maximale Höhe</span><span class="math-value" id="hmaxNow"></span></div>
+            </div>
+          </div>
+        </div>
+        <details class="reveal">
+          <summary>Formeln zum Abgleich nach der Erkundung einblenden</summary>
+          <div class="math-card math-block" data-tex="v_{0x}=v_0\cos(\alpha)\qquad v_{0y}=v_0\sin(\alpha)" data-display="true"></div>
+          <div class="math-card math-block" data-tex="x(t)=v_{0x}t\qquad y(t)=v_{0y}t-\frac{1}{2}gt^2" data-display="true"></div>
+          <div class="callout">
+            Ohne Luftwiderstand gilt <span data-tex="a_x=0"></span> und <span data-tex="a_y=-g"></span>. Die waagerechte Teilbewegung ist gleichförmig. Die senkrechte Teilbewegung entspricht dem bekannten senkrechten Wurf mit <span data-tex="v_{0y}"></span>. Beide laufen gleichzeitig und mit derselben Zeit <span data-tex="t"></span> ab.
+          </div>
+        </details>
+      </div>
+      <div class="model-view" id="geogebraView">
+        <div class="ggbox">
+          <div id="ggbMount"></div>
+          <div class="gg-note" id="ggbStatus">Das GeoGebra-Applet lädt erst, wenn Sie diese Ansicht öffnen. Dafür wird eine Internetverbindung benötigt; die eigene Simulation funktioniert auch ohne Verbindung.</div>
+          <p class="gg-note"><a href="Schraeger_Wurf.ggb" download>GeoGebra-Modell herunterladen (.ggb)</a> – zum Öffnen in GeoGebra.</p>
+        </div>
+      </div>
+      <div class="question">
+        <h3>Prüfen Sie Ihre Vermutung vom Anfang</h3>
+        <blockquote class="callout hidden" id="initialHypothesis"></blockquote>
+        <p>Begründen Sie mit einem Diagramm, einer Skizze oder einer Gleichung, weshalb der Ball gleichzeitig nach vorn fliegt und seine Höhe erst zu- und dann abnimmt. Entscheiden Sie, welche Kurvenform Ihre Beobachtung am besten beschreibt.</p>
+        <div class="note-box">
+          <label for="ownConclusion">Unsere Erklärung der Flugbahn</label>
+          <textarea class="response-field" id="ownConclusion" rows="3" placeholder="Waagerecht … Senkrecht … Zusammen …"></textarea>
+        </div>
+        <details class="reveal" id="pathProof"><summary>Warum ist die Modellbahn eine Parabel?</summary><p>Waagerecht bewegt sich der Ball gleichförmig. Mit <span data-tex="v_{0x}\ne 0"></span> lässt sich deshalb jeder waagerechten Position genau eine Flugzeit zuordnen. Setzen Sie <span data-tex="t=\frac{x}{v_{0x}}"></span> in die senkrechte Bewegungsgleichung ein.</p><div class="math-block" data-tex="y(x)=\frac{v_{0y}}{v_{0x}}x-\frac{g}{2v_{0x}^{2}}x^{2}" data-display="true"></div><p>Der Koeffizient vor <span data-tex="x^2"></span> ist negativ. Im Modell ergibt sich eine nach unten geöffnete Parabel. Beim waagerechten Wurf fällt der lineare Term weg, weil <span data-tex="v_{0y}=0"></span>. Die reale Flugbahn kann durch Luftwiderstand abweichen.</p></details>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Vertiefung und eigene Fragen</h3>
+      <details class="reveal"><summary>Verschiedene Würfe mit gleicher Reichweite finden</summary><p>Halten Sie die Anfangsgeschwindigkeit gleich. Suchen Sie mit der Simulation zwei Würfe mit ungefähr gleicher Reichweite und unterschiedlichen maximalen Höhen. Begründen Sie Ihre Wahl mit den Komponenten.</p></details>
+      <p>Welche weitere Frage ergibt sich aus Ihrer Untersuchung? Nutzen Sie bei Bedarf den Satzanfang „Wie verändert sich …, wenn …?“</p>
+      <div class="note-box">
+        <label for="ownQuestion">Meine Anschlussfrage</label><textarea class="response-field" id="ownQuestion" rows="2"></textarea>
+      </div>
+    </div>
+  </section>
+  <div class="stage-footer">
+    <button class="secondary-button" id="backButton" disabled>Vorherige Seite</button>
+    <span id="footerStep" data-tex="\text{Seite }1\text{ von }4"></span>
+    <button class="primary-button" id="nextButton">Nächste Seite</button>
+  </div>
+</main>
+<footer class="page-foot wrap">
+  Modellannahmen: Punktförmiger Körper, konstante Erdbeschleunigung und vernachlässigbarer Luftwiderstand im Flug. Die Modelle verwenden <span data-tex="g=10\,\frac{\mathrm{m}}{\mathrm{s}^{2}}"></span> als Näherung.
+</footer>
+<script>
+(function(){
+"use strict";
+const G=10;
+const $=function(id){return document.getElementById(id);};
+const all=function(sel,root){return Array.prototype.slice.call((root||document).querySelectorAll(sel));};
+const stages=all(".stage");
+const stepTabs=all(".step-tab");
+let currentStage=0;
+let currentView="offline";
+let ggbApplet=null;
+let ggbLoading=false;
+let ggbLoaded=false;
+const ggbB64="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";
+const mathOptions={throwOnError:true,strict:"error",trust:false,output:"htmlAndMathml"};
+function renderMath(root){
+  if(!window.katex)return;
+  all("[data-tex]",root||document).forEach(function(node){
+    try{katex.render(node.dataset.tex,node,Object.assign({},mathOptions,{displayMode:node.dataset.display==="true"}));}
+    catch(error){node.textContent="Formel konnte nicht dargestellt werden.";node.classList.add("math-error");}
+  });
+}
+function setTex(node,tex,display){
+  if(!node)return;
+  node.dataset.tex=tex;
+  node.dataset.display=display?"true":"false";
+  if(window.katex){
+    try{katex.render(tex,node,Object.assign({},mathOptions,{displayMode:!!display}));}
+    catch(error){node.textContent="Formel konnte nicht dargestellt werden.";node.classList.add("math-error");}
+  }
+}
+function num(n,d){
+  const p=Math.pow(10,d===undefined?2:d);
+  const v=Math.round((Number(n)+Number.EPSILON)*p)/p;
+  return v.toLocaleString("de-DE",{minimumFractionDigits:0,maximumFractionDigits:d===undefined?2:d}).replace(",", "{,}");
+}
+
+const pageMinutes=[11,8,8,9];
+function showStage(index){
+  stopPlayback();
+  currentStage=Math.max(0,Math.min(stages.length-1,index));
+  document.body.dataset.page=String(currentStage);
+  for(const [i,stage] of stages.entries())stage.classList.toggle("active",i===currentStage);
+  for(const [i,tab] of stepTabs.entries()){
+    if(i===currentStage)tab.setAttribute("aria-current","page");
+    else tab.removeAttribute("aria-current");
+  }
+  const pageTex="\\text{Seite }"+(currentStage+1)+"\\text{ von }"+stages.length;
+  setTex($("progressLabel"),pageTex);
+  setTex($("footerStep"),pageTex);
+  setTex($("progressTime"),pageMinutes[currentStage]+"\\,\\mathrm{min}");
+  $("progressFill").style.width=((currentStage+1)/stages.length*100)+"%";
+  $("backButton").disabled=currentStage===0;
+  $("nextButton").textContent=currentStage===stages.length-1?"Zur Sicherung":"Nächste Seite";
+  if(currentStage===3){
+    const note=$("observation").value.trim();
+    $("initialHypothesis").textContent=note;
+    $("initialHypothesis").classList.toggle("hidden",!note);
+    drawAll();
+  }
+  const heading=$(stages[currentStage].getAttribute("aria-labelledby"));
+  heading.setAttribute("tabindex","-1");
+  heading.focus({preventScroll:true});
+  window.scrollTo({top:0,behavior:"instant"});
+}
+stepTabs.forEach(button=>button.addEventListener("click",()=>showStage(Number(button.dataset.go))));
+$("backButton").addEventListener("click",()=>showStage(currentStage-1));
+$("nextButton").addEventListener("click",()=>{
+  if(currentStage<stages.length-1)showStage(currentStage+1);
+  else $("ownConclusion").focus();
+});
+function arrow(ctx,x1,y1,x2,y2,color,width){
+  const a=Math.atan2(y2-y1,x2-x1),head=10;
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=width||3;ctx.lineCap="round";
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-head*Math.cos(a-.45),y2-head*Math.sin(a-.45));ctx.lineTo(x2-head*Math.cos(a+.45),y2-head*Math.sin(a+.45));ctx.closePath();ctx.fill();
+}
+function canvasSize(canvas){
+  const w=canvas.clientWidth||Number(canvas.dataset.designWidth);
+  const h=w*Number(canvas.dataset.aspect);
+  const dpr=Math.max(1,window.devicePixelRatio||1);
+  if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}
+  const c=canvas.getContext("2d");c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
+  return {ctx:c,w:w,h:h};
+}
+function getState(){
+  const v0=Number($("speedRange").value);
+  const alpha=Number($("angleRange").value);
+  const u=Number($("flightRange").value)/100;
+  const rad=alpha*Math.PI/180;
+  const vx=v0*Math.cos(rad),vy=v0*Math.sin(rad);
+  const T=2*vy/G,t=u*T;
+  const x=vx*t,y=vy*t-.5*G*t*t;
+  return {v0:v0,alpha:alpha,u:u,vx:vx,vy:vy,T:T,t:t,x:x,y:y,range:vx*T,hmax:vy*vy/(2*G),vyNow:vy-G*t};
+}
+function drawTrajectory(){
+  const el=$("trajectoryCanvas");if(!el)return;
+  const s=getState(),z=canvasSize(el),c=z.ctx,w=z.w,h=z.h;
+  const left=42,right=18,top=18,bottom=34,plotW=w-left-right,plotH=h-top-bottom;
+  const maxX=Math.max(8,s.range*1.12),maxY=Math.max(3,s.hmax*1.65);
+  const X=function(x){return left+x/maxX*plotW;};
+  const Y=function(y){return h-bottom-y/maxY*plotH;};
+  c.fillStyle="#fbfcfd";c.fillRect(0,0,w,h);
+  c.strokeStyle="#e8edf0";c.lineWidth=1;
+  for(let i=1;i<5;i++){const yy=top+i*plotH/5;c.beginPath();c.moveTo(left,yy);c.lineTo(w-right,yy);c.stroke();}
+  c.strokeStyle="#536276";c.lineWidth=2;c.beginPath();c.moveTo(left,top);c.lineTo(left,h-bottom);c.lineTo(w-right,h-bottom);c.stroke();
+  c.fillStyle="#8794a2";c.beginPath();c.arc(X(0),Y(0),5,0,Math.PI*2);c.fill();
+  c.strokeStyle="#10845b";c.lineWidth=4;c.lineCap="round";c.beginPath();
+  for(let i=0;i<=120;i++){const tt=s.T*i/120,xx=s.vx*tt,yy=s.vy*tt-.5*G*tt*tt;if(i===0)c.moveTo(X(xx),Y(yy));else c.lineTo(X(xx),Y(yy));}
+  c.stroke();
+  const originX=X(0),groundY=Y(0),pointX=X(s.x),pointY=Y(s.y);
+  if(s.x>0.02)arrow(c,originX,groundY,pointX,groundY,"#087eaa",3.5);
+  if(s.y>0.02)arrow(c,pointX,groundY,pointX,pointY,"#bb5016",3.5);
+  c.fillStyle="#6747ce";c.beginPath();c.arc(X(s.x),Y(s.y),8,0,Math.PI*2);c.fill();
+  c.fillStyle="#fff";c.beginPath();c.arc(X(s.x),Y(s.y),3,0,Math.PI*2);c.fill();
+}
+function drawVector(){
+  const el=$("vectorCanvas");if(!el)return;
+  const s=getState(),z=canvasSize(el),c=z.ctx,w=z.w,h=z.h;
+  c.fillStyle="#fbfcfd";c.fillRect(0,0,w,h);
+  const ox=w*.18,oy=h*.78,scale=Math.min(w*.52/Math.max(s.vx,1),h*.58/Math.max(s.vy,1));
+  const ex=ox+s.vx*scale,ey=oy-s.vy*scale;
+  c.strokeStyle="#dfe6eb";c.lineWidth=1.5;c.beginPath();c.moveTo(ox,oy);c.lineTo(w*.9,oy);c.stroke();
+  arrow(c,ox,oy,ex,oy,"#087eaa",4);
+  arrow(c,ex,oy,ex,ey,"#bb5016",4);
+  arrow(c,ox,oy,ex,ey,"#6747ce",4);
+  c.fillStyle="#536276";c.beginPath();c.arc(ox,oy,4,0,Math.PI*2);c.fill();
+  c.strokeStyle="#a8b4bf";c.lineWidth=1.5;c.beginPath();c.moveTo(ex-18,oy);c.lineTo(ex-18,oy-18);c.lineTo(ex,oy-18);c.stroke();
+}
+function drawComponents(){
+  const el=$("componentCanvas");if(!el)return;
+  const s=getState(),z=canvasSize(el),c=z.ctx,w=z.w,h=z.h;
+  c.fillStyle="#fbfcfd";c.fillRect(0,0,w,h);
+  const gap=42,pad=34,pw=(w-2*pad-gap)/2,top=22,bottom=h-32;
+  function panel(x0,isX){
+    const x1=x0+pw,y0=top,y1=bottom,plotH=y1-y0;
+    c.strokeStyle="#536276";c.lineWidth=1.5;c.beginPath();c.moveTo(x0,y0);c.lineTo(x0,y1);c.lineTo(x1,y1);c.stroke();
+    c.strokeStyle=isX?"#087eaa":"#bb5016";c.lineWidth=3;c.beginPath();
+    for(let i=0;i<=90;i++){const u=i/90,tt=s.T*u,xx=isX?s.vx*tt:s.vy*tt-.5*G*tt*tt;const vmax=isX?Math.max(s.range,1):Math.max(s.hmax,1);const yy=y1-(xx/vmax)*(plotH*.78);const px=x0+u*pw;if(i===0)c.moveTo(px,yy);else c.lineTo(px,yy);}
+    c.stroke();
+    const cur=isX?s.x:s.y,den=isX?Math.max(s.range,1):Math.max(s.hmax,1),py=y1-(cur/den)*(plotH*.78),px=x0+s.u*pw;
+    c.strokeStyle="#c4ced6";c.setLineDash([4,5]);c.lineWidth=1.5;c.beginPath();c.moveTo(px,y0);c.lineTo(px,y1);c.stroke();c.setLineDash([]);
+    c.strokeStyle="#8d9aa6";c.lineWidth=1.2;c.beginPath();c.moveTo(px,y1-4);c.lineTo(px,y1+4);c.stroke();
+    c.fillStyle=isX?"#087eaa":"#bb5016";c.beginPath();c.arc(px,py,6,0,Math.PI*2);c.fill();
+  }
+  panel(pad,true);panel(pad+pw+gap,false);
+}
+function drawAll(){
+  drawTrajectory();drawVector();drawComponents();
+  const s=getState();
+  setTex($("flightTimeOut"),"t="+num(s.t,2)+"\\,\\mathrm{s}");
+  setTex($("xNow"),"x(t)="+num(s.x,2)+"\\,\\mathrm{m}");
+  setTex($("yNow"),"y(t)="+num(s.y,2)+"\\,\\mathrm{m}");
+  setTex($("vxNow"),"v_x="+num(s.vx,2)+"\\,\\frac{\\mathrm{m}}{\\mathrm{s}}");
+  setTex($("vyNow"),"v_y="+num(s.vyNow,2)+"\\,\\frac{\\mathrm{m}}{\\mathrm{s}}");
+  setTex($("v0xNow"),"v_{0x}="+num(s.vx,2)+"\\,\\frac{\\mathrm{m}}{\\mathrm{s}}");
+  setTex($("v0yNow"),"v_{0y}="+num(s.vy,2)+"\\,\\frac{\\mathrm{m}}{\\mathrm{s}}");
+  setTex($("rangeNow"),"R="+num(s.range,2)+"\\,\\mathrm{m}");
+  setTex($("hmaxNow"),"y_{\\max}="+num(s.hmax,2)+"\\,\\mathrm{m}");
+  setTex($("speedOut"),num(s.v0,1)+"\\,\\frac{\\mathrm{m}}{\\mathrm{s}}");
+  setTex($("angleOut"),num(s.alpha,0)+"^{\\circ}");
+  syncGGB();
+}
+["speedRange","angleRange","flightRange"].forEach(function(id){$(id).addEventListener("input",drawAll);});
+window.addEventListener("resize",()=>{if(currentStage===3)drawAll();});
+
+all("[data-view]").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    currentView=btn.dataset.view;
+    all("[data-view]").forEach(function(b){b.setAttribute("aria-pressed",b===btn?"true":"false");});
+    $("offlineView").classList.toggle("active",currentView==="offline");
+    $("geogebraView").classList.toggle("active",currentView==="geogebra");
+    if(currentView==="geogebra")loadGGB();
+    drawAll();
+  });
+});
+function loadGGB(){
+  if(ggbLoaded||ggbLoading)return;
+  ggbLoading=true;
+  $("ggbStatus").textContent="GeoGebra wird geladen …";
+  const script=document.createElement("script");
+  script.src="https://www.geogebra.org/apps/deployggb.js";
+  script.async=true;
+  script.onload=function(){
+    const mount=$("ggbMount");
+    const width=Math.max(1,Math.min(980,mount.clientWidth||760));
+    const height=Math.round(width*.62);
+    const params={appName:"classic",perspective:"G",id:"ggbApplet",width:width,height:height,showToolBar:false,showAlgebraInput:false,showMenuBar:false,showResetIcon:false,enableRightClick:false,enableShiftDragZoom:false,language:"de",ggbBase64:ggbB64,appletOnLoad:initialiseGGB};
+    try{
+      const applet=new GGBApplet(params,true);
+      applet.inject("ggbMount");
+      setTimeout(function(){if(!ggbLoaded){$("ggbStatus").textContent="GeoGebra lädt noch. Sie können inzwischen die eigene Simulation nutzen; sie bleibt vollständig bedienbar.";}},12000);
+    }catch(error){script.onerror();}
+  };
+  script.onerror=function(){
+    ggbLoading=false;
+    $("ggbStatus").textContent="GeoGebra ist gerade nicht erreichbar. Nutzen Sie die eigene Simulation; sie enthält dieselben Einstellungen und läuft ohne Verbindung.";
+  };
+  document.head.appendChild(script);
+}
+function syncGGB(){
+  if(!ggbApplet)return;
+  try{
+    const s=getState();
+    if(typeof ggbApplet.setValue==="function"){
+      ggbApplet.setValue("v0",s.v0);
+      ggbApplet.setValue("alpha",s.alpha);
+      ggbApplet.setValue("u",s.u);
+    }
+  }catch(error){}
+}
+function initialiseGGB(api){
+  ggbApplet=api;
+  if(ggbApplet){
+    ggbLoaded=true;
+    ggbLoading=false;
+    try{
+      ["v0","alpha","u"].forEach(function(name){if(typeof ggbApplet.setVisible==="function")ggbApplet.setVisible(name,false);});
+    }catch(error){}
+    syncGGB();
+    $("ggbStatus").textContent="GeoGebra ist bereit. Die Regler oberhalb der Grafik steuern das Modell.";
+  }
+}
+const COLORS={x:"#087eaa",y:"#bb5016",path:"#10845b",force:"#bb354e",velocity:"#6747ce",axis:"#637589"};
+const svgNS="http://www.w3.org/2000/svg";
+const velocityUnit=String.raw`\,\frac{\mathrm{m}}{\mathrm{s}}`;
+const lengthUnit=String.raw`\,\mathrm{m}`;
+const timeUnit=String.raw`\,\mathrm{s}`;
+
+function shape(parent, tag, properties) {
+  const item=document.createElementNS(svgNS,tag);
+  for(const [name,value] of Object.entries(properties)) item.setAttribute(name,value);
+  parent.append(item);
+  return item;
+}
+function line(svg,x1,y1,x2,y2,color,width=2,pattern="") {
+  shape(svg,"line",{x1,y1,x2,y2,stroke:color,"stroke-width":width,"stroke-dasharray":pattern,"stroke-linecap":"round"});
+}
+function dot(svg,cx,cy,fill,r=8) {
+  shape(svg,"circle",{cx,cy,r,fill,stroke:"#fff","stroke-width":2});
+}
+function svgArrow(svg,x1,y1,x2,y2,color,width=3) {
+  const dx=x2-x1,dy=y2-y1,distance=Math.hypot(dx,dy);
+  if(distance<2)return;
+  const ux=dx/distance,uy=dy/distance,head=Math.min(10,distance*.42);
+  const x=x2-ux*head,y=y2-uy*head;
+  line(svg,x1,y1,x,y,color,width);
+  shape(svg,"polygon",{fill:color,points:[ [x2,y2],[x-uy*head*.5,y+ux*head*.5],[x+uy*head*.5,y-ux*head*.5] ].join(" ")});
+}
+function axes(svg) {
+  svgArrow(svg,42,231,515,231,COLORS.axis,1.5);
+  svgArrow(svg,42,231,42,27,COLORS.axis,1.5);
+}
+function svgPath(svg,points,color,pattern="") {
+  shape(svg,"polyline",{points:points.map(p=>p.join(",")).join(" "),fill:"none",stroke:color,"stroke-width":2.5,"stroke-dasharray":pattern});
+}
+function readValue(id) { return Number($(id).value); }
+function drawBelt() {
+  const vx=readValue("beltX"),vy=readValue("beltY"),t=readValue("beltT");
+  const dx=vx*t,dy=vy*t;
+  const svg=$("beltPlot");
+  const x0=42,y0=231,x=x0+dx*24,y=y0-dy*24;
+  svg.replaceChildren();
+  shape(svg,"rect",{x:x0,y:39,width:460,height:192,rx:10,fill:"#edf3f7"});
+  for(let i=1;i<=19;i++)line(svg,x0+24*i,39,x0+24*i,y0,"#dbe5ed",1);
+  for(let i=1;i<=8;i++)line(svg,x0,y0-24*i,502,y0-24*i,"#dbe5ed",1);
+  axes(svg);
+  if($("beltParts").checked){
+    line(svg,x,y,x0,y,COLORS.y,1.5,"5 5");
+    line(svg,x,y,x,y0,COLORS.x,1.5,"5 5");
+    svgArrow(svg,x0,y0,x,y0,COLORS.x,4);
+    svgArrow(svg,x0,y0,x0,y,COLORS.y,4);
+  }
+  svgArrow(svg,x0,y0,x,y,COLORS.path,3);
+  dot(svg,x,y,COLORS.path);
+  setTex($("beltXOut"),"v_x="+num(vx,1)+velocityUnit);
+  setTex($("beltYOut"),"v_y="+num(vy,1)+velocityUnit);
+  setTex($("beltTOut"),"\\Delta t="+num(t,2)+timeUnit);
+  setTex($("beltDX"),"\\Delta x="+num(dx,2)+lengthUnit);
+  setTex($("beltDY"),"\\Delta y="+num(dy,2)+lengthUnit);
+  setTex($("beltD"),"\\Delta s="+num(Math.hypot(dx,dy),2)+lengthUnit);
+}
+function drawFall() {
+  const t=readValue("compareTime"),vx=readValue("compareSpeed");
+  const h=5-.5*G*t*t,svg=$("comparePlot");
+  const ground=234,scale=37,ax=70,bx=150;
+  const y=ground-h*scale,x=bx+vx*t*scale;
+  svg.replaceChildren();
+  shape(svg,"rect",{x:24,y:ground,width:490,height:15,rx:3,fill:"#dbe5ed"});
+  line(svg,24,ground,514,ground,COLORS.axis,1.5);
+  line(svg,24,ground-5*scale,514,ground-5*scale,"#c5d2de",1,"4 6");
+  line(svg,ax,ground-5*scale,ax,y,COLORS.velocity,2,"4 6");
+  svgPath(svg,Array.from({length:41},(_,i)=>{
+    const u=t*i/40;
+    return [bx+vx*u*scale,ground-(5-.5*G*u*u)*scale];
+  }),COLORS.x,"4 6");
+  if($("compareGuide").checked) line(svg,ax,y,x,y,COLORS.path,2,"6 5");
+  dot(svg,ax,y,COLORS.velocity,9);
+  dot(svg,x,y,COLORS.x,9);
+  setTex($("compareTimeOut"),"t="+num(t,2)+timeUnit);
+  setTex($("compareSpeedOut"),"v_{0x}="+num(vx,1)+velocityUnit);
+  setTex($("compareHA"),"h_A="+num(h,2)+lengthUnit);
+  setTex($("compareHB"),"h_B="+num(h,2)+lengthUnit);
+}
+
+let forcePhase="rise";
+function drawForces() {
+  const svg=$("forcePlot"),u={rise:.24,peak:.5,fall:.76}[forcePhase];
+  const x=60+420*u,y=215-4*135*u*(1-u);
+  const revealed=$("forceReveal").getAttribute("aria-pressed")==="true";
+  svg.replaceChildren();
+  axes(svg);
+  svgPath(svg,Array.from({length:51},(_,i)=>[60+420*i/50,215-4*135*(i/50)*(1-i/50)]),"#8da1b2","5 5");
+  if(revealed){
+    svgArrow(svg,x,y,x,y+51,COLORS.force,5);
+    // Equal scales along x and y in the diagram imply a tangent slope dy/dx.
+    const slope=540*(2*u-1)/420;
+    svgArrow(svg,x,y,x+57,y+57*slope,COLORS.velocity,4);
+  }
+  dot(svg,x,y,COLORS.path,10);
+  svg.setAttribute("aria-label",revealed?
+    "Gewichtskraft nach unten. Geschwindigkeit "+{rise:"schräg nach rechts oben",peak:"waagerecht nach rechts",fall:"schräg nach rechts unten"}[forcePhase]+".":
+    "Ballposition in der ausgewählten Flugphase. Modellpfeile sind ausgeblendet.");
+  $("forceLegend").classList.toggle("hidden",!revealed);
+  $("forceCaption").classList.toggle("hidden",!revealed);
+}
+const playback=new Map();
+function stopPlayback() {
+  for(const stop of playback.values())stop();
+}
+function connectPlayback(buttonId, sliderId, render, seconds) {
+  const button=$(buttonId),slider=$(sliderId);
+  let frame=null;
+  function stop() {
+    if(frame!==null)cancelAnimationFrame(frame);
+    frame=null;
+    button.textContent="Abspielen";
+    button.removeAttribute("data-playing");
+    playback.delete(button);
+  }
+  slider.addEventListener("input",()=>{stop();render();});
+  button.addEventListener("click",()=>{
+    if(frame!==null){stop();return;}
+    const end=Number(slider.max);
+    const startAt=Number(slider.value)>=end?0:Number(slider.value);
+    const started=performance.now();
+    let previous=null;
+    button.textContent="Pause";
+    button.setAttribute("data-playing","");
+    playback.set(button,stop);
+    function tick(now){
+      const value=Math.min(end,startAt+(now-started)*end/(seconds*1000));
+      slider.value=String(value);
+      if(slider.value!==previous){previous=slider.value;render();}
+      if(value>=end)stop();
+      else frame=requestAnimationFrame(tick);
+    }
+    frame=requestAnimationFrame(tick);
+  });
+}
+function connectCheck(group, correct, messages) {
+  const buttons=all('[data-check="'+group+'"] button');
+  for(const button of buttons)button.addEventListener("click",()=>{
+    for(const peer of buttons){
+      peer.classList.remove("correct","incorrect");
+      peer.setAttribute("aria-pressed",String(peer===button));
+    }
+    const answer=button.dataset.option;
+    const right=answer===correct;
+    button.classList.add(right?"correct":"incorrect");
+    const feedback=$(group+"Feedback");
+    feedback.textContent=messages[answer];
+    feedback.dataset.result=right?"correct":"incorrect";
+  });
+}
+function connectNotes() {
+  for(const field of all(".response-field")){
+    const key="ef-wurf-v6:"+field.id;
+    try{field.value=localStorage.getItem(key)||"";}catch(error){}
+    field.addEventListener("input",()=>{
+      try{localStorage.setItem(key,field.value);}catch(error){}
+    });
+  }
+}
+function connectNewModels() {
+  connectPlayback("beltPlay","beltT",drawBelt,4);
+  connectPlayback("comparePlay","compareTime",drawFall,3.5);
+  for(const id of ["beltX","beltY"])$(id).addEventListener("input",drawBelt);
+  $("beltParts").addEventListener("change",drawBelt);
+  $("beltReset").addEventListener("click",()=>{
+    stopPlayback();
+    $("beltX").value="4";
+    $("beltY").value="3";
+    $("beltT").value="1";
+    $("beltParts").checked=true;
+    drawBelt();
+  });
+  $("compareSpeed").addEventListener("input",drawFall);
+  $("compareGuide").addEventListener("change",drawFall);
+  for(const button of all("[data-phase]"))button.addEventListener("click",()=>{
+    forcePhase=button.dataset.phase;
+    for(const peer of all("[data-phase]"))peer.setAttribute("aria-pressed",String(peer===button));
+    drawForces();
+  });
+  $("forceReveal").addEventListener("click",()=>{
+    const button=$("forceReveal"),show=button.getAttribute("aria-pressed")!=="true";
+    button.setAttribute("aria-pressed",String(show));
+    button.textContent=show?"Modellpfeile ausblenden":"Modellpfeile zum Vergleich zeigen";
+    drawForces();
+  });
+  connectCheck("force","down",{
+    zero:"Prüfen Sie den Unterschied zwischen senkrechter Geschwindigkeit und Gewichtskraft. Vergleichen Sie die Modellpfeile.",
+    down:"Richtig. Die Gewichtskraft wirkt weiter nach unten. Am höchsten Punkt hat die Geschwindigkeit nur eine waagerechte Komponente.",
+    right:"Überlegen Sie, wann der Ball zuletzt die Hand berührt. Welche Wechselwirkung bleibt im Modell im Flug übrig?"
+  });
+  connectCheck("landing","same",{
+    a:"Vergleichen Sie im Modell beide Höhen bei demselben Zeitpunkt. Prüfen Sie anschließend die Landung.",
+    b:"Die Kugel legt zusätzlich eine waagerechte Strecke zurück. Vergleichen Sie die Höhen bis zur Landung.",
+    same:"Richtig. Beide Kugeln haben dieselbe senkrechte Anfangsgeschwindigkeit und dieselbe senkrechte Beschleunigung."
+  });
+  connectNotes();
+  drawBelt();
+  drawForces();
+  drawFall();
+}
+
+function initialise(){
+  for(const canvas of all("canvas")){
+    canvas.dataset.aspect=String(canvas.height/canvas.width);
+    canvas.dataset.designWidth=String(canvas.width);
+  }
+  renderMath(document);
+  connectNewModels();
+  drawAll();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initialise,{once:true});
+else initialise();
+})();
+</script>
+</body>
+</html>
