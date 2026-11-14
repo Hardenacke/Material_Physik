@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kräftelabor – Arbeitsblatt · Klasse 9</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #edf2f7; color: #17324d; font: 16px/1.55 system-ui, sans-serif; }
+    main { max-width: 880px; margin: 32px auto; padding: 36px 44px; background: white; border-radius: 16px; }
+    h1 { margin: 6px 0 8px; font-size: 30px; line-height: 1.2; }
+    h2 { font-size: 19px; margin: 26px 0 8px; }
+    p { margin: 8px 0; }
+    .eyebrow { color: #2867cc; font-weight: 700; }
+    .name { display: flex; flex-wrap: wrap; gap: 32px; padding: 20px 0 6px; }
+    .tools { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+    a, button { font: inherit; color: #174f9e; }
+    .tools a, button { display: inline-block; border: 1px solid #c6d5e5; border-radius: 8px; padding: 9px 14px; background: white; text-decoration: none; cursor: pointer; }
+    .draw { height: 150px; border: 1px solid #ccd9e7; border-radius: 6px; background: repeating-linear-gradient(0deg, transparent 0 19px, #edf2f7 19px 20px), repeating-linear-gradient(90deg, transparent 0 19px, #edf2f7 19px 20px); }
+    .lines { height: 116px; background: repeating-linear-gradient(transparent 0 28px, #ccd9e7 28px 29px); }
+    .note { padding: 10px 14px; border-left: 3px solid #008b87; background: #f0f8f7; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    th, td { padding: 10px 8px; border: 1px solid #ccd9e7; text-align: left; }
+    th { background: #f0f5fa; }
+    td:last-child { width: 36%; }
+    @media (max-width: 600px) { main { margin: 0; padding: 24px 18px; border-radius: 0; } }
+    @page { size: A4; margin: 16mm; }
+    @media print {
+      body { background: white; color: #111; font-size: 10.5pt; line-height: 1.4; }
+      main { margin: 0; padding: 0; max-width: none; }
+      .tools { display: none; }
+      h1 { font-size: 23pt; }
+      h2 { margin-top: 18px; font-size: 13pt; }
+      .name { padding: 12px 0 2px; }
+      .draw { height: 115px; }
+      .lines { height: 90px; }
+      section, table { break-inside: avoid; }
+      .draw, .lines { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Physik · Klasse 9</p>
+  <h1>Kräftelabor</h1>
+  <p>Kraftpfeile zeichnen, Kräfte addieren und Gleichgewicht erklären</p>
+  <div class="name"><span>Name: __________________________</span><span>Datum: ______________</span></div>
+  <nav class="tools" aria-label="Arbeitsblatt-Aktionen">
+    <a href="../simulationen/Kraefteaddition_Kraftpfeile.html">Zum Applet</a>
+    <button type="button" onclick="window.print()">Drucken / als PDF speichern</button>
+  </nav>
+
+  <section>
+    <h2>A · Eine Kraft als Pfeil darstellen</h2>
+    <p>Bearbeite die Einführung im Applet. Nenne die drei Merkmale eines Kraftpfeils:</p>
+    <p>______________________ · ______________________ · ______________________</p>
+    <p>Zeichne ab einem markierten Angriffspunkt A eine Kraft von <strong>1,0 N nach rechts</strong>.
+      Verwende den Maßstab <strong>1 cm entspricht 0,5 N</strong>. Beschrifte deinen Kraftpfeil.</p>
+    <div class="draw" aria-label="Zeichenfeld für einen Kraftpfeil"></div>
+  </section>
+
+  <section>
+    <h2>B · Warum bleibt der Knoten in Ruhe?</h2>
+    <p>Bearbeite im Applet die ersten drei Aufgaben. Im Seilversuch greifen drei Zugkräfte am Knoten an.
+      Jede hat den Betrag 0,5 N. Die Richtungen bilden jeweils einen Winkel von 120° zueinander.</p>
+    <p>Skizziere die geschlossene Pfeilkette. Erkläre damit, warum der <strong>zunächst ruhende Knoten</strong> in Ruhe bleibt.
+      Verwende die Begriffe <em>Resultierende</em> und <em>Kräftegleichgewicht</em>.</p>
+    <div class="draw" aria-label="Zeichenfeld für die geschlossene Pfeilkette"></div>
+    <div class="lines" aria-label="Schreiblinien für die Erklärung"></div>
+  </section>
+
+  <section>
+    <h2>C · Vorhersagen im freien Labor prüfen</h2>
+    <p>Bearbeite die weiteren Applet-Aufgaben und öffne dann das freie Labor. Sage jeweils Richtung und Betrag
+      der Resultierenden voraus. Überprüfe deine Vermutung durch eine Pfeilkette.</p>
+    <table>
+      <thead><tr><th>F₁</th><th>F₂</th><th>Resultierende: Richtung und Betrag</th></tr></thead>
+      <tbody>
+        <tr><td>1,0 N nach rechts</td><td>1,5 N nach rechts</td><td></td></tr>
+        <tr><td>2,0 N nach rechts</td><td>1,0 N nach links</td><td></td></tr>
+        <tr><td>1,0 N nach rechts</td><td>1,0 N nach links</td><td></td></tr>
+      </tbody>
+    </table>
+    <p class="note">Wann darfst du Kraftbeträge einfach addieren? Ergänze:
+      „Die Beträge werden addiert, wenn die beiden Kräfte _______________________________.“</p>
+  </section>
+</main>
+</body>
+</html>
