@@ -1,6 +1,6 @@
 {
   "title": "Kräftewerkstatt 6.4 – Kraftpfeile und Kräfteaddition",
-  "description": "Interaktives Applet für Klasse 9: Angriffspunkt, Richtung und Betrag kennenlernen, Kraftrichtung und Gewichtskraft vorhersagen und vier Kraftpfeile selbst zeichnen. Danach Kräfte mit Pfeilkette und Kräfteparallelogramm addieren, Resultierende konstruieren und Gleichgewicht untersuchen. Sechs geführte Aufgaben, ein druckbares Arbeitsblatt und ein freies Labor mit zwei oder drei Kräften. Offline nutzbar; Lernfortschritt und Laboreinstellungen werden lokal im Browser gespeichert.",
+  "description": "Interaktives Applet für Klasse 9: Angriffspunkt, Richtung und Betrag kennenlernen und vier Kraftpfeile selbst zeichnen. Anschließend 14 Zeichenaufgaben zur Kräfteaddition und zum Kräfteparallelogramm lösen; am Ende folgen vier zusätzliche Pfeilketten und vier Parallelogramme mit verschiedenen Winkeln und Kraftbeträgen. Nach einer korrekten Konstruktion direkt weiterzeichnen. Ein optionales druckbares Arbeitsblatt und ein freies Labor ergänzen die Übungen. Offline nutzbar; Lernfortschritt und Laboreinstellungen werden lokal im Browser gespeichert.",
   "type": "simulation",
   "level": "Klasse 9",
   "tags": [
