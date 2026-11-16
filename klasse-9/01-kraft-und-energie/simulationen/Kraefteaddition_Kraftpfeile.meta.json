@@ -1,12 +1,13 @@
 {
-  "title": "Kräftelabor – Kraftpfeile und Kräfteaddition",
-  "description": "Interaktives Applet für Klasse 9: Angriffspunkt, Richtung und Betrag kennenlernen und drei Kraftpfeile selbst zeichnen. Danach Kräfte mit Pfeilkette und Kräfteparallelogramm addieren, Resultierende konstruieren und Gleichgewicht untersuchen. Sechs geführte Aufgaben, ein druckbares Arbeitsblatt und ein freies Labor mit zwei oder drei Kräften. Offline nutzbar; Lernfortschritt und Laboreinstellungen werden lokal im Browser gespeichert.",
+  "title": "Kräftewerkstatt 6.4 – Kraftpfeile und Kräfteaddition",
+  "description": "Interaktives Applet für Klasse 9: Angriffspunkt, Richtung und Betrag kennenlernen, Kraftrichtung und Gewichtskraft vorhersagen und vier Kraftpfeile selbst zeichnen. Danach Kräfte mit Pfeilkette und Kräfteparallelogramm addieren, Resultierende konstruieren und Gleichgewicht untersuchen. Sechs geführte Aufgaben, ein druckbares Arbeitsblatt und ein freies Labor mit zwei oder drei Kräften. Offline nutzbar; Lernfortschritt und Laboreinstellungen werden lokal im Browser gespeichert.",
   "type": "simulation",
   "level": "Klasse 9",
   "tags": [
     "Kräfteaddition",
     "Kraftpfeile",
     "Kräftelabor",
+    "Kräftewerkstatt",
     "Angriffspunkt",
     "Kraftbetrag",
     "Resultierende",

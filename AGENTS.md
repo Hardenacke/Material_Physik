@@ -39,3 +39,9 @@ Bestehende Ordnerstrukturen nicht ohne ausdrückliche Anweisung verändern.
 ## Git
 
 Keine Commits und keine Pushes ohne ausdrückliche Aufforderung durchführen.
+
+Nach jedem Update oder Dateiimport in der Abschlussantwort einen direkt
+ausführbaren PowerShell-Befehlsblock zum Veröffentlichen auf GitHub angeben:
+`Set-Location`, gezieltes `git add` der betroffenen Dateien, `git commit` und
+`git push`. Bestehende, nicht zum Auftrag gehörende Änderungen dabei nicht
+mit `git add .` aufnehmen.
