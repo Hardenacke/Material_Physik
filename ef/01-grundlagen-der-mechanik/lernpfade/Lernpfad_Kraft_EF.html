@@ -2204,8 +2204,7 @@ const chapterTransitions = {
   5: 'Von der Feder bis zum Puck haben Sie Kräfte gemessen, als Pfeile dargestellt und addiert. Im Inhaltsverzeichnis sehen Sie, welche Kurzquizze Sie bestanden haben und welche Kapitel Sie wiederholen können.'
 };
 const lessons = lessonContent();
-const coursePassword = 'kraftlabor';
-const teacherPassword = 'Newton';
+const accessPassword = 'Newton';
 const accessKey = 'kraft-ef-freigabe';
 let unlocked = false;
 try { unlocked = window.sessionStorage.getItem(accessKey) === 'yes'; } catch {}
@@ -3017,7 +3016,7 @@ $('teacher-open').addEventListener('click', () => teacherDialog.showModal());
 teacherPasswordField.addEventListener('input', clearTeacherError);
 teacherForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (teacherPasswordField.value !== teacherPassword) {
+  if (teacherPasswordField.value !== accessPassword) {
     teacherError.textContent = 'Das Passwort für die Lehrkraft ist falsch.';
     teacherPasswordField.setAttribute('aria-invalid', 'true');
     teacherPasswordField.select();
@@ -3082,7 +3081,7 @@ $('unlock-open').addEventListener('click', () => {
 });
 $('access-form').addEventListener('submit', (event) => {
   event.preventDefault();
-  if ($('course-password').value.trim().toLowerCase() !== coursePassword) {
+  if ($('course-password').value.trim().toLowerCase() !== accessPassword.toLowerCase()) {
     $('access-error').textContent = 'Das Passwort stimmt noch nicht. Fragen Sie bei Bedarf Ihre Lehrkraft.';
     return;
   }
