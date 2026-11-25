@@ -66,7 +66,23 @@
     "Wann darfst du ΣF = m·a direkt anwenden?",
     "Welche Systemgrenze ist bei einer Impulsbilanz sinnvoll?"
   ],
-  "lessons": [],
+  "lessons": [
+    {
+      "title": "Basiswissen Kraft",
+      "learned": [
+        "Kräfte (in N) können Körper verformen oder Tempo und Richtung ändern. Der Kraftpfeil zeigt Angriffspunkt, Richtung und Betrag.",
+        "Die Masse m (in kg) bleibt gleich. Die Gewichtskraft F_G = m · g hängt vom Ortsfaktor g ab und zeigt zum Himmelskörper hin.",
+        "Federkraftmesser: Im linearen Bereich gilt F = D · s. D ist die Federkonstante, s die Verlängerung."
+      ],
+      "experiment": "An einem Körper greifen 3 N nach rechts und 4 N nach oben am selben Punkt an. Die Diagonale des Kräfteparallelogramms zeigt nach rechts oben und hat den Betrag 5 N.",
+      "key": "Kräfte am selben Körper werden vektoriell addiert. Betrag und Richtung bestimmen gemeinsam die Resultierende.",
+      "check": [
+        "Wie groß ist F_G für 2 kg auf dem Mond bei g = 1,62 N/kg?",
+        "D = 50 N/m, s = 4 cm. Was zeigt der Federkraftmesser an?",
+        "6 N nach rechts, 4 N nach links. Wie groß ist die Resultierende und wohin zeigt sie?"
+      ]
+    }
+  ],
   "klp": {
     "name": "Inhaltsfeld Grundlagen der Mechanik (EF)",
     "foci": [
