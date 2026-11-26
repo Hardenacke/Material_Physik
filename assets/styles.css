@@ -934,6 +934,20 @@ h1 {
   touch-action: manipulation;
 }
 
+.catalog-presentation {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  visibility: hidden;
+  background: #13241e;
+}
+
+.catalog-presentation:fullscreen {
+  visibility: visible;
+}
+
 .video-download {
   display: inline-flex;
   align-items: center;

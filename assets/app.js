@@ -288,6 +288,7 @@ function renderTopicPage(schoolClass, topic, query) {
 
 function renderResourceLink(item, theme, learningPath = false) {
   const link = applyTheme(createLink(learningPath ? "path-card" : "file-link", "", encodeURI(item.url)), theme);
+  if (item.openInFullscreen) link.dataset.fullscreenTitle = item.title;
   const copy = createText("span", "file-copy", "");
   copy.appendChild(createText("span", learningPath ? "path-title" : "file-title", item.title));
   if (item.description) copy.appendChild(createText("span", "file-description", item.description));
@@ -300,6 +301,38 @@ function renderResourceLink(item, theme, learningPath = false) {
     link.appendChild(meta);
   }
   return link;
+}
+
+async function openFullscreenPresentation(link) {
+  if (document.querySelector("iframe.catalog-presentation")) return;
+
+  const frame = document.createElement("iframe");
+  frame.className = "catalog-presentation";
+  frame.title = link.dataset.fullscreenTitle;
+  frame.src = link.href;
+  frame.allowFullscreen = true;
+  frame.addEventListener("load", () => {
+    if (document.fullscreenElement === frame) frame.focus();
+  });
+  document.body.appendChild(frame);
+
+  try {
+    await frame.requestFullscreen({ navigationUI: "hide" });
+  } catch {
+    frame.remove();
+    window.location.assign(link.href);
+    return;
+  }
+
+  function returnToCatalog() {
+    if (document.fullscreenElement === frame) return;
+    document.removeEventListener("fullscreenchange", returnToCatalog);
+    frame.remove();
+    link.focus();
+  }
+
+  document.addEventListener("fullscreenchange", returnToCatalog);
+  frame.focus();
 }
 
 function renderVideos(items) {
@@ -473,6 +506,13 @@ document.addEventListener("click", (event) => {
   const target = event.target.closest(interactiveSelector);
   if (!target || !target.isConnected) return;
   if (!target.classList.contains("is-activating")) playSelectionFeedback(target, event);
+
+  if (target.dataset.fullscreenTitle && document.fullscreenEnabled) {
+    event.preventDefault();
+    clearPendingNavigation();
+    openFullscreenPresentation(target);
+    return;
+  }
 
   // Allow the confirmation to register before moving to the next overview.
   // Downloads, material links and modified clicks retain their browser behavior.

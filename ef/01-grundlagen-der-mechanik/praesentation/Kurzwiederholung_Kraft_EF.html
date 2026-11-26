@@ -406,6 +406,9 @@ SOFTWARE.
   const brushes = [...penMenu.querySelectorAll('[data-brush]')];
   const ink = $('ink');
   const inkContext = ink.getContext('2d');
+  const catalogFrame = window.frameElement?.matches('iframe.catalog-presentation') ? window.frameElement : null;
+  const fullscreenTarget = catalogFrame ?? document.documentElement;
+  const fullscreenDocument = fullscreenTarget.ownerDocument;
   const width = 1280;
   const height = 720;
   const storageKey = 'kraft-ef-kurz-ink-v1';
@@ -421,7 +424,7 @@ SOFTWARE.
   let repaint = 0;
   let noticeTimer = 0;
   let storageAvailable = true;
-  let autoFullscreen = document.fullscreenEnabled;
+  let autoFullscreen = !catalogFrame && document.fullscreenEnabled;
 
   function math(element, expression) {
     katex.render(expression, element, { throwOnError: true, output: 'htmlAndMathml' });
@@ -732,8 +735,8 @@ SOFTWARE.
 
   async function setFullscreen(on, showError) {
     try {
-      if (on) await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
-      else await document.exitFullscreen();
+      if (on) await fullscreenTarget.requestFullscreen({ navigationUI: 'hide' });
+      else await fullscreenDocument.exitFullscreen();
     } catch {
       if (showError) notify('Diese Browseransicht bietet kein Vollbild.');
     }
@@ -743,19 +746,23 @@ SOFTWARE.
     if (!autoFullscreen || !event.isTrusted || navigator.userActivation?.isActive === false ||
         event.target.closest?.('#fullscreen')) return;
     autoFullscreen = false;
-    if (!document.fullscreenElement) setFullscreen(true, false);
+    if (!fullscreenDocument.fullscreenElement) setFullscreen(true, false);
   }
 
+  function syncFullscreen() {
+    const on = fullscreenDocument.fullscreenElement === fullscreenTarget;
+    const button = $('fullscreen');
+    button.title = on ? 'Vollbild beenden' : 'Vollbild einschalten';
+    button.setAttribute('aria-pressed', String(on));
+    fit();
+  }
+
+  if (catalogFrame) $('fullscreen').setAttribute('aria-label', 'Vollbild beenden und zum Katalog zurückkehren');
   $('fullscreen').addEventListener('click', () => {
     autoFullscreen = false;
-    setFullscreen(!document.fullscreenElement, true);
+    setFullscreen(fullscreenDocument.fullscreenElement !== fullscreenTarget, true);
   });
-  document.addEventListener('fullscreenchange', () => {
-    const on = !!document.fullscreenElement;
-    $('fullscreen').title = on ? 'Vollbild beenden' : 'Vollbild einschalten';
-    $('fullscreen').setAttribute('aria-pressed', String(on));
-    fit();
-  });
+  fullscreenTarget.addEventListener('fullscreenchange', syncFullscreen);
 
   document.addEventListener('keydown', event => {
     if (event.altKey) return;
@@ -952,7 +959,7 @@ SOFTWARE.
   drawForce();
   drawVectors(false);
   go(0);
-  fit();
+  syncFullscreen();
 })();
 </script>
 </body>

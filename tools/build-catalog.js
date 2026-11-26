@@ -284,6 +284,7 @@ function scanFiles(topicPath) {
         category: resourceLabel ? resourceLabel.category : isVideo ? "Erklärvideo" : resourceCategory(entryPath, topicPath),
         type: ext ? ext.slice(1).toUpperCase() : "Datei",
         url: repoRelative(entryPath),
+        ...((ext === ".html" || ext === ".htm") && resourceMeta.openInFullscreen === true ? { openInFullscreen: true } : {}),
         ...(resourceLabel ? {
           label: resourceLabel.label,
           description: resourceMeta.description || "",
