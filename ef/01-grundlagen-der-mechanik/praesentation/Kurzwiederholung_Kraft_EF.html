@@ -26,20 +26,12 @@
 body { margin: 0; }
 h1,h2,h3,p,figure { margin: 0; }
 button,select,input { font: inherit; }
-button,select { cursor: pointer; touch-action: manipulation; }
-button:focus-visible,select:focus-visible,input:focus-visible { outline: 3px solid #e27853; outline-offset: 3px; }
+button,select,summary { cursor: pointer; touch-action: manipulation; }
+:is(button,select,input,summary):focus-visible { outline: 3px solid #e27853; outline-offset: 3px; }
 button:disabled { cursor: default; opacity: .43; }
-.app { display: grid; grid-template-rows: auto minmax(0,1fr) auto; height: 100vh; height: 100dvh; min-height: 215px; overflow: hidden; }
-.bar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-inline:max(14px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-right)); }
-.top-bar { padding-block:max(7px, env(safe-area-inset-top)) 7px; border-bottom:1px solid #55746c; }
-.bottom-bar { min-height:56px; padding-block:5px max(5px, env(safe-area-inset-bottom)); border-top:1px solid #55746c; padding-right:max(72px,calc(65px + env(safe-area-inset-right))); }
-.brand, .top-actions { display:flex; align-items:center; gap:10px; }
-.brand strong { font-family:Georgia,serif; font-size:1.3rem; }
-.brand span { color:#b8d8ca; font-size:.85rem; }
-.chrome { min-height:44px; border:1px solid #638477; border-radius:8px; padding:6px 13px; background:#203b31; color:#fcf7eb; font-weight:680; }
-.chrome:not(:disabled):hover { background:#315449; }
-.position { color:#c6e5d7; text-align:center; font-weight:650; white-space:nowrap; }
-.viewport { min-width:0; min-height:0; display:grid; place-items:center; overflow:hidden; padding:8px; touch-action:pan-y pinch-zoom; }
+.app { display:grid; grid-template-rows:minmax(0,1fr) auto; height:100vh; height:100dvh; overflow:hidden; }
+.viewport { min-width:0; min-height:0; display:grid; place-items:center; overflow:hidden; padding:6px; touch-action:pan-y pinch-zoom; }
+.viewport { padding-top:max(6px,env(safe-area-inset-top)); padding-inline:max(6px,env(safe-area-inset-left)) max(6px,env(safe-area-inset-right)); }
 .frame { position:relative; flex:none; box-shadow:0 0 0 1px #6f8a7c, 0 9px 50px #101c17bb; }
 .deck { position:absolute; left:0; top:0; width:1280px; height:720px; transform-origin:0 0; overflow:hidden; background:var(--white); }
 .slide { position:absolute; inset:0; display:grid; grid-template-columns:1fr 1.06fr; gap:37px; padding:62px 62px 56px; color:var(--ink); background:radial-gradient(ellipse at 12% 5%, #e9efe1 0, #fbf7ed 57%); }
@@ -83,9 +75,8 @@ button:disabled { cursor: default; opacity: .43; }
 .weight-value { display:flex; justify-content:space-between; font-size:20px; margin-block:8px 3px; }
 .weight-track { height:9px; border-radius:10px; background:#3f6254; }
 .weight-track span { display:block; height:100%; border-radius:inherit; background:var(--mint); }
-.on-paper,.option { min-height:52px; border:1px solid; border-radius:9px; padding:8px 14px; font-size:21px; font-weight:700; }
-.on-paper,.option { background:#fffdf7; color:var(--ink); border-color:#779886; }
-.on-paper:hover,.option:hover { box-shadow:0 0 0 2px #53aa8f inset; }
+.option { min-height:52px; border:1px solid #779886; border-radius:9px; padding:8px 14px; font-size:21px; font-weight:700; background:#fffdf7; color:var(--ink); }
+.option:hover { box-shadow:0 0 0 2px #53aa8f inset; }
 .arrow-art,.vector-board { position:relative; }
 .arrow-art canvas,.vector-board canvas { display:block; width:100%; height:auto; }
 .arrow-art > span,.vector-board > span { position:absolute; font-size:24px; }
@@ -119,26 +110,30 @@ button:disabled { cursor: default; opacity: .43; }
 .option[data-result="retry"] { background:#ffe8ce; border:2px solid #a7602f; }
 .ink { position:absolute; inset:0; z-index:3; width:1280px; height:720px; pointer-events:none; }
 .ink[data-active="true"] { pointer-events:auto; cursor:crosshair; touch-action:none; }
-.pen-dock { position:fixed; z-index:5; right:max(12px,env(safe-area-inset-right)); bottom:max(7px,env(safe-area-inset-bottom)); display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
-.pen-toggle { width:46px; height:46px; border-radius:12px; background:#285141; color:#f8f4e9; border:1px solid #8ab6a3; font-size:26px; font-weight:700; }
-.pen-toggle[data-active="true"] { color:#143428; background:#aaecd1; border-color:#aaecd1; box-shadow:0 0 0 2px #0f2620,0 0 0 3px #c6f6e3; }
-.pen-tools { display:grid; gap:7px; padding:12px; background:#173b2f; color:#f9f2e7; border-radius:12px; border:1px solid #8bb5a5; box-shadow:0 8px 24px #0b1c16a0; max-width:calc(100dvw - 24px); max-height:calc(100dvh - 68px); overflow:auto; }
-.tool-row { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
-.tool { padding:5px 8px; min-height:44px; border:1px solid #8aad9e; border-radius:6px; background:#25493c; color:#fff7eb; font-weight:620; }
-.tool[aria-pressed="true"] { color:#102c23; background:#b3e8d3; border-color:#b3e8d3; }
-.pen-only { min-height:34px; display:flex; gap:8px; align-items:center; }
+.controls { position:relative; z-index:5; display:grid; justify-items:center; padding:4px 8px max(4px,env(safe-area-inset-bottom)); }
+.controls-inner { position:relative; display:flex; align-items:center; gap:4px; padding:4px; border:1px solid #55746c; border-radius:14px; background:#1a332a; }
+.controls-group { display:flex; align-items:center; gap:2px; }
+.controls-group + .controls-group { padding-inline-start:4px; border-inline-start:1px solid #55746c; }
+.icon-button { display:grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid transparent; border-radius:8px; color:#fff7eb; background:transparent; }
+.icon-button:not(:disabled):hover,.dropdown[open] > summary { background:#315449; }
+.icon-button[aria-pressed="true"] { color:#102c23; background:#b3e8d3; }
+.icon-button svg { width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.dropdown > summary { list-style:none; }
+.dropdown > summary::-webkit-details-marker { display:none; }
+#fullscreen[aria-pressed="false"] .exit-screen,#fullscreen[aria-pressed="true"] .enter-screen { display:none; }
+.dropdown-panel { position:absolute; bottom:calc(100% + 8px); width:min(18rem,calc(100vw - 24px)); max-height:calc(100dvh - 82px - env(safe-area-inset-bottom)); overflow:auto; padding:8px; border:1px solid #8bb5a5; border-radius:12px; background:#203b31; color:#fff7eb; box-shadow:0 8px 24px #0b1c16a0; }
+.slide-choices { inset-inline-start:0; }
+.slide-choice { display:block; width:100%; min-height:44px; padding:8px 10px; border:0; border-radius:6px; color:inherit; background:transparent; text-align:start; }
+.slide-choice:hover,.slide-choice[aria-current="true"] { background:#315449; }
+.slide-choice[aria-current="true"] { color:#c4f5df; box-shadow:inset 3px 0 #a7ead1; }
+.pen-options { inset-inline-end:0; padding:12px; }
+.pen-settings { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:8px 10px; }
+.setting { min-height:44px; padding:5px 8px; border:1px solid #8aad9e; border-radius:6px; background:#25493c; color:#fff7eb; color-scheme:dark; }
+.pen-only { min-height:44px; display:flex; gap:8px; align-items:center; }
 .pen-only input { width:20px; height:20px; accent-color:#96e4cc; }
+.pen-actions { display:flex; gap:4px; justify-content:flex-end; border-top:1px solid #55746c; }
 .storage-state { font-size:.83rem; color:#fee1b2; }
-dialog { width:min(570px,calc(100% - 22px)); max-height:90dvh; border:1px solid #9bb4a6; border-radius:16px; padding:18px; color:var(--ink); background:#fbf7ed; }
-dialog::backdrop { background:#0c211bd9; }
-dialog .on-paper { min-height:44px; font-size:1rem; }
-.dialog-head { display:flex; justify-content:space-between; align-items:center; }
-#slide-list { margin:10px 0 0; padding:0; list-style:none; }
-.overview-choice { display:block; width:100%; min-height:44px; border:0; border-bottom:1px solid #b5c8bc; background:transparent; color:var(--ink); padding:6px; text-align:left; font-weight:650; }
-.overview-choice:hover,.overview-choice[aria-current="step"] { background:#deeee3; }
-.notice { position:fixed; z-index:6; top:68px; right:14px; max-width:calc(100vw - 28px); padding:8px 12px; border-radius:8px; background:#fef4da; color:#172a20; }
-@media (max-width:450px) { .brand span,.nav span { display:none; } .bar { gap:7px; } .chrome { padding-inline:9px; } }
-@media (max-height:465px) { .top-bar,.bottom-bar { padding-block:3px; min-height:48px; } .viewport { padding:3px; } }
+.notice { position:fixed; z-index:6; top:max(12px,env(safe-area-inset-top)); right:14px; max-width:calc(100vw - 28px); padding:8px 12px; border-radius:8px; background:#fef4da; color:#172a20; }
 @media (prefers-reduced-motion:no-preference) {
   :is(.task,.answer,.opening,.cover-photo)[data-step]:not([hidden]) { animation:appear .18s ease-out; }
   @keyframes appear { from { opacity:.4; } }
@@ -147,13 +142,6 @@ dialog .on-paper { min-height:44px; font-size:1rem; }
 </head>
 <body>
 <main class="app">
-  <header class="bar top-bar">
-    <div class="brand"><strong>Basiswissen Kraft</strong><span>Physik · EF</span></div>
-    <div class="top-actions">
-      <button class="chrome" type="button" id="overview-open">Folien</button>
-      <button class="chrome" type="button" id="fullscreen" aria-pressed="false">Vollbild</button>
-    </div>
-  </header>
   <div class="viewport" id="viewport">
     <div class="frame" id="frame">
       <div class="deck" id="deck">
@@ -296,39 +284,63 @@ dialog .on-paper { min-height:44px; font-size:1rem; }
       </div>
     </div>
   </div>
-  <footer class="bar bottom-bar">
-    <button class="chrome nav" type="button" id="previous" aria-label="Voriger Schritt">← <span>Zurück</span></button>
-    <div class="position" id="position" aria-live="polite"></div>
-    <button class="chrome nav" type="button" id="next" aria-label="Nächster Schritt"><span>Weiter</span> →</button>
+  <footer class="controls" aria-label="Präsentationssteuerung">
+    <div class="controls-inner">
+      <div class="controls-group" role="group" aria-label="Foliennavigation">
+        <button class="icon-button" type="button" id="previous" aria-label="Zurück" title="Zurück (←)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+        </button>
+        <details class="dropdown" id="slide-menu">
+          <summary class="icon-button" aria-label="Folie auswählen" title="Folie auswählen">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="6" rx="1"/><rect x="14" y="4" width="7" height="6" rx="1"/><rect x="3" y="14" width="7" height="6" rx="1"/><rect x="14" y="14" width="7" height="6" rx="1"/></svg>
+          </summary>
+          <nav class="dropdown-panel slide-choices" id="slide-list" aria-label="Folien"></nav>
+        </details>
+        <button class="icon-button" type="button" id="next" aria-label="Weiter" title="Weiter (→)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="controls-group" role="group" aria-label="Zeichenwerkzeuge">
+        <button class="icon-button" type="button" id="ink-mode" aria-label="Zeichnen" aria-pressed="false" title="Zeichnen einschalten">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5 4 4M4 20l1-5L16 4a2.8 2.8 0 0 1 4 4L9 19z"/></svg>
+        </button>
+        <details class="dropdown" id="pen-menu">
+          <summary class="icon-button" aria-label="Stiftoptionen" title="Stiftoptionen">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="dropdown-panel pen-options">
+            <div class="pen-settings">
+              <label for="ink-brush">Werkzeug</label>
+              <select class="setting" id="ink-brush">
+                <option value="pen">Stift</option><option value="marker">Marker</option><option value="eraser">Radierer</option>
+              </select>
+              <label for="ink-color">Farbe</label>
+              <select class="setting" id="ink-color"><option value="auto" selected>Automatisch</option><option value="#162a23">Dunkelgrün</option><option value="#e06e49">Koralle</option><option value="#208b75">Türkis</option><option value="#f2c354">Gelb</option><option value="#ffffff">Weiß</option></select>
+              <label for="ink-width">Breite</label>
+              <select class="setting" id="ink-width"><option value="3">Dünn</option><option value="6" selected>Mittel</option><option value="10">Breit</option></select>
+            </div>
+            <label class="pen-only"><input id="pen-only" type="checkbox"> Nur Eingabestift</label>
+            <div class="pen-actions">
+              <button class="icon-button" type="button" id="undo" aria-label="Rückgängig" title="Rückgängig">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5 5 10l5 5M5 10h9a5 5 0 0 1 0 10h-2"/></svg>
+              </button>
+              <button class="icon-button" type="button" id="clear" aria-label="Notizen dieser Folie löschen" title="Notizen dieser Folie löschen">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5m4-5v5"/></svg>
+              </button>
+            </div>
+            <p class="storage-state" id="storage-state" role="status" hidden>Notizen bleiben in dieser Sitzung.</p>
+          </div>
+        </details>
+      </div>
+      <div class="controls-group" role="group" aria-label="Ansicht">
+        <button class="icon-button" type="button" id="fullscreen" aria-label="Vollbild" aria-pressed="false" title="Vollbild einschalten">
+          <svg class="enter-screen" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5"/></svg>
+          <svg class="exit-screen" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h5V4m6 0v5h5m0 6h-5v5m-6 0v-5H4"/></svg>
+        </button>
+      </div>
+    </div>
   </footer>
-  <div class="pen-dock">
-    <aside class="pen-tools" id="pen-tools" aria-label="Zeichenwerkzeuge" hidden>
-      <button class="tool mode" type="button" id="ink-mode" aria-pressed="false">Schreiben aus</button>
-      <div class="tool-row" role="group" aria-label="Werkzeug">
-        <button class="tool" type="button" data-brush="pen" aria-pressed="true">Stift</button>
-        <button class="tool" type="button" data-brush="marker" aria-pressed="false">Marker</button>
-        <button class="tool" type="button" data-brush="eraser" aria-pressed="false">Radierer</button>
-      </div>
-      <div class="tool-row">
-        <label for="ink-color">Farbe</label>
-        <select class="tool" id="ink-color"><option value="auto" selected>Automatisch</option><option value="#162a23">Dunkelgrün</option><option value="#e06e49">Koralle</option><option value="#208b75">Türkis</option><option value="#f2c354">Gelb</option><option value="#ffffff">Weiß</option></select>
-        <label for="ink-width">Breite</label>
-        <select class="tool" id="ink-width"><option value="3">Dünn</option><option value="6" selected>Mittel</option><option value="10">Breit</option></select>
-      </div>
-      <label class="pen-only"><input id="pen-only" type="checkbox"> Nur Eingabestift</label>
-      <div class="tool-row">
-        <button class="tool" type="button" id="undo">Rückgängig</button>
-        <button class="tool" type="button" id="clear">Notizen löschen</button>
-      </div>
-      <p class="storage-state" id="storage-state" role="status" hidden>Notizen bleiben in dieser Sitzung.</p>
-    </aside>
-    <button class="pen-toggle" type="button" id="pen-toggle" aria-label="Stiftwerkzeuge" aria-expanded="false" aria-controls="pen-tools"><span aria-hidden="true">✎</span></button>
-  </div>
 </main>
-<dialog id="overview" aria-labelledby="overview-title">
-  <div class="dialog-head"><h2 id="overview-title">Folien</h2><form method="dialog"><button class="on-paper" type="submit">Schließen</button></form></div>
-  <ol id="slide-list"></ol>
-</dialog>
 <div class="notice" id="notice" role="status" hidden></div>
 <noscript>Aktiviere JavaScript, um die Folien, Simulationen und den Stift zu verwenden.</noscript>
 <script>/* KaTeX 0.16.22 · MIT
@@ -365,6 +377,8 @@ SOFTWARE.
   const deck = $('deck');
   const frame = $('frame');
   const viewport = $('viewport');
+  const slideMenu = $('slide-menu');
+  const dropdowns = [slideMenu, $('pen-menu')];
   const ink = $('ink');
   const inkContext = ink.getContext('2d');
   const width = 1280;
@@ -376,12 +390,12 @@ SOFTWARE.
   let phase = 0;
   let selectedAnswer = null;
   let painting = false;
-  let brush = 'pen';
   let pending = null;
   let swipe = null;
   let repaint = 0;
   let noticeTimer = 0;
   let storageAvailable = true;
+  let autoFullscreen = document.fullscreenEnabled;
 
   function math(element, expression) {
     katex.render(expression, element, { throwOnError: true, output: 'htmlAndMathml' });
@@ -389,23 +403,16 @@ SOFTWARE.
 
   document.querySelectorAll('[data-tex]').forEach(element => math(element, element.dataset.tex));
   const choices = slides.map((slide, i) => {
-    const entry = document.createElement('li');
     const button = document.createElement('button');
-    button.className = 'overview-choice';
+    button.className = 'slide-choice';
     button.type = 'button';
-    const title = slide.querySelector('h1,h2').innerHTML.replace(/<br\s*\/?>/gi, ' ');
-    const number = document.createElement('span');
-    math(number, String(i + 1));
-    const label = document.createElement('span');
-    label.textContent = ' · ' + title;
-    button.append(number, label);
+    button.textContent = slide.querySelector('h1,h2').innerHTML.replace(/<br\s*\/?>/gi, ' ');
     button.addEventListener('click', () => {
-      $('overview').close();
+      slideMenu.open = false;
       go(i);
-      $('overview-open').focus();
+      slideMenu.querySelector('summary').focus();
     });
-    entry.append(button);
-    $('slide-list').append(entry);
+    $('slide-list').append(button);
     return button;
   });
 
@@ -545,10 +552,10 @@ SOFTWARE.
 
   ink.addEventListener('pointerdown', event => {
     if (!painting || pending || (event.button !== 0 && event.pointerType === 'mouse') ||
-        ($('pen-only').checked && event.pointerType !== 'pen')) return;
+        ($('pen-only').checked && event.pointerType !== 'pen') || dropdowns.some(menu => menu.open)) return;
     event.preventDefault();
     ink.setPointerCapture(event.pointerId);
-    pending = { pointer: event.pointerId, brush, color: inkColor(event),
+    pending = { pointer: event.pointerId, brush: $('ink-brush').value, color: inkColor(event),
       width: Number($('ink-width').value), points: [point(event)] };
     drawInk();
   });
@@ -576,28 +583,15 @@ SOFTWARE.
     swipe = null;
     painting = on;
     ink.dataset.active = String(on);
-    $('pen-toggle').dataset.active = String(on);
-    $('pen-toggle').setAttribute('aria-label', on ? 'Stiftwerkzeuge, Schreiben an' : 'Stiftwerkzeuge, Schreiben aus');
     $('ink-mode').setAttribute('aria-pressed', String(on));
-    $('ink-mode').textContent = on ? 'Schreiben an' : 'Schreiben aus';
+    $('ink-mode').title = on ? 'Zeichnen ausschalten' : 'Zeichnen einschalten';
     slides[active].inert = on;
   }
 
-  function toolbox(open) {
-    $('pen-tools').hidden = !open;
-    $('pen-toggle').setAttribute('aria-expanded', String(open));
-  }
-
-  $('pen-toggle').addEventListener('click', () => toolbox($('pen-tools').hidden));
   $('ink-mode').disabled = !inkContext;
+  $('ink-brush').disabled = !inkContext;
   $('ink-mode').addEventListener('click', () => enableInk(!painting));
-  document.querySelectorAll('[data-brush]').forEach(button => {
-    button.addEventListener('click', () => {
-      brush = button.dataset.brush;
-      document.querySelectorAll('[data-brush]').forEach(tool => tool.setAttribute('aria-pressed', String(tool === button)));
-      enableInk(true);
-    });
-  });
+  $('ink-brush').addEventListener('change', () => enableInk(true));
   $('undo').addEventListener('click', () => {
     const id = slides[active].id;
     const previous = history.get(id);
@@ -617,7 +611,7 @@ SOFTWARE.
     slides.forEach((slide, i) => {
       slide.hidden = i !== active;
       slide.inert = i === active && painting;
-      choices[i].setAttribute('aria-current', i === active ? 'step' : 'false');
+      choices[i].setAttribute('aria-current', String(i === active));
     });
     for (const item of steps[active]) {
       item.hidden = phase < Number(item.dataset.step) || phase >= Number(item.dataset.until ?? Infinity);
@@ -632,10 +626,6 @@ SOFTWARE.
     if (current === 'check') updateQuiz();
     $('previous').disabled = active === 0 && phase === 0;
     $('next').disabled = active === slides.length - 1 && phase === lastSteps[active];
-    const fraction = (value, total) => value + '\\,/\\,' + total;
-    math($('position'), fraction(active + 1, slides.length) + '\\quad\\cdot\\quad' + fraction(phase + 1, lastSteps[active] + 1));
-    $('position').setAttribute('aria-label', 'Folie ' + (active + 1) + ' von ' + slides.length +
-      ', Schritt ' + (phase + 1) + ' von ' + (lastSteps[active] + 1));
     drawInk();
     updateTools();
   }
@@ -652,12 +642,17 @@ SOFTWARE.
 
   $('previous').addEventListener('click', () => move(-1));
   $('next').addEventListener('click', () => move(1));
-  $('overview-open').addEventListener('click', () => $('overview').showModal());
+  document.addEventListener('click', event => {
+    for (const menu of dropdowns) {
+      if (!menu.contains(event.target)) menu.open = false;
+    }
+    enterFullscreenOnFirstAction(event);
+  });
 
   viewport.addEventListener('pointerdown', event => {
     if (event.pointerType !== 'touch') return;
     swipe = null;
-    if (!event.isPrimary || painting || $('overview').open ||
+    if (!event.isPrimary || painting || dropdowns.some(menu => menu.open) ||
         event.target.closest('button,input,select,textarea,a,label')) return;
     swipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
   });
@@ -669,36 +664,53 @@ SOFTWARE.
     const dx = event.clientX - swipe.x;
     const dy = event.clientY - swipe.y;
     swipe = null;
-    if (!painting && !$('overview').open && Math.abs(dx) >= 52 && Math.abs(dx) >= 1.4 * Math.abs(dy)) {
+    if (!painting && !dropdowns.some(menu => menu.open) && Math.abs(dx) >= 52 && Math.abs(dx) >= 1.4 * Math.abs(dy)) {
       move(dx > 0 ? 1 : -1);
+      enterFullscreenOnFirstAction(event);
     }
   });
-  $('fullscreen').addEventListener('click', async () => {
+
+  async function setFullscreen(on, showError) {
     try {
-      if (document.fullscreenElement) await document.exitFullscreen();
-      else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
-      else notify('Diese Browseransicht bietet kein Vollbild.');
+      if (on) await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+      else await document.exitFullscreen();
     } catch {
-      notify('Diese Browseransicht bietet kein Vollbild.');
+      if (showError) notify('Diese Browseransicht bietet kein Vollbild.');
     }
+  }
+
+  function enterFullscreenOnFirstAction(event) {
+    if (!autoFullscreen || !event.isTrusted || navigator.userActivation?.isActive === false ||
+        event.target.closest?.('#fullscreen')) return;
+    autoFullscreen = false;
+    if (!document.fullscreenElement) setFullscreen(true, false);
+  }
+
+  $('fullscreen').addEventListener('click', () => {
+    autoFullscreen = false;
+    setFullscreen(!document.fullscreenElement, true);
   });
   document.addEventListener('fullscreenchange', () => {
-    $('fullscreen').textContent = document.fullscreenElement ? 'Vollbild beenden' : 'Vollbild';
-    $('fullscreen').setAttribute('aria-pressed', String(!!document.fullscreenElement));
+    const on = !!document.fullscreenElement;
+    $('fullscreen').title = on ? 'Vollbild beenden' : 'Vollbild einschalten';
+    $('fullscreen').setAttribute('aria-pressed', String(on));
     fit();
   });
 
   document.addEventListener('keydown', event => {
-    if ($('overview').open || event.altKey || event.ctrlKey || event.metaKey) return;
-    if (event.key === 'Escape' && !$('pen-tools').hidden) {
-      toolbox(false);
-      $('pen-toggle').focus();
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    const openMenu = dropdowns.find(menu => menu.open);
+    if (event.key === 'Escape' && openMenu) {
+      event.preventDefault();
+      openMenu.open = false;
+      openMenu.querySelector('summary').focus();
       return;
     }
-    if (event.target.closest?.('input,select,textarea')) return;
+    if (event.target.closest?.('input,select,textarea') || openMenu?.contains(event.target)) return;
     if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
       event.preventDefault();
       move(event.key === 'ArrowRight' ? 1 : -1);
+      enterFullscreenOnFirstAction(event);
     }
   });
 
